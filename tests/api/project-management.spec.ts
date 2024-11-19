@@ -6,7 +6,7 @@ test.describe('Project Management API Tests', () => {
     let accessToken: string;
 
     test.beforeAll(async ({ playwright }) => {
-        accessToken = getAccessTokenFromStorageState();
+        accessToken = await getAccessTokenFromStorageState();
         console.log('Access Token:', accessToken);
         apiContext = await playwright.request.newContext({
             baseURL: 'https://ims-customers.innoscripta.com/api',
