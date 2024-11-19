@@ -1,0 +1,29 @@
+{
+  "name": "clusterix-automation",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test:prod": "NODE_ENV=production npx playwright test",
+    "test:testing": "NODE_ENV=testing npx playwright test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@eslint/js": "^9.15.0",
+    "@playwright/test": "^1.48.2",
+    "@types/node": "^22.9.0",
+    "globals": "^15.12.0",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
+    "playwright": "^1.48.2",
+    "typescript-eslint": "^8.14.0"
+  },
+  "dependencies": {
+    "axios": "^1.7.7",
+    "dotenv": "^16.4.5",
+    "prettier": "^3.3.3",
+    "typescript": "^5.6.3"
+  }
+}

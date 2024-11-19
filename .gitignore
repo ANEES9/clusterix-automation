@@ -1,0 +1,16 @@
+# Node.js dependencies
+node_modules/
+package-lock.json
+
+# Playwright reports and test artifacts
+playwright-report/
+test-results/
+
+# Environment variable
+.env.production
+.env.testing
+
+# Storage state
+sessions/storageState.json
+testingState.json
+sessions/
