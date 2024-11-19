@@ -2,81 +2,70 @@ import { test, expect } from '@playwright/test';
 import { closeWelcomePopUp } from '../../helpers/welcome-popup-helper';
 import { closeTimerPopUp } from '../../helpers/timer-helper';
 import { openNavigationMenu } from '../../helpers/navigation-helper';
+import {addCursorStyleAndScript } from '../../helpers/cursor-helper';
 
 test.describe('Clusterix Navigation Tests', () => {
     test.beforeEach(async ({ page, baseURL }) => {
         await page.goto(baseURL!);
+        await addCursorStyleAndScript(page);
         await closeWelcomePopUp(page);
         await closeTimerPopUp(page);
         await openNavigationMenu(page);
         await page.waitForLoadState('networkidle');
     });
     test('Navigate to Files', async ({ page }) => {
-        // Locate and click the "Files" button
         const navButton = page.locator('#root > div > div:nth-of-type(2) div:nth-of-type(1) > div:nth-of-type(1) > button');
         await navButton.click();
-
-        // Verify the navigation URL
         await expect(page).toHaveURL(/.*cluster-space/);
 
         console.log('Navigation to Files was successful.');
     });
     test('Navigate to Office', async ({ page }) => {
-        // Navigate and verify
         const navButton = page.getByRole('button', { name: 'Office' });
         await navButton.click();
         await expect(page).toHaveURL(/.*cluster-office/);
     });
     test('Navigate to PDF', async ({ page }) => {
-        // Navigate and verify
         const navButton = page.getByRole('button', { name: 'PDF' });
         await navButton.click();
         await expect(page).toHaveURL(/.*cluster-pdf/);
     });
     test('Navigate to HR', async ({ page }) => {
-        // Navigate and verify
         const navButton = page.getByRole('button', { name: 'HR' });
         await navButton.click();
         await expect(page).toHaveURL(/.*hr\/dashboard/);
     });
     test('Navigate to Project Management', async ({ page }) => {
-        // Navigate and verify
         const navButton = page.getByRole('button', { name: 'Project Management' });
         await navButton.click();
         await expect(page).toHaveURL(/.*project-management\/projects\/overview/);
     });
     test('Navigate to Task Management', async ({ page }) => {
-        // Navigate and verify
         const navButton = page.getByRole('button', { name: 'Task Management' });
         await navButton.click();
         await expect(page).toHaveURL(/.*task-management/);
     });
     test('Navigate to Time Tracking', async ({ page }) => {
-        // Navigate and verify
         const navButton = page.getByRole('button', { name: 'Time Tracking' });
         await navButton.click();
         await expect(page).toHaveURL(/.*time-tracking/);
     });
     test('Navigate to Company Searcher', async ({ page }) => {
-        // Navigate and verify
         const navButton = page.getByRole('button', { name: 'Company Searcher' });
         await navButton.click();
         await expect(page).toHaveURL(/.*company-search\/company/);
     });
     test('Navigate to Customers', async ({ page }) => {
-        // Navigate and verify
         const navButton = page.getByRole('button', { name: 'Customers' });
         await navButton.click();
         await expect(page).toHaveURL(/.*customers\/dashboard/);
     });
     test('Navigate to No Code', async ({ page }) => {
-        // Navigate and verify
         const navButton = page.getByRole('button', { name: 'No Code' });
         await navButton.click();
         await expect(page).toHaveURL(/.*no-code\/dashboard\/overview/);
     });
     test('Navigate to Template Manager', async ({ page }) => {
-        // Navigate and verify
         const navButton = page.getByRole('button', { name: 'Template Manager' });
         await navButton.click();
         await expect(page).toHaveURL(/.*template-manager/);
