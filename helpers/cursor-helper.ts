@@ -13,7 +13,6 @@ export const addCursorStyleAndScript = async (page: any) => {
             }
         `,
     });
-
     await page.evaluate(() => {
         const cursor = document.createElement('div');
         cursor.id = 'playwright-cursor';

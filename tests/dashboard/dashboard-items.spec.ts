@@ -9,7 +9,6 @@ test.describe('Dashboard Item Collapse Tests', () => {
         await closeTimerPopUp(page);
         await page.waitForLoadState('networkidle');
     });
-
     test('Verify item collapse functionality', async ({ page }) => {
         const collapseButton = page.locator('button.XGTruqnD6viz2G4A5CH');
         await expect(collapseButton).toBeVisible();

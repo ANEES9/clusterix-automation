@@ -14,7 +14,6 @@ export async function reportBug(
     if (!config) {
         throw new Error(`Invalid application slug: ${applicationSlug}`);
     }
-
     const formData = new FormData();
     formData.append('description', description);
     formData.append('application_id', config.application_id.toString());
@@ -24,7 +23,6 @@ export async function reportBug(
     if (screenshotBuffer) {
         formData.append('screenshot', screenshotBuffer, 'screenshot.png');
     }
-
     try {
         const response = await axios.post(
             process.env.BUG_REPORT_API!,
@@ -40,7 +38,6 @@ export async function reportBug(
         await formData.forEach((value, key) => {
             console.log(`${key}: ${value}`);
         });
-
     } catch (error) {
         if (axios.isAxiosError(error)) {
             console.error('Axios error occurred:');

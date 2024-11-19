@@ -18,25 +18,20 @@ export async function loginAndSaveSession(page: Page) {
     await page.context().storageState({ path: sessionFilePath });
 }
 
-
 export async function getAccessTokenFromStorageState(): Promise<string> {
     const sessionFilePath = path.join('sessions', `storageState.${env}.json`);
     try {
         const storageState = JSON.parse(fs.readFileSync(sessionFilePath, 'utf-8'));
         const userData = storageState.origins.find((origin: any) => origin.origin.includes(process.env.BASE_URL))
             ?.localStorage.find((item: any) => item.name === 'user')?.value;
-
         if (!userData) {
             throw new Error('User data not found in storageState.');
         }
-
         const parsedData = JSON.parse(userData);
         const accessToken = parsedData.access_token;
-
         if (!accessToken) {
             throw new Error('Access token not found in user data.');
         }
-
         return accessToken;
     } catch (error) {
         console.error('Error reading access token from storageState:', error);
