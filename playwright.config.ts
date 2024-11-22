@@ -22,9 +22,9 @@ export default defineConfig({
       name: 'UI Tests',
       testDir: './tests',
     },
-    {
+    /*{
       name: 'API Tests',
       testDir: './tests/api',
-    },
+    },*/
   ],
 })
