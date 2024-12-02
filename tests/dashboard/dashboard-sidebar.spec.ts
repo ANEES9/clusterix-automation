@@ -14,13 +14,12 @@ test.describe('Clusterix Navigation Tests', () => {
     await page.waitForLoadState('networkidle')
   })
   test('Navigate to Files', async ({ page }) => {
-    const navButton = page.getByRole('button', { name: 'Files', exact: true})
+    const navButton = page.getByRole('button', { name: 'Files', exact: true })
     await navButton.click()
     await expect(page).toHaveURL(/.*cluster-space/)
-
   })
   test('Navigate to Office', async ({ page }) => {
-    const navButton = page.getByRole('button', { name: 'Office', exact: true})
+    const navButton = page.getByRole('button', { name: 'Office', exact: true })
     await navButton.click()
     await expect(page).toHaveURL(/.*cluster-office/)
   })
