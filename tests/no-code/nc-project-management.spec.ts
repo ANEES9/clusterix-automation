@@ -19,6 +19,47 @@ test.describe('No Code Overview Tests', () => {
         await expect(header).toBeVisible();
     });
 
+    //todo: table title locator fix
+    test.skip('Check Title Consistency Between Table Row and Modal Header', async ({ page }) => {
+        // Locate the title text inside the first row's second cell
+        const tableTitleLocator = page.locator('tr:nth-child(1) td:nth-child(2) div.ca-flex.ca-items-center span');
+        await expect(tableTitleLocator).toBeVisible(); // Ensure it's visible
+
+        // Retrieve the text of the title in the table
+        const tableTitle = await tableTitleLocator.innerText();
+        console.log(`Table Title: ${tableTitle}`);
+
+        // Click the "Edit" button for the first row
+        const editButtonLocator = page.locator('tr:nth-child(1) td button[aria-label="Edit"]'); // Adjust if necessary
+        await editButtonLocator.click();
+
+        // Wait for the modal to open and verify the modal header
+        const modalHeaderLocator = page.locator('div.modal-header span'); // Adjust based on modal header structure
+        await expect(modalHeaderLocator).toBeVisible();
+
+        // Retrieve the modal header text
+        const modalHeader = await modalHeaderLocator.innerText();
+        console.log(`Modal Header: ${modalHeader}`);
+
+        // Compare the table title with the modal header
+        expect(modalHeader.trim()).toBe(tableTitle.trim());
+    });
+    //todo: fix
+    test.skip('Open edit modal, hover over and edit page name', async ({ page }) => {
+        // Click the "Edit" button to open the modal
+        await page.locator('.ca-gap-yellow').nth(0).click();
+        const modal = page.locator('span', { hasText: 'Untitled Section' });
+        await expect(modal).toBeVisible();
+
+        // Hover over the "Untitled page" element
+        const untitledPage = page.locator('div[data-bd-drag-handle-context-id]');
+        await expect(untitledPage).toBeVisible(); // Ensure the element is visible before hovering
+        await untitledPage.hover();
+
+        // Optionally add a validation or screenshot
+        await page.screenshot({ path: 'hover-effect.png', fullPage: false });
+    });
+    //todo: drag and drop fix
     test.skip('Drag and drop text field for pm workflow', async ({ page }) => {
         // Click the "Edit" button
         await page.locator('.ca-gap-yellow').nth(0).click();
