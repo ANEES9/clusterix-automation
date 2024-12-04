@@ -4,8 +4,8 @@ import { closeTimerPopUp } from '../../helpers/timer-helper'
 import { addCursorStyleAndScript } from '../../helpers/cursor-helper'
 
 test.describe('No Code Overview Tests', () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto('${baseURL}/workflows/dashboard/overview')
+  test.beforeEach(async ({ page, baseURL }) => {
+    await page.goto(`${baseURL}/workflows/dashboard/overview`)
     await page.waitForLoadState('networkidle')
     await addCursorStyleAndScript(page)
     await closeWelcomePopUp(page)
