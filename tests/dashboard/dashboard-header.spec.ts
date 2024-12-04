@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 import { closeWelcomePopUp } from '../../helpers/welcome-popup-helper'
 import { closeTimerPopUp } from '../../helpers/timer-helper'
 
-test.describe('Dashboard Item Collapse Tests', () => {
+test.describe('Dashboard Header Items', () => {
   test.beforeEach(async ({ page, baseURL }) => {
     await page.goto(baseURL!)
     await closeWelcomePopUp(page)

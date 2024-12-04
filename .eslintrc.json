@@ -13,13 +13,14 @@
     "prettier/prettier": [
       "error",
       {
-        "semi": false,
+        "semi": ["error", "always"],
         "singleQuote": true,
         "tabWidth": 2,
         "useTabs": false,
         "trailingComma": "es5",
         "printWidth": 80,
-        "arrowParens": "always"
+        "arrowParens": "always",
+        "quotes": ["error", "single"]
       }
     ],
     "no-console": "warn",
