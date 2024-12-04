@@ -46,7 +46,6 @@ test.describe('Dashboard Header Items', () => {
     await expect(currentApp).toContainText('Calendar')
   })
 
-  //todo: we have two time tracking icon in landing page, it's in the header and in the sidebar on the left.
   test('Validate Time Tracking Navigation on Button Click', async ({
     page,
   }) => {
@@ -97,6 +96,7 @@ test.describe('Dashboard Header Items', () => {
     await expect(header).toContainText('Live Chat')
   })
 
+  //todo: cannot click on the profile
   test('Validate Profile Menu Opens on Avatar Click', async ({ page }) => {
     // Remove any overlay
     await page.evaluate(() => {
