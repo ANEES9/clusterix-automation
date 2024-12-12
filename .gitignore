@@ -3,8 +3,8 @@ node_modules/
 package-lock.json
 
 # Playwright reports and test artifacts
-playwright-report/
-test-results/
+allure-report
+allure-results
 
 # Environment variable
 .env.production
@@ -14,3 +14,5 @@ test-results/
 sessions/storageState.json
 testingState.json
 sessions/
+
+.idea
