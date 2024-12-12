@@ -1,8 +1,8 @@
 FROM node:18-slim
 
-ENV BASE_URL=placeholder \
-    EMAIL=placeholder \
-    PASSWORD=placeholder
+ENV CLUSTERIX_BASE_URL=placeholder \
+    CLUSTERIX_EMAIL=placeholder \
+    CLUSTERIX_PASSWORD=placeholder
 
 WORKDIR /app
 
