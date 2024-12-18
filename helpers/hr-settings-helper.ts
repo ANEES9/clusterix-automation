@@ -9,7 +9,7 @@ export async function getGenderOptions(
   }
 
   // Navigate to the App Settings page
-  await page.goto(`${process.env.BASE_URL}/settings/app-settings/3`)
+  await page.goto(`${process.env.CLUSTERIX_BASE_URL}/settings/app-settings/3`)
   await page.waitForLoadState('networkidle')
 
   const employeeModalSettingsButton = page

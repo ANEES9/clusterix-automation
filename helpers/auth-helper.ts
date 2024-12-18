@@ -9,16 +9,16 @@ dotenv.config({ path: `.env.${env}` })
 const sessionFilePath = path.join('sessions', `storageState.${env}.json`)
 
 export async function loginAndSaveSession(page: Page) {
-  await page.goto(process.env.BASE_URL || '')
+  await page.goto(process.env.CLUSTERIX_BASE_URL || '')
   await page.getByRole('button', { name: 'Login' }).nth(1).click()
-  await page.getByPlaceholder('Email').fill(process.env.EMAIL || '')
-  await page.getByPlaceholder('Password').fill(process.env.PASSWORD || '')
+  await page.getByPlaceholder('Email').fill(process.env.CLUSTERIX_EMAIL || '')
+  await page.getByPlaceholder('Password').fill(process.env.CLUSTERIX_PASSWORD || '')
   await page
     .locator('div')
     .filter({ hasText: /^Login$/ })
     .first()
     .click()
-  await page.waitForURL(`${process.env.BASE_URL}`)
+  await page.waitForURL(`${process.env.CLUSTERIX_BASE_URL}`)
   await page.context().storageState({ path: sessionFilePath })
 }
 
@@ -27,7 +27,7 @@ export async function getAccessTokenFromStorageState(): Promise<string> {
   try {
     const storageState = JSON.parse(fs.readFileSync(sessionFilePath, 'utf-8'))
     const userData = storageState.origins
-      .find((origin: any) => origin.origin.includes(process.env.BASE_URL))
+      .find((origin: any) => origin.origin.includes(process.env.CLUSTERIX_BASE_URL))
       ?.localStorage.find((item: any) => item.name === 'user')?.value
     if (!userData) {
       throw new Error('User data not found in storageState.')

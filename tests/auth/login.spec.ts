@@ -5,7 +5,7 @@ const env = process.env.NODE_ENV || 'production'
 dotenv.config({ path: `.env.${env}` })
 
 test('Login to Clusterix', async ({ page }) => {
-  await page.goto(process.env.BASE_URL || '')
+  await page.goto(process.env.CLUSTERIX_BASE_URL || '')
   await page.getByRole('button', { name: 'Login' }).nth(1).click()
   await page.getByPlaceholder('Email').fill(process.env.EMAIL || '')
   await page.getByPlaceholder('Password').fill(process.env.PASSWORD || '')
@@ -14,5 +14,5 @@ test('Login to Clusterix', async ({ page }) => {
     .filter({ hasText: /^Login$/ })
     .first()
     .click()
-  await expect(page).toHaveURL(`${process.env.BASE_URL}`)
+  await expect(page).toHaveURL(`${process.env.CLUSTERIX_BASE_URL}`)
 })
