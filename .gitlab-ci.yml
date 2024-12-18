@@ -3,6 +3,8 @@ variables:
   CICD_REPO_PROJECT_REF: main
   REPO: 910325995766.dkr.ecr.eu-central-1.amazonaws.com/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}
 
+image: ${PIPE_IMAGE}
+
 include:
   - 'https://git.innoscripta.com/api/v4/projects/${CICD_REPO_PROJECT_ID}/repository/files/ci-files%2Frun.gitlab-ci.yml/raw?ref=${CICD_REPO_PROJECT_REF}&private_token=${CICD_REPO_ACCESS_TOKEN}&.yml'
 
