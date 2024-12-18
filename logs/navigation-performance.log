@@ -1,0 +1,315 @@
+[2024-12-11T11:13:57.314Z] Navigate to Files: 1414.19 ms
+Performance Metrics:
+  dnsLookupTime: 0 ms
+  tcpHandshakeTime: 0 ms
+  responseTime: 69 ms
+  domContentLoadedTime: 258 ms
+  pageLoadTime: 7351 ms
+Metric Success Rates:
+  dnsLookupTime: 100.00%
+  tcpHandshakeTime: 100.00%
+  responseTime: 100.00%
+  domContentLoadedTime: 100.00%
+  pageLoadTime: 0.00%
+Overall Performance: 66.67%
+Navigation Time Percentage: 100.00%
+[2024-12-11T11:14:03.356Z] Navigate to Office: 346.97 ms
+Performance Metrics:
+  dnsLookupTime: 0 ms
+  tcpHandshakeTime: 34 ms
+  responseTime: 59 ms
+  domContentLoadedTime: 278 ms
+  pageLoadTime: 789 ms
+Metric Success Rates:
+  dnsLookupTime: 100.00%
+  tcpHandshakeTime: 100.00%
+  responseTime: 100.00%
+  domContentLoadedTime: 100.00%
+  pageLoadTime: 100.00%
+Overall Performance: 100.00%
+Navigation Time Percentage: 100.00%
+[2024-12-11T11:14:09.527Z] Navigate to PDF: 823.52 ms
+Performance Metrics:
+  dnsLookupTime: 0 ms
+  tcpHandshakeTime: 30 ms
+  responseTime: 55 ms
+  domContentLoadedTime: 270 ms
+  pageLoadTime: 696 ms
+Metric Success Rates:
+  dnsLookupTime: 100.00%
+  tcpHandshakeTime: 100.00%
+  responseTime: 100.00%
+  domContentLoadedTime: 100.00%
+  pageLoadTime: 100.00%
+Overall Performance: 100.00%
+Navigation Time Percentage: 100.00%
+[2024-12-11T11:14:21.206Z] Navigate to HR: 5882.32 ms
+Performance Metrics:
+  dnsLookupTime: 0 ms
+  tcpHandshakeTime: 36 ms
+  responseTime: 54 ms
+  domContentLoadedTime: 271 ms
+  pageLoadTime: 496 ms
+Metric Success Rates:
+  dnsLookupTime: 100.00%
+  tcpHandshakeTime: 100.00%
+  responseTime: 100.00%
+  domContentLoadedTime: 100.00%
+  pageLoadTime: 100.00%
+Overall Performance: 100.00%
+Navigation Time Percentage: 0.00%
+[2024-12-11T11:14:33.827Z] Navigate to Project Management: 5239.35 ms
+Performance Metrics:
+  dnsLookupTime: 0 ms
+  tcpHandshakeTime: 40 ms
+  responseTime: 64 ms
+  domContentLoadedTime: 291 ms
+  pageLoadTime: 961 ms
+Metric Success Rates:
+  dnsLookupTime: 100.00%
+  tcpHandshakeTime: 100.00%
+  responseTime: 100.00%
+  domContentLoadedTime: 100.00%
+  pageLoadTime: 100.00%
+Overall Performance: 100.00%
+Navigation Time Percentage: 0.00%
+[2024-12-11T11:14:44.711Z] Navigate to Task Management: 1866.69 ms
+Performance Metrics:
+  dnsLookupTime: 0 ms
+  tcpHandshakeTime: 72 ms
+  responseTime: 55 ms
+  domContentLoadedTime: 351 ms
+  pageLoadTime: 5103 ms
+Metric Success Rates:
+  dnsLookupTime: 100.00%
+  tcpHandshakeTime: 100.00%
+  responseTime: 100.00%
+  domContentLoadedTime: 100.00%
+  pageLoadTime: 0.00%
+Overall Performance: 66.67%
+Navigation Time Percentage: 100.00%
+[2024-12-11T11:15:41.703Z] Navigate to No Code: 3355.78 ms
+Performance Metrics:
+  dnsLookupTime: 0 ms
+  tcpHandshakeTime: 36 ms
+  responseTime: 57 ms
+  domContentLoadedTime: 287 ms
+  pageLoadTime: 511 ms
+Metric Success Rates:
+  dnsLookupTime: 100.00%
+  tcpHandshakeTime: 100.00%
+  responseTime: 100.00%
+  domContentLoadedTime: 100.00%
+  pageLoadTime: 100.00%
+Overall Performance: 100.00%
+Navigation Time Percentage: 32.21%
+[2024-12-11T11:15:50.342Z] Navigate to Template Manager: 2816.14 ms
+Performance Metrics:
+  dnsLookupTime: 0 ms
+  tcpHandshakeTime: 61 ms
+  responseTime: 60 ms
+  domContentLoadedTime: 311 ms
+  pageLoadTime: 538 ms
+Metric Success Rates:
+  dnsLookupTime: 100.00%
+  tcpHandshakeTime: 100.00%
+  responseTime: 100.00%
+  domContentLoadedTime: 100.00%
+  pageLoadTime: 100.00%
+Overall Performance: 100.00%
+Navigation Time Percentage: 59.19%
+[2024-12-11T11:38:56.152Z] Navigate to Files: 1910.14 ms
+Performance Metrics:
+  dnsLookupTime: 0 ms
+  tcpHandshakeTime: 0 ms
+  responseTime: 56 ms
+  domContentLoadedTime: 247 ms
+  pageLoadTime: 7070 ms
+Metric Success Rates:
+  dnsLookupTime: 100.00%
+  tcpHandshakeTime: 100.00%
+  responseTime: 100.00%
+  domContentLoadedTime: 100.00%
+  pageLoadTime: 0.00%
+Overall Performance: 66.67%
+Navigation Time Percentage: 100.00%
+[2024-12-11T11:39:03.888Z] Navigate to Office: 871.31 ms
+Performance Metrics:
+  dnsLookupTime: 0 ms
+  tcpHandshakeTime: 0 ms
+  responseTime: 57 ms
+  domContentLoadedTime: 240 ms
+  pageLoadTime: 738 ms
+Metric Success Rates:
+  dnsLookupTime: 100.00%
+  tcpHandshakeTime: 100.00%
+  responseTime: 100.00%
+  domContentLoadedTime: 100.00%
+  pageLoadTime: 100.00%
+Overall Performance: 100.00%
+Navigation Time Percentage: 100.00%
+[2024-12-11T11:39:14.136Z] Navigate to PDF: 1336.58 ms
+Performance Metrics:
+  dnsLookupTime: 0 ms
+  tcpHandshakeTime: 39 ms
+  responseTime: 56 ms
+  domContentLoadedTime: 289 ms
+  pageLoadTime: 5047 ms
+Metric Success Rates:
+  dnsLookupTime: 100.00%
+  tcpHandshakeTime: 100.00%
+  responseTime: 100.00%
+  domContentLoadedTime: 100.00%
+  pageLoadTime: 0.00%
+Overall Performance: 66.67%
+Navigation Time Percentage: 100.00%
+[2024-12-11T11:39:25.773Z] Navigate to HR: 5641.47 ms
+Performance Metrics:
+  dnsLookupTime: 0 ms
+  tcpHandshakeTime: 22 ms
+  responseTime: 56 ms
+  domContentLoadedTime: 265 ms
+  pageLoadTime: 502 ms
+Metric Success Rates:
+  dnsLookupTime: 100.00%
+  tcpHandshakeTime: 100.00%
+  responseTime: 100.00%
+  domContentLoadedTime: 100.00%
+  pageLoadTime: 100.00%
+Overall Performance: 100.00%
+Navigation Time Percentage: 0.00%
+[2024-12-11T11:40:07.708Z] Navigate to Task Management: 1949.25 ms
+Performance Metrics:
+  dnsLookupTime: 0 ms
+  tcpHandshakeTime: 25 ms
+  responseTime: 57 ms
+  domContentLoadedTime: 298 ms
+  pageLoadTime: 4797 ms
+Metric Success Rates:
+  dnsLookupTime: 100.00%
+  tcpHandshakeTime: 100.00%
+  responseTime: 100.00%
+  domContentLoadedTime: 100.00%
+  pageLoadTime: 0.00%
+Overall Performance: 66.67%
+Navigation Time Percentage: 100.00%
+[2024-12-11T11:41:31.968Z] Navigate to Template Manager: 3350.50 ms
+Performance Metrics:
+  dnsLookupTime: 0 ms
+  tcpHandshakeTime: 14 ms
+  responseTime: 58 ms
+  domContentLoadedTime: 261 ms
+  pageLoadTime: 483 ms
+Metric Success Rates:
+  dnsLookupTime: 100.00%
+  tcpHandshakeTime: 100.00%
+  responseTime: 100.00%
+  domContentLoadedTime: 100.00%
+  pageLoadTime: 100.00%
+Overall Performance: 100.00%
+Navigation Time Percentage: 32.48%
+[2024-12-11T12:09:40.771Z] Navigate to Files: 1434.01 ms
+Performance Metrics:
+  dnsLookupTime: 0 ms
+  tcpHandshakeTime: 0 ms
+  responseTime: 54 ms
+  domContentLoadedTime: 239 ms
+  pageLoadTime: 481 ms
+Metric Success Rates:
+  dnsLookupTime: 100.00%
+  tcpHandshakeTime: 100.00%
+  responseTime: 100.00%
+  domContentLoadedTime: 100.00%
+  pageLoadTime: 100.00%
+Overall Performance: 100.00%
+Navigation Time Percentage: 100.00%
+[2024-12-11T12:09:48.741Z] Navigate to Office: 853.69 ms
+Performance Metrics:
+  dnsLookupTime: 0 ms
+  tcpHandshakeTime: 25 ms
+  responseTime: 54 ms
+  domContentLoadedTime: 266 ms
+  pageLoadTime: 1712 ms
+Metric Success Rates:
+  dnsLookupTime: 100.00%
+  tcpHandshakeTime: 100.00%
+  responseTime: 100.00%
+  domContentLoadedTime: 100.00%
+  pageLoadTime: 85.87%
+Overall Performance: 95.29%
+Navigation Time Percentage: 100.00%
+[2024-12-11T12:09:56.076Z] Navigate to PDF: 854.44 ms
+Performance Metrics:
+  dnsLookupTime: 0 ms
+  tcpHandshakeTime: 54 ms
+  responseTime: 54 ms
+  domContentLoadedTime: 295 ms
+  pageLoadTime: 521 ms
+Metric Success Rates:
+  dnsLookupTime: 100.00%
+  tcpHandshakeTime: 100.00%
+  responseTime: 100.00%
+  domContentLoadedTime: 100.00%
+  pageLoadTime: 100.00%
+Overall Performance: 100.00%
+Navigation Time Percentage: 100.00%
+[2024-12-11T12:10:10.266Z] Navigate to HR: 5271.87 ms
+Performance Metrics:
+  dnsLookupTime: 0 ms
+  tcpHandshakeTime: 57 ms
+  responseTime: 57 ms
+  domContentLoadedTime: 294 ms
+  pageLoadTime: 4783 ms
+Metric Success Rates:
+  dnsLookupTime: 100.00%
+  tcpHandshakeTime: 100.00%
+  responseTime: 100.00%
+  domContentLoadedTime: 100.00%
+  pageLoadTime: 0.00%
+Overall Performance: 66.67%
+Navigation Time Percentage: 0.00%
+[2024-12-11T12:10:22.458Z] Navigate to Project Management: 5284.92 ms
+Performance Metrics:
+  dnsLookupTime: 0 ms
+  tcpHandshakeTime: 43 ms
+  responseTime: 57 ms
+  domContentLoadedTime: 287 ms
+  pageLoadTime: 884 ms
+Metric Success Rates:
+  dnsLookupTime: 100.00%
+  tcpHandshakeTime: 100.00%
+  responseTime: 100.00%
+  domContentLoadedTime: 100.00%
+  pageLoadTime: 100.00%
+Overall Performance: 100.00%
+Navigation Time Percentage: 0.00%
+[2024-12-11T12:10:29.826Z] Navigate to Task Management: 1905.69 ms
+Performance Metrics:
+  dnsLookupTime: 0 ms
+  tcpHandshakeTime: 20 ms
+  responseTime: 64 ms
+  domContentLoadedTime: 267 ms
+  pageLoadTime: 490 ms
+Metric Success Rates:
+  dnsLookupTime: 100.00%
+  tcpHandshakeTime: 100.00%
+  responseTime: 100.00%
+  domContentLoadedTime: 100.00%
+  pageLoadTime: 100.00%
+Overall Performance: 100.00%
+Navigation Time Percentage: 100.00%
+[2024-12-11T12:11:55.322Z] Navigate to Template Manager: 4120.44 ms
+Performance Metrics:
+  dnsLookupTime: 0 ms
+  tcpHandshakeTime: 16 ms
+  responseTime: 58 ms
+  domContentLoadedTime: 277 ms
+  pageLoadTime: 729 ms
+Metric Success Rates:
+  dnsLookupTime: 100.00%
+  tcpHandshakeTime: 100.00%
+  responseTime: 100.00%
+  domContentLoadedTime: 100.00%
+  pageLoadTime: 100.00%
+Overall Performance: 100.00%
+Navigation Time Percentage: 0.00%

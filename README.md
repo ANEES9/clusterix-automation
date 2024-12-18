@@ -1,14 +1,16 @@
 # **Clusterix Automation**
 
-This project is an E2E testing framework built using [Playwright](https://playwright.dev/) to streamline and automate testing for the Clusterix platform.
+This project is an E2E testing framework built using [Playwright](https://playwright.dev/) to streamline and automate
+testing for the Clusterix platform.
 
 ## **Features**
 
-- Supports testing on multiple browsers (Chromium, Firefox, WebKit).
-- Cross-environment configuration (e.g., production, staging).
-- Auto-generated HTML test reports.
-- Screenshots and video recording for debugging.
-- Retry mechanism for flaky tests.
+- Cross-Browser Testing: Supports testing on Chromium, Firefox, and WebKit.
+- Environment Configurations: Easily switch between environments (production, testing).
+- Allure Test Reporting: Generate detailed, interactive HTML test reports for debugging and analysis.
+- Screenshots and Video Recording: Automatically captures screenshots and videos for failed tests.
+- Retry Mechanism: Automatically retries flaky tests to ensure reliability.
+- API Testing Support: Includes support for API tests within the same framework.
 
 ---
 
@@ -77,7 +79,8 @@ NODE_ENV=testing npx playwright test
 
 ### **2. Running Tests with npm Scripts**
 
-You can simplify the commands using predefined npm scripts in `package.json`. The following scripts are already configured:
+You can simplify the commands using predefined npm scripts in `package.json`. The following scripts are already
+configured:
 
 #### **Run Tests on Production**
 
@@ -139,12 +142,23 @@ Set `headless: false` in `playwright.config.ts` to see the browser during test e
 
 ---
 
-### **6. API Tests**
+### **6. Allure Test Reports**
 
-To run API tests:
+You can use it to view interactive test results with screenshots, logs, and trace information
+with [Allure](https://allurereport.org/).
+
+Generating Reports
+After running tests, generate an Allure report:
 
 ```bash
-npx playwright test --project="API Tests"
+allure generate allure-results --clean
+```
+
+Viewing Reports
+Open the Allure report in your browser:
+
+```bash
+allure open allure-report
 ```
 
 ## **Best Practices**
