@@ -197,21 +197,6 @@ Or run directly:
 ```bash
 NODE_ENV=production npx playwright test --headed
 ```
-
----
-
-# **Allure Test Reports**
-
-### **1. Generate Reports**
-```bash
-allure generate allure-results --clean
-```
-
-### **2. View Reports**
-```bash
-allure open allure-report
-```
-
 ---
 
 # **Session Management**
@@ -275,6 +260,134 @@ git push origin feature/your-feature
 5. Open a pull request.
 
 ---
+
+# **Allure Reporting and Metadata**
+
+## **What is Allure Reporting?**
+
+**Allure** is a flexible reporting framework for test automation that generates **interactive reports** with detailed insights into test executions.
+
+### **Key Features:**
+- **Step-by-Step Test Execution:** Tracks every step within a test for debugging.
+- **Screenshots and Logs:** Attach logs, screenshots, and videos for each step.
+- **Metadata:** Use tags, severity levels, and labels for better organization and filtering.
+- **History and Trends:** Tracks trends for test stability over time.
+
+---
+
+## **Allure Setup**
+
+1. **Install Dependencies:**
+```bash
+npm install allure-playwright
+```
+
+2. **Add Allure Results Folder in `.gitignore`:**
+```
+allure-results/
+allure-report/
+```
+
+---
+
+# **Using Allure Tags and Metadata**
+
+Allure allows adding metadata to tests, which is useful for filtering and reporting.
+
+### **1. Epic, Feature, and Story:**
+
+- **`epic`:** Groups tests under a high-level module or component.
+- **`feature`:** Marks related tests that cover a specific feature.
+- **`story`:** Adds a more detailed breakdown for test scenarios.
+
+**Example:**
+```typescript
+allure.epic('Dashboard') // Group tests under 'Dashboard'
+allure.feature('Notifications') // Feature related to Notifications
+allure.story('Open Notifications Panel') // Specific scenario for testing panel
+```
+
+---
+
+### **2. Severity Levels:**
+
+Define the criticality of tests for prioritization:
+
+| Severity      | Description                                               |
+|---------------|-----------------------------------------------------------|
+| `blocker`     | Critical issue; blocks further testing or releases.       |
+| `critical`    | High-priority feature failures.                           |
+| `normal`      | Regular functionality checks.                             |
+| `minor`       | Low-priority issues.                                      |
+| `trivial`     | Cosmetic or very minor issues.                            |
+
+**Example:**
+```typescript
+allure.severity('critical') // Mark test as critical
+```
+
+---
+
+### **3. Labels and Tags:**
+
+- **`label`:** Adds custom metadata like team ownership.
+- **`tag`:** Groups tests based on functionality, type, or category.
+
+**Example:**
+```typescript
+allure.label('owner', 'QA Team') // Assign ownership to QA Team
+allure.tag('smoke') // Mark test as a smoke test
+allure.tag('regression') // Useful for regression test runs
+```
+
+---
+
+### **4. Steps for Traceability:**
+
+**Allure Steps** allow breaking tests into smaller, trackable actions.
+
+**Example:**
+```typescript
+await allure.step('Locate the Notifications button', async () => {
+  const notificationsButton = page.getByRole('button', { name: 'Notifications' })
+  await expect(notificationsButton).toBeVisible()
+})
+```
+
+---
+
+### **5. Attachments (Logs, Screenshots, Videos):**
+
+**Attach Debug Data** like screenshots, logs, or custom data to reports.
+
+**Example:**
+```typescript
+const screenshot = await page.screenshot()
+allure.attachment('Screenshot', screenshot, 'image/png') // Attach screenshot
+allure.attachment('Response Logs', JSON.stringify(response), 'application/json') // Attach JSON logs
+```
+
+---
+
+# **Generating Reports**
+
+1. **Run Tests:**
+```bash
+npx playwright test
+```
+
+2. **Generate Allure Reports:**
+```bash
+allure generate allure-results --clean
+```
+
+3. **View Reports:**
+```bash
+allure open allure-report
+```
+
+---
+
 
 # **Troubleshooting**
 
