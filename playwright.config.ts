@@ -25,8 +25,16 @@ export default defineConfig({
   globalSetup: require.resolve('./global-setup'),
   projects: [
     {
-      name: 'UI Tests',
-      testDir: './tests',
+      name: 'UI Tests - Auth',
+      testDir: './tests/auth',
+    },
+    {
+      name: 'UI Tests - Dashboard',
+      testDir: './tests/dashboard',
+    },
+    {
+      name: 'UI Tests - Settings',
+      testDir: './tests/settings',
     },
 
   ],
