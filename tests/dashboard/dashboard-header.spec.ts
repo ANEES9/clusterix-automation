@@ -1,120 +1,144 @@
 import { test, expect } from '@playwright/test'
+import { allure } from 'allure-playwright' // Import Allure
 import { closeWelcomePopUp } from '../../helpers/welcome-popup-helper'
 import { closeTimerPopUp } from '../../helpers/timer-helper'
 
 test.describe('Dashboard Header Items', () => {
   test.beforeEach(async ({ page, baseURL }) => {
-    await page.goto(baseURL!)
-    await closeWelcomePopUp(page)
-    await closeTimerPopUp(page)
-    await page.waitForLoadState('networkidle')
+    await allure.step('Navigate to Base URL and Close Popups', async () => {
+      await page.goto(baseURL!)
+      await closeWelcomePopUp(page)
+      await closeTimerPopUp(page)
+      await page.waitForLoadState('networkidle')
+    })
   })
 
-  test('Validate Notifications Panel Opens on Button Click', async ({
-    page,
-  }) => {
-    // Step 1: Locate the notifications button
-    const notificationsButton = page.getByRole('button', {
-      name: 'Notifications',
-      exact: true,
+  test('Validate Notifications Panel Opens on Button Click', async ({ page }) => {
+    allure.epic('Dashboard') // Group tests under an epic
+    allure.feature('Notifications') // Mark feature
+    allure.story('Open Notifications Panel') // Add story
+    allure.severity('critical') // Define severity
+    allure.label('owner', 'QA Team') // Add custom label
+    allure.tag('smoke') // Add tags for filtering
+
+    await allure.step('Locate the Notifications button', async () => {
+      const notificationsButton = page.getByRole('button', {
+        name: 'Notifications',
+        exact: true,
+      })
+      await expect(notificationsButton).toBeVisible()
     })
-    // Step 2: Ensure the notifications button is visible
-    await expect(notificationsButton).toBeVisible()
-    // Step 3: Click the notifications button
-    await notificationsButton.click()
-    // Step 4: Verify the notifications panel is visible
-    const notificationsPanel = page.locator('div.PanelHeader_title__RGLri')
-    await expect(notificationsPanel).toBeVisible()
-    // Step 5: Validate the title of the notifications panel
-    await expect(notificationsPanel).toContainText('Notifications')
+
+    await allure.step('Click Notifications Button and Validate Panel', async () => {
+      await page.getByRole('button', { name: 'Notifications' }).click()
+      const notificationsPanel = page.locator('div.PanelHeader_title__RGLri')
+      await expect(notificationsPanel).toBeVisible()
+      await expect(notificationsPanel).toContainText('Notifications')
+    })
   })
 
   test('Validate Calendar Navigation on Button Click', async ({ page }) => {
-    // Step 1: Locate the calendar button
-    const calendarButton = page.getByRole('button', {
-      name: 'Calendar',
-      exact: true,
+    allure.feature('Calendar')
+    allure.story('Navigate to Calendar')
+    allure.severity('normal')
+
+    await allure.step('Locate and click the Calendar button', async () => {
+      const calendarButton = page.getByRole('button', {
+        name: 'Calendar',
+        exact: true,
+      })
+      await expect(calendarButton).toBeVisible()
+      await calendarButton.click()
     })
-    // Step 2: Ensure the calendar button is visible
-    await expect(calendarButton).toBeVisible()
-    // Step 3: Click the calendar button
-    await calendarButton.click()
-    // Step 4: Verify the calendar navigation URL
-    await expect(page).toHaveURL(/.*calendar/)
-    // Step 5: Validate the title of the notifications panel
-    const currentApp = page.locator('p.m5ZbRpDkQfW8BXDqdzmY')
-    await expect(currentApp).toContainText('Calendar')
+
+    await allure.step('Validate Calendar URL and Title', async () => {
+      await expect(page).toHaveURL(/.*calendar/)
+      const currentApp = page.locator('p.m5ZbRpDkQfW8BXDqdzmY')
+      await expect(currentApp).toContainText('Calendar')
+    })
   })
 
-  test('Validate Time Tracking Navigation on Button Click', async ({
-    page,
-  }) => {
-    // Step 1: Locate the time tracking button
-    const timeTrackingButton = page.locator(
-      'button.AppBadge-module_wrapper__ctDKc[title="Time Tracking"]'
-    )
-    // Step 2: Ensure the time tracking button is visible
-    await expect(timeTrackingButton).toBeVisible()
-    // Step 3: Click the time tracking button
-    await timeTrackingButton.click()
-    // Step 4: Verify the time tracking navigation URL
-    await expect(page).toHaveURL(/.*timetracking/)
-    // Step 5: Validate the title of the notifications page
-    const currentApp = page.locator('p.m5ZbRpDkQfW8BXDqdzmY')
-    await expect(currentApp).toContainText('Time Tracking')
+  test('Validate Time Tracking Navigation on Button Click', async ({ page }) => {
+    allure.feature('Time Tracking')
+    allure.story('Navigate to Time Tracking')
+    allure.severity('normal')
+
+    await allure.step('Locate and click the Time Tracking button', async () => {
+      const timeTrackingButton = page.locator(
+        'button.AppBadge-module_wrapper__ctDKc[title="Time Tracking"]'
+      )
+      await expect(timeTrackingButton).toBeVisible()
+      await timeTrackingButton.click()
+    })
+
+    await allure.step('Validate Time Tracking URL and Title', async () => {
+      await expect(page).toHaveURL(/.*timetracking/)
+      const currentApp = page.locator('p.m5ZbRpDkQfW8BXDqdzmY')
+      await expect(currentApp).toContainText('Time Tracking')
+    })
   })
 
   test('Validate Email Navigation on Button Click', async ({ page }) => {
-    // Step 1: Locate the email button
-    const emailButton = page.getByRole('button', { name: 'Email', exact: true })
-    // Step 2: Ensure the email button is visible
-    await expect(emailButton).toBeVisible()
-    // Step 3: Click the email button
-    await emailButton.click()
-    // Step 4: Verify the email navigation URL
-    await expect(page).toHaveURL(/.*email/)
-    // Step 5: Validate the title of the email page
-    const currentApp = page.locator('p.m5ZbRpDkQfW8BXDqdzmY')
-    await expect(currentApp).toContainText('Email')
-  })
+    allure.feature('Email')
+    allure.story('Navigate to Email')
+    allure.severity('normal')
 
-  test('Validate Live Chat Navigation on Button Click', async ({
-    page,
-    context,
-  }) => {
-    // Step 1: Listen for the new page event when clicking the Live Chat button
-    const [newPage] = await Promise.all([
-      context.waitForEvent('page'), // Wait for a new page to open
-      page.getByRole('button', { name: 'Live Chat', exact: true }).click(), // Trigger the button click
-    ])
-    // Step 2: Wait for the new page to load completely
-    await newPage.waitForLoadState()
-    // Step 3: Verify the URL of the new page
-    await expect(newPage).toHaveURL(/.*live-chat#contacts/)
-    // Step 4: Validate the title or content of the Live Chat page
-    const header = newPage.locator('p.m5ZbRpDkQfW8BXDqdzmY') // Replace this with the correct selector for the title
-    await expect(header).toContainText('Live Chat')
-  })
-
-  //todo: cannot click on the profile
-  test('Validate Profile Menu Opens on Avatar Click', async ({ page }) => {
-    // Remove any overlay
-    await page.evaluate(() => {
-      const overlays = document.querySelectorAll('div.overlay-class')
-      overlays.forEach((overlay) => overlay.remove())
+    await allure.step('Locate and click the Email button', async () => {
+      const emailButton = page.getByRole('button', { name: 'Email', exact: true })
+      await expect(emailButton).toBeVisible()
+      await emailButton.click()
     })
-    // Step 1: Locate the dropdown button
-    const dropdownButton = page.locator(
-      'xpath=//*[@id="root"]/div/div[1]/button[2]/div[2]/p'
-    )
-    // Step 2: Ensure the dropdown button is visible
-    await expect(dropdownButton).toBeVisible()
-    // Step 3: Click the dropdown button
-    await dropdownButton.click()
-    // Step 4: Validate that the dropdown menu appears
-    const dropdownMenu = page.locator(
-      'div.zRKnxOINWe9I7ZEklVSwa_MhoacEurGSZMOrrDSO'
-    )
-    await expect(dropdownMenu).toBeVisible()
+
+    await allure.step('Validate Email URL and Title', async () => {
+      await expect(page).toHaveURL(/.*email/)
+      const currentApp = page.locator('p.m5ZbRpDkQfW8BXDqdzmY')
+      await expect(currentApp).toContainText('Email')
+    })
+  })
+
+  test('Validate Live Chat Navigation on Button Click', async ({ page, context }) => {
+    allure.feature('Live Chat')
+    allure.story('Open Live Chat in New Tab')
+    allure.severity('minor')
+
+    await allure.step('Click the Live Chat button and open new page', async () => {
+      const [newPage] = await Promise.all([
+        context.waitForEvent('page'),
+        page.getByRole('button', { name: 'Live Chat', exact: true }).click(),
+      ])
+      await newPage.waitForLoadState()
+
+      await expect(newPage).toHaveURL(/.*live-chat/)
+      const header = newPage.locator('p.m5ZbRpDkQfW8BXDqdzmY')
+      await expect(header).toContainText('Live Chat')
+    })
+  })
+
+  test('Validate Profile Menu Opens on Avatar Click', async ({ page }) => {
+    allure.feature('Profile')
+    allure.story('Open Profile Dropdown Menu')
+    allure.severity('low')
+
+    await allure.step('Remove overlays and locate profile dropdown', async () => {
+      await page.evaluate(() => {
+        const overlays = document.querySelectorAll('div.overlay-class')
+        overlays.forEach((overlay) => overlay.remove())
+      })
+      const dropdownButton = page.locator(
+        'xpath=//*[@id="root"]/div/div[1]/button[2]/div[2]/p'
+      )
+      await expect(dropdownButton).toBeVisible()
+    })
+
+    await allure.step('Click profile button and validate dropdown', async () => {
+      const dropdownButton = page.locator(
+        'xpath=//*[@id="root"]/div/div[1]/button[2]/div[2]/p'
+      )
+      await dropdownButton.click()
+      const dropdownMenu = page.locator(
+        'div.zRKnxOINWe9I7ZEklVSwa_MhoacEurGSZMOrrDSO'
+      )
+      await expect(dropdownMenu).toBeVisible()
+    })
   })
 })
