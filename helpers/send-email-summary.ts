@@ -42,7 +42,7 @@ async function sendEmail() {
       <li><b>Duration:</b> ${duration} seconds</li>
     </ul>
     <p>🎯 Looks like we survived another round of testing!</p>
-    <p>For those who enjoy digging into the juicy details (developers), here’s your link to the full report:</p>
+    <p>For those who enjoy digging into the juicy details (ahem, developers), here’s your link to the full report:</p>
     <p>
       <a href="https://clusterix-automation.innoscripta.com/allure-docker-service-ui/signin" style="color:blue;">
         Allure Report - Click Here to Relive the Drama 🤡
