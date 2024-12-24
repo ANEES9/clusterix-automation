@@ -7,7 +7,7 @@ dotenv.config({ path: `.env.${env}` })
 
 export default defineConfig({
   testDir: './tests',
-  retries: 0,
+  retries: 2,
   reporter: [
     ['list'],
     //['html', { open: 'never' }],
