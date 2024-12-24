@@ -63,8 +63,8 @@ async function sendEmail() {
 
   const mailOptions = {
     from: `"QA Team" <${process.env.EMAIL_USER}>`,
-    to: 'busrao.1104@gmail.com',
-    subject: '📢 Clusterix Automation Test Results - Drama Edition',
+    to: 'b.ozturk@innoscripta.com',
+    subject: '📢 Clusterix Automation Test Results',
     html: htmlContent,
   }
 
