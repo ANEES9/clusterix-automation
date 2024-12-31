@@ -3,7 +3,7 @@ import { allure } from 'allure-playwright' // Import Allure
 import { closeWelcomePopUp } from '../../helpers/welcome-popup-helper'
 import { closeTimerPopUp } from '../../helpers/timer-helper'
 
-test.describe('Dashboard Header Items', () => {
+test.describe('Dashboard Header Tests', () => {
   test.beforeEach(async ({ page, baseURL }) => {
     await allure.step('Navigate to Base URL and Close Popups', async () => {
       await page.goto(baseURL!)
@@ -13,7 +13,10 @@ test.describe('Dashboard Header Items', () => {
     })
   })
 
-  test('Validate Notifications Panel Opens on Button Click', async ({ page }) => {
+  test('Validate Notifications Panel Opens on Button Click', async ({
+    page,
+  }) => {
+    allure.label('app', 'dashboard')
     allure.epic('Dashboard') // Group tests under an epic
     allure.feature('Notifications') // Mark feature
     allure.story('Open Notifications Panel') // Add story
@@ -29,12 +32,15 @@ test.describe('Dashboard Header Items', () => {
       await expect(notificationsButton).toBeVisible()
     })
 
-    await allure.step('Click Notifications Button and Validate Panel', async () => {
-      await page.getByRole('button', { name: 'Notifications' }).click()
-      const notificationsPanel = page.locator('div.PanelHeader_title__RGLri')
-      await expect(notificationsPanel).toBeVisible()
-      await expect(notificationsPanel).toContainText('Notifications')
-    })
+    await allure.step(
+      'Click Notifications Button and Validate Panel',
+      async () => {
+        await page.getByRole('button', { name: 'Notifications' }).click()
+        const notificationsPanel = page.locator('div.PanelHeader_title__RGLri')
+        await expect(notificationsPanel).toBeVisible()
+        await expect(notificationsPanel).toContainText('Notifications')
+      }
+    )
   })
 
   test('Validate Calendar Navigation on Button Click', async ({ page }) => {
@@ -58,7 +64,9 @@ test.describe('Dashboard Header Items', () => {
     })
   })
 
-  test('Validate Time Tracking Navigation on Button Click', async ({ page }) => {
+  test('Validate Time Tracking Navigation on Button Click', async ({
+    page,
+  }) => {
     allure.feature('Time Tracking')
     allure.story('Navigate to Time Tracking')
     allure.severity('normal')
@@ -84,7 +92,10 @@ test.describe('Dashboard Header Items', () => {
     allure.severity('normal')
 
     await allure.step('Locate and click the Email button', async () => {
-      const emailButton = page.getByRole('button', { name: 'Email', exact: true })
+      const emailButton = page.getByRole('button', {
+        name: 'Email',
+        exact: true,
+      })
       await expect(emailButton).toBeVisible()
       await emailButton.click()
     })
@@ -96,22 +107,28 @@ test.describe('Dashboard Header Items', () => {
     })
   })
 
-  test('Validate Live Chat Navigation on Button Click', async ({ page, context }) => {
+  test('Validate Live Chat Navigation on Button Click', async ({
+    page,
+    context,
+  }) => {
     allure.feature('Live Chat')
     allure.story('Open Live Chat in New Tab')
     allure.severity('minor')
 
-    await allure.step('Click the Live Chat button and open new page', async () => {
-      const [newPage] = await Promise.all([
-        context.waitForEvent('page'),
-        page.getByRole('button', { name: 'Live Chat', exact: true }).click(),
-      ])
-      await newPage.waitForLoadState()
+    await allure.step(
+      'Click the Live Chat button and open new page',
+      async () => {
+        const [newPage] = await Promise.all([
+          context.waitForEvent('page'),
+          page.getByRole('button', { name: 'Live Chat', exact: true }).click(),
+        ])
+        await newPage.waitForLoadState()
 
-      await expect(newPage).toHaveURL(/.*live-chat/)
-      const header = newPage.locator('p.m5ZbRpDkQfW8BXDqdzmY')
-      await expect(header).toContainText('Live Chat')
-    })
+        await expect(newPage).toHaveURL(/.*live-chat/)
+        const header = newPage.locator('p.m5ZbRpDkQfW8BXDqdzmY')
+        await expect(header).toContainText('Live Chat')
+      }
+    )
   })
 
   test('Validate Profile Menu Opens on Avatar Click', async ({ page }) => {
@@ -119,26 +136,32 @@ test.describe('Dashboard Header Items', () => {
     allure.story('Open Profile Dropdown Menu')
     allure.severity('low')
 
-    await allure.step('Remove overlays and locate profile dropdown', async () => {
-      await page.evaluate(() => {
-        const overlays = document.querySelectorAll('div.overlay-class')
-        overlays.forEach((overlay) => overlay.remove())
-      })
-      const dropdownButton = page.locator(
-        'xpath=//*[@id="root"]/div/div[1]/button[2]/div[2]/p'
-      )
-      await expect(dropdownButton).toBeVisible()
-    })
+    await allure.step(
+      'Remove overlays and locate profile dropdown',
+      async () => {
+        await page.evaluate(() => {
+          const overlays = document.querySelectorAll('div.overlay-class')
+          overlays.forEach((overlay) => overlay.remove())
+        })
+        const dropdownButton = page.locator(
+          'xpath=//*[@id="root"]/div/div[1]/button[2]/div[2]/p'
+        )
+        await expect(dropdownButton).toBeVisible()
+      }
+    )
 
-    await allure.step('Click profile button and validate dropdown', async () => {
-      const dropdownButton = page.locator(
-        'xpath=//*[@id="root"]/div/div[1]/button[2]/div[2]/p'
-      )
-      await dropdownButton.click()
-      const dropdownMenu = page.locator(
-        'div.zRKnxOINWe9I7ZEklVSwa_MhoacEurGSZMOrrDSO'
-      )
-      await expect(dropdownMenu).toBeVisible()
-    })
+    await allure.step(
+      'Click profile button and validate dropdown',
+      async () => {
+        const dropdownButton = page.locator(
+          'xpath=//*[@id="root"]/div/div[1]/button[2]/div[2]/p'
+        )
+        await dropdownButton.click()
+        const dropdownMenu = page.locator(
+          'div.zRKnxOINWe9I7ZEklVSwa_MhoacEurGSZMOrrDSO'
+        )
+        await expect(dropdownMenu).toBeVisible()
+      }
+    )
   })
 })
