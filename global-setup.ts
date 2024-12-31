@@ -22,7 +22,9 @@ async function globalSetup() {
 
   await page.getByRole('button', { name: 'Login' }).nth(1).click()
   await page.getByPlaceholder('Email').fill(process.env.CLUSTERIX_EMAIL || '')
-  await page.getByPlaceholder('Password').fill(process.env.CLUSTERIX_PASSWORD || '')
+  await page
+    .getByPlaceholder('Password')
+    .fill(process.env.CLUSTERIX_PASSWORD || '')
   await page
     .locator('div')
     .filter({ hasText: /^Login$/ })
