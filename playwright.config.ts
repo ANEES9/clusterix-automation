@@ -1,4 +1,4 @@
-import { defineConfig } from '@playwright/test'
+import { defineConfig, devices } from '@playwright/test'
 import * as dotenv from 'dotenv'
 import path from 'node:path'
 
@@ -10,7 +10,7 @@ export default defineConfig({
   retries: 2,
   reporter: [
     ['list'],
-    //['html', { open: 'never' }],
+    // ['html', { open: 'never' }],
     ['allure-playwright', { outputFolder: 'results' }],
   ],
   use: {
@@ -24,18 +24,55 @@ export default defineConfig({
   },
   globalSetup: require.resolve('./global-setup'),
   projects: [
+    // Chromium Browser
     {
-      name: 'UI Tests - Auth',
+      name: 'Chromium - Auth',
+      use: { ...devices['Desktop Chrome'] },
       testDir: './tests/auth',
     },
     {
-      name: 'UI Tests - Dashboard',
+      name: 'Chromium - Dashboard',
+      use: { ...devices['Desktop Chrome'] },
       testDir: './tests/dashboard',
     },
     {
-      name: 'UI Tests - Settings',
+      name: 'Chromium - Settings',
+      use: { ...devices['Desktop Chrome'] },
       testDir: './tests/settings',
     },
 
+    // Firefox Browser
+    {
+      name: 'Firefox - Auth',
+      use: { ...devices['Desktop Firefox'] },
+      testDir: './tests/auth',
+    },
+    {
+      name: 'Firefox - Dashboard',
+      use: { ...devices['Desktop Firefox'] },
+      testDir: './tests/dashboard',
+    },
+    {
+      name: 'Firefox - Settings',
+      use: { ...devices['Desktop Firefox'] },
+      testDir: './tests/settings',
+    },
+
+    // WebKit Browser
+    {
+      name: 'WebKit - Auth',
+      use: { ...devices['Desktop Safari'] },
+      testDir: './tests/auth',
+    },
+    {
+      name: 'WebKit - Dashboard',
+      use: { ...devices['Desktop Safari'] },
+      testDir: './tests/dashboard',
+    },
+    {
+      name: 'WebKit - Settings',
+      use: { ...devices['Desktop Safari'] },
+      testDir: './tests/settings',
+    },
   ],
 })
