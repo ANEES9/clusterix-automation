@@ -1,0 +1,90 @@
+import { Page, Locator } from '@playwright/test'
+import { allure } from 'allure-playwright'
+
+export class AccountsPage {
+  private page: Page
+  private collapseButton: Locator
+  private usersPermissionsButton: Locator
+  private accountsButton: Locator
+  private searchInput: Locator
+  private userDiv: Locator
+  private userNameLocator: Locator
+  private roleDiv: Locator
+  private rolesLocator: Locator
+  private roleDropdown: Locator
+  private roleOption: (role: string) => Locator
+  private filteredUserDiv: Locator
+  private filteredUserNameLocator: Locator
+
+  static readonly URL = '/settings/users-and-permissions/accounts'
+
+  constructor(page: Page) {
+    this.page = page
+    this.collapseButton = page.locator('button._collapseButton_16zcl_522')
+    this.usersPermissionsButton = page.getByRole('button', {
+      name: 'Users and Permissions',
+      exact: true,
+    })
+    this.accountsButton = page.getByRole('button', {
+      name: 'Accounts',
+      exact: true,
+    })
+    this.searchInput = page.locator(
+      'input[placeholder="Search person or email"]'
+    )
+    this.userDiv = page.locator('div div.y98XZMsrV0BeV8r7YwnA')
+    this.userNameLocator = this.userDiv.locator('strong').nth(0)
+    this.roleDiv = page.locator('div.GNb15SjYFdtbvt5Ej2Mg.BaseCellWrapper-module_wrapper__XCaQu').nth(0)
+    this.rolesLocator = this.roleDiv.locator('div.di3dCJGDLg2bRZkA7Vj6')
+    this.roleDropdown = page.locator('div[data-element="dropdownList"]');
+    this.filteredUserDiv = page.locator('div div.y98XZMsrV0BeV8r7YwnA')
+    this.filteredUserNameLocator = this.filteredUserDiv.locator('strong').nth(0)
+
+    this.roleOption = (role: string) =>
+      this.roleDropdown.locator(
+        'div.ca-font-sans.ca-text-sm.ca-tracking-wide.ca-cursor-pointer',
+        { hasText: role }
+      )
+  }
+
+  async goto(baseURL: string | undefined) {
+    await allure.step('Navigate to Accounts URL', async () => {
+      await this.page.goto(`${baseURL}${AccountsPage.URL}`)
+    })
+  }
+
+  async navigateToAccounts() {
+    await allure.step('Navigate to Accounts section', async () => {
+      await this.collapseButton.click()
+      await this.usersPermissionsButton.click()
+      await this.accountsButton.click()
+      await this.collapseButton.click()
+      await this.page.waitForLoadState('networkidle')
+    })
+  }
+
+  async getFirstUserDetails(): Promise<{ name: string; roles: string[] }> {
+    const userName = (await this.userNameLocator.textContent())?.trim() || ''
+    const roles = await this.rolesLocator.allTextContents()
+    return { name: userName, roles }
+  }
+
+  async filterByRole(role: string) {
+    await this.roleDropdown.scrollIntoViewIfNeeded()
+    await this.roleDropdown.waitFor({ state: 'visible' })
+    await this.roleDropdown.click()
+    const roleOption = this.roleOption(role.trim())
+    await roleOption.scrollIntoViewIfNeeded()
+    await roleOption.waitFor({ state: 'visible' })
+    await roleOption.click()
+  }
+
+  async getFilteredUserName(): Promise<string> {
+    return (await this.filteredUserNameLocator.textContent())?.trim() || ''
+  }
+
+  async search(keyword: string) {
+    await this.searchInput.fill(keyword)
+    await this.page.waitForLoadState('networkidle')
+  }
+}
