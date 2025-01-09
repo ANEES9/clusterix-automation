@@ -3,14 +3,37 @@ import { Page } from '@playwright/test';
 
 export class AllureHelper {
   static readonly DEFAULT_TEAM = 'QA Team'
-  static readonly DEFAULT_OWNER = 'Büşra Öztürk'
+  static readonly DEFAULT_OWNER = 'Büşra'
 
   // Default app-specific owners
   static readonly APP_OWNERS: { [key: string]: string } = {
-    Dashboard: 'Büşra',
-    Auth: 'Büşra',
+    Dashboard: 'Sharath',
+    Auth: 'Sagar',
     Settings: 'Büşra',
     Customers: 'Neil',
+    Accounting: 'Karthik',
+    ByteBuilder: 'No Assignment',
+    Calendar: 'Clarissa',
+    Office: 'Chetan',
+    CompanySearcher: 'Neil',
+    Contacts: 'No Assignment',
+    Files: 'Chetan',
+    Email: 'Sharath',
+    HR: 'Anees',
+    Chat: 'Sagar',
+    Login: 'No Assignment',
+    MyOrganization: 'Sharath',
+    Notifications: 'Ganganna',
+    ProjectManagement: 'Sania',
+    Subsidies: 'Sania',
+    TaskManagement: 'Shwetha',
+    TemplateManager: 'Ganganna',
+    TimeTracking: 'Clarissa',
+    NoCode: 'Büşra',
+    PDF: 'No Assignment',
+    Meet: 'No Assignment',
+    BulkMailing: 'Ganganna',
+    Profile: 'Anees'
   }
 
   /**
@@ -140,4 +163,30 @@ export class AllureHelper {
       allure.attachment(`${stepName} - Screenshot`, screenshot, 'image/png');
     });
   }
+
+  /**
+   * Logs a message to the Allure report with HTML formatting.
+   * @param message - Log message with HTML.
+   * @param level - Log level ('info', 'success', 'error').
+   */
+  static addHtmlLog(message: string, level: 'info' | 'success' | 'error') {
+    let color: string;
+    switch (level) {
+      case 'info':
+        color = 'blue';
+        break;
+      case 'success':
+        color = 'green';
+        break;
+      case 'error':
+        color = 'red';
+        break;
+      default:
+        color = 'black';
+    }
+
+    const htmlMessage = `<p style="color: ${color};">${message}</p>`;
+    allure.attachment('Log', htmlMessage, 'text/html');
+  }
+
 }
