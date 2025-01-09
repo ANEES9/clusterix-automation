@@ -1,7 +1,7 @@
 import { Page, Locator, expect } from '@playwright/test'
 import { allure } from 'allure-playwright'
 import { NotificationsPanelPage } from '../notifications/notifications-panel-page'
-import { CalendarPage } from '../calendar/CalendarPage'
+import { CalendarPage } from '../calendar/calendar-page'
 
 export class ContainerPage {
   private page: Page
