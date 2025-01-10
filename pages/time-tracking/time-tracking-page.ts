@@ -13,12 +13,12 @@ export class TimeTrackingPage {
   }
 
   async goto(baseURL: string | undefined) {
-    await Allure.step('Navigate to Calendar URL', async () => {
+    await Allure.step('Navigate to Time Tracking URL', async () => {
       await this.page.goto(`${baseURL}${TimeTrackingPage.URL}`)
     })
   }
   async validateCurrentApp() {
     await expect(this.page).toHaveURL(new RegExp(`${TimeTrackingPage.URL}$`))
-    await expect(this.currentApp).toContainText('Calendar')
+    await expect(this.currentApp).toContainText('Time Tracking')
   }
 }
