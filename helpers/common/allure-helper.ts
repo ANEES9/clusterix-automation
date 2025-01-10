@@ -1,7 +1,7 @@
 import { allure } from 'allure-playwright'
 import { Page } from '@playwright/test'
 
-export class AllureHelper {
+export class Allure {
   static readonly DEFAULT_TEAM = 'QA Team'
   static readonly DEFAULT_OWNER = 'Büşra'
 
