@@ -1,6 +1,6 @@
 import fs from 'fs/promises'
 import path from 'path'
-import { performanceConfig } from '../config/performance-config'
+import { performanceConfig } from '../../config/performance-config'
 
 const {
   logFilePath,
@@ -114,7 +114,7 @@ export async function logPerformanceData(
 
 export async function logNavigationTime(testName: string, timeTaken: number) {
   const timestamp = getCurrentTimestamp()
-  let logMessage = `[${timestamp}]\n${testName}: ${timeTaken.toFixed(2)} ms\n`
+  const logMessage = `[${timestamp}]\n${testName}: ${timeTaken.toFixed(2)} ms\n`
 
   try {
     const logsDir = path.dirname(logFilePath)
