@@ -1,9 +1,9 @@
 import { test, expect, Page } from '@playwright/test'
-import { closeWelcomePopUp } from '../../helpers/welcome-popup-helper'
-import { closeTimerPopUp } from '../../helpers/timer-helper'
+import { closeWelcomePopUp } from '../../helpers/common/welcome-popup-helper'
+import { closeTimerPopUp } from '../../helpers/common/timer-helper'
 import { openNavigationMenu } from '../../helpers/navigation-helper'
 import { closeCurrentlyActivePopup } from '../../helpers/company-searcher-helper'
-import { logPerformanceData } from '../../helpers/log-helper'
+import { logPerformanceData } from '../../helpers/common/log-helper'
 import { performanceConfig } from '../../config/performance-config'
 
 test.describe('Clusterix Performance Tests', () => {

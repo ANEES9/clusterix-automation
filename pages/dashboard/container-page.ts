@@ -15,7 +15,6 @@ export class ContainerPage {
   private notificationsPanel: NotificationsPanelPage
   private calendarPage: CalendarPage
 
-
   constructor(page: Page) {
     this.page = page
     this.notificationsButton = page.getByRole('button', {
@@ -48,10 +47,13 @@ export class ContainerPage {
   }
 
   async openNotificationsPanel() {
-    await allure.step('Click Notifications Button and Validate Panel', async () => {
-      await this.notificationsButton.click()
-      await this.notificationsPanel.validateNotificationsPanelHeader()
-    })
+    await allure.step(
+      'Click Notifications Button and Validate Panel',
+      async () => {
+        await this.notificationsButton.click()
+        await this.notificationsPanel.validateNotificationsPanelHeader()
+      }
+    )
   }
 
   async navigateToCalendar() {
@@ -87,22 +89,28 @@ export class ContainerPage {
   }
 
   async openLiveChat(context: any) {
-    await allure.step('Click the Live Chat button and open new page', async () => {
-      const [newPage] = await Promise.all([
-        context.waitForEvent('page'),
-        this.liveChatButton.click(),
-      ])
-      await newPage.waitForLoadState()
-      await expect(newPage).toHaveURL(/.*live-chat/)
-      const header = newPage.locator('p.m5ZbRpDkQfW8BXDqdzmY')
-      await expect(header).toContainText('Live Chat')
-    })
+    await allure.step(
+      'Click the Live Chat button and open new page',
+      async () => {
+        const [newPage] = await Promise.all([
+          context.waitForEvent('page'),
+          this.liveChatButton.click(),
+        ])
+        await newPage.waitForLoadState()
+        await expect(newPage).toHaveURL(/.*live-chat/)
+        const header = newPage.locator('p.m5ZbRpDkQfW8BXDqdzmY')
+        await expect(header).toContainText('Live Chat')
+      }
+    )
   }
 
   async openProfileDropdown() {
-    await allure.step('Click profile button and validate dropdown', async () => {
-      await this.profileDropdownButton.click()
-      await expect(this.profileDropdownMenu).toBeVisible()
-    })
+    await allure.step(
+      'Click profile button and validate dropdown',
+      async () => {
+        await this.profileDropdownButton.click()
+        await expect(this.profileDropdownMenu).toBeVisible()
+      }
+    )
   }
 }

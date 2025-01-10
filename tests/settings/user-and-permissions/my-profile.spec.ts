@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
-import { closeWelcomePopUp } from '../../../helpers/welcome-popup-helper'
-import { closeTimerPopUp } from '../../../helpers/timer-helper'
-import { addCursorStyleAndScript } from '../../../helpers/cursor-helper'
+import { closeWelcomePopUp } from '../../../helpers/common/welcome-popup-helper'
+import { closeTimerPopUp } from '../../../helpers/common/timer-helper'
+import { addCursorStyleAndScript } from '../../../helpers/common/cursor-helper'
 import { faker } from '@faker-js/faker'
 import { getGenderOptions } from '../../../helpers/hr-settings-helper'
 
