@@ -1,5 +1,5 @@
 import { allure } from 'allure-playwright'
-import { Page } from '@playwright/test';
+import { Page } from '@playwright/test'
 
 export class AllureHelper {
   static readonly DEFAULT_TEAM = 'QA Team'
@@ -33,7 +33,7 @@ export class AllureHelper {
     PDF: 'No Assignment',
     Meet: 'No Assignment',
     BulkMailing: 'Ganganna',
-    Profile: 'Anees'
+    Profile: 'Anees',
   }
 
   /**
@@ -159,9 +159,9 @@ export class AllureHelper {
    */
   static async logStepWithScreenshot(page: Page, stepName: string) {
     await allure.step(stepName, async () => {
-      const screenshot = await page.screenshot();
-      allure.attachment(`${stepName} - Screenshot`, screenshot, 'image/png');
-    });
+      const screenshot = await page.screenshot()
+      allure.attachment(`${stepName} - Screenshot`, screenshot, 'image/png')
+    })
   }
 
   /**
@@ -170,23 +170,22 @@ export class AllureHelper {
    * @param level - Log level ('info', 'success', 'error').
    */
   static addHtmlLog(message: string, level: 'info' | 'success' | 'error') {
-    let color: string;
+    let color: string
     switch (level) {
       case 'info':
-        color = 'blue';
-        break;
+        color = 'blue'
+        break
       case 'success':
-        color = 'green';
-        break;
+        color = 'green'
+        break
       case 'error':
-        color = 'red';
-        break;
+        color = 'red'
+        break
       default:
-        color = 'black';
+        color = 'black'
     }
 
-    const htmlMessage = `<p style="color: ${color};">${message}</p>`;
-    allure.attachment('Log', htmlMessage, 'text/html');
+    const htmlMessage = `<p style="color: ${color};">${message}</p>`
+    allure.attachment('Log', htmlMessage, 'text/html')
   }
-
 }
