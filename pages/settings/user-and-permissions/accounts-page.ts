@@ -34,9 +34,11 @@ export class AccountsPage {
     )
     this.userDiv = page.locator('div div.y98XZMsrV0BeV8r7YwnA')
     this.userNameLocator = this.userDiv.locator('strong').nth(0)
-    this.roleDiv = page.locator('div.GNb15SjYFdtbvt5Ej2Mg.BaseCellWrapper-module_wrapper__XCaQu').nth(0)
+    this.roleDiv = page
+      .locator('div.GNb15SjYFdtbvt5Ej2Mg.BaseCellWrapper-module_wrapper__XCaQu')
+      .nth(0)
     this.rolesLocator = this.roleDiv.locator('div.di3dCJGDLg2bRZkA7Vj6')
-    this.roleDropdown = page.locator('div[data-element="dropdownList"]');
+    this.roleDropdown = page.locator('div[data-element="dropdownList"]')
     this.filteredUserDiv = page.locator('div div.y98XZMsrV0BeV8r7YwnA')
     this.filteredUserNameLocator = this.filteredUserDiv.locator('strong').nth(0)
 
