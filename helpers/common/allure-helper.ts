@@ -20,8 +20,7 @@ export class Allure {
     Files: 'Chetan',
     Email: 'Sharath',
     HR: 'Anees',
-    Chat: 'Sagar',
-    Login: 'No Assignment',
+    LiveChat: 'Sagar',
     MyOrganization: 'Sharath',
     Notifications: 'Ganganna',
     ProjectManagement: 'Sania',
@@ -187,5 +186,64 @@ export class Allure {
 
     const htmlMessage = `<p style="color: ${color};">${message}</p>`
     allure.attachment('Log', htmlMessage, 'text/html')
+  }
+
+  /**
+   * Adds dynamic parameters to the test.
+   * @param name - Parameter name.
+   * @param value - Parameter value.
+   */
+  static addParameter(name: string, value: string) {
+    allure.parameter(name, value);
+  }
+
+  /**
+   * Adds a link to the report.
+   * @param name - Link name.
+   * @param url - Link URL.
+   */
+  static addLink(name: string, url: string) {
+    allure.link(name, url);
+  }
+
+  /**
+   * Adds a TMS (Test Management System) link to the report.
+   * @param tmsId - TMS ID.
+   * @param url - TMS URL.
+   */
+  static addTmsLink(tmsId: string, url: string) {
+    allure.link('TMS', url, tmsId);
+  }
+
+  /**
+   * Adds a bug tracker link to the report.
+   * @param bugId - Bug ID.
+   * @param url - Bug Tracker URL.
+   */
+  static addBugLink(bugId: string, url: string) {
+    allure.link('Bug', url, bugId);
+  }
+
+  /**
+   * Categorizes test results.
+   * @param category - Category name.
+   */
+  static addCategory(category: string) {
+    allure.label('category', category);
+  }
+
+  /**
+   * Marks a test as a retry.
+   */
+  static markTestAsRetry() {
+    allure.label('retry', 'true');
+  }
+
+  /**
+   * Sets a parent test for grouping.
+   * @param parentTestName - Parent test name.
+   */
+  static setParentTest(parentTestName: string) {
+    allure.label('parentTest', parentTestName);
   }
 }
