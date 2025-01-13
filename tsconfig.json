@@ -7,6 +7,13 @@
     "types": ["node", "@playwright/test"],
     "moduleResolution": "node",
     "outDir": "dist",
-    "rootDir": "./"
+    "rootDir": "./",
+    "baseUrl": ".",
+    "paths": {
+      "common/*":["./helpers/common/*"],
+      "config/*":["./config/*"],
+      "helpers/*":["./helpers/*"],
+      "utils/*":["./utils/*"]
+    }
   }
 }
