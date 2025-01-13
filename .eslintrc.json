@@ -4,26 +4,33 @@
     "es2021": true,
     "node": true
   },
-  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
+  "plugins": ["@typescript-eslint"],
   "rules": {
     "prettier/prettier": [
       "error",
       {
-        "semi": ["error", "always"],
+        "semi": false,
         "singleQuote": true,
         "tabWidth": 2,
         "useTabs": false,
         "trailingComma": "es5",
         "printWidth": 80,
-        "arrowParens": "always",
-        "quotes": ["error", "single"]
+        "arrowParens": "always"
       }
     ],
+    "semi": ["error", "never"],
     "no-console": "warn",
-    "no-unused-vars": "warn"
+    "no-unused-vars": "warn",
+    "@typescript-eslint/no-unused-vars": ["error"]
   }
 }
