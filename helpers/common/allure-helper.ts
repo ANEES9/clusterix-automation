@@ -1,40 +1,8 @@
 import { allure } from 'allure-playwright'
 import { Page } from '@playwright/test'
+import { AppOwners, DEFAULT_OWNER, DEFAULT_TEAM } from 'config/constants'
 
 export class Allure {
-  static readonly DEFAULT_TEAM = 'QA Team'
-  static readonly DEFAULT_OWNER = 'Büşra'
-
-  // Default app-specific owners
-  static readonly APP_OWNERS: { [key: string]: string } = {
-    Dashboard: 'Sharath',
-    Auth: 'Sagar',
-    Settings: 'Büşra',
-    Customers: 'Neil',
-    Accounting: 'Karthik',
-    ByteBuilder: 'No Assignment',
-    Calendar: 'Clarissa',
-    Office: 'Chetan',
-    CompanySearcher: 'Neil',
-    Contacts: 'No Assignment',
-    Files: 'Chetan',
-    Email: 'Sharath',
-    HR: 'Anees',
-    LiveChat: 'Sagar',
-    MyOrganization: 'Sharath',
-    Notifications: 'Ganganna',
-    ProjectManagement: 'Sania',
-    Subsidies: 'Sania',
-    TaskManagement: 'Shwetha',
-    TemplateManager: 'Ganganna',
-    TimeTracking: 'Clarissa',
-    NoCode: 'Büşra',
-    PDF: 'No Assignment',
-    Meet: 'No Assignment',
-    BulkMailing: 'Ganganna',
-    Profile: 'Anees',
-  }
-
   /**
    * Adds a description to the test.
    * @param description - Test description.
@@ -90,17 +58,18 @@ export class Allure {
    * Adds default labels for team and owner.
    */
   static addDefaultLabels() {
-    allure.label('team', this.DEFAULT_TEAM)
-    allure.label('owner', this.DEFAULT_OWNER)
+    allure.label('team', DEFAULT_TEAM)
+    allure.label('owner', DEFAULT_OWNER)
   }
 
   /**
    * Adds app-specific owner labels.
    * @param appName - Application name.
    */
-  static addAppOwner(appName: string) {
-    const owner = this.APP_OWNERS[appName] || 'Unknown Owner'
-    allure.label('owner', owner)
+  static addAppOwner(appName: keyof typeof AppOwners) {
+    const appOwner = AppOwners[appName]
+    const ownerName = appOwner?.name || 'Unknown Owner'
+    allure.label('owner', ownerName)
   }
 
   /**
