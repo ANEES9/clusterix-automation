@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { closeWelcomePopUp } from 'common/welcome-popup-helper'
+import { closeProductTour } from 'common/product-tour-helper'
 import { closeTimerPopUp } from 'common/timer-helper'
 import { openNavigationMenu } from 'helpers/navigation-helper'
 import { addCursorStyleAndScript } from 'common/cursor-helper'
@@ -10,7 +10,7 @@ test.describe('Clusterix Navigation Tests', () => {
     await page.goto(baseURL!)
     await addCursorStyleAndScript(page)
     await skipSurvey(page)
-    await closeWelcomePopUp(page)
+    await closeProductTour(page)
     await closeTimerPopUp(page)
     await openNavigationMenu(page)
     await page.waitForLoadState('networkidle')
