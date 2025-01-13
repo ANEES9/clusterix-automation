@@ -1,31 +1,28 @@
 import { test } from '@playwright/test'
 import { ContainerPage } from '../../pages/dashboard/container-page'
+import { skipSurvey } from 'common/skip-survey'
 import { closeWelcomePopUp } from 'common/welcome-popup-helper'
 import { closeTimerPopUp } from 'common/timer-helper'
 import { Allure } from 'common/allure-helper'
 
 test.describe('Dashboard Header Tests', () => {
-  let dashboardPage: ContainerPage
+  let containerPage: ContainerPage
 
   test.beforeEach(async ({ page, baseURL }) => {
-    dashboardPage = new ContainerPage(page)
+    containerPage = new ContainerPage(page)
     Allure.addDefaultLabels()
     Allure.addAppOwner('Dashboard')
 
-    await Allure.step(
-      'Navigate to Base URL and Close Popups',
-      async () => {
-        await page.goto(baseURL!)
-        await closeWelcomePopUp(page)
-        await closeTimerPopUp(page)
-        await page.waitForLoadState('networkidle')
-      }
-    )
+    await Allure.step('Navigate to Base URL and Close Popups', async () => {
+      await page.goto(baseURL!)
+      await skipSurvey(page)
+      await closeWelcomePopUp(page)
+      await closeTimerPopUp(page)
+      await page.waitForLoadState('networkidle')
+    })
   })
 
-  test('Validate Notifications Panel Opens on Button Click', async ({
-                                                                      page,
-                                                                    }) => {
+  test('Validate Notifications Panel Opens on Button Click', async () => {
     Allure.addFeature('Notifications')
     Allure.addEpic('Dashboard')
     Allure.addSeverity('critical')
@@ -35,7 +32,7 @@ test.describe('Dashboard Header Tests', () => {
     )
 
     await Allure.step('Open Notifications Panel', async () => {
-      await dashboardPage.openNotificationsPanel()
+      await containerPage.openNotificationsPanel()
     })
   })
 
@@ -44,7 +41,7 @@ test.describe('Dashboard Header Tests', () => {
     Allure.addSeverity('normal')
 
     await Allure.step('Navigate to Calendar Page', async () => {
-      await dashboardPage.navigateToCalendar()
+      await containerPage.navigateToCalendar()
     })
   })
 
@@ -53,7 +50,7 @@ test.describe('Dashboard Header Tests', () => {
     Allure.addSeverity('normal')
 
     await Allure.step('Navigate to Time Tracking Page', async () => {
-      await dashboardPage.navigateToTimeTracking()
+      await containerPage.navigateToTimeTracking()
     })
   })
 
@@ -62,7 +59,7 @@ test.describe('Dashboard Header Tests', () => {
     Allure.addSeverity('normal')
 
     await Allure.step('Navigate to Email Page', async () => {
-      await dashboardPage.navigateToEmail()
+      await containerPage.navigateToEmail()
     })
   })
 
@@ -71,7 +68,7 @@ test.describe('Dashboard Header Tests', () => {
     Allure.addSeverity('minor')
 
     await Allure.step('Open Live Chat in New Tab', async () => {
-      await dashboardPage.openLiveChat(context)
+      await containerPage.openLiveChat(context)
     })
   })
 
@@ -80,7 +77,16 @@ test.describe('Dashboard Header Tests', () => {
     Allure.addSeverity('trivial')
 
     await Allure.step('Open Profile Dropdown Menu', async () => {
-      await dashboardPage.openProfileDropdown()
+      await containerPage.openProfileDropdown()
+    })
+  })
+
+  test('Validate Profile Menu Username on Dropdown', async () => {
+    Allure.addFeature('Profile')
+    Allure.addSeverity('trivial')
+
+    await Allure.step('Open Profile Dropdown Menu', async () => {
+      await containerPage.validateProfileDropdownUserName()
     })
   })
 })
