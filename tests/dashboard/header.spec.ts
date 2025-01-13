@@ -1,5 +1,6 @@
 import { test } from '@playwright/test'
 import { ContainerPage } from '../../pages/dashboard/container-page'
+import { addCursorStyleAndScript } from 'common/cursor-helper'
 import { skipSurvey } from 'common/skip-survey'
 import { closeWelcomePopUp } from 'common/welcome-popup-helper'
 import { closeTimerPopUp } from 'common/timer-helper'
@@ -12,6 +13,10 @@ test.describe('Dashboard Header Tests', () => {
     containerPage = new ContainerPage(page)
     Allure.addDefaultLabels()
     Allure.addAppOwner('Dashboard')
+
+    await Allure.step('Add cursor style and script', async () => {
+      await addCursorStyleAndScript(page)
+    })
 
     await Allure.step('Navigate to Base URL and Close Popups', async () => {
       await page.goto(baseURL!)

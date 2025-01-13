@@ -7,7 +7,7 @@ dotenv.config({ path: `.env.${env}` })
 
 export default defineConfig({
   testDir: './tests',
-  retries: 2,
+  retries: 0,
   reporter: [
     ['list'],
     // ['html', { open: 'never' }],
@@ -15,7 +15,7 @@ export default defineConfig({
   ],
   use: {
     trace: 'on-first-retry',
-    headless: true,
+    headless: false,
     baseURL: process.env.CLUSTERIX_BASE_URL,
     storageState: path.join('sessions', `storageState.${env}.json`),
     viewport: { width: 1280, height: 720 },

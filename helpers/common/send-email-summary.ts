@@ -1,10 +1,11 @@
 import nodemailer from 'nodemailer'
 import fs from 'fs'
 import dotenv from 'dotenv'
+import { TestSummary } from 'types/test-summary'
 
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` })
 
-const readSummary = (): any => {
+const readSummary = (): TestSummary | null => {
   const resultsPath = 'allure-report/widgets/summary.json'
   if (!fs.existsSync(resultsPath)) {
     console.error('Test summary not found!')

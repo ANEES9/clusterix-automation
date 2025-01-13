@@ -1,6 +1,6 @@
 import fs from 'fs/promises'
 import path from 'path'
-import { performanceConfig } from '../../config/performance-config'
+import { performanceConfig } from 'config/performance-config'
 
 const {
   logFilePath,
@@ -61,6 +61,7 @@ export function calculateNavigationTimePercentage(
   return Math.max(0, (1 - (timeTaken - idealTime) / idealTime) * 100)
 }
 
+// @ts-ignore
 export async function logPerformanceData(
   testName: string,
   timeTaken: number,
@@ -102,13 +103,10 @@ export async function logPerformanceData(
     const logsDir = path.dirname(logPerformancePath)
     await fs.mkdir(logsDir, { recursive: true })
     await fs.appendFile(logPerformancePath, logMessage, 'utf8')
-    console.log(`Logged performance data: ${logMessage.trim()}`)
   } catch (error) {
-    if (error instanceof Error) {
-      console.error(`Failed to log performance data: ${error.message}`)
-    } else {
-      console.error('An unknown error occurred during logging.')
-    }
+    console.error(`Error occurred while logging performance data: ${error}`)
+  } finally {
+    console.log('Performance data logging attempt completed.')
   }
 }
 

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import FormData from 'form-data'
-import { applicationConfig } from '../../config/application-config'
+import { applicationConfig } from 'config/application-config'
 import * as dotenv from 'dotenv'
 dotenv.config()
 
