@@ -36,7 +36,7 @@ export class SurveyPage {
 
     // Question locators
     this.roleQuestion = page.getByText('What is your role?')
-    this.nextButton = page.locator('//div[text()="Next"]/ancestor::button');
+    this.nextButton = page.locator('//div[text()="Next"]/ancestor::button')
 
     // Role options locators
     this.roleOptions = {

@@ -10,10 +10,10 @@
     "rootDir": "./",
     "baseUrl": ".",
     "paths": {
-      "common/*":["./helpers/common/*"],
-      "config/*":["./config/*"],
-      "helpers/*":["./helpers/*"],
-      "utils/*":["./utils/*"]
+      "common/*": ["./helpers/common/*"],
+      "config/*": ["./config/*"],
+      "helpers/*": ["./helpers/*"],
+      "utils/*": ["./utils/*"]
     }
   }
 }

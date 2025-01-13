@@ -194,7 +194,7 @@ export class Allure {
    * @param value - Parameter value.
    */
   static addParameter(name: string, value: string) {
-    allure.parameter(name, value);
+    allure.parameter(name, value)
   }
 
   /**
@@ -203,7 +203,7 @@ export class Allure {
    * @param url - Link URL.
    */
   static addLink(name: string, url: string) {
-    allure.link(name, url);
+    allure.link(name, url)
   }
 
   /**
@@ -212,7 +212,7 @@ export class Allure {
    * @param url - TMS URL.
    */
   static addTmsLink(tmsId: string, url: string) {
-    allure.link('TMS', url, tmsId);
+    allure.link('TMS', url, tmsId)
   }
 
   /**
@@ -221,7 +221,7 @@ export class Allure {
    * @param url - Bug Tracker URL.
    */
   static addBugLink(bugId: string, url: string) {
-    allure.link('Bug', url, bugId);
+    allure.link('Bug', url, bugId)
   }
 
   /**
@@ -229,14 +229,14 @@ export class Allure {
    * @param category - Category name.
    */
   static addCategory(category: string) {
-    allure.label('category', category);
+    allure.label('category', category)
   }
 
   /**
    * Marks a test as a retry.
    */
   static markTestAsRetry() {
-    allure.label('retry', 'true');
+    allure.label('retry', 'true')
   }
 
   /**
@@ -244,6 +244,6 @@ export class Allure {
    * @param parentTestName - Parent test name.
    */
   static setParentTest(parentTestName: string) {
-    allure.label('parentTest', parentTestName);
+    allure.label('parentTest', parentTestName)
   }
 }

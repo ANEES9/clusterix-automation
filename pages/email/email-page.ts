@@ -1,5 +1,5 @@
 import { Page, Locator, expect } from '@playwright/test'
-import { Allure } from '../../helpers/common/allure-helper'
+import { Allure } from 'common/allure-helper'
 
 export class EmailPage {
   private page: Page

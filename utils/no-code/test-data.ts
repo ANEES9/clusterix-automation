@@ -13,7 +13,6 @@ export const noCodeTestData = {
   mockUser: {
     id: 1,
     name: 'Test User',
-    permissions: ['readWorkflows', 'newWorkflow']
-  }
+    permissions: ['readWorkflows', 'newWorkflow'],
+  },
 }
-

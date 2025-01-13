@@ -1,9 +1,9 @@
 import { test, expect } from '@playwright/test'
-import { closeWelcomePopUp } from '../../../helpers/common/welcome-popup-helper'
-import { closeTimerPopUp } from '../../../helpers/common/timer-helper'
-import { addCursorStyleAndScript } from '../../../helpers/common/cursor-helper'
+import { closeWelcomePopUp } from 'common/welcome-popup-helper'
+import { closeTimerPopUp } from 'common/timer-helper'
+import { addCursorStyleAndScript } from 'common/cursor-helper'
 import { faker } from '@faker-js/faker'
-import { getGenderOptions } from '../../../helpers/hr-settings-helper'
+import { getGenderOptions } from 'helpers/hr-settings-helper'
 
 test.describe('User and Permissions - My Profile Tests', () => {
   test.beforeEach(async ({ page, baseURL }) => {
@@ -23,7 +23,8 @@ test.describe('User and Permissions - My Profile Tests', () => {
     const randomLastName = faker.person.lastName()
     const randomPhoneNumber = `+49 ${faker.string.numeric(3)} ${faker.string.numeric(3)} ${faker.string.numeric(4)}`
     //const randomPhoneNumber = faker.phone.number('+## ### ### ####');
-    // @ts-ignore
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
     const randomBirthDay = faker.date.past(30) // Generate a date in the past 30 years
     const month = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(
       randomBirthDay
@@ -31,10 +32,7 @@ test.describe('User and Permissions - My Profile Tests', () => {
     const year = randomBirthDay.getFullYear()
     const day = randomBirthDay.getDate()
     const genderOptions: string[] = await getGenderOptions(page, baseURL)
-    console.log('Gender Options:', genderOptions)
     const randomGender = faker.helpers.arrayElement(genderOptions)
-    console.log('Selected Gender:', randomGender)
-    console.log(`Random Date: ${day} ${month} ${year}`)
 
     // Step 1: Navigate to the User Permissions > My Profile > Basic Data
     const collapseButton = page.locator('button._collapseButton_1clxr_519')
@@ -133,10 +131,6 @@ test.describe('User and Permissions - My Profile Tests', () => {
         .click(),
     ])
     expect(response.status()).toBe(200)
-    console.log('Response received:', await response.json())
-    console.log(
-      `Random Data: First Name: ${randomFirstName}, Last Name: ${randomLastName}, Phone: ${randomPhoneNumber}`
-    )
   })
 
   test('My Profile - Security and Privacy Page Elements are Visible', async ({
@@ -253,7 +247,6 @@ test.describe('User and Permissions - My Profile Tests', () => {
       .locator('div.kAw4BgoewDQkDd7UMP2C')
       .nth(0)
     const deviceText = await deviceLocator.textContent()
-    console.log('Device Text:', deviceText)
     await expect(deviceLocator).toBeVisible()
     //Step 3: Click on the Log Out From All Devices
     await page.getByText('Log Out From All Devices').click()
@@ -263,7 +256,6 @@ test.describe('User and Permissions - My Profile Tests', () => {
       .click()
     // Step 5: Verify the device text is still visible
     const updatedDeviceText = await deviceLocator.textContent()
-    console.log('Updated Device Text:', updatedDeviceText)
     // Step 6: Assert that the text before and after are the same
     expect(updatedDeviceText).toBe(deviceText)
   })
@@ -302,17 +294,15 @@ test.describe('User and Permissions - My Profile Tests', () => {
     const initialDevices = await otherDevicesSection
       .locator('div.kAw4BgoewDQkDd7UMP2C')
       .allTextContents()
-    console.log('Initial Devices:', initialDevices)
-    //Step 3: Click on the Log Out From All Devices
+    //Step 3: Click on the Log-Out From All Devices
     await page.getByText('Log Out From All Devices').click()
-    //Step 4: Click on the Log Out button in the pop-up
+    //Step 4: Click on the Log-Out button in the pop-up
     await page.getByText('Log out', { exact: true }).click()
     // Step 5: Verify the device text is still visible
     await expect(otherDevicesSection).toBeVisible()
     const updatedDevices = await otherDevicesSection
       .locator('div.kAw4BgoewDQkDd7UMP2C')
       .allTextContents()
-    console.log('Updated Devices:', updatedDevices)
     // Step 6: Assert that the device list is empty
     expect(updatedDevices).not.toEqual(initialDevices)
     expect(updatedDevices.length)

@@ -1,13 +1,15 @@
 import { test, expect } from '@playwright/test'
-import { closeWelcomePopUp } from '../../helpers/common/welcome-popup-helper'
-import { closeTimerPopUp } from '../../helpers/common/timer-helper'
-import { openNavigationMenu } from '../../helpers/navigation-helper'
-import { addCursorStyleAndScript } from '../../helpers/common/cursor-helper'
+import { closeWelcomePopUp } from 'common/welcome-popup-helper'
+import { closeTimerPopUp } from 'common/timer-helper'
+import { openNavigationMenu } from 'helpers/navigation-helper'
+import { addCursorStyleAndScript } from 'common/cursor-helper'
+import { skipSurvey } from 'common/skip-survey'
 
 test.describe('Clusterix Navigation Tests', () => {
   test.beforeEach(async ({ page, baseURL }) => {
     await page.goto(baseURL!)
     await addCursorStyleAndScript(page)
+    await skipSurvey(page)
     await closeWelcomePopUp(page)
     await closeTimerPopUp(page)
     await openNavigationMenu(page)
