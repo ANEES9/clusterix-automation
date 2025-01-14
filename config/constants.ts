@@ -1,4 +1,4 @@
-export const URLs = {
+export const APP_URLS = {
   settings: '/settings',
   customers: 'sales',
   accounting: 'accounting',
@@ -9,29 +9,38 @@ export const URLs = {
   liveChat: '/live-chat',
   projectManagement: '/project-management/projects/overview',
   taskManagement: '/task-management',
-  hr: '/hr/dashboard',
+  hr: '/hr/container-app',
   files: '/cluster-space',
   office: '/cluster-office',
   pdf: '/cluster-pdf',
   companySearcher: '/company-search/company',
-  noCode: '/no-code/dashboard/overview',
+  noCode: '/no-code/container-app/overview',
   templateManager: '/template-manager',
 }
 
-export const AppNames = {
+export const APP_NAMES = {
+  ContainerApp: 'Home',
+  notifications: 'Notifications',
   calendar: 'Calendar',
   timeTracking: 'Time Tracking',
   email: 'Email',
   liveChat: 'Live Chat',
   projectManagement: 'Project Management',
   taskManagement: 'Task Management',
-  hrDashboard: 'HR Dashboard',
+  hr: 'HR',
   files: 'Files',
   office: 'Office',
   pdf: 'PDF',
   companySearcher: 'Company Searcher',
   noCode: 'No Code',
   templateManager: 'Template Manager',
+  accounting: 'Accounting',
+  subsidies: 'Subsidies',
+  bulkMailing: 'BulkMailing',
+  customers: 'Customers',
+  externalForms: 'External Forms',
+  byteBuilder: 'ByteBuilder',
+  integration: 'Integration',
 }
 
 export const AppOwners: Record<string, { name: string; email: string }> = {
@@ -42,3 +51,4 @@ export const AppOwners: Record<string, { name: string; email: string }> = {
 
 export const DEFAULT_TEAM = 'QA Team'
 export const DEFAULT_OWNER = 'Büşra'
+export type AppName = (typeof APP_NAMES)[keyof typeof APP_NAMES]

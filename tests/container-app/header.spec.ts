@@ -1,18 +1,20 @@
 import { test } from '@playwright/test'
-import { ContainerPage } from '../../pages/dashboard/container-page'
+import { ContainerPage } from '../../pages/container-app/container-page'
 import { addCursorStyleAndScript } from 'common/cursor-helper'
 import { skipSurvey } from 'common/skip-survey'
-import { closeWelcomePopUp } from 'common/welcome-popup-helper'
+import { closeProductTour } from 'common/product-tour-helper'
 import { closeTimerPopUp } from 'common/timer-helper'
 import { Allure } from 'common/allure-helper'
+import { NotificationsPanelPage } from 'pages/notifications/notifications-panel-page'
+import { APP_NAMES } from 'config/constants'
 
 test.describe('Dashboard Header Tests', () => {
   let containerPage: ContainerPage
 
   test.beforeEach(async ({ page, baseURL }) => {
     containerPage = new ContainerPage(page)
-    Allure.addDefaultLabels()
-    Allure.addAppOwner('Dashboard')
+    Allure.addFeature('Navigation')
+    Allure.addAppOwner('ContainerApp')
 
     await Allure.step('Add cursor style and script', async () => {
       await addCursorStyleAndScript(page)
@@ -21,50 +23,60 @@ test.describe('Dashboard Header Tests', () => {
     await Allure.step('Navigate to Base URL and Close Popups', async () => {
       await page.goto(baseURL!)
       await skipSurvey(page)
-      await closeWelcomePopUp(page)
+      await closeProductTour(page)
       await closeTimerPopUp(page)
       await page.waitForLoadState('networkidle')
     })
   })
 
-  test('Validate Notifications Panel Opens on Button Click', async () => {
+  test('Validate Notifications Panel Opens on Button Click', async ({
+    page,
+  }) => {
     Allure.addFeature('Notifications')
-    Allure.addEpic('Dashboard')
     Allure.addSeverity('critical')
     Allure.addTag('smoke')
     Allure.addDescription(
-      'Validate the Notifications panel opens correctly when button is clicked.'
+      'Validate the Notifications panel opens correctly when header button is clicked'
     )
-
+    const notificationsPanelPage = new NotificationsPanelPage(page)
     await Allure.step('Open Notifications Panel', async () => {
       await containerPage.openNotificationsPanel()
+    })
+    await Allure.step('Check Current App', async () => {
+      await notificationsPanelPage.validateNotificationsPanelHeader()
     })
   })
 
   test('Validate Calendar Navigation on Button Click', async () => {
     Allure.addFeature('Calendar')
     Allure.addSeverity('normal')
-
     await Allure.step('Navigate to Calendar Page', async () => {
-      await containerPage.navigateToCalendar()
+      await containerPage.navigateToCalendarFromHeader()
+    })
+    await Allure.step('Check Current App', async () => {
+      await containerPage.validateCurrentApp(APP_NAMES.calendar)
     })
   })
 
   test('Validate Time Tracking Navigation on Button Click', async () => {
     Allure.addFeature('Time Tracking')
     Allure.addSeverity('normal')
-
     await Allure.step('Navigate to Time Tracking Page', async () => {
-      await containerPage.navigateToTimeTracking()
+      await containerPage.navigateToTimeTrackingFromHeader()
+    })
+    await Allure.step('Check Current App', async () => {
+      await containerPage.validateCurrentApp(APP_NAMES.timeTracking)
     })
   })
 
   test('Validate Email Navigation on Button Click', async () => {
     Allure.addFeature('Email')
     Allure.addSeverity('normal')
-
     await Allure.step('Navigate to Email Page', async () => {
-      await containerPage.navigateToEmail()
+      await containerPage.navigateToEmailFromHeader()
+    })
+    await Allure.step('Check Current App', async () => {
+      await containerPage.validateCurrentApp(APP_NAMES.email)
     })
   })
 
@@ -72,8 +84,8 @@ test.describe('Dashboard Header Tests', () => {
     Allure.addFeature('Live Chat')
     Allure.addSeverity('minor')
 
-    await Allure.step('Open Live Chat in New Tab', async () => {
-      await containerPage.openLiveChat(context)
+    await Allure.step('Open Live Chat in New Tab and Validate', async () => {
+      await containerPage.openLiveChatAndValidate(context)
     })
   })
 
