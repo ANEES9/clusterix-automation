@@ -8,20 +8,16 @@ import { Allure } from 'common/allure-helper'
 import { NotificationsPanelPage } from 'pages/notifications/notifications-panel-page'
 import { APP_NAMES } from 'config/constants'
 
-test.describe('Dashboard Header Tests', () => {
+test.describe('Container App Header Navigation Tests', () => {
   let containerPage: ContainerPage
 
   test.beforeEach(async ({ page, baseURL }) => {
     containerPage = new ContainerPage(page)
     Allure.addFeature('Navigation')
     Allure.addAppOwner('ContainerApp')
-
-    await Allure.step('Add cursor style and script', async () => {
-      await addCursorStyleAndScript(page)
-    })
-
     await Allure.step('Navigate to Base URL and Close Popups', async () => {
       await page.goto(baseURL!)
+      await addCursorStyleAndScript(page)
       await skipSurvey(page)
       await closeProductTour(page)
       await closeTimerPopUp(page)

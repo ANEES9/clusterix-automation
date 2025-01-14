@@ -104,7 +104,7 @@ export class ContainerPage {
       'button[group="cash-management"]:has-text("Accounting")'
     )
     this.subsidiesSidebarButton = page.locator(
-      'button[group="cash-management"]:has-text("Subsidised")'
+      'button[group="cash-management"]:has-text("Subsidies")'
     )
     this.bulkMailingSidebarButton = page.locator(
       'button[group="customer-management"]:has-text("Bulk Mailing")'
@@ -194,6 +194,8 @@ export class ContainerPage {
       }
     )
   }
+
+  //Actions for Profile Dropdown
   async openProfileDropdown() {
     await Allure.step(
       'should display the profile dropdown menu when the profile button is clicked',
@@ -281,9 +283,148 @@ export class ContainerPage {
   }
 
   // Actions for sidebar
-  async navigateToHome() {
-    await Allure.step('Locate and click the Home button', async () => {
-      await this.homeSidebarButton.click()
-    })
+  async navigateToHomeFromSideBar() {
+    await Allure.step(
+      'should navigate to the home page when the button is clicked from sidebar',
+      async () => {
+        await this.homeSidebarButton.click()
+      }
+    )
+  }
+  async navigateToFilesFromSideBar() {
+    await Allure.step(
+      'should navigate to the files page when the button is clicked from sidebar',
+      async () => {
+        await this.filesSidebarButton.click()
+      }
+    )
+  }
+  async navigateToOfficeFromSideBar() {
+    await Allure.step(
+      'should navigate to the office page when the button is clicked from sidebar',
+      async () => {
+        await this.officeSidebarButton.click()
+      }
+    )
+  }
+  async navigateToPdfFromSideBar() {
+    await Allure.step(
+      'should navigate to the pdf page when the button is clicked from sidebar',
+      async () => {
+        await this.pdfSidebarButton.click()
+      }
+    )
+  }
+  async navigateToHrFromSideBar() {
+    await Allure.step(
+      'should navigate to the hr page when the button is clicked from sidebar',
+      async () => {
+        await this.hrSidebarButton.click()
+      }
+    )
+  }
+  async navigateToProjectManagementFromSideBar() {
+    await Allure.step(
+      'should navigate to the project management page when the button is clicked from sidebar',
+      async () => {
+        await this.projectManagementSidebarButton.click()
+      }
+    )
+  }
+  async navigateToTaskManagementFromSideBar() {
+    await Allure.step(
+      'should navigate to the task management page when the button is clicked from sidebar',
+      async () => {
+        await this.taskManagementSidebarButton.click()
+      }
+    )
+  }
+  async navigateToTimeTrackingFromSideBar() {
+    await Allure.step(
+      'should navigate to the time tracking page when the button is clicked from sidebar',
+      async () => {
+        await this.timeTrackingSideBarButton.click()
+      }
+    )
+  }
+  async navigateToAccountingFromSideBar() {
+    await Allure.step(
+      'should navigate to the accounting page when the button is clicked from sidebar',
+      async () => {
+        await this.accountingSidebarButton.click()
+      }
+    )
+  }
+  async navigateToSubsidiesFromSideBar() {
+    await Allure.step(
+      'should navigate to the subsidies page when the button is clicked from sidebar',
+      async () => {
+        await this.subsidiesSidebarButton.click()
+      }
+    )
+  }
+  async navigateToBulkMailingFromSideBar() {
+    await Allure.step(
+      'should navigate to the bulk mailing page when the button is clicked from sidebar',
+      async () => {
+        await this.bulkMailingSidebarButton.click()
+      }
+    )
+  }
+  async navigateToCompanySearcherFromSideBar() {
+    await Allure.step(
+      'should navigate to the company searcher page when the button is clicked from sidebar',
+      async () => {
+        await this.companySearcherSidebarButton.click()
+      }
+    )
+  }
+  async navigateToCustomersFromSideBar() {
+    await Allure.step(
+      'should navigate to the customers page when the button is clicked from sidebar',
+      async () => {
+        await this.customersSidebarButton.click()
+      }
+    )
+  }
+  async navigateToExternalFormsFromSideBar() {
+    await Allure.step(
+      'should navigate to the external forms page when the button is clicked from sidebar',
+      async () => {
+        await this.externalFormsSidebarButton.click()
+      }
+    )
+  }
+  async navigateToByteBuilderFromSideBar() {
+    await Allure.step(
+      'should navigate to the byte builder page when the button is clicked from sidebar',
+      async () => {
+        await this.byteBuilderSidebarButton.click()
+      }
+    )
+  }
+  async navigateToIntegrationFromSideBar() {
+    await Allure.step(
+      'should navigate to the integration page when the button is clicked from sidebar',
+      async () => {
+        await this.integrationSidebarButton.click()
+      }
+    )
+  }
+  async navigateToNoCodeFromSideBar() {
+    await Allure.step(
+      'should navigate to the no code page when the button is clicked from sidebar',
+      async () => {
+        await this.noCodeSidebarButton.click()
+      }
+    )
+  }
+  async navigateToTemplateManagerFromSideBar() {
+    await Allure.step(
+      'should navigate to the template manager page when the button is clicked from sidebar',
+      async () => {
+        await this.templateManagerSidebarButton.click()
+      }
+    )
   }
 }
