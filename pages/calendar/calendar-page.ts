@@ -1,6 +1,6 @@
 import { Page } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
-import { APP_URLS } from 'config/constants'
+import { APP_URLS } from 'config/constants/app-urls'
 
 export class CalendarPage {
   private page: Page
@@ -11,7 +11,7 @@ export class CalendarPage {
 
   async goto(baseURL: string | undefined) {
     await Allure.step('Navigate to Calendar URL', async () => {
-      await this.page.goto(`${baseURL}${APP_URLS.calendar}`)
+      await this.page.goto(`${baseURL}${APP_URLS.calendar.base}`)
     })
   }
 }
