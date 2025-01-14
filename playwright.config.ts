@@ -31,9 +31,9 @@ export default defineConfig({
       testDir: './tests/auth',
     },
     {
-      name: 'Chromium - Dashboard',
+      name: 'Chromium - Container App',
       use: { ...devices['Desktop Chrome'] },
-      testDir: './tests/dashboard',
+      testDir: './tests/container-app',
     },
     {
       name: 'Chromium - Settings',
@@ -48,9 +48,9 @@ export default defineConfig({
       testDir: './tests/auth',
     },
     {
-      name: 'Firefox - Dashboard',
+      name: 'Firefox - Container App',
       use: { ...devices['Desktop Firefox'] },
-      testDir: './tests/dashboard',
+      testDir: './tests/container-app',
     },
     {
       name: 'Firefox - Settings',
@@ -65,9 +65,9 @@ export default defineConfig({
       testDir: './tests/auth',
     },
     {
-      name: 'WebKit - Dashboard',
+      name: 'WebKit - Container App',
       use: { ...devices['Desktop Safari'] },
-      testDir: './tests/dashboard',
+      testDir: './tests/container-app',
     },
     {
       name: 'WebKit - Settings',
