@@ -1,24 +1,26 @@
-import { Page, Locator, expect } from '@playwright/test'
-import { allure } from 'allure-playwright'
+import { Page } from '@playwright/test'
+import { Allure } from 'common/allure-helper'
+import { ContainerPage } from '../container-app/container-page'
+import { APP_NAMES, APP_URLS } from 'config/constants'
 
 export class CalendarPage {
   private page: Page
-  private currentApp: Locator
-
-  static readonly URL = '/calendar'
+  private containerPage: ContainerPage
 
   constructor(page: Page) {
     this.page = page
-    this.currentApp = page.locator('p.m5ZbRpDkQfW8BXDqdzmY')
+    this.containerPage = new ContainerPage(page)
   }
 
   async goto(baseURL: string | undefined) {
-    await allure.step('Navigate to Calendar URL', async () => {
-      await this.page.goto(`${baseURL}${CalendarPage.URL}`)
+    await Allure.step('Navigate to Calendar URL', async () => {
+      await this.page.goto(`${baseURL}${APP_URLS.calendar}`)
     })
   }
+
   async validateCurrentApp() {
-    await expect(this.page).toHaveURL(new RegExp(`${CalendarPage.URL}$`))
-    await expect(this.currentApp).toContainText('Calendar')
+    await Allure.step('Check current app', async () => {
+      await this.containerPage.validateCurrentApp(APP_NAMES.calendar)
+    })
   }
 }
