@@ -6,7 +6,7 @@ import { closeProductTour } from 'common/product-tour-helper'
 import { closeTimerPopUp } from 'common/timer-helper'
 import { Allure } from 'common/allure-helper'
 import { NotificationsPanelPage } from 'pages/notifications/notifications-panel-page'
-import { APP_NAMES } from 'config/constants'
+import { APP_NAMES } from 'config/constants/app-names'
 
 test.describe('Container App Header Navigation Tests', () => {
   let containerPage: ContainerPage
@@ -38,7 +38,7 @@ test.describe('Container App Header Navigation Tests', () => {
     await Allure.step('Open Notifications Panel', async () => {
       await containerPage.openNotificationsPanel()
     })
-    await Allure.step('Check Current App', async () => {
+    await Allure.step('Check Navigation Panel Header', async () => {
       await notificationsPanelPage.validateNotificationsPanelHeader()
     })
   })

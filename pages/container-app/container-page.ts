@@ -1,7 +1,7 @@
 import { Page, Locator, expect } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
 import { BrowserContext } from 'playwright'
-import { APP_NAMES } from 'config/constants'
+import { APP_NAMES } from 'config/constants/app-names'
 
 export class ContainerPage {
   private page: Page
