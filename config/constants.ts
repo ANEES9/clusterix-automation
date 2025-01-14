@@ -36,10 +36,10 @@ export const APP_NAMES = {
   templateManager: 'Template Manager',
   accounting: 'Accounting',
   subsidies: 'Subsidies',
-  bulkMailing: 'BulkMailing',
+  bulkMailing: 'Bulk Mailing',
   customers: 'Customers',
   externalForms: 'External Forms',
-  byteBuilder: 'ByteBuilder',
+  byteBuilder: 'Byte Builder',
   integration: 'Integration',
 }
 
