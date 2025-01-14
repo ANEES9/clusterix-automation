@@ -1,6 +1,10 @@
 import { allure } from 'allure-playwright'
 import { Page } from '@playwright/test'
-import { AppOwners, DEFAULT_OWNER, DEFAULT_TEAM } from 'config/constants'
+import {
+  APP_OWNERS,
+  DEFAULT_OWNER,
+  DEFAULT_TEAM,
+} from 'config/constants/app-owners'
 
 export class Allure {
   /**
@@ -66,8 +70,8 @@ export class Allure {
    * Adds app-specific owner labels.
    * @param appName - Application name.
    */
-  static addAppOwner(appName: keyof typeof AppOwners) {
-    const appOwner = AppOwners[appName]
+  static addAppOwner(appName: keyof typeof APP_OWNERS) {
+    const appOwner = APP_OWNERS[appName]
     const ownerName = appOwner?.name || 'Unknown Owner'
     allure.label('owner', ownerName)
   }
