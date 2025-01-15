@@ -9,6 +9,8 @@ dotenv.config({ path: `.env.${env}` })
 const sessionFilePath = path.join('sessions', `storageState.${env}.json`)
 
 async function globalSetup() {
+  console.log('Environment:', process.env.NODE_ENV); // Log current environment
+  console.log('Navigation URL:', process.env.CLUSTERIX_BASE_URL);
   if (fs.existsSync(sessionFilePath)) {
     console.log(`Session already exists at ${sessionFilePath}. Skipping login.`)
     return

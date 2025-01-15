@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test:prod": "NODE_ENV=production npx playwright test",
-    "test:testing": "NODE_ENV=testing npx playwright test",
-    "lint": "eslint . --ext .ts",
-    "lint:fix": "eslint . --ext .ts --fix",
-    "format": "prettier --write \"**/*.{ts,json,md}\"",
+    "test:prod": "cross-env NODE_ENV=production npx playwright test",
+    "test:testing": "cross-env NODE_ENV=testing npx playwright test",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
     "prepare": "husky install"
   },
   "keywords": [],
@@ -15,8 +15,9 @@
   "license": "ISC",
   "description": "Clusterix Automation is an **End-to-End (E2E)** testing framework built with **[Playwright](https://playwright.dev/)** to streamline and automate testing for the **Clusterix** platform.",
   "devDependencies": {
-    "@playwright/test": "^1.48.2",
-    "@types/node": "^22.10.2",
+    "@eslint/js": "^9.15.0",
+    "@playwright/test": "^1.49.1",
+    "@types/node": "^22.9.0",
     "@types/nodemailer": "^6.4.17",
     "@typescript-eslint/eslint-plugin": "^8.19.1",
     "@typescript-eslint/parser": "^8.19.1",

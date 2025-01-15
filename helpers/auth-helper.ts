@@ -10,6 +10,7 @@ const sessionFilePath = path.join('sessions', `storageState.${env}.json`)
 
 export async function loginAndSaveSession(page: Page) {
   await page.goto(process.env.CLUSTERIX_BASE_URL || '')
+  console.log('CLUSTERIX_BASE_URL:', process.env.CLUSTERIX_BASE_URL);
   await page.getByRole('button', { name: 'Login' }).nth(1).click()
   await page.getByPlaceholder('Email').fill(process.env.CLUSTERIX_EMAIL || '')
   await page
