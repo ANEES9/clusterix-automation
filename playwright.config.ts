@@ -45,6 +45,14 @@ export default defineConfig({
       },
       testDir: './tests/container-app',
     },
+    {
+      name: 'Chromium - Email',
+      use: {
+        ...devices['Desktop Chrome'],
+        storageState: undefined, // Don't use session for auth tests
+      },
+      testDir: './tests/email',
+    },
 
     // Firefox Browser
     {
@@ -68,6 +76,14 @@ export default defineConfig({
       testDir: './tests/container-app',
     },
 
+    {
+      name: 'Firefox - Email',
+      use: {
+        ...devices['Desktop Firefox'],
+        storageState: undefined, // Don't use session for auth tests
+      },
+      testDir: './tests/email',
+    },
     // WebKit Browser
     {
       name: 'WebKit - Auth',
@@ -88,6 +104,14 @@ export default defineConfig({
         ),
       },
       testDir: './tests/container-app',
+    },
+    {
+      name: 'WebKit - Email',
+      use: {
+        ...devices['Desktop Safari'],
+        storageState: undefined, // Don't use session for auth tests
+      },
+      testDir: './tests/email',
     },
   ],
 })
