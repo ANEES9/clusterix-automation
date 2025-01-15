@@ -20,8 +20,8 @@ export default defineConfig({
     video: 'retain-on-failure',
     screenshot: 'only-on-failure',
   },
-  //globalSetup: require.resolve('./global-setup'),
-  //globalTeardown: require.resolve('./global-teardown'),
+  globalSetup: require.resolve('./global-setup'),
+  globalTeardown: require.resolve('./global-teardown'),
   workers: 1,
   projects: [
     // Chromium Browser
