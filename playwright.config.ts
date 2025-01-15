@@ -20,8 +20,8 @@ export default defineConfig({
     video: 'retain-on-failure',
     screenshot: 'only-on-failure',
   },
-  globalSetup: require.resolve('./global-setup'),
-  globalTeardown: require.resolve('./global-teardown'),
+  //globalSetup: require.resolve('./global-setup'),
+  //globalTeardown: require.resolve('./global-teardown'),
   workers: 1,
   projects: [
     // Chromium Browser
@@ -49,7 +49,11 @@ export default defineConfig({
       name: 'Chromium - Email',
       use: {
         ...devices['Desktop Chrome'],
-        storageState: undefined, // Don't use session for auth tests
+        storageState: path.join(
+          process.cwd(),
+          'sessions',
+          `storageState.${process.env.NODE_ENV || 'testing'}.json`
+        ), 
       },
       testDir: './tests/email',
     },
@@ -80,7 +84,11 @@ export default defineConfig({
       name: 'Firefox - Email',
       use: {
         ...devices['Desktop Firefox'],
-        storageState: undefined, // Don't use session for auth tests
+        storageState: path.join(
+          process.cwd(),
+          'sessions',
+          `storageState.${process.env.NODE_ENV || 'testing'}.json`
+        ),
       },
       testDir: './tests/email',
     },
@@ -109,7 +117,11 @@ export default defineConfig({
       name: 'WebKit - Email',
       use: {
         ...devices['Desktop Safari'],
-        storageState: undefined, // Don't use session for auth tests
+        storageState: path.join(
+          process.cwd(),
+          'sessions',
+          `storageState.${process.env.NODE_ENV || 'testing'}.json`
+        ),
       },
       testDir: './tests/email',
     },

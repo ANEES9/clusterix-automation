@@ -1,5 +1,5 @@
 import { test, expect, selectors } from '@playwright/test'
-import { allure } from 'allure-playwright' // Import Allure
+import { Allure } from 'common/allure-helper' // Import Allure
 import { time } from 'console'
 import { ApiResponse } from 'common/api-response'
 import * as dotenv from 'dotenv'
@@ -17,7 +17,7 @@ const testEmailBody = `Testing purpose email via automation. Sent at: ${currentD
 
 test.describe('Send Test Email', () => {
   test.beforeEach(async ({ page, baseURL }) => {
-    await allure.step('Navigate to Base URL and Close Popups', async () => {
+    await Allure.step('Navigate to Base URL and Close Popups', async () => {
       await page.goto(baseURL!)
       await closeWelcomePopUp(page)
       await page.waitForTimeout(4000)
@@ -45,14 +45,14 @@ test.describe('Send Test Email', () => {
     const {status:fetchAccStatus, data:fetchAccData} = await fetchAccId()
     if (fetchAccData) {
       matchingItem = fetchAccData?.find(
-        (item: any) => item.ee_email === process.env.EMAIL
+        (item: any) => item.ee_email === process.env.CLUSTERIX_EMAIL
       )
       if (matchingItem) {
         id = matchingItem.id
         console.log('Matched ID:', id)
       } else {
         console.log(
-          `No matching item found for ee_email = "${process.env.EMAIL}".`
+          `No matching item found for ee_email = "${process.env.CLUSTERIX_EMAIL}".`
         )
       }
     } else {
