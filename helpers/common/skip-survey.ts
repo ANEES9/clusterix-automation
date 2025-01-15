@@ -1,5 +1,5 @@
 import { Page } from '@playwright/test'
-import { SurveyPage } from '../../pages/container/survey-page'
+import { SurveyPage } from '../../pages/container-app/survey-page'
 
 export async function skipSurvey(page: Page): Promise<void> {
   const surveyPage = new SurveyPage(page)
