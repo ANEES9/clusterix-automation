@@ -5,7 +5,7 @@ import { ApiResponse } from 'common/api-response'
 import * as dotenv from 'dotenv'
 import { closeWelcomePopUp } from 'common/welcome-popup-helper'
 import { closeTimerPopUp } from 'common/timer-helper'
-import { EmailPageLocators } from 'pages/email'
+import { EmailPage } from 'pages/email'
 
 const env = process.env.NODE_ENV || 'production'
 dotenv.config({ path: `.env.${env}` })
@@ -27,7 +27,7 @@ test.describe('Send Test Email', () => {
   })
 
   test('Send email', async ({ page }) => {
-    const locators = new EmailPageLocators(page)
+    const locators = new EmailPage(page)
     const fetchAccIdProd =
       'https://email-controller.innoscripta.com/api/account'
     const fetchAccIdTest =
