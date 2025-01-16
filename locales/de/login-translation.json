@@ -36,7 +36,7 @@
     "forgotPassword": "Passwort vergessen?",
     "backLogin": "Zurück zur Anmeldung",
     "remember": "Eingeloggt bleiben",
-    "login": "Jetzt anmelden",
+    "login": "Login",
     "loginAlternative": "Wiederherstellungslink senden",
     "footer1": "Noch keinen Account?",
     "footer2": "Jetzt registrieren",
@@ -1173,4 +1173,3 @@
     "XK": "Kosovo"
   }
 }
-
