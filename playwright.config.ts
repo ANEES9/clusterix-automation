@@ -57,6 +57,11 @@ export default defineConfig({
       },
       testDir: './tests/email',
     },
+    {
+      name: 'Chromium - Settings',
+      use: { ...devices['Desktop Chrome'] },
+      testDir: './tests/calendar',
+    },
 
     // Firefox Browser
     {
@@ -79,6 +84,12 @@ export default defineConfig({
       },
       testDir: './tests/container-app',
     },
+    // {
+    //   name: 'Firefox - Calendar',
+    //   use: { ...devices['Desktop Firefox'] },
+    //   testDir: './tests/calendar',
+    // },
+
 
     {
       name: 'Firefox - Email',
