@@ -29,7 +29,7 @@ test.describe('Company Searcher Smoke Test', () => {
     await addCursorStyleAndScript(page);
     companyPage = new CompanyPage(page);
     await companyPage.companySearcherLink.click();
-    await page.waitForTimeout(20000);
+    await page.waitForTimeout(1000);
     printSuccess('Page loaded successfully.');
     await closeCurrentlyActivePopup(page);
     printSuccess('Active pop-ups closed.');
@@ -214,6 +214,7 @@ const searchItems: SearchData[] = searchData;
       console.log(`Navigating to random page: ${targetPage.trim()}`);
 
       // Use the go-to-page functionality
+      await page.waitForTimeout(5000);
       await companyPage.goToPage(targetPage);
 
       // Verify the active page
