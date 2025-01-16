@@ -20,6 +20,12 @@ export default defineConfig({
     video: 'retain-on-failure',
     screenshot: 'only-on-failure',
   },
+  expect: {
+    timeout: 60 * 1000, // Timeout for expect assertions (1 minute)
+  },
+timeout: 60 * 1000, // Global timeout for each test (1 minute)
+
+
   globalSetup: require.resolve('./global-setup'),
   globalTeardown: require.resolve('./global-teardown'),
   workers: 1,
@@ -33,6 +39,22 @@ export default defineConfig({
       },
       testDir: './tests/auth',
     },
+
+    {
+      name: 'Chromium - Comapny Searcher',
+      use: { ...devices['Desktop Chrome'],
+        storageState: path.join(
+          process.cwd(),
+          'sessions',
+          `storageState.${process.env.NODE_ENV || 'testing'}.json`
+        ),
+       },
+      testDir: './tests/company_searcher',
+    },
+
+
+
+
     {
       name: 'Chromium - Container App',
       use: {
@@ -81,6 +103,18 @@ export default defineConfig({
     },
 
     {
+      name: 'Chromium - Comapny Searcher',
+      use: { ...devices['Desktop Firefox'],
+        storageState: path.join(
+          process.cwd(),
+          'sessions',
+          `storageState.${process.env.NODE_ENV || 'testing'}.json`
+        ),
+       },
+      testDir: './tests/company_searcher',
+    },
+
+    {
       name: 'Firefox - Email',
       use: {
         ...devices['Desktop Firefox'],
@@ -113,6 +147,18 @@ export default defineConfig({
       },
       testDir: './tests/container-app',
     },
+    {
+      name: 'Chromium - Comapny Searcher',
+      use: { ...devices['Desktop Safari'],
+        storageState: path.join(
+          process.cwd(),
+          'sessions',
+          `storageState.${process.env.NODE_ENV || 'testing'}.json`
+        ),
+       },
+      testDir: './tests/company_searcher',
+    },
+
     {
       name: 'WebKit - Email',
       use: {
