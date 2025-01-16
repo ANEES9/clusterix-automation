@@ -3,7 +3,9 @@ import { Allure } from 'common/allure-helper' // Import Allure
 import { time } from 'console'
 import { ApiResponse } from 'common/api-response'
 import * as dotenv from 'dotenv'
-import { closeWelcomePopUp } from 'common/welcome-popup-helper'
+import { addCursorStyleAndScript } from 'common/cursor-helper'
+import { skipSurvey } from 'common/skip-survey'
+import { closeProductTour } from 'common/product-tour-helper'
 import { closeTimerPopUp } from 'common/timer-helper'
 import { EmailPage } from 'pages/email'
 
@@ -19,7 +21,9 @@ test.describe('Send Test Email', () => {
   test.beforeEach(async ({ page, baseURL }) => {
     await Allure.step('Navigate to Base URL and Close Popups', async () => {
       await page.goto(baseURL!)
-      await closeWelcomePopUp(page)
+      await addCursorStyleAndScript(page)
+      await skipSurvey(page)
+      await closeProductTour(page)
       await page.waitForTimeout(4000)
       await closeTimerPopUp(page)
       await page.waitForLoadState('networkidle')

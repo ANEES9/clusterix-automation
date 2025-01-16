@@ -1,45 +1,39 @@
 import { chromium } from '@playwright/test'
 import * as fs from 'fs'
-import * as path from 'path'
 import dotenv from 'dotenv'
+import { LoginPage } from './pages/auth/login-page'
+import { LANGUAGES, getSessionFilePath } from 'config/language-config'
 
 dotenv.config({ path: `.env.${process.env.NODE_ENV || 'testing'}` })
 
-const rootDir = process.cwd()
-const sessionsDir = path.join(rootDir, 'sessions')
-const sessionFilePath = path.join(
-  sessionsDir,
-  `storageState.${process.env.NODE_ENV || 'testing'}.json`
-)
-
 /**
  * Create a new session and save it to the specified file.
+ * @param locale - The locale for which the session is created (e.g., 'en', 'de').
+ * @param sessionFilePath - The file path where the session state is saved.
  */
-async function createNewSession() {
+async function createSessionForLocale(locale: string, sessionFilePath: string) {
   const browser = await chromium.launch({ headless: true })
   const context = await browser.newContext()
   const page = await context.newPage()
 
   try {
-    // Navigate to the base URL and perform login
-    await page.goto(process.env.CLUSTERIX_BASE_URL || '')
-    await page.getByRole('button', { name: 'Login' }).nth(1).click()
-    await page.getByPlaceholder('Email').fill(process.env.CLUSTERIX_EMAIL || '')
-    await page
-      .getByPlaceholder('Password')
-      .fill(process.env.CLUSTERIX_PASSWORD || '')
-    await page
-      .locator('div')
-      .filter({ hasText: /^Login$/ })
-      .first()
-      .click()
-    await page.waitForURL(`${process.env.CLUSTERIX_BASE_URL}`)
-    await page.waitForTimeout(2000)
+    const loginPage = new LoginPage(page, locale)
 
-    // Save the session to the file
+    // Navigate to the login page and set the locale
+    await loginPage.navigateToLogin(process.env.CLUSTERIX_BASE_URL || '')
+    await loginPage.setLocale(locale)
+
+    // Perform login with environment variables
+    await loginPage.login(
+      process.env.CLUSTERIX_EMAIL || '',
+      process.env.CLUSTERIX_PASSWORD || ''
+    )
+
+    // Save the storage state
     await context.storageState({ path: sessionFilePath })
+    console.log(`Session for locale "${locale}" created at: ${sessionFilePath}`)
   } catch (error) {
-    console.error('Failed to create session:', error)
+    console.error(`Failed to create session for locale "${locale}":`, error)
     throw error
   } finally {
     await browser.close()
@@ -47,16 +41,24 @@ async function createNewSession() {
 }
 
 /**
- * Global setup function to ensure session file is created.
+ * Global setup to create session files for all locales defined in LANGUAGES.
  */
 async function globalSetup() {
-  // Ensure the sessions directory exists
-  if (!fs.existsSync(sessionsDir)) {
-    fs.mkdirSync(sessionsDir, { recursive: true })
-  }
+  const env = process.env.NODE_ENV || 'testing'
 
-  // Always create a new session at the start of the test run
-  await createNewSession()
+  for (const locale of LANGUAGES) {
+    const sessionFilePath = getSessionFilePath(locale, env)
+
+    // Check if the session file exists; create it if not
+    if (!fs.existsSync(sessionFilePath)) {
+      console.log(`Creating session for locale "${locale}"...`)
+      await createSessionForLocale(locale, sessionFilePath)
+    } else {
+      console.log(
+        `Session for locale "${locale}" already exists at: ${sessionFilePath}`
+      )
+    }
+  }
 }
 
 export default globalSetup

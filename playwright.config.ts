@@ -30,11 +30,12 @@ timeout: 60 * 1000, // Global timeout for each test (1 minute)
   globalTeardown: require.resolve('./global-teardown'),
   workers: 1,
   projects: [
-    // Chromium Browser
+    // Chromium Browser (EN)
     {
-      name: 'Chromium - Auth',
+      name: 'Chromium - Auth (EN)',
       use: {
         ...devices['Desktop Chrome'],
+        locale: 'en',
         storageState: undefined, // Don't use session for auth tests
       },
       testDir: './tests/auth',
@@ -56,13 +57,14 @@ timeout: 60 * 1000, // Global timeout for each test (1 minute)
 
 
     {
-      name: 'Chromium - Container App',
+      name: 'Chromium - Container App (EN)',
       use: {
         ...devices['Desktop Chrome'],
+        locale: 'en',
         storageState: path.join(
           process.cwd(),
           'sessions',
-          `storageState.${process.env.NODE_ENV || 'testing'}.json`
+          `storageState.${process.env.NODE_ENV || 'testing'}.en.json`
         ),
       },
       testDir: './tests/container-app',
@@ -74,34 +76,37 @@ timeout: 60 * 1000, // Global timeout for each test (1 minute)
         storageState: path.join(
           process.cwd(),
           'sessions',
-          `storageState.${process.env.NODE_ENV || 'testing'}.json`
-        ), 
+          `storageState.${process.env.NODE_ENV || 'testing'}.en.json`
+        ),
       },
       testDir: './tests/email',
     },
 
-    // Firefox Browser
+    // Firefox Browser (EN)
     {
-      name: 'Firefox - Auth',
+      name: 'Firefox - Auth (EN)',
       use: {
         ...devices['Desktop Firefox'],
-        storageState: undefined, // Don't use session for auth tests
+        locale: 'en',
+        storageState: undefined,
       },
       testDir: './tests/auth',
     },
     {
-      name: 'Firefox - Container App',
+      name: 'Firefox - Container App (EN)',
       use: {
         ...devices['Desktop Firefox'],
+        locale: 'en',
         storageState: path.join(
           process.cwd(),
           'sessions',
-          `storageState.${process.env.NODE_ENV || 'testing'}.json`
+          `storageState.${process.env.NODE_ENV || 'testing'}.en.json`
         ),
       },
       testDir: './tests/container-app',
     },
 
+    // WebKit Browser (EN)
     {
       name: 'Chromium - Comapny Searcher',
       use: { ...devices['Desktop Firefox'],
@@ -131,22 +136,26 @@ timeout: 60 * 1000, // Global timeout for each test (1 minute)
       name: 'WebKit - Auth',
       use: {
         ...devices['Desktop Safari'],
+        locale: 'en',
         storageState: undefined, // Don't use session for auth tests
       },
       testDir: './tests/auth',
     },
     {
-      name: 'WebKit - Container App',
+      name: 'WebKit - Container App (EN)',
       use: {
         ...devices['Desktop Safari'],
+        locale: 'en',
         storageState: path.join(
           process.cwd(),
           'sessions',
-          `storageState.${process.env.NODE_ENV || 'testing'}.json`
+          `storageState.${process.env.NODE_ENV || 'testing'}.en.json`
         ),
       },
       testDir: './tests/container-app',
     },
+
+    // Chromium Browser (DE)
     {
       name: 'Chromium - Comapny Searcher',
       use: { ...devices['Desktop Safari'],
@@ -162,14 +171,71 @@ timeout: 60 * 1000, // Global timeout for each test (1 minute)
     {
       name: 'WebKit - Email',
       use: {
-        ...devices['Desktop Safari'],
+        ...devices['Desktop Chrome'],
+        locale: 'de',
+        storageState: undefined, // Don't use session for auth tests
+      },
+      testDir: './tests/auth',
+    },
+    {
+      name: 'Chromium - Container App (DE)',
+      use: {
+        ...devices['Desktop Chrome'],
+        locale: 'de',
         storageState: path.join(
           process.cwd(),
           'sessions',
-          `storageState.${process.env.NODE_ENV || 'testing'}.json`
+          `storageState.${process.env.NODE_ENV || 'testing'}.de.json`
         ),
       },
-      testDir: './tests/email',
+      testDir: './tests/container-app',
+    },
+
+    // Firefox Browser (DE)
+    {
+      name: 'Firefox - Auth (DE)',
+      use: {
+        ...devices['Desktop Firefox'],
+        locale: 'de',
+        storageState: undefined,
+      },
+      testDir: './tests/auth',
+    },
+    {
+      name: 'Firefox - Container App (DE)',
+      use: {
+        ...devices['Desktop Firefox'],
+        locale: 'de',
+        storageState: path.join(
+          process.cwd(),
+          'sessions',
+          `storageState.${process.env.NODE_ENV || 'testing'}.de.json`
+        ),
+      },
+      testDir: './tests/container-app',
+    },
+    // WebKit Browser (DE)
+    {
+      name: 'WebKit - Auth (DE)',
+      use: {
+        ...devices['Desktop Safari'],
+        locale: 'de',
+        storageState: undefined, // Don't use session for auth tests
+      },
+      testDir: './tests/auth',
+    },
+    {
+      name: 'WebKit - Container App (DE)',
+      use: {
+        ...devices['Desktop Safari'],
+        locale: 'de',
+        storageState: path.join(
+          process.cwd(),
+          'sessions',
+          `storageState.${process.env.NODE_ENV || 'testing'}.de.json`
+        ),
+      },
+      testDir: './tests/container-app',
     },
   ],
 })
