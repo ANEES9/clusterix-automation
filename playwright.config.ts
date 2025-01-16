@@ -33,6 +33,22 @@ export default defineConfig({
       },
       testDir: './tests/auth',
     },
+
+    {
+      name: 'Chromium - Comapny Searcher',
+      use: { ...devices['Desktop Chrome'],
+        storageState: path.join(
+          process.cwd(),
+          'sessions',
+          `storageState.${process.env.NODE_ENV || 'testing'}.json`
+        ),
+       },
+      testDir: './tests/company_searcher',
+    },
+
+
+
+
     {
       name: 'Chromium - Container App',
       use: {
@@ -81,6 +97,18 @@ export default defineConfig({
     },
 
     {
+      name: 'Chromium - Comapny Searcher',
+      use: { ...devices['Desktop Firefox'],
+        storageState: path.join(
+          process.cwd(),
+          'sessions',
+          `storageState.${process.env.NODE_ENV || 'testing'}.json`
+        ),
+       },
+      testDir: './tests/company_searcher',
+    },
+
+    {
       name: 'Firefox - Email',
       use: {
         ...devices['Desktop Firefox'],
@@ -113,6 +141,18 @@ export default defineConfig({
       },
       testDir: './tests/container-app',
     },
+    {
+      name: 'Chromium - Comapny Searcher',
+      use: { ...devices['Desktop Safari'],
+        storageState: path.join(
+          process.cwd(),
+          'sessions',
+          `storageState.${process.env.NODE_ENV || 'testing'}.json`
+        ),
+       },
+      testDir: './tests/company_searcher',
+    },
+
     {
       name: 'WebKit - Email',
       use: {
