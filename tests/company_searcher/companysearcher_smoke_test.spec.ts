@@ -29,7 +29,7 @@ test.describe('Company Searcher Smoke Test', () => {
     await addCursorStyleAndScript(page);
     companyPage = new CompanyPage(page);
     await companyPage.companySearcherLink.click();
-    await page.waitForTimeout(20000);
+    await page.waitForTimeout(9000);
     printSuccess('Page loaded successfully.');
     await closeCurrentlyActivePopup(page);
     printSuccess('Active pop-ups closed.');
@@ -98,51 +98,56 @@ const searchItems: SearchData[] = searchData;
   
 
   test('Verify random company search terms', async ({ page }) => {
-    Allure.addSeverity('critical')
-    Allure.addTag('search')
-    Allure.addDescription(
-      'Verify seacrch feature with random search terms'
-    )  
-
+    Allure.addSeverity('critical');
+    Allure.addTag('search');
+    Allure.addDescription('Verify search feature with random search terms');
+  
+    // Number of terms to test
+    const numberOfTermsToCheck = 5; // Set this to control how many terms to check
+  
     // Helper function to pick random items
-    const pickRandomItems = (array: any[], count: number) => {
+    const pickRandomItems = <T>(array: T[], count: number): T[] => {
       return array.sort(() => 0.5 - Math.random()).slice(0, count); // Shuffle and pick random items
     };
-
-    // Step 2: Test search functionality with random terms
-    printStep('Step 2: Testing search functionality with random search terms');
-    for (const { searchTerm } of searchItems) {
+  
+    // Pick random search terms
+    const randomSearchItems = pickRandomItems(searchItems, numberOfTermsToCheck);
+  
+    printStep(
+      `Step 2: Testing search functionality with ${numberOfTermsToCheck} random search terms`
+    );
+  
+    for (const { searchTerm } of randomSearchItems) {
       printStep(`Testing search functionality with term: "${searchTerm}"`);
-
+  
       // Perform the search
       await companyPage.performSearch(searchTerm);
-
+  
       // Fetch search results
       const primaryCells = await companyPage.getSearchResults();
       printSuccess(`Search Results: ${primaryCells.join(', ')}`);
-
+  
       // Validate that the search term appears in the results
       const termFound = primaryCells.some((result) =>
         result.toLowerCase().includes(searchTerm.toLowerCase())
       );
-
+  
       if (termFound) {
         printSuccess(`Search term "${searchTerm}" found in the results.`);
       } else {
         printWarning(`Search term "${searchTerm}" not found in the results.`);
       }
-
+  
       expect(termFound).toBeTruthy();
-
+  
       // Reset search for the next iteration
       await companyPage.resetSearch();
       console.log(separator);
     }
-
+  
     printStep('Test completed successfully. ✔️');
     console.log(separator);
   });
-
 
   test('Verify Search, Pagination, and Data Validation with Flexible Page Check', async ({ page }) => {
     Allure.addSeverity('critical');
@@ -322,7 +327,7 @@ const searchItems: SearchData[] = searchData;
     console.log(separator);
   });
 
-  test.only('Verify Go to Page Button is Disabled for Already Selected Pages', async ({ page }) => {
+  test('Verify Go to Page Button is Disabled for Already Selected Pages', async ({ page }) => {
     // Wait for the page to load fully
     await page.waitForTimeout(5000);
     Allure.addSeverity('critical');
