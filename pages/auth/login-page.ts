@@ -1,6 +1,6 @@
 import { Locator, Page } from '@playwright/test'
 import { APP_URLS } from 'config/constants/app-urls'
-import { LANGUAGES, DEFAULT_LANGUAGE } from 'config/language-config'
+import { LANGUAGES } from 'config/language-config'
 import { getTranslations } from 'common/get-translations-helper'
 
 export class LoginPage {
@@ -11,7 +11,7 @@ export class LoginPage {
   private passwordField: Locator
   private loginButton: Locator
 
-  constructor(page: Page, locale: string = DEFAULT_LANGUAGE) {
+  constructor(page: Page, locale: string) {
     this.page = page
 
     // Fetch the 'login' namespace translations based on the provided locale
@@ -34,7 +34,7 @@ export class LoginPage {
    * Navigate to the login page.
    * @param baseURL - The base URL of the application.
    */
-  async navigateToLogin(baseURL: string | undefined) {
+  async goto(baseURL: string | undefined) {
     if (!baseURL) throw new Error('Base URL is not defined')
     await this.page.goto(`${baseURL}${APP_URLS.login}`)
   }

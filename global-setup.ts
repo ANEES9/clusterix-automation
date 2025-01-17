@@ -20,7 +20,7 @@ async function createSessionForLocale(locale: string, sessionFilePath: string) {
     const loginPage = new LoginPage(page, locale)
 
     // Navigate to the login page and set the locale
-    await loginPage.navigateToLogin(process.env.CLUSTERIX_BASE_URL || '')
+    await loginPage.goto(process.env.CLUSTERIX_BASE_URL || '')
     await loginPage.setLocale(locale)
 
     // Perform login with environment variables
