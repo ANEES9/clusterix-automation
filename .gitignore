@@ -5,6 +5,8 @@ package-lock.json
 # Playwright reports and test artifacts
 allure-report
 allure-results
+test-results
+.DS_Store
 
 # Environment variable
 .env.production

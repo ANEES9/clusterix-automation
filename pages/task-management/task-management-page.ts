@@ -1,19 +1,17 @@
-import { Page, Locator, expect } from '@playwright/test'
+import { Page, Locator } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
-import { generateRandomFileName } from 'common/random-data-generator'
 
 export class TaskManagementPage {
   private page: Page
   private taskManagement: Locator
-  private foldera: Locator
+  private folders: Locator
   private addFolder: Locator
-  private renamefolder: Locator
+  private renameFolder: Locator
   private rename_fill: Locator
   private rename_enter: Locator
-
   private folder_click!: Locator
-  private addboard: Locator
-  private renameboard: Locator
+  private addBoard: Locator
+  private renameBoard: Locator
   private board_fill: Locator
   private board_enter: Locator
 
@@ -22,13 +20,13 @@ export class TaskManagementPage {
     this.taskManagement = page.getByRole('link', {
       name: 'Task Management Create and',
     })
-    this.foldera = page.getByRole('button', { name: 'My Pinboards' })
+    this.folders = page.getByRole('button', { name: 'My Pinboards' })
     this.addFolder = page.getByText('Add folder')
-    this.renamefolder = page.locator('#scroll-area').getByRole('textbox')
+    this.renameFolder = page.locator('#scroll-area').getByRole('textbox')
     this.rename_fill = page.locator('#scroll-area').getByRole('textbox')
     this.rename_enter = page.locator('#scroll-area').getByRole('textbox')
-    this.addboard = page.getByText('Add pinboard')
-    this.renameboard = page.locator('#scroll-area').getByRole('textbox')
+    this.addBoard = page.getByText('Add pinboard')
+    this.renameBoard = page.locator('#scroll-area').getByRole('textbox')
     this.board_fill = page.locator('#scroll-area').getByRole('textbox')
     this.board_enter = page.locator('#scroll-area').getByRole('textbox')
   }
@@ -50,12 +48,12 @@ export class TaskManagementPage {
     await Allure.step(
       'should navigate to the pinboard section after clicking the pinboard button',
       async () => {
-        await this.foldera.click()
+        await this.folders.click()
       }
     )
   }
 
-  async navigateToaddfolder() {
+  async navigateToAddFolder() {
     await Allure.step(
       'should Navigate to add folder  button is clicked',
       async () => {
@@ -64,13 +62,13 @@ export class TaskManagementPage {
     )
   }
 
-  async navigateTorenamefolder() {
+  async navigateToRenameFolder() {
     await Allure.step('to rename the folder', async () => {
-      await this.renamefolder.press('ControlOrMeta+a')
+      await this.renameFolder.press('ControlOrMeta+a')
     })
   }
 
-  async navigateTofillfolder(randomFileName: string) {
+  async navigateToFillFolder(randomFileName: string) {
     //const randomFileName = 'newFolderName';
     await Allure.step('to rename the folder', async () => {
       await this.rename_fill.fill(randomFileName)
@@ -78,40 +76,39 @@ export class TaskManagementPage {
   }
 
   async renameFolderAndSubmit() {
-    await Allure.step('foldername is renamed', async () => {
+    await Allure.step('Folder name is renamed', async () => {
       await this.rename_enter.press('Enter')
     })
   }
 
-  async clickonfolder() {
+  async clickOnFolder() {
     await Allure.step('click on folder', async () => {
       await this.folder_click.dblclick()
     })
   }
 
-  async navigateToaddpinboard() {
+  async navigateToAddPinboard() {
     await Allure.step(
-      'should Navigate to add pinboard button is clicked',
+      'should navigate to add pinboard button is clicked',
       async () => {
-        await this.addboard.click()
+        await this.addBoard.click()
       }
     )
   }
 
-  async navigateTorenameboard() {
+  async navigateToRenameBoard() {
     await Allure.step('to rename the board', async () => {
-      await this.renameboard.press('ControlOrMeta+a')
+      await this.renameBoard.press('ControlOrMeta+a')
     })
   }
 
-  async navigateTofillboard(randomFileName: string) {
-    //const randomFileName = 'newFolderName';
+  async navigateToFillBoard(randomFileName: string) {
     await Allure.step('to rename the board', async () => {
       await this.board_fill.fill(randomFileName)
     })
   }
 
-  async renameboardAndSubmit() {
+  async renameBoardAndSubmit() {
     await Allure.step('board is renamed', async () => {
       await this.board_enter.press('Enter')
     })

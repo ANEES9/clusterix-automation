@@ -21,18 +21,14 @@ export default defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
-    headless: true,
+    headless: false,
     baseURL: process.env.CLUSTERIX_BASE_URL,
     viewport: { width: 1280, height: 720 },
     video: 'retain-on-failure',
     screenshot: 'only-on-failure',
   },
-  expect: {
-    timeout: 60 * 1000, // Timeout for expect assertions (1 minute)
-  },
-timeout: 60 * 1000, // Global timeout for each test (1 minute)
- globalSetup: require.resolve('./global-setup'),
- //globalTeardown: require.resolve('./global-teardown'),
+  globalSetup: require.resolve('./global-setup'),
+  globalTeardown: require.resolve('./global-teardown'),
   workers: 1,
   projects: [
     // Chromium Browser (EN)
@@ -45,6 +41,20 @@ timeout: 60 * 1000, // Global timeout for each test (1 minute)
       },
       testDir: './tests/auth',
     },
+
+    {
+      name: 'Chromium - Comapny Searcher',
+      use: {
+        ...devices['Desktop Chrome'],
+        storageState: path.join(
+          process.cwd(),
+          'sessions',
+          `storageState.${process.env.NODE_ENV || 'testing'}.json`
+        ),
+      },
+      testDir: './tests/company_searcher',
+    },
+
     {
       name: 'Chromium - Container App (EN)',
       use: {
@@ -92,11 +102,10 @@ timeout: 60 * 1000, // Global timeout for each test (1 minute)
           process.cwd(),
           'sessions',
           `storageState.${process.env.NODE_ENV || 'testing'}.en.json`
-        ), 
+        ),
       },
       testDir: './tests/task-management',
     },
-
 
     // Firefox Browser (EN)
     {
@@ -124,7 +133,33 @@ timeout: 60 * 1000, // Global timeout for each test (1 minute)
 
     // WebKit Browser (EN)
     {
-      name: 'WebKit - Auth (EN)',
+      name: 'Chromium - Comapny Searcher',
+      use: {
+        ...devices['Desktop Firefox'],
+        storageState: path.join(
+          process.cwd(),
+          'sessions',
+          `storageState.${process.env.NODE_ENV || 'testing'}.json`
+        ),
+      },
+      testDir: './tests/company_searcher',
+    },
+
+    {
+      name: 'Firefox - Email',
+      use: {
+        ...devices['Desktop Firefox'],
+        storageState: path.join(
+          process.cwd(),
+          'sessions',
+          `storageState.${process.env.NODE_ENV || 'testing'}.json`
+        ),
+      },
+      testDir: './tests/email',
+    },
+    // WebKit Browser
+    {
+      name: 'WebKit - Auth',
       use: {
         ...devices['Desktop Safari'],
         locale: 'en',
@@ -148,7 +183,20 @@ timeout: 60 * 1000, // Global timeout for each test (1 minute)
 
     // Chromium Browser (DE)
     {
-      name: 'Chromium - Auth (DE)',
+      name: 'Chromium - Comapny Searcher',
+      use: {
+        ...devices['Desktop Safari'],
+        storageState: path.join(
+          process.cwd(),
+          'sessions',
+          `storageState.${process.env.NODE_ENV || 'testing'}.json`
+        ),
+      },
+      testDir: './tests/company_searcher',
+    },
+
+    {
+      name: 'WebKit - Email',
       use: {
         ...devices['Desktop Chrome'],
         locale: 'de',
