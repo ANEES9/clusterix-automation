@@ -1,7 +1,11 @@
 import { Page, Locator } from '@playwright/test'
+import { Allure } from 'common/allure-helper'
+import { getTranslations } from 'common/get-translations-helper'
+import { APP_NAMES } from 'config/constants/app-names'
 
 export class SurveyPage {
   readonly page: Page
+  private translations: Record<string, any>
 
   // Locators
   readonly roleQuestion: Locator
@@ -31,27 +35,48 @@ export class SurveyPage {
   readonly otherToolsInput: Locator
   readonly completeButton: Locator
 
-  constructor(page: Page) {
+  constructor(page: Page, locale: string) {
     this.page = page
 
-    // Question locators
-    this.roleQuestion = page.getByText('What is your role?')
-    this.nextButton = page.locator('//div[text()="Next"]/ancestor::button')
+    // Fetch the 'container' namespace translations based on the provided locale
+    this.translations = getTranslations('container', locale)
 
+    // Question locators
+    this.roleQuestion = page.getByText(
+      `^${this.translations.user_survey.role_page.title}$`
+    )
     // Role options locators
     this.roleOptions = {
-      ceoOption: page.locator('span:has-text("CEO / CFO / COO")'),
-      directorOption: page.locator('span:has-text("Director / Manager")'),
-      developerOption: page.locator('span:has-text("Developer / Designer")'),
-      hrOption: page.locator('span:has-text("Human Resources")'),
-      salesOption: page.locator('span:has-text("Sales / Marketing")'),
-      otherOption: page.locator('span:has-text("Other (please specify)")'),
+      ceoOption: page.locator(
+        `span:has-text("${this.translations.user_survey.role_page.roles.executive}")`
+      ),
+      directorOption: page.locator(
+        `span:has-text("${this.translations.user_survey.role_page.roles.manager}")`
+      ),
+      developerOption: page.locator(
+        `span:has-text("${this.translations.user_survey.role_page.roles.developer_designer}")`
+      ),
+      hrOption: page.locator(
+        `span:has-text("${this.translations.user_survey.role_page.roles.hr}")`
+      ),
+      salesOption: page.locator(
+        `span:has-text("${this.translations.user_survey.role_page.roles.sales_marketing}")`
+      ),
+      otherOption: page.locator(
+        `span:has-text("${this.translations.user_survey.role_page.roles.other}")`
+      ),
     }
 
     // App interest question locators
-    this.appQuestion = page.getByText('What app are you most interested in?')
-    this.backButton = page.getByRole('button', { name: 'Back' })
-
+    this.appQuestion = page.getByText(
+      `^${this.translations.user_survey.apps_page.title}$`
+    )
+    this.backButton = page.locator(
+      `//div[text()="${this.translations.user_survey.back}"]/ancestor::button`
+    )
+    this.nextButton = page.locator(
+      `//div[text()="${this.translations.user_survey.next}"]/ancestor::button`
+    )
     this.appOptions = {
       calendar: page.locator('span:has-text("Calendar")'),
       email: page.locator('span:has-text("Email")'),
@@ -64,11 +89,21 @@ export class SurveyPage {
       companySearcher: page.locator('span:has-text("Company Searcher")'),
     }
 
-    this.otherToolsQuestion = page.getByText('Do you use other tools?')
-    this.otherToolsInput = page.getByPlaceholder(
-      'Enter the names of the tools or apps you use.'
+    this.otherToolsQuestion = page.getByText(
+      `^${this.translations.user_survey.other_tools_page.title}$`
     )
-    this.completeButton = page.getByRole('button', { name: 'Complete' })
+    this.otherToolsInput = page.getByPlaceholder(
+      this.translations.user_survey.other_tools_page.placeholder
+    )
+    this.completeButton = page.locator(
+      `//div[text()="${this.translations.user_survey.complete}"]/ancestor::button`
+    )
+  }
+
+  async goto(baseURL: string | undefined) {
+    await Allure.step('Navigate to Survey', async () => {
+      await this.page.goto(`${baseURL}`)
+    })
   }
 
   // Actions
