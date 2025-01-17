@@ -7,7 +7,7 @@ import { closeProductTour } from 'common/product-tour-helper'
 import { generateRandomFileName } from 'common/random-data-generator'
 import { skipSurvey } from 'common/skip-survey'
 
-test.describe('task management Test', () => {
+test.describe('Task Management Folder Tests', () => {
   test.beforeEach(async ({ page, baseURL }) => {
     await Allure.step('Navigate to Base URL and Close Popups', async () => {
       await page.goto(baseURL!)
@@ -18,7 +18,7 @@ test.describe('task management Test', () => {
     })
   })
 
-  test('test case one', async ({ page }) => {
+  test('Folder CRUD tests', async ({ page }) => {
     const locators = new TaskManagementPage(page)
 
     const taskmanageprod =
