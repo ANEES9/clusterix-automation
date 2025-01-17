@@ -57,12 +57,23 @@ export default defineConfig({
       },
       testDir: './tests/email',
     },
+    // {
+    //   name: 'Chromium - Settings',
+    //   use: { ...devices['Desktop Chrome'] },
+    //   testDir: './tests/calendar',
+    // },
     {
-      name: 'Chromium - Settings',
-      use: { ...devices['Desktop Chrome'] },
+      name: 'Chromium - Calendar',
+      use: {
+        ...devices['Desktop Chrome'],
+        storageState: path.join(
+          process.cwd(),
+          'sessions',
+          `storageState.${process.env.NODE_ENV || 'testing'}.json`
+        ), 
+      },
       testDir: './tests/calendar',
     },
-
     // Firefox Browser
     {
       name: 'Firefox - Auth',
