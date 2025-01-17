@@ -1,1 +1,1 @@
-export {TaskManagementPage} from './task-management'
+export { TaskManagementPage } from './task-management-page'
