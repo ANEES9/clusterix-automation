@@ -1,4 +1,4 @@
-import { Page } from '@playwright/test'
+import { expect, Page } from '@playwright/test'
 
 /**
  * Closes the "Currently Active" pop-up in the Company Searcher page.
@@ -7,9 +7,9 @@ import { Page } from '@playwright/test'
 export async function closeCurrentlyActivePopup(page: Page) {
   try {
     // Selector for the close button or pop-up element
-    const popupCloseButton = page.locator(
-      'footer.WOQiXubfyGkD9ZjtqjUx:has-text("Skip")'
-    )
+    await page.waitForSelector(".styles-module_headerCloseButton__x2ELS", { timeout: 5000 })
+    const popupCloseButton = page.locator(".styles-module_headerCloseButton__x2ELS")
+    
     const popupVisible = await popupCloseButton.isVisible()
 
     if (popupVisible) {

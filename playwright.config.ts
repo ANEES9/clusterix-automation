@@ -34,6 +34,22 @@ export default defineConfig({
       },
       testDir: './tests/auth',
     },
+
+    {
+      name: 'Chromium - Comapny Searcher',
+      use: { ...devices['Desktop Chrome'],
+        storageState: path.join(
+          process.cwd(),
+          'sessions',
+          `storageState.${process.env.NODE_ENV || 'testing'}.json`
+        ),
+       },
+      testDir: './tests/company_searcher',
+    },
+
+
+
+
     {
       name: 'Chromium - Container App (EN)',
       use: {
@@ -99,7 +115,32 @@ export default defineConfig({
 
     // WebKit Browser (EN)
     {
-      name: 'WebKit - Auth (EN)',
+      name: 'Chromium - Comapny Searcher',
+      use: { ...devices['Desktop Firefox'],
+        storageState: path.join(
+          process.cwd(),
+          'sessions',
+          `storageState.${process.env.NODE_ENV || 'testing'}.json`
+        ),
+       },
+      testDir: './tests/company_searcher',
+    },
+
+    {
+      name: 'Firefox - Email',
+      use: {
+        ...devices['Desktop Firefox'],
+        storageState: path.join(
+          process.cwd(),
+          'sessions',
+          `storageState.${process.env.NODE_ENV || 'testing'}.json`
+        ),
+      },
+      testDir: './tests/email',
+    },
+    // WebKit Browser
+    {
+      name: 'WebKit - Auth',
       use: {
         ...devices['Desktop Safari'],
         locale: 'en',
@@ -123,7 +164,19 @@ export default defineConfig({
 
     // Chromium Browser (DE)
     {
-      name: 'Chromium - Auth (DE)',
+      name: 'Chromium - Comapny Searcher',
+      use: { ...devices['Desktop Safari'],
+        storageState: path.join(
+          process.cwd(),
+          'sessions',
+          `storageState.${process.env.NODE_ENV || 'testing'}.json`
+        ),
+       },
+      testDir: './tests/company_searcher',
+    },
+
+    {
+      name: 'WebKit - Email',
       use: {
         ...devices['Desktop Chrome'],
         locale: 'de',
