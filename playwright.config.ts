@@ -14,14 +14,14 @@ export default defineConfig({
   ],
   use: {
     trace: 'on-first-retry',
-    headless: true,
+    headless: false,
     baseURL: process.env.CLUSTERIX_BASE_URL,
     viewport: { width: 1280, height: 720 },
     video: 'retain-on-failure',
     screenshot: 'only-on-failure',
   },
- globalSetup: require.resolve('./global-setup'),
- globalTeardown: require.resolve('./global-teardown'),
+  globalSetup: require.resolve('./global-setup'),
+  globalTeardown: require.resolve('./global-teardown'),
   workers: 1,
   projects: [
     // Chromium Browser (EN)
@@ -68,11 +68,10 @@ export default defineConfig({
           process.cwd(),
           'sessions',
           `storageState.${process.env.NODE_ENV || 'testing'}.en.json`
-        ), 
+        ),
       },
       testDir: './tests/task-management',
     },
-
 
     // Firefox Browser (EN)
     {
