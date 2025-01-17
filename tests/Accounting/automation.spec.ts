@@ -1,51 +1,59 @@
 import { test, expect } from '@playwright/test';
-import { AssertionHelper } from '../../helpers/assertion-helpers';
-import { PageLocators } from '../../helpers/accounting-locaters-helpers';
+import {PageLocators} from '../../pages/accounting/accounting-locaters-helpers';
+import { generateRandomGermanIBAN } from '../../helpers/common/iban-generator';
+import { addCursorStyleAndScript } from '../../helpers/common/cursor-helper';
+import { skipSurvey } from '../../helpers/common/skip-survey';
+import { closeProductTour } from '../../helpers/common/product-tour-helper';
+import { closeTimerPopUp } from '../../helpers/common/timer-helper';
+import { Allure } from '../../helpers/common/allure-helper';
+import { ContainerPage } from '../../pages/container-app/container-page';
 
-test.beforeEach(async ({ page, baseURL }) => {
-  await page.goto('https://testing.clusterix.io/');
 
-  await page.getByRole('button', { name: 'Login' }).nth(1).click();
-  await page.getByPlaceholder('Email').fill('cop@test.de');
-  await page.getByPlaceholder('Password').fill('1');
-  await page
-    .locator('div')
-    .filter({ hasText: /^Login$/ })
-    .first()
-    .click();
+test.describe('Accounting Application API Tests', () => {
+  let locators: PageLocators;
+  
+  test.beforeEach(async ({ page, baseURL }) => {
+    // ...
+    locators = new PageLocators(page);
+    // ...
+  });
+  test.beforeEach(async ({ page, baseURL }) => {
+    let locators: PageLocators;
+    Allure.addFeature('Navigation')
+     Allure.addAppOwner('ContainerApp')
+     await Allure.step('Navigate to Base URL and Close Popups', async () => {
+       await page.goto(baseURL!)
+       await addCursorStyleAndScript(page)
+       await skipSurvey(page)
+       await closeProductTour(page)
+       await closeTimerPopUp(page)
+       await page.waitForLoadState('networkidle')
+     })
+   })
 
-  await page.locator('div').filter({ hasText: /^Skip tour$/ }).first().click();
-  const locators = new PageLocators(page);
-  await page.waitForLoadState('domcontentloaded');
+  test('Launch Clusterix and navigate to Accounting and verify if all sidebar buttons are working as per the expectations', async ({ page }) => {
+    // Test with dashboard collapse
+    await locators.clickAccountingListButton();
+    await locators.clickPaymentsSidebarButton();
+    await locators.paymentsTransactionSidebarButton.click();
+    await locators.paymentsAnalysisSidebarButton.click();
+    await locators.incomeSidebarButton.click();
+    await locators.invoicesSidebarButton.click();
+    await locators.categoriesSidebarButton.click();
+
+    // Test with dashboard expand
+    await locators.dashboardExpandButton.click();
+    await locators.dashboardSidebarButton.click();
+    await locators.paymentsSidebarButton.click();
+    await locators.paymentsTransactionSidebarButton.click();
+    await locators.paymentsAnalysisSidebarButton.click();
+    await locators.incomeSidebarButton.click();
+    await locators.invoicesSidebarButton.click();
+    await locators.categoriesSidebarButton.click();
+    await locators.reportsSidebarButton.click();
+    await locators.dashboardCollapseButton.click();
+    await locators.dashboardSidebarButton.click();
+
+    // ***********Test will be futher continuied*******
+  });
 });
-
-// Test1 - Navigation UI Tests
-test('Launch Clusterix and navigate to Accounting and verify if all sidebar buttons are working as per the expectations', async ({ page }) => {
-  const locators = new PageLocators(page);
-
-  // Test with dashboard collapse
-  await AssertionHelper.clickWithAssertion(locators.accountingListButton);
-  await AssertionHelper.clickWithAssertion(locators.paymentsSidebarButton);
-  await AssertionHelper.clickWithAssertion(locators.paymentsTransactionSidebarButton);
-  await AssertionHelper.clickWithAssertion(locators.paymentsAnalysisSidebarButton);
-  await AssertionHelper.clickWithAssertion(locators.incomeSidebarButton);
-  await AssertionHelper.clickWithAssertion(locators.invoicesSidebarButton);
-  await AssertionHelper.clickWithAssertion(locators.categoriesSidebarButton);
-  await AssertionHelper.clickWithAssertion(locators.reportsSidebarButton);
-
-  // Test with dashboard expand
-  await AssertionHelper.clickWithAssertion(locators.dashboardExpandButton);
-  await AssertionHelper.clickWithAssertion(locators.dashboardSidebarButton);
-  await AssertionHelper.clickWithAssertion(locators.paymentsSidebarButton);
-  await AssertionHelper.clickWithAssertion(locators.paymentsTransactionSidebarButton);
-  await AssertionHelper.clickWithAssertion(locators.paymentsAnalysisSidebarButton);
-  await AssertionHelper.clickWithAssertion(locators.incomeSidebarButton);
-  await AssertionHelper.clickWithAssertion(locators.invoicesSidebarButton);
-  await AssertionHelper.clickWithAssertion(locators.categoriesSidebarButton);
-  await AssertionHelper.clickWithAssertion(locators.reportsSidebarButton);
-  await AssertionHelper.clickWithAssertion(locators.dashboardCollapseButton);
-  await AssertionHelper.clickWithAssertion(locators.dashboardSidebarButton);
-});
-
-
-
