@@ -81,6 +81,20 @@ timeout: 60 * 1000, // Global timeout for each test (1 minute)
       },
       testDir: './tests/email',
     },
+    {
+      name: 'Chromium - Task Management',
+      use: {
+        ...devices['Desktop Chrome'],
+        locale: 'en',
+        storageState: path.join(
+          process.cwd(),
+          'sessions',
+          `storageState.${process.env.NODE_ENV || 'testing'}.en.json`
+        ), 
+      },
+      testDir: './tests/task-management',
+    },
+
 
     // Firefox Browser (EN)
     {
