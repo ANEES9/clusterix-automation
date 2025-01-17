@@ -1,18 +1,13 @@
 import { defineConfig, devices } from '@playwright/test'
 import * as dotenv from 'dotenv'
 import path from 'node:path'
-import allurePlaywright  from 'allure-playwright';
 
-const env = process.env.NODE_ENV || 'production'
-dotenv.config({ path: `.env.${env}` })
+dotenv.config({ path: `.env.${process.env.NODE_ENV || 'production'}` })
 
 export default defineConfig({
   testDir: './tests',
-  retries: 0,
   timeout: 600 * 10000, // Global timeout for each test (1 minute)
-  expect: {
-    timeout: 60 * 1000, // Timeout for expect assertions (10 seconds)
-  },
+  retries: 0,
   reporter: [
     ['list'],
     // ['html', { open: 'never' }],
@@ -20,85 +15,208 @@ export default defineConfig({
   ],
   use: {
     trace: 'on-first-retry',
-    headless: false,
+    headless: true,
     baseURL: process.env.CLUSTERIX_BASE_URL,
-    storageState: path.join('sessions', `storageState.${env}.json`),
     viewport: { width: 1280, height: 720 },
     video: 'retain-on-failure',
     screenshot: 'only-on-failure',
-    
   },
-  globalSetup: require.resolve('./global-setup'),
+  //globalSetup: require.resolve('./global-setup'),
+  //globalTeardown: require.resolve('./global-teardown'),
+  workers: 1,
   projects: [
-    // Chromium Browser
+    // Chromium Browser (EN)
     {
-      name: 'Chromium - Auth',
-      use: { ...devices['Desktop Chrome'] },
+      name: 'Chromium - Auth (EN)',
+      use: {
+        ...devices['Desktop Chrome'],
+        locale: 'en',
+        storageState: undefined, // Don't use session for auth tests
+      },
       testDir: './tests/auth',
     },
     {
-      name: 'Chromium - Container App',
-      use: { ...devices['Desktop Chrome'] },
+      name: 'Chromium - Container App (EN)',
+      use: {
+        ...devices['Desktop Chrome'],
+        locale: 'en',
+        storageState: path.join(
+          process.cwd(),
+          'sessions',
+          `storageState.${process.env.NODE_ENV || 'testing'}.en.json`
+        ),
+      },
       testDir: './tests/container-app',
     },
     {
-      name: 'Chromium - Settings',
-      use: { ...devices['Desktop Chrome'] },
-      testDir: './tests/settings',
+      name: 'Chromium - Email',
+      use: {
+        ...devices['Desktop Chrome'],
+        storageState: path.join(
+          process.cwd(),
+          'sessions',
+          `storageState.${process.env.NODE_ENV || 'testing'}.en.json`
+        ),
+      },
+      testDir: './tests/email',
     },
     {
+
       name: 'Chromium - Profile',
-      use: { ...devices['Desktop Chrome'] },
-      testDir: './tests/profile',
+      use: {
+        ...devices['Desktop Chrome'],
+        storageState: path.join(
+          process.cwd(),
+          'sessions',
+          `storageState.${process.env.NODE_ENV || 'testing'}.en.json`
+        ),
+      },
+      testDir: './tests/my-profile',
     },
-    /*{
-      name: 'Chromium - HR',
-      use: { ...devices['Desktop Chrome'] },
-      testDir: './tests/hr',
-    },*/
 
-    // Firefox Browser
+
+    // Firefox Browser (EN)
     {
-      name: 'Firefox - Auth',
-      use: { ...devices['Desktop Firefox'] },
+      name: 'Firefox - Auth (EN)',
+      use: {
+        ...devices['Desktop Firefox'],
+        locale: 'en',
+        storageState: undefined,
+      },
       testDir: './tests/auth',
     },
     {
-      name: 'Firefox - Container App',
-      use: { ...devices['Desktop Firefox'] },
+      name: 'Firefox - Container App (EN)',
+      use: {
+        ...devices['Desktop Firefox'],
+        locale: 'en',
+        storageState: path.join(
+          process.cwd(),
+          'sessions',
+          `storageState.${process.env.NODE_ENV || 'testing'}.en.json`
+        ),
+      },
       testDir: './tests/container-app',
     },
     {
-      name: 'Firefox - Settings',
-      use: { ...devices['Desktop Firefox'] },
-      testDir: './tests/settings',
-    },
-    {
-      name: 'Firefox - HR',
-      use: { ...devices['Desktop Firefox'] },
-      testDir: './tests/hr',
+      name: 'Firefox - Profile',
+      use: {
+        ...devices['Desktop Firefox'],
+        storageState: path.join(
+          process.cwd(),
+          'sessions',
+          `storageState.${process.env.NODE_ENV || 'testing'}.en.json`
+        ),
+      },
+      testDir: './tests/my-profile',
     },
 
-    // WebKit Browser
+    // WebKit Browser (EN)
     {
-      name: 'WebKit - Auth',
-      use: { ...devices['Desktop Safari'] },
+      name: 'WebKit - Auth (EN)',
+      use: {
+        ...devices['Desktop Safari'],
+        locale: 'en',
+        storageState: undefined, // Don't use session for auth tests
+      },
       testDir: './tests/auth',
     },
     {
-      name: 'WebKit - Container App',
-      use: { ...devices['Desktop Safari'] },
+      name: 'WebKit - Container App (EN)',
+      use: {
+        ...devices['Desktop Safari'],
+        locale: 'en',
+        storageState: path.join(
+          process.cwd(),
+          'sessions',
+          `storageState.${process.env.NODE_ENV || 'testing'}.en.json`
+        ),
+      },
       testDir: './tests/container-app',
     },
+
     {
-      name: 'WebKit - Settings',
-      use: { ...devices['Desktop Safari'] },
-      testDir: './tests/settings',
+      name: 'Firefox - Safari',
+      use: {
+        ...devices['Desktop safari'],
+        storageState: path.join(
+          process.cwd(),
+          'sessions',
+          `storageState.${process.env.NODE_ENV || 'testing'}.en.json`
+        ),
+      },
+      testDir: './tests/my-profile',
     },
-    /*{
-      name: 'WebKit - HR',
-      use: { ...devices['Desktop Safari'] },
-      testDir: './tests/hr',
-    },*/
+
+    // Chromium Browser (DE)
+    {
+      name: 'Chromium - Auth (DE)',
+      use: {
+        ...devices['Desktop Chrome'],
+        locale: 'de',
+        storageState: undefined, // Don't use session for auth tests
+      },
+      testDir: './tests/auth',
+    },
+    {
+      name: 'Chromium - Container App (DE)',
+      use: {
+        ...devices['Desktop Chrome'],
+        locale: 'de',
+        storageState: path.join(
+          process.cwd(),
+          'sessions',
+          `storageState.${process.env.NODE_ENV || 'testing'}.de.json`
+        ),
+      },
+      testDir: './tests/container-app',
+    },
+
+    // Firefox Browser (DE)
+    {
+      name: 'Firefox - Auth (DE)',
+      use: {
+        ...devices['Desktop Firefox'],
+        locale: 'de',
+        storageState: undefined,
+      },
+      testDir: './tests/auth',
+    },
+    {
+      name: 'Firefox - Container App (DE)',
+      use: {
+        ...devices['Desktop Firefox'],
+        locale: 'de',
+        storageState: path.join(
+          process.cwd(),
+          'sessions',
+          `storageState.${process.env.NODE_ENV || 'testing'}.de.json`
+        ),
+      },
+      testDir: './tests/container-app',
+    },
+    // WebKit Browser (DE)
+    {
+      name: 'WebKit - Auth (DE)',
+      use: {
+        ...devices['Desktop Safari'],
+        locale: 'de',
+        storageState: undefined, // Don't use session for auth tests
+      },
+      testDir: './tests/auth',
+    },
+    {
+      name: 'WebKit - Container App (DE)',
+      use: {
+        ...devices['Desktop Safari'],
+        locale: 'de',
+        storageState: path.join(
+          process.cwd(),
+          'sessions',
+          `storageState.${process.env.NODE_ENV || 'testing'}.de.json`
+        ),
+      },
+      testDir: './tests/container-app',
+    },
   ],
 })
