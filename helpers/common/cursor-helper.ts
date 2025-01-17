@@ -1,4 +1,6 @@
-export const addCursorStyleAndScript = async (page: any) => {
+import { Page } from '@playwright/test'
+
+export const addCursorStyleAndScript = async (page: Page) => {
   await page.addStyleTag({
     content: `
             #playwright-cursor {

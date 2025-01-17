@@ -5,38 +5,53 @@
   "scripts": {
     "test:prod": "NODE_ENV=production npx playwright test",
     "test:testing": "NODE_ENV=testing npx playwright test",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "format": "prettier --write .",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "format": "prettier --write \"**/*.{ts,json,md}\"",
     "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "Clusterix Automation is an **End-to-End (E2E)** testing framework built with **[Playwright](https://playwright.dev/)** to streamline and automate testing for the **Clusterix** platform.",
   "devDependencies": {
     "@eslint/js": "^9.15.0",
     "@playwright/test": "^1.49.1",
     "@types/node": "^22.9.0",
     "@types/nodemailer": "^6.4.17",
-    "allure-playwright": "^3.0.7",
+    "@typescript-eslint/eslint-plugin": "^8.19.1",
+    "@typescript-eslint/parser": "^8.19.1",
+    "allure-playwright": "^3.0.8",
     "eslint": "^9.15.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
-    "globals": "^15.12.0",
+    "globals": "^15.14.0",
     "husky": "^9.1.6",
     "lint-staged": "^15.2.10",
-    "playwright": "^1.48.2",
-    "prettier": "^3.3.3",
-    "typescript-eslint": "^8.14.0"
+    "playwright": "^1.49.1",
+    "prettier": "^3.4.2"
   },
   "dependencies": {
     "@faker-js/faker": "^9.3.0",
     "allure-js-commons": "^3.0.7",
-    "axios": "^1.7.7",
+    "axios": "^1.7.9",
+    "chalk": "^5.4.1",
     "dotenv": "^16.4.7",
     "iban": "^0.0.14",
     "nodemailer": "^6.9.16",
-    "typescript": "^5.6.3"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
   }
 }
