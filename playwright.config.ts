@@ -1,6 +1,8 @@
 import { defineConfig, devices } from '@playwright/test'
 import * as dotenv from 'dotenv'
 import path from 'node:path'
+import { LANGUAGES } from 'config/language-config'
+import { APP_NAMES } from 'config/constants/app-names'
 
 dotenv.config({ path: `.env.${process.env.NODE_ENV || 'production'}` })
 
@@ -24,225 +26,47 @@ export default defineConfig({
   globalTeardown: require.resolve('./global-teardown'),
   workers: 1,
   projects: [
-    // Chromium Browser (EN)
-    {
-      name: 'Chromium - Auth (EN)',
-      use: {
-        ...devices['Desktop Chrome'],
-        locale: 'en',
-        storageState: undefined, // Don't use session for auth tests
-      },
-      testDir: './tests/auth',
-    },
-
-    {
-      name: 'Chromium - Comapny Searcher',
-      use: {
-        ...devices['Desktop Chrome'],
-        storageState: path.join(
-          process.cwd(),
-          'sessions',
-          `storageState.${process.env.NODE_ENV || 'testing'}.json`
-        ),
-      },
-      testDir: './tests/company_searcher',
-    },
-
-    {
-      name: 'Chromium - Container App (EN)',
-      use: {
-        ...devices['Desktop Chrome'],
-        locale: 'en',
-        storageState: path.join(
-          process.cwd(),
-          'sessions',
-          `storageState.${process.env.NODE_ENV || 'testing'}.en.json`
-        ),
-      },
-      testDir: './tests/container-app',
-    },
-    {
-      name: 'Chromium - Email',
-      use: {
-        ...devices['Desktop Chrome'],
-        storageState: path.join(
-          process.cwd(),
-          'sessions',
-          `storageState.${process.env.NODE_ENV || 'testing'}.en.json`
-        ),
-      },
-      testDir: './tests/email',
-    },
-    {
-      name: 'Chromium - Task Management',
-      use: {
-        ...devices['Desktop Chrome'],
-        locale: 'en',
-        storageState: path.join(
-          process.cwd(),
-          'sessions',
-          `storageState.${process.env.NODE_ENV || 'testing'}.en.json`
-        ),
-      },
-      testDir: './tests/task-management',
-    },
-
-    // Firefox Browser (EN)
-    {
-      name: 'Firefox - Auth (EN)',
-      use: {
-        ...devices['Desktop Firefox'],
-        locale: 'en',
-        storageState: undefined,
-      },
-      testDir: './tests/auth',
-    },
-    {
-      name: 'Firefox - Container App (EN)',
-      use: {
-        ...devices['Desktop Firefox'],
-        locale: 'en',
-        storageState: path.join(
-          process.cwd(),
-          'sessions',
-          `storageState.${process.env.NODE_ENV || 'testing'}.en.json`
-        ),
-      },
-      testDir: './tests/container-app',
-    },
-
-    // WebKit Browser (EN)
-    {
-      name: 'Chromium - Comapny Searcher',
-      use: {
-        ...devices['Desktop Firefox'],
-        storageState: path.join(
-          process.cwd(),
-          'sessions',
-          `storageState.${process.env.NODE_ENV || 'testing'}.json`
-        ),
-      },
-      testDir: './tests/company_searcher',
-    },
-
-    {
-      name: 'Firefox - Email',
-      use: {
-        ...devices['Desktop Firefox'],
-        storageState: path.join(
-          process.cwd(),
-          'sessions',
-          `storageState.${process.env.NODE_ENV || 'testing'}.json`
-        ),
-      },
-      testDir: './tests/email',
-    },
-    // WebKit Browser
-    {
-      name: 'WebKit - Auth',
-      use: {
-        ...devices['Desktop Safari'],
-        locale: 'en',
-        storageState: undefined, // Don't use session for auth tests
-      },
-      testDir: './tests/auth',
-    },
-    {
-      name: 'WebKit - Container App (EN)',
-      use: {
-        ...devices['Desktop Safari'],
-        locale: 'en',
-        storageState: path.join(
-          process.cwd(),
-          'sessions',
-          `storageState.${process.env.NODE_ENV || 'testing'}.en.json`
-        ),
-      },
-      testDir: './tests/container-app',
-    },
-
-    // Chromium Browser (DE)
-    {
-      name: 'Chromium - Comapny Searcher',
-      use: {
-        ...devices['Desktop Safari'],
-        storageState: path.join(
-          process.cwd(),
-          'sessions',
-          `storageState.${process.env.NODE_ENV || 'testing'}.json`
-        ),
-      },
-      testDir: './tests/company_searcher',
-    },
-
-    {
-      name: 'WebKit - Email',
-      use: {
-        ...devices['Desktop Chrome'],
-        locale: 'de',
-        storageState: undefined, // Don't use session for auth tests
-      },
-      testDir: './tests/auth',
-    },
-    {
-      name: 'Chromium - Container App (DE)',
-      use: {
-        ...devices['Desktop Chrome'],
-        locale: 'de',
-        storageState: path.join(
-          process.cwd(),
-          'sessions',
-          `storageState.${process.env.NODE_ENV || 'testing'}.de.json`
-        ),
-      },
-      testDir: './tests/container-app',
-    },
-
-    // Firefox Browser (DE)
-    {
-      name: 'Firefox - Auth (DE)',
-      use: {
-        ...devices['Desktop Firefox'],
-        locale: 'de',
-        storageState: undefined,
-      },
-      testDir: './tests/auth',
-    },
-    {
-      name: 'Firefox - Container App (DE)',
-      use: {
-        ...devices['Desktop Firefox'],
-        locale: 'de',
-        storageState: path.join(
-          process.cwd(),
-          'sessions',
-          `storageState.${process.env.NODE_ENV || 'testing'}.de.json`
-        ),
-      },
-      testDir: './tests/container-app',
-    },
-    // WebKit Browser (DE)
-    {
-      name: 'WebKit - Auth (DE)',
-      use: {
-        ...devices['Desktop Safari'],
-        locale: 'de',
-        storageState: undefined, // Don't use session for auth tests
-      },
-      testDir: './tests/auth',
-    },
-    {
-      name: 'WebKit - Container App (DE)',
-      use: {
-        ...devices['Desktop Safari'],
-        locale: 'de',
-        storageState: path.join(
-          process.cwd(),
-          'sessions',
-          `storageState.${process.env.NODE_ENV || 'testing'}.de.json`
-        ),
-      },
-      testDir: './tests/container-app',
-    },
+    // Generate projects dynamically
+    ...generateProjects(),
   ],
 })
+
+// Function to generate projects dynamically
+function generateProjects() {
+  const browsers = [
+    { name: 'Chromium', device: devices['Desktop Chrome'] },
+    { name: 'Firefox', device: devices['Desktop Firefox'] },
+    { name: 'WebKit', device: devices['Desktop Safari'] },
+  ]
+
+  const projects: any[] = []
+
+  LANGUAGES.forEach((locale) => {
+    Object.keys(APP_NAMES).forEach((appKey) => {
+      const testDir = `./tests/${toKebabCase(appKey as keyof typeof APP_NAMES)}`
+      const sessionFile = `storageState.${process.env.NODE_ENV || 'testing'}.${locale}.json`
+
+      browsers.forEach(({ name, device }) => {
+        projects.push({
+          name: `${name} - ${APP_NAMES[appKey as keyof typeof APP_NAMES]} (${locale.toUpperCase()})`,
+          use: {
+            ...device,
+            locale,
+            storageState:
+              appKey === 'auth'
+                ? undefined
+                : path.join(process.cwd(), 'sessions', sessionFile),
+          },
+          testDir,
+        })
+      })
+    })
+  })
+
+  return projects
+}
+
+// Convert camelCase to kebab-case
+function toKebabCase(str: string) {
+  return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
+}
