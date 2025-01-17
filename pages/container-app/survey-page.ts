@@ -71,22 +71,20 @@ export class SurveyPage {
     this.appQuestion = page.getByText(
       `^${this.translations.user_survey.apps_page.title}$`
     )
-    this.backButton = page.locator(
-      `//div[text()="${this.translations.user_survey.back}"]/ancestor::button`
-    )
-    this.nextButton = page.locator(
-      `//div[text()="${this.translations.user_survey.next}"]/ancestor::button`
-    )
     this.appOptions = {
-      calendar: page.locator('span:has-text("Calendar")'),
-      email: page.locator('span:has-text("Email")'),
-      liveChat: page.locator('span:has-text("Live Chat")'),
-      files: page.locator('span:has-text("Files")'),
-      office: page.locator('span:has-text("Office")'),
-      taskManagement: page.locator('span:has-text("Task Management")'),
-      timeTracking: page.locator('span:has-text("Time Tracking")'),
-      customers: page.locator('span:has-text("Customers")'),
-      companySearcher: page.locator('span:has-text("Company Searcher")'),
+      calendar: page.locator(`span:has-text("${APP_NAMES.calendar}")`),
+      email: page.locator(`span:has-text("${APP_NAMES.email}")`),
+      liveChat: page.locator(`span:has-text("${APP_NAMES.liveChat}")`),
+      files: page.locator(`span:has-text("${APP_NAMES.files}")`),
+      office: page.locator(`span:has-text("${APP_NAMES.office}")`),
+      taskManagement: page.locator(
+        `span:has-text("${APP_NAMES.taskManagement}")`
+      ),
+      timeTracking: page.locator(`span:has-text("${APP_NAMES.timeTracking}")`),
+      customers: page.locator(`span:has-text("${APP_NAMES.customers}")`),
+      companySearcher: page.locator(
+        `span:has-text("${APP_NAMES.companySearcher}")`
+      ),
     }
 
     this.otherToolsQuestion = page.getByText(
@@ -94,6 +92,14 @@ export class SurveyPage {
     )
     this.otherToolsInput = page.getByPlaceholder(
       this.translations.user_survey.other_tools_page.placeholder
+    )
+
+    // Next, back, complete buttons
+    this.backButton = page.locator(
+      `//div[text()="${this.translations.user_survey.back}"]/ancestor::button`
+    )
+    this.nextButton = page.locator(
+      `//div[text()="${this.translations.user_survey.next}"]/ancestor::button`
     )
     this.completeButton = page.locator(
       `//div[text()="${this.translations.user_survey.complete}"]/ancestor::button`
