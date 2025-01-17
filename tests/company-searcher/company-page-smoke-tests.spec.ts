@@ -22,7 +22,7 @@ test.describe('Company Searcher Smoke Test', () => {
     await page.waitForLoadState('networkidle');
     await addCursorStyleAndScript(page);
     companyPage = new CompanyPage(page);
-    await companyPage.companySearcherLink.click();
+    await companyPage.companysearcherlink.click();
     await page.waitForTimeout(1000);
     await closeCurrentlyActivePopup(page);
     await collapseSidebar(page);
@@ -45,7 +45,7 @@ const searchItems: SearchData[] = searchData;
         Allure.addDescription(
           'Verifying Company page UI Elements to be visible'
         ) 
-      await companyPage.verifyUIElements();
+      await companyPage.verifyuielements();
       console.log('All UI Elements are Visible.✔️');
 
   });
@@ -54,12 +54,12 @@ const searchItems: SearchData[] = searchData;
     Allure.addSeverity('normal');
     Allure.addDescription('Rows count matches the selected dropdown option');
 
-    const options = await companyPage.getDropdownOptions();
+    const options = await companyPage.getdropdownoptions();
 
     const mismatches = [];
 
     for (const option of options) {
-        const rowCount = await companyPage.selectDropdownOptionAndCountRows(option);
+        const rowCount = await companyPage.selectdropdownoptionandcountrows(option);
 
         if (rowCount !== parseInt(option, 10)) {
             const errorMessage = `Option "${option}": Expected rows (${option}), Actual rows (${rowCount}) do not match.`;
@@ -91,10 +91,10 @@ test('Verify random company search terms', async ({ page }) => {
   for (const { searchTerm } of searchItems) {
 
       // Perform the search
-      await companyPage.performSearch(searchTerm);
+      await companyPage.performsearch(searchTerm);
 
       // Fetch search results
-      const primaryCells = await companyPage.getSearchResults();
+      const primaryCells = await companyPage.getsearchresults();
 
       // Validate that the search term appears in the results
       const termFound = primaryCells.some((result) =>
@@ -108,7 +108,7 @@ test('Verify random company search terms', async ({ page }) => {
       expect(termFound).toBeTruthy();
 
       // Reset search for the next iteration
-      await companyPage.resetSearch();
+      await companyPage.resetsearch();
   }
 });
 
@@ -125,20 +125,20 @@ test('Verify Search, Pagination, and Data Validation with Flexible Page Check', 
   for (const { searchTerm } of searchItems) {
 
       // Perform the search
-      await companyPage.performSearch(searchTerm);
+      await companyPage.performsearch(searchTerm);
 
       // Handle pagination
-      const { visitedPages, allPageData } = await companyPage.handlePagination(maxPagesToCheck);
+      const { visitedpages, allpagedata } = await companyPage.handlepagination(maxPagesToCheck);
 
       // Validation logic
-      allPageData.forEach((pageData, index) => {
-          if (index > 0 && JSON.stringify(allPageData[index - 1]) === JSON.stringify(pageData)) {
+      allpagedata.forEach((pageData, index) => {
+          if (index > 0 && JSON.stringify(allpagedata[index - 1]) === JSON.stringify(pageData)) {
               throw new Error(`Page ${index + 1} has the same data as Page ${index}.`);
           }
       });
 
       // Reset search for the next term
-      await companyPage.resetSearchInput();
+      await companyPage.resetsearchinput();
   }
 });
 
@@ -153,7 +153,7 @@ test('Verify Go-To-Page Functionality', async ({ page }) => {
 
   while (maxPagesToCheck === -1 || pagesChecked < maxPagesToCheck) {
       // Fetch all visible page numbers from the pagination block
-      const paginationNumbers = await companyPage.getPaginationNumbers();
+      const paginationNumbers = await companyPage.getpaginationnumbers();
 
       // Filter out pages already visited
       const unvisitedPages = paginationNumbers.filter((page) => !visitedPages.has(page.trim()));
@@ -167,10 +167,10 @@ test('Verify Go-To-Page Functionality', async ({ page }) => {
 
       // Use the go-to-page functionality
       await page.waitForTimeout(5000);
-      await companyPage.goToPage(targetPage);
+      await companyPage.gotopage(targetPage);
 
       // Verify the active page
-      const activePageNumber = await companyPage.getActivePageNumber();
+      const activePageNumber = await companyPage.getactivepagenumber();
 
       if (activePageNumber !== targetPage.trim()) {
           throw new Error(`Expected page: ${targetPage.trim()}, but active page is: ${activePageNumber}`);
@@ -202,14 +202,14 @@ test('Verify Search, Pagination, and Go-to-Page Functionality', async ({ page })
   for (const { searchTerm } of searchItems) {
 
       // Perform the search
-      await companyPage.performSearch(searchTerm);
+      await companyPage.performsearch(searchTerm);
 
       let visitedPages = new Set<string>(); // Track visited pages to avoid duplicates
       let pagesChecked = 0; // Counter for pages checked
 
       while (maxPagesToCheck === -1 || pagesChecked < maxPagesToCheck) {
           // Fetch all visible page numbers from the pagination block
-          const paginationNumbers = await companyPage.getPaginationNumbers();
+          const paginationNumbers = await companyPage.getpaginationnumbers();
 
           // Filter out pages already visited
           const unvisitedPages = paginationNumbers.filter((page) => !visitedPages.has(page.trim()));
@@ -222,10 +222,10 @@ test('Verify Search, Pagination, and Go-to-Page Functionality', async ({ page })
           const targetPage = unvisitedPages[Math.floor(Math.random() * unvisitedPages.length)];
 
           // Use the go-to-page functionality
-          await companyPage.goToPage(targetPage);
+          await companyPage.gotopage(targetPage);
 
           // Verify the active page
-          const activePageNumber = await companyPage.getActivePageNumber();
+          const activePageNumber = await companyPage.getactivepagenumber();
 
           if (activePageNumber !== targetPage.trim()) {
               continue;
@@ -239,7 +239,7 @@ test('Verify Search, Pagination, and Go-to-Page Functionality', async ({ page })
       }
 
       // Reset for the next search term
-      await companyPage.reloadPage();
+      await companyPage.reloadpage();
       await page.waitForLoadState('networkidle');
       await closeCurrentlyActivePopup(page);
       await collapseSidebar(page);
@@ -253,7 +253,7 @@ test('Verify Search, Pagination, and Go-to-Page Functionality', async ({ page })
     Allure.addDescription('Verify Go to Page Button is Disabled for Already Selected Pages');
 
     // Get the total count of pages available
-    const totalPages = await companyPage.getTotalPages();
+    const totalPages = await companyPage.gettotalpages();
 
     // Ensure there are pages to test
     expect(totalPages).toBeGreaterThan(0);
@@ -265,16 +265,16 @@ test('Verify Search, Pagination, and Go-to-Page Functionality', async ({ page })
 
     for (const pageIndex of pagesToTest) {
         // Get the page number from the current pagination element
-        const pageNumber = await companyPage.getPageNumberByIndex(pageIndex);
+        const pageNumber = await companyPage.getpagenumberbyindex(pageIndex);
 
         // Select the page
-        await companyPage.selectPageByIndex(pageIndex);
+        await companyPage.selectpagebyindex(pageIndex);
 
         // Fill the same page number in the "Go to Page" input field
-        await companyPage.fillGoToPageInput(pageNumber?.trim() || '');
+        await companyPage.fillgotopageinput(pageNumber?.trim() || '');
 
         // Verify the "Go to Page" button is disabled
-        const isButtonDisabled = await companyPage.isGoToPageButtonDisabled();
+        const isButtonDisabled = await companyPage.isgotopagebuttondisabled();
         expect(isButtonDisabled).toBe(true);
     }
 
@@ -283,16 +283,16 @@ test('Verify Search, Pagination, and Go-to-Page Functionality', async ({ page })
     const limit = Math.min(pagesToCheck, totalPages);
 
     for (let i = 0; i < limit; i++) {
-        const pageNumber = await companyPage.getPageNumberByIndex(i);
+        const pageNumber = await companyPage.getpagenumberbyindex(i);
 
         // Select the page
-        await companyPage.selectPageByIndex(i);
+        await companyPage.selectpagebyindex(i);
 
         // Fill the same page number in the "Go to Page" input field
-        await companyPage.fillGoToPageInput(pageNumber?.trim() || '');
+        await companyPage.fillgotopageinput(pageNumber?.trim() || '');
 
         // Verify the "Go to Page" button is disabled
-        const isButtonDisabled = await companyPage.isGoToPageButtonDisabled();
+        const isButtonDisabled = await companyPage.isgotopagebuttondisabled();
         expect(isButtonDisabled).toBe(true);
     }
 });
