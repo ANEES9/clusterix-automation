@@ -1,5 +1,6 @@
 export const APP_NAMES = {
-  containerApp: 'Home',
+  auth: 'Auth',
+  containerApp: 'Container App',
   notifications: 'Notifications',
   calendar: 'Calendar',
   timeTracking: 'Time Tracking',
@@ -21,4 +22,4 @@ export const APP_NAMES = {
   externalForms: 'External Forms',
   byteBuilder: 'Byte Builder',
   integration: 'Integration',
-}
+} as const
