@@ -37,18 +37,16 @@ export default defineConfig({
 
     {
       name: 'Chromium - Comapny Searcher',
-      use: { ...devices['Desktop Chrome'],
+      use: {
+        ...devices['Desktop Chrome'],
         storageState: path.join(
           process.cwd(),
           'sessions',
           `storageState.${process.env.NODE_ENV || 'testing'}.json`
         ),
-       },
+      },
       testDir: './tests/company_searcher',
     },
-
-
-
 
     {
       name: 'Chromium - Container App (EN)',
@@ -116,13 +114,14 @@ export default defineConfig({
     // WebKit Browser (EN)
     {
       name: 'Chromium - Comapny Searcher',
-      use: { ...devices['Desktop Firefox'],
+      use: {
+        ...devices['Desktop Firefox'],
         storageState: path.join(
           process.cwd(),
           'sessions',
           `storageState.${process.env.NODE_ENV || 'testing'}.json`
         ),
-       },
+      },
       testDir: './tests/company_searcher',
     },
 
@@ -165,13 +164,14 @@ export default defineConfig({
     // Chromium Browser (DE)
     {
       name: 'Chromium - Comapny Searcher',
-      use: { ...devices['Desktop Safari'],
+      use: {
+        ...devices['Desktop Safari'],
         storageState: path.join(
           process.cwd(),
           'sessions',
           `storageState.${process.env.NODE_ENV || 'testing'}.json`
         ),
-       },
+      },
       testDir: './tests/company_searcher',
     },
 
