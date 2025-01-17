@@ -20,8 +20,8 @@ export default defineConfig({
     video: 'retain-on-failure',
     screenshot: 'only-on-failure',
   },
-  globalSetup: require.resolve('./global-setup'),
-  globalTeardown: require.resolve('./global-teardown'),
+ globalSetup: require.resolve('./global-setup'),
+ globalTeardown: require.resolve('./global-teardown'),
   workers: 1,
   projects: [
     // Chromium Browser (EN)
@@ -59,6 +59,20 @@ export default defineConfig({
       },
       testDir: './tests/email',
     },
+    {
+      name: 'Chromium - Task Management',
+      use: {
+        ...devices['Desktop Chrome'],
+        locale: 'en',
+        storageState: path.join(
+          process.cwd(),
+          'sessions',
+          `storageState.${process.env.NODE_ENV || 'testing'}.en.json`
+        ), 
+      },
+      testDir: './tests/task-management',
+    },
+
 
     // Firefox Browser (EN)
     {
