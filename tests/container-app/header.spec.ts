@@ -7,12 +7,12 @@ import { closeTimerPopUp } from 'common/timer-helper'
 import { Allure } from 'common/allure-helper'
 import { NotificationsPanelPage } from 'pages/notifications/notifications-panel-page'
 import { APP_NAMES } from 'config/constants/app-names'
+import { skipTutorial } from 'common/skip-tutorial-helper'
 
 test.describe('Container App Header Navigation Tests', () => {
   let containerPage: ContainerPage
 
   test.beforeEach(async ({ page, baseURL }, testInfo) => {
-    const locale = testInfo.project.use.locale || 'en'
     containerPage = new ContainerPage(page)
     Allure.addFeature('Navigation')
     Allure.addAppOwner('ContainerApp')
@@ -21,6 +21,7 @@ test.describe('Container App Header Navigation Tests', () => {
       await addCursorStyleAndScript(page)
       await skipSurvey(page, testInfo)
       await closeProductTour(page)
+      await skipTutorial(page, testInfo)
       await closeTimerPopUp(page)
       await page.waitForLoadState('networkidle')
     })
