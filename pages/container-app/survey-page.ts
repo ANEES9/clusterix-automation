@@ -1,11 +1,11 @@
-import { Page, Locator } from '@playwright/test'
+import { Page, Locator, expect } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
 import { getTranslations } from 'common/get-translations-helper'
 import { APP_NAMES } from 'config/constants/app-names'
 
 export class SurveyPage {
   readonly page: Page
-  private translations: Record<string, any>
+  translations: Record<string, any>
 
   // Locators
   readonly roleQuestion: Locator
@@ -18,6 +18,7 @@ export class SurveyPage {
     salesOption: Locator
     otherOption: Locator
   }
+  readonly otherInput: Locator
   readonly appQuestion: Locator
   readonly appOptions: {
     calendar: Locator
@@ -43,8 +44,10 @@ export class SurveyPage {
 
     // Question locators
     this.roleQuestion = page.getByText(
-      `^${this.translations.user_survey.role_page.title}$`
+      this.translations.user_survey.role_page.title,
+      { exact: true }
     )
+
     // Role options locators
     this.roleOptions = {
       ceoOption: page.locator(
@@ -66,7 +69,9 @@ export class SurveyPage {
         `span:has-text("${this.translations.user_survey.role_page.roles.other}")`
       ),
     }
-
+    this.otherInput = page.locator(
+      `input[placeholder="${this.translations.user_survey.role_page.other_placeholder}"]`
+    )
     // App interest question locators
     this.appQuestion = page.getByText(
       `^${this.translations.user_survey.apps_page.title}$`
@@ -106,52 +111,129 @@ export class SurveyPage {
     )
   }
 
+  // Navigate to survey
   async goto(baseURL: string | undefined) {
-    await Allure.step('Navigate to Survey', async () => {
-      await this.page.goto(`${baseURL}`)
+    await Allure.step(
+      'Role question should be visible when user navigate to base url',
+      async () => {
+        await this.page.goto(`${baseURL}`)
+        await expect(this.roleQuestion).toBeVisible()
+      }
+    )
+  }
+
+  // Select role with assertion
+  async selectRole(role: keyof typeof this.roleOptions) {
+    await Allure.step(
+      `Should be selected role: ${role} when user click on the role option`,
+      async () => {
+        await expect(this.roleOptions[role]).toBeVisible()
+        await this.roleOptions[role].click()
+      }
+    )
+  }
+
+  async isRoleSelected(role: keyof typeof this.roleOptions): Promise<boolean> {
+    const roleButton = this.roleOptions[role]
+    return (await roleButton.getAttribute('aria-checked')) === 'true'
+  }
+
+  async assertRoleSelected(role: keyof typeof this.roleOptions) {
+    await Allure.step(`Assert that role ${role} is selected`, async () => {
+      const isSelected = await this.isRoleSelected(role)
+      if (!isSelected) {
+        throw new Error(`Role ${role} is not selected`)
+      }
     })
   }
 
-  // Actions
-  async selectRole(role: keyof typeof this.roleOptions) {
-    await this.roleOptions[role].click()
-  }
-
+  // Click next with assertion
   async clickNext() {
-    await this.nextButton.click()
+    await Allure.step(
+      'Should navigate to next page when user clicks on the next button',
+      async () => {
+        await expect(this.nextButton).toBeVisible()
+        await this.nextButton.click()
+      }
+    )
   }
 
+  // Click back with assertion
   async clickBack() {
-    await this.backButton.click()
+    await Allure.step(
+      'Should navigate to previous page when user clicks on the back button',
+      async () => {
+        await expect(this.backButton).toBeVisible()
+        await this.backButton.click()
+      }
+    )
   }
 
+  // Select apps with assertions
   async selectApps(apps: Array<keyof typeof this.appOptions>) {
-    for (const app of apps) {
-      await this.appOptions[app].click()
-    }
+    await Allure.step(
+      `Should be selected apps: ${apps.join(', ')} when user click app options`,
+      async () => {
+        for (const app of apps) {
+          await expect(this.appOptions[app]).toBeVisible()
+          await this.appOptions[app].click()
+        }
+      }
+    )
   }
 
+  // Fill other tools input
   async enterOtherTools(tools: string) {
-    await this.otherToolsInput.fill(tools)
+    await Allure.step(
+      `Should be entered other tools: ${tools} when user fill the blank`,
+      async () => {
+        await expect(this.otherToolsInput).toBeVisible()
+        await this.otherToolsInput.fill(tools)
+      }
+    )
   }
 
+  // Click complete button
   async clickComplete() {
-    await this.completeButton.click()
+    await Allure.step(
+      'Should be completed when user clicks complete button',
+      async () => {
+        await expect(this.completeButton).toBeVisible()
+        await this.completeButton.click()
+      }
+    )
   }
 
   // Common flows
   async completeRoleQuestion(role: keyof typeof this.roleOptions) {
-    await this.selectRole(role)
-    await this.clickNext()
+    await Allure.step(
+      'Should complete role question when user select role and click on the next button',
+      async () => {
+        await this.selectRole(role)
+        await this.clickNext()
+      }
+    )
   }
 
+  // Complete app interest question
   async completeAppInterestQuestion(apps: Array<keyof typeof this.appOptions>) {
-    await this.selectApps(apps)
-    await this.clickNext()
+    await Allure.step(
+      'Should complete app interest question when user select apps and click on the next button',
+      async () => {
+        await this.selectApps(apps)
+        await this.clickNext()
+      }
+    )
   }
 
+  // Complete other tools question
   async completeOtherToolsQuestion(tools: string) {
-    await this.enterOtherTools(tools)
-    await this.clickComplete()
+    await Allure.step(
+      'Should complete other tools question when user enter other tools and click complete',
+      async () => {
+        await this.enterOtherTools(tools)
+        await this.clickComplete()
+      }
+    )
   }
 }
