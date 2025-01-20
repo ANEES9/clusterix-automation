@@ -11,14 +11,15 @@ import { APP_NAMES } from 'config/constants/app-names'
 test.describe('Container App Header Navigation Tests', () => {
   let containerPage: ContainerPage
 
-  test.beforeEach(async ({ page, baseURL }) => {
+  test.beforeEach(async ({ page, baseURL }, testInfo) => {
+    const locale = testInfo.project.use.locale || 'en'
     containerPage = new ContainerPage(page)
     Allure.addFeature('Navigation')
     Allure.addAppOwner('ContainerApp')
     await Allure.step('Navigate to Base URL and Close Popups', async () => {
       await page.goto(baseURL!)
       await addCursorStyleAndScript(page)
-      await skipSurvey(page)
+      await skipSurvey(page, testInfo)
       await closeProductTour(page)
       await closeTimerPopUp(page)
       await page.waitForLoadState('networkidle')

@@ -1,6 +1,8 @@
 import { defineConfig, devices } from '@playwright/test'
 import * as dotenv from 'dotenv'
 import path from 'node:path'
+import { LANGUAGES } from 'config/language-config'
+import { APP_NAMES } from 'config/constants/app-names'
 
 dotenv.config({ path: `.env.${process.env.NODE_ENV || 'production'}` })
 
@@ -14,7 +16,7 @@ export default defineConfig({
   ],
   use: {
     trace: 'on-first-retry',
-    headless: true,
+    headless: false,
     baseURL: process.env.CLUSTERIX_BASE_URL,
     viewport: { width: 1280, height: 720 },
     video: 'retain-on-failure',
@@ -24,128 +26,47 @@ export default defineConfig({
   globalTeardown: require.resolve('./global-teardown'),
   workers: 1,
   projects: [
-    // Chromium Browser
-    {
-      name: 'Chromium - Auth',
-      use: {
-        ...devices['Desktop Chrome'],
-        storageState: undefined, // Don't use session for auth tests
-      },
-      testDir: './tests/auth',
-    },
-    {
-      name: 'Chromium - Container App',
-      use: {
-        ...devices['Desktop Chrome'],
-        storageState: path.join(
-          process.cwd(),
-          'sessions',
-          `storageState.${process.env.NODE_ENV || 'testing'}.json`
-        ),
-      },
-      testDir: './tests/container-app',
-    },
-    {
-      name: 'Chromium - Email',
-      use: {
-        ...devices['Desktop Chrome'],
-        storageState: path.join(
-          process.cwd(),
-          'sessions',
-          `storageState.${process.env.NODE_ENV || 'testing'}.json`
-        ), 
-      },
-      testDir: './tests/email',
-    },
-    // {
-    //   name: 'Chromium - Settings',
-    //   use: { ...devices['Desktop Chrome'] },
-    //   testDir: './tests/calendar',
-    // },
-    {
-      name: 'Chromium - Calendar',
-      use: {
-        ...devices['Desktop Chrome'],
-        storageState: path.join(
-          process.cwd(),
-          'sessions',
-          `storageState.${process.env.NODE_ENV || 'testing'}.json`
-        ), 
-      },
-      testDir: './tests/calendar',
-    },
-    // Firefox Browser
-    {
-      name: 'Firefox - Auth',
-      use: {
-        ...devices['Desktop Firefox'],
-        storageState: undefined, // Don't use session for auth tests
-      },
-      testDir: './tests/auth',
-    },
-    {
-      name: 'Firefox - Container App',
-      use: {
-        ...devices['Desktop Firefox'],
-        storageState: path.join(
-          process.cwd(),
-          'sessions',
-          `storageState.${process.env.NODE_ENV || 'testing'}.json`
-        ),
-      },
-      testDir: './tests/container-app',
-    },
-    // {
-    //   name: 'Firefox - Calendar',
-    //   use: { ...devices['Desktop Firefox'] },
-    //   testDir: './tests/calendar',
-    // },
-
-
-    {
-      name: 'Firefox - Email',
-      use: {
-        ...devices['Desktop Firefox'],
-        storageState: path.join(
-          process.cwd(),
-          'sessions',
-          `storageState.${process.env.NODE_ENV || 'testing'}.json`
-        ),
-      },
-      testDir: './tests/email',
-    },
-    // WebKit Browser
-    {
-      name: 'WebKit - Auth',
-      use: {
-        ...devices['Desktop Safari'],
-        storageState: undefined, // Don't use session for auth tests
-      },
-      testDir: './tests/auth',
-    },
-    {
-      name: 'WebKit - Container App',
-      use: {
-        ...devices['Desktop Safari'],
-        storageState: path.join(
-          process.cwd(),
-          'sessions',
-          `storageState.${process.env.NODE_ENV || 'testing'}.json`
-        ),
-      },
-      testDir: './tests/container-app',
-    },
-    {
-      name: 'WebKit - Email',
-      use: {
-        ...devices['Desktop Safari'],
-        storageState: path.join(
-          process.cwd(),
-          'sessions',
-          `storageState.${process.env.NODE_ENV || 'testing'}.json`
-        ),
-      },
-      testDir: './tests/email',
-    },
+    // Generate projects dynamically
+    ...generateProjects(),
   ],
 })
+
+// Function to generate projects dynamically
+function generateProjects() {
+  const browsers = [
+    { name: 'Chromium', device: devices['Desktop Chrome'] },
+    { name: 'Firefox', device: devices['Desktop Firefox'] },
+    { name: 'WebKit', device: devices['Desktop Safari'] },
+  ]
+
+  const projects: any[] = []
+
+  LANGUAGES.forEach((locale) => {
+    Object.keys(APP_NAMES).forEach((appKey) => {
+      const testDir = `./tests/${toKebabCase(appKey as keyof typeof APP_NAMES)}`
+      const sessionFile = `storageState.${process.env.NODE_ENV || 'testing'}.${locale}.json`
+
+      browsers.forEach(({ name, device }) => {
+        projects.push({
+          name: `${name} - ${APP_NAMES[appKey as keyof typeof APP_NAMES]} (${locale.toUpperCase()})`,
+          use: {
+            ...device,
+            locale,
+            storageState:
+              appKey === 'auth'
+                ? undefined
+                : path.join(process.cwd(), 'sessions', sessionFile),
+          },
+          testDir,
+        })
+      })
+    })
+  })
+
+  return projects
+}
+
+// Convert camelCase to kebab-case
+function toKebabCase(str: string) {
+  return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
+}
