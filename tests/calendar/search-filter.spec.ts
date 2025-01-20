@@ -6,10 +6,10 @@ import { skipSurvey } from 'common/skip-survey'
 import { closeProductTour } from 'common/product-tour-helper'
 
 test.describe('Search Filter', () => {
-    test.beforeEach(async ({ page, baseURL }) => {
+    test.beforeEach(async ({ page, baseURL }, testInfo) => {
         await page.goto(baseURL!)
         await addCursorStyleAndScript(page)
-        await skipSurvey(page)
+        await skipSurvey(page, testInfo)
         await closeProductTour(page)
         await closeTimerPopUp(page)
         await page.waitForLoadState('networkidle')

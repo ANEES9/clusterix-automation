@@ -7,11 +7,11 @@ import { closeProductTour } from 'common/product-tour-helper'
 
 
 test.describe('CRUD Operations for meeting', () => {
-    test.beforeEach(async ({ page, baseURL }) => {
+    test.beforeEach(async ({ page, baseURL }, testInfo) => {
         test.setTimeout(60000);
         await page.goto(baseURL!)
         await addCursorStyleAndScript(page)
-        await skipSurvey(page)
+        await skipSurvey(page, testInfo)
         await closeProductTour(page)
         await closeTimerPopUp(page)
         await page.waitForLoadState('networkidle')

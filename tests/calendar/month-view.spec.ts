@@ -6,13 +6,14 @@ import { skipSurvey } from 'common/skip-survey'
 import { closeProductTour } from 'common/product-tour-helper'
 
 test.describe('Calendar Testcases', () => {
-    test.beforeEach(async ({ page, baseURL }) => {
+    test.beforeEach(async ({ page, baseURL }, testInfo) => {
         await page.goto(baseURL!)
         await addCursorStyleAndScript(page)
-        await skipSurvey(page)
+        await skipSurvey(page, testInfo)
         await closeProductTour(page)
         await closeTimerPopUp(page)
         await page.waitForLoadState('networkidle')
+
     })
 
     test('Change week view to month view', async ({ page }) => {
@@ -27,6 +28,6 @@ test.describe('Calendar Testcases', () => {
         await calendarPage.navigateToWeekView()
         // Click on the Month button
         await calendarPage.navigateToMonthView()
-        
+
     })
 })
