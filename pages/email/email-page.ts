@@ -43,7 +43,7 @@ export class EmailPage {
     this.sendemail = page.getByText('Send', { exact: true })
     this.emailsuccessfulltoastmessage = page.getByText('Message has been sent')
     this.firstemail = page.getByTestId(
-      'innomail-testing-purpose-email-via-automation'
+      'innomail-today-1'
     )
     this.forwardemail = page.locator('#thread-action-bar').getByText('Forward')
     this.settings = page

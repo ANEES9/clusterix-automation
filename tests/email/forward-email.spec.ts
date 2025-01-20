@@ -80,8 +80,7 @@ test.describe('Send Test Email', () => {
 
   test('Send email', async ({ page }) => {
     const locators = new EmailPage(page)
-    await page.waitForTimeout(4000)
-    //await locators.clickonFirstEmail()
+    await locators.clickonfirstemail()
     await locators.clickonforward()
     const fetchRemoteId = await ApiResponse(
       page,
