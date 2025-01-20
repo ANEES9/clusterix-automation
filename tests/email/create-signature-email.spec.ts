@@ -8,7 +8,7 @@ import { skipSurvey } from 'common/skip-survey'
 import { closeProductTour } from 'common/product-tour-helper'
 import { closeTimerPopUp } from 'common/timer-helper'
 import { EmailPage } from 'pages/email'
-import { generateRandomFileName } from 'common/randomDataGenerator'
+import { generateRandomFileName } from 'common/random-data-generator'
 import { getEnvBasedUrl } from 'common/get-api-url'
 
 const env = process.env.NODE_ENV || 'production'
