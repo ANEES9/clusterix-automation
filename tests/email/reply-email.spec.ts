@@ -1,5 +1,6 @@
-import { test } from '@playwright/test'
-import { Allure } from 'common/allure-helper'
+import { test, expect, selectors } from '@playwright/test'
+import { Allure } from 'common/allure-helper' // Import Allure
+import { time } from 'console'
 import { ApiResponse } from 'common/api-response'
 import * as dotenv from 'dotenv'
 import { addCursorStyleAndScript } from 'common/cursor-helper'
@@ -18,8 +19,8 @@ const testEmailBody = `Testing purpose email via automation. Sent at: ${currentD
 
 let fetchRemoteIdProd: string, fetchRemoteIdTest: string
 
-test.describe('Send Test Email', () => {
-  test.beforeEach(async ({ page, baseURL },testInfo) => {
+test.describe('Reply Test Email', () => {
+  test.beforeEach(async ({ page, baseURL }, testInfo) => {
     await Allure.step(
       'Navigate to Base URL, Close Popups and navigate to Email application',
       async () => {
@@ -27,7 +28,7 @@ test.describe('Send Test Email', () => {
 
         await page.goto(baseURL!)
         await addCursorStyleAndScript(page)
-        await skipSurvey(page, testInfo)
+        await skipSurvey(page,testInfo)
         await closeProductTour(page)
         await page.waitForTimeout(4000)
         await closeTimerPopUp(page)
@@ -79,20 +80,18 @@ test.describe('Send Test Email', () => {
 
   test('Send email', async ({ page }) => {
     const locators = new EmailPage(page)
-    await locators.clickonnewemail()
-    console.log(fetchRemoteIdProd)
-    console.log(fetchRemoteIdTest)
+    await page.waitForTimeout(4000)
+    //await locators.clickonFirstEmail()
+    await locators.clickonreply()
     const fetchRemoteId = await ApiResponse(
       page,
       fetchRemoteIdProd,
       fetchRemoteIdTest
     )
-
     await locators.fillandentertoaddress(toEmailId)
     await locators.fillandentersubject(testEmailSubject)
     await page.waitForTimeout(2000)
     await locators.clickonbodyandfill(testEmailBody)
-
     const { status: fetchRemoteStatus, data: fetchRemoteData } = fetchRemoteId()
     const sendURLProd =
       fetchRemoteIdProd + '/' + fetchRemoteData.remote_id + '/submit'
@@ -106,7 +105,7 @@ test.describe('Send Test Email', () => {
 
     const { status: sendURLStatus, data: sendURLData } = sendURL()
     if (sendURLStatus === 200) {
-      console.log('Email has been sent successfully')
+      console.log('Reply of the Email has been sent successfully')
     } else {
       console.log(
         `Email has been not sent. API has returned status : ${sendURLStatus}.`

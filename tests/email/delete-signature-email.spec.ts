@@ -1,5 +1,6 @@
-import { test } from '@playwright/test'
-import { Allure } from 'common/allure-helper'
+import { test, expect, selectors } from '@playwright/test'
+import { Allure } from 'common/allure-helper' // Import Allure
+import { time } from 'console'
 import { ApiResponse } from 'common/api-response'
 import * as dotenv from 'dotenv'
 import { addCursorStyleAndScript } from 'common/cursor-helper'
@@ -7,19 +8,17 @@ import { skipSurvey } from 'common/skip-survey'
 import { closeProductTour } from 'common/product-tour-helper'
 import { closeTimerPopUp } from 'common/timer-helper'
 import { EmailPage } from 'pages/email'
+import { generateRandomFileName } from 'common/randomDataGenerator'
+import { getEnvBasedUrl } from 'common/get-api-url'
 
 const env = process.env.NODE_ENV || 'production'
 dotenv.config({ path: `.env.${env}` })
 const currentDate = new Date()
 
-const toEmailId = 'bhat@innoscripta.com'
-const testEmailSubject = 'Testing purpose email via automation'
-const testEmailBody = `Testing purpose email via automation. Sent at: ${currentDate.toString()}`
-
-let fetchRemoteIdProd: string, fetchRemoteIdTest: string
+let fetchIdProd: string, fetchIdTest: string
 
 test.describe('Send Test Email', () => {
-  test.beforeEach(async ({ page, baseURL },testInfo) => {
+  test.beforeEach(async ({ page, baseURL }, testInfo) => {
     await Allure.step(
       'Navigate to Base URL, Close Popups and navigate to Email application',
       async () => {
@@ -70,8 +69,8 @@ test.describe('Send Test Email', () => {
         }
 
         // Construct URLs after processing the ID
-        fetchRemoteIdProd = `https://email-controller.innoscripta.com/api/account-data/${id}/email/drafts`
-        fetchRemoteIdTest = `https://email-controller-testing.innoscripta.com/api/account-data/${id}/email/drafts`
+        fetchIdProd = `https://email-controller.innoscripta.com/api/account-data/${id}/settings?keys[]=signature`
+        fetchIdTest = `https://email-controller-testing.innoscripta.com/api/account-data/${id}/settings?keys[]=signature`
         await page.waitForTimeout(2000)
       }
     )
@@ -79,37 +78,47 @@ test.describe('Send Test Email', () => {
 
   test('Send email', async ({ page }) => {
     const locators = new EmailPage(page)
-    await locators.clickonnewemail()
-    console.log(fetchRemoteIdProd)
-    console.log(fetchRemoteIdTest)
-    const fetchRemoteId = await ApiResponse(
+
+    const random_text = generateRandomFileName()
+    const new_text = generateRandomFileName()
+    locators.dynamicxpath = random_text
+    await console.log(await page.title())
+    await locators.clickonsettings()
+    await locators.navigatetocomposeandreply()
+    await locators.clickonmanagesignature()
+    await locators.clickonaddsignature()
+    await locators.addtitosignature(random_text)
+    await page.waitForTimeout(2000)
+    await locators.addbodytosignature(random_text)
+    await page.waitForTimeout(4000)
+    await locators.savethesignature()
+    const fetchSetting = await ApiResponse(page, fetchIdProd, fetchIdTest)
+    await page.waitForTimeout(2000)
+    await page.waitForLoadState('networkidle')
+    const { status: fetchSettingStatus, data: fetchSettingData } =
+      fetchSetting()
+    console.log(fetchSettingStatus)
+    if (fetchSettingStatus === 200) {
+      console.log('Signature has been created sucessfully')
+    } else {
+      console.log(`Signature has been not created : ${fetchSettingStatus}.`)
+    }
+    await locators.deletethesignature()
+    await locators.clickonconfirm()
+    const fetchdeletedSetting = await ApiResponse(
       page,
-      fetchRemoteIdProd,
-      fetchRemoteIdTest
+      fetchIdProd,
+      fetchIdTest
     )
-
-    await locators.fillandentertoaddress(toEmailId)
-    await locators.fillandentersubject(testEmailSubject)
     await page.waitForTimeout(2000)
-    await locators.clickonbodyandfill(testEmailBody)
-
-    const { status: fetchRemoteStatus, data: fetchRemoteData } = fetchRemoteId()
-    const sendURLProd =
-      fetchRemoteIdProd + '/' + fetchRemoteData.remote_id + '/submit'
-    const sendURLtest =
-      fetchRemoteIdTest + '/' + fetchRemoteData.remote_id + '/submit'
-
-    await locators.clickonsend()
-    const sendURL = await ApiResponse(page, sendURLProd, sendURLtest)
-    await locators.verifyemailsuccessfultoastmessage()
-    await page.waitForTimeout(2000)
-
-    const { status: sendURLStatus, data: sendURLData } = sendURL()
-    if (sendURLStatus === 200) {
-      console.log('Email has been sent successfully')
+    await page.waitForLoadState('networkidle')
+    const { status: fetchdeletedSettingStatus, data: fetchdeletedSettingData } =
+      fetchSetting()
+    if (fetchdeletedSettingStatus === 200) {
+      console.log('Signature has been deleted sucessfully')
     } else {
       console.log(
-        `Email has been not sent. API has returned status : ${sendURLStatus}.`
+        `Signature has been not deleted : ${fetchdeletedSettingStatus}.`
       )
     }
   })

@@ -1,91 +1,232 @@
-import { Page, Locator, expect } from '@playwright/test'
+import {
+  Page,
+  Locator,
+  expect,
+  LocatorScreenshotOptions,
+} from '@playwright/test'
 import { Allure } from 'common/allure-helper'
 
 export class EmailPage {
   private page: Page
-  private currentApp: Locator
-  // private page: Page
+  private currentapp: Locator
   private email: Locator
-  private newEmail: Locator
-  private toAddress: Locator
-  private emailSubject: Locator
-  private emailBody: Locator
-  private sendEmail: Locator
-  private emailSuccesfullToastMessage: Locator
-
+  private newemail: Locator
+  private toaddress: Locator
+  private emailsubject: Locator
+  private emailbody: Locator
+  private sendemail: Locator
+  private emailsuccessfulltoastmessage: Locator
+  private firstemail: Locator
+  private forwardemail: Locator
+  private settings: Locator
+  private composeandreply: Locator
+  private managesignature: Locator
+  private addsignature: Locator
+  private addsignaturetitle: Locator
+  private addsignaturebody: Locator
+  private savesignature: Locator
+  private editsignature!: Locator
+  private selectsignature!: Locator
+  private deletesignature!: Locator
+  private replyemail: Locator
+  private confirmpopup: Locator
   static readonly URL = '/email'
 
   constructor(page: Page) {
     this.page = page
-    this.currentApp = page.locator('p.m5ZbRpDkQfW8BXDqdzmY')
+    this.currentapp = page.locator('p.m5ZbRpDkQfW8BXDqdzmY')
     this.email = page.locator("//button[@title='Email']").first()
-    this.newEmail = page.getByText('New email')
-    this.toAddress = page.getByLabel('To:')
-    this.emailSubject = page.getByLabel('Subject:')
-    this.emailBody = page.getByRole('textbox').nth(2)
-    this.sendEmail = page.getByText('Send')
-    this.emailSuccesfullToastMessage = page.getByText('Message has been sent')
+    this.newemail = page.getByText('New email')
+    this.toaddress = page.getByLabel('To:')
+    this.emailsubject = page.getByLabel('Subject:')
+    this.emailbody = page.getByRole('textbox').nth(2)
+    this.sendemail = page.getByText('Send', { exact: true })
+    this.emailsuccessfulltoastmessage = page.getByText('Message has been sent')
+    this.firstemail = page.getByTestId(
+      'innomail-testing-purpose-email-via-automation'
+    )
+    this.forwardemail = page.locator('#thread-action-bar').getByText('Forward')
+    this.settings = page
+      .locator('#navigation_sidebar')
+      .getByRole('button')
+      .first()
+    this.composeandreply = page.getByRole('button', {
+      name: 'Compose and Reply',
+    })
+    this.managesignature = page.getByText('Manage signatures')
+    this.addsignature = page.getByText('Add signature')
+    this.addsignaturetitle = page.locator('input[type="text"]')
+    this.addsignaturebody = page
+      .locator('#signature-editor-body')
+      .getByRole('textbox')
+    this.savesignature = page.getByText('Save')
+    this.replyemail = page.locator('#thread-action-bar').getByText('Reply')
+    this.confirmpopup = page.getByRole('button', { name: 'Confirm' })
+  }
+
+  set dynamicxpath(sign_name: string) {
+    this.editsignature = this.page
+      .locator('div')
+      .filter({ hasText: new RegExp(`^${sign_name}$`) })
+      .getByRole('button')
+      .first()
+    this.selectsignature = this.page
+      .locator('#portal__root')
+      .getByText(sign_name)
+      .first()
+    this.deletesignature = this.page
+      .locator('div')
+      .filter({ hasText: new RegExp(`^${sign_name}$`) })
+      .getByRole('button')
+      .nth(1)
   }
 
   async goto(baseURL: string | undefined) {
-    await Allure.step('Navigate to Email URL', async () => {
+    await Allure.step('navigate to email url', async () => {
       await this.page.goto(`${baseURL}${EmailPage.URL}`)
     })
   }
-  async validateCurrentApp() {
+
+  async validatecurrentapp() {
     await expect(this.page).toHaveURL(new RegExp(`${EmailPage.URL}$`))
-    await expect(this.currentApp).toContainText('Email')
+    await expect(this.currentapp).toContainText('Email')
   }
 
-  async navigateToEmail() {
+  async navigatetoemail() {
     await Allure.step(
-      'should Navigate to Email when Email button is clicked',
+      'should navigate to email when email button is clicked',
       async () => {
         await this.email.click()
       }
     )
   }
 
-  async clickOnEmail() {
-    await Allure.step('should Click on New Email', async () => {
-      await this.newEmail.click()
+  async clickonnewemail() {
+    await Allure.step('should click on new email', async () => {
+      await this.newemail.click()
     })
   }
 
-  async fillAndEnterToAddress(to_address: string) {
-    await Allure.step('should Fill To Address and press Enter', async () => {
-      await this.toAddress.fill(to_address)
-      await this.toAddress.press('Enter')
+  async fillandentertoaddress(to_address: string) {
+    await Allure.step('should fill to address and press enter', async () => {
+      await this.toaddress.fill(to_address)
+      await this.toaddress.press('Enter')
     })
   }
 
-  async fillAndEnterSubject(subject: string) {
-    await Allure.step('should Fill Subject', async () => {
-      await this.emailSubject.fill(subject)
+  async fillandentersubject(subject: string) {
+    await Allure.step('should fill subject', async () => {
+      await this.emailsubject.fill(subject)
     })
   }
 
-  async clickOnBodyAndFill(body: string) {
-    await Allure.step('should Click on Body', async () => {
-      await this.emailBody.click()
+  async clickonbodyandfill(body: string) {
+    await Allure.step('should click on body', async () => {
+      await this.emailbody.click()
       await this.page.waitForTimeout(5000)
-      await this.emailBody.fill(body)
+      await this.emailbody.fill(body)
       await this.page.waitForTimeout(5000)
     })
   }
 
-  async clickOnSend() {
-    await Allure.step('should Click on Send', async () => {
-      await this.sendEmail.click()
+  async clickonsend() {
+    await Allure.step('should click on send', async () => {
+      await this.sendemail.click()
     })
   }
 
-  async verifyEmailSuccessfulToastMessage() {
+  async verifyemailsuccessfultoastmessage() {
     await Allure.step(
       'should verify email successful toast message',
       async () => {
-        await expect(this.emailSuccesfullToastMessage).toBeVisible()
+        await expect(this.emailsuccessfulltoastmessage).toBeVisible()
       }
     )
+  }
+
+  async clickonfirstemail() {
+    await Allure.step('should click on first email', async () => {
+      await this.firstemail.click()
+    })
+  }
+
+  async clickonforward() {
+    await Allure.step('should click on forward', async () => {
+      await this.forwardemail.click()
+    })
+  }
+
+  async clickonsettings() {
+    await Allure.step('should click on setting', async () => {
+      await this.settings.click()
+    })
+  }
+
+  async navigatetocomposeandreply() {
+    await Allure.step('should navigate to compose and reply', async () => {
+      await this.composeandreply.click()
+    })
+  }
+
+  async clickonmanagesignature() {
+    await Allure.step('should click on manage signature', async () => {
+      await this.managesignature.click()
+    })
+  }
+
+  async clickonaddsignature() {
+    await Allure.step('should click on add signature', async () => {
+      await this.addsignature.click()
+    })
+  }
+
+  async addtitosignature(title: string) {
+    await Allure.step('should click and add title', async () => {
+      await this.addsignaturetitle.click()
+      await this.addsignaturetitle.fill(title)
+    })
+  }
+
+  async addbodytosignature(body: string) {
+    await Allure.step('should click and add body', async () => {
+      await this.addsignaturebody.click()
+      await this.addsignaturebody.fill(body)
+    })
+  }
+
+  async savethesignature() {
+    await Allure.step('click on save button on manage signature', async () => {
+      await this.savesignature.click()
+    })
+  }
+
+  async editthesignature() {
+    await Allure.step('click on edit the signature', async () => {
+      await this.editsignature.click()
+    })
+  }
+
+  async selectthesignature() {
+    await Allure.step('click to select the signature', async () => {
+      await this.selectsignature.click()
+    })
+  }
+
+  async deletethesignature() {
+    await Allure.step('click to delete the signature', async () => {
+      await this.deletesignature.click()
+    })
+  }
+
+  async clickonreply() {
+    await Allure.step('click on reply button', async () => {
+      await this.replyemail.click()
+    })
+  }
+
+  async clickonconfirm() {
+    await Allure.step('click on confirm button', async () => {
+      await this.confirmpopup.click()
+    })
   }
 }
