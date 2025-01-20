@@ -5,7 +5,7 @@ import { CalendarPage } from 'pages/calendar/calendar-page'
 import { skipSurvey } from 'common/skip-survey'
 import { closeProductTour } from 'common/product-tour-helper'
 
-test.describe('Calendar Meeting', () => {
+test.describe('Calendar Testcases', () => {
     test.beforeEach(async ({ page, baseURL }) => {
         await page.goto(baseURL!)
         await addCursorStyleAndScript(page)
@@ -15,18 +15,18 @@ test.describe('Calendar Meeting', () => {
         await page.waitForLoadState('networkidle')
     })
 
-    test('test', async ({ page }) => {
+    test('Change week view to month view', async ({ page }) => {
 
-        const locators = new CalendarPage(page)
-        await locators.navigateToCalendar()
+        const calendarPage = new CalendarPage(page)
+        await calendarPage.navigateToCalendar()
 
         // Wait for the page to fully load
         await page.waitForLoadState('networkidle');
         // Wait for the Week button and click it
         await page.waitForTimeout(3000);  // Optional: Add a delay
-        await locators.navigateToWeekView()
+        await calendarPage.navigateToWeekView()
         // Click on the Month button
-        await locators.navigateToMonthView()
+        await calendarPage.navigateToMonthView()
         
     })
 })

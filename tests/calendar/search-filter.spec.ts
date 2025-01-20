@@ -1,38 +1,38 @@
-import { test, expect } from '@playwright/test'
-//import { closeWelcomePopUp } from '../../helpers/common/welcome-popup-helper'
+import { test } from '@playwright/test'
 import { closeTimerPopUp } from '../../helpers/common/timer-helper'
 import { addCursorStyleAndScript } from '../../helpers/common/cursor-helper'
-import { faker } from '@faker-js/faker'
-import { getGenderOptions } from '../../helpers/hr-settings-helper'
+import { CalendarPage } from 'pages/calendar/calendar-page'
+import { skipSurvey } from 'common/skip-survey'
+import { closeProductTour } from 'common/product-tour-helper'
 
 test.describe('Search Filter', () => {
     test.beforeEach(async ({ page, baseURL }) => {
-        await page.goto(`${baseURL}/calendar`)
-        //await closeWelcomePopUp(page)
-        await closeTimerPopUp(page)
+        await page.goto(baseURL!)
         await addCursorStyleAndScript(page)
-        //await page.waitForLoadState('networkidle')
+        await skipSurvey(page)
+        await closeProductTour(page)
+        await closeTimerPopUp(page)
+        await page.waitForLoadState('networkidle')
     })
 
-    test.only('test', async ({ page }) => {
+    test('To filter by guest and filter by creator ', async ({ page }) => {
+        const calendarPage = new CalendarPage(page)
+        await calendarPage.navigateToCalendar()
+
         await page.pause();
-
-        // Open the calendar
-        // await page.getByRole('button', { name: 'Calendar' }).click();
-
         // Wait for the page to fully load
         await page.waitForLoadState('networkidle');
 
         // Wait for the Filter button and click it
         await page.waitForTimeout(3000);  // Optional: Add a delay
-        await page.locator('.FiltersGroups_filtersLabel__PHj7j').click();
-        await page.getByText('Filter by creator').click();
-        await page.getByRole('textbox', { name: 'Please start typing' }).click();
-        await page.getByText('Me', { exact: true }).first().click();
-        await page.getByText('Filter by guest').click();
-        await page.getByPlaceholder('Please start typing').nth(2).click();
-        await page.getByText('Me', { exact: true }).nth(1).click();
         
-        console.log("Test passed: Search by Me filter *****");
+        await calendarPage.clickOnFilterLocator()
+        await calendarPage.clickOnFilterByCreator()
+        await calendarPage.clickOnStartTypingInFilterCreator()
+        await calendarPage.clickOnFilterByCreatorMe()
+        await calendarPage.clickOnFilterByGuest();
+        await calendarPage.clickOnStartTypingInFilterGuest()
+        await calendarPage.clickOnFilterByGuestMe()
+ 
     })
 })

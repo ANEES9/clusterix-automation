@@ -18,8 +18,8 @@ test.describe('CRUD Operations for meeting', () => {
 
     })
 
-    /************To Update the meeting by adding a new participant ***********/
-    test('Update Event - Add extra participant', async ({ page }) => {
+    /************To Delete recently created meeting***********/
+    test('Delete Event', async ({ page }) => {
         const calendarPage = new CalendarPage(page)
         const eventName = await calendarPage.generateEventName('Meeting');
         const calendarPageEventName = new CalendarPage(page, eventName);
@@ -52,14 +52,17 @@ test.describe('CRUD Operations for meeting', () => {
         await calendarPage.clickOnFoldOut()
         await calendarPageEventName.clickOnViewEvent() //To view the event
 
-        //To update the event
-        console.log(`FROM Update test: ${eventName}`)
+        //To delete the event
+        console.log(`FROM Delete test: ${eventName}`);
 
-        await calendarPage.clickOnSearchEmailParticipant()
-        await calendarPage.selectFirstParticipant()
-        await calendarPage.clickOnSaveParticipant()
-        await calendarPage.clickOnSaveEvent()
-        await calendarPage.clickOnCloseEventCreatedModal()
+       
+
+        //Delete the event
+        //await page.getByText('Delete').click();
+        await calendarPage.clickOnDeleteEvent()
+        //await page.getByRole('button', { name: 'Delete' }).click();
+        await calendarPage.clickOnDeleteButton()
+
 
     })
 })

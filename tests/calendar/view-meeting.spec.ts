@@ -18,8 +18,8 @@ test.describe('CRUD Operations for meeting', () => {
 
     })
 
-    /************To Update the meeting by adding a new participant ***********/
-    test('Update Event - Add extra participant', async ({ page }) => {
+    /************To View recently created meeting***********/
+    test('View Event', async ({ page }) => {
         const calendarPage = new CalendarPage(page)
         const eventName = await calendarPage.generateEventName('Meeting');
         const calendarPageEventName = new CalendarPage(page, eventName);
@@ -50,16 +50,7 @@ test.describe('CRUD Operations for meeting', () => {
 
         //To open the foldout
         await calendarPage.clickOnFoldOut()
-        await calendarPageEventName.clickOnViewEvent() //To view the event
-
-        //To update the event
-        console.log(`FROM Update test: ${eventName}`)
-
-        await calendarPage.clickOnSearchEmailParticipant()
-        await calendarPage.selectFirstParticipant()
-        await calendarPage.clickOnSaveParticipant()
-        await calendarPage.clickOnSaveEvent()
-        await calendarPage.clickOnCloseEventCreatedModal()
+        await calendarPageEventName.clickOnViewEvent()
 
     })
 })
