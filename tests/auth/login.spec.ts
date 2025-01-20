@@ -3,15 +3,12 @@ import { LoginPage } from 'pages/auth/login-page'
 import * as process from 'node:process'
 
 test.describe('Login Page Tests', () => {
-  const baseURL = process.env.CLUSTERIX_BASE_URL || ''
-
-  test.beforeEach(async ({ page }, testInfo) => {
+  test.beforeEach(async ({ page, baseURL }, testInfo) => {
     const locale = testInfo.project.use.locale || 'en'
     const loginPage = new LoginPage(page, locale)
 
     // Navigate to the login page and set the locale
-    await loginPage.navigateToLogin(baseURL)
-    await loginPage.setLocale(locale)
+    await loginPage.goto(baseURL)
   })
 
   test('Should log in with valid credentials', async ({ page }, testInfo) => {

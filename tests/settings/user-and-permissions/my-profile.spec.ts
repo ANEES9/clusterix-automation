@@ -4,7 +4,7 @@ import { closeTimerPopUp } from 'common/timer-helper'
 import { addCursorStyleAndScript } from 'common/cursor-helper'
 import { skipSurvey } from 'common/skip-survey'
 import { faker } from '@faker-js/faker'
-import { getGenderOptions } from 'helpers/hr-settings-helper'
+import { getGenderOptions } from 'helpers/settings/hr-settings-helper'
 
 test.describe('User and Permissions - My Profile Tests', () => {
   test.beforeEach(async ({ page, baseURL }) => {

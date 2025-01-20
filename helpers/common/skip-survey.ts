@@ -1,8 +1,12 @@
-import { Page } from '@playwright/test'
+import { Page, TestInfo } from '@playwright/test'
 import { SurveyPage } from '../../pages/container-app/survey-page'
 
-export async function skipSurvey(page: Page): Promise<void> {
-  const surveyPage = new SurveyPage(page)
+export async function skipSurvey(
+  page: Page,
+  testInfo: TestInfo
+): Promise<void> {
+  const locale = testInfo.project?.use.locale || 'en'
+  const surveyPage = new SurveyPage(page, locale)
 
   try {
     // 1. Role selection

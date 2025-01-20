@@ -47,52 +47,37 @@ export class EmailPage {
   }
 
   async clickOnEmail() {
-    await Allure.step(
-      'should Click on New Email',
-      async () => {
-        await this.newEmail.click()
-      }
-    )
+    await Allure.step('should Click on New Email', async () => {
+      await this.newEmail.click()
+    })
   }
 
-  async fillAndEnterToAddress(to_address:string) {
-    await Allure.step(
-      'should Fill To Address and press Enter',
-      async () => {
-        await this.toAddress.fill(to_address)
-        await this.toAddress.press('Enter')
-      }
-    )
+  async fillAndEnterToAddress(to_address: string) {
+    await Allure.step('should Fill To Address and press Enter', async () => {
+      await this.toAddress.fill(to_address)
+      await this.toAddress.press('Enter')
+    })
   }
 
-  async fillAndEnterSubject(subject:string) {
-    await Allure.step(
-      'should Fill Subject',
-      async () => {
-        await this.emailSubject.fill(subject)
-      }
-    )
+  async fillAndEnterSubject(subject: string) {
+    await Allure.step('should Fill Subject', async () => {
+      await this.emailSubject.fill(subject)
+    })
   }
 
-  async clickOnBodyAndFill(body:string) {
-    await Allure.step(
-      'should Click on Body',
-      async () => {
-        await this.emailBody.click()
-        await this.page.waitForTimeout(5000)
-        await this.emailBody.fill(body)
-        await this.page.waitForTimeout(5000)
-      }
-    )
+  async clickOnBodyAndFill(body: string) {
+    await Allure.step('should Click on Body', async () => {
+      await this.emailBody.click()
+      await this.page.waitForTimeout(5000)
+      await this.emailBody.fill(body)
+      await this.page.waitForTimeout(5000)
+    })
   }
 
   async clickOnSend() {
-    await Allure.step(
-      'should Click on Send',
-      async () => {
-        await this.sendEmail.click()
-      }
-    )
+    await Allure.step('should Click on Send', async () => {
+      await this.sendEmail.click()
+    })
   }
 
   async verifyEmailSuccessfulToastMessage() {
@@ -103,7 +88,4 @@ export class EmailPage {
       }
     )
   }
-
-
-
 }

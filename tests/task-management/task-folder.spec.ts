@@ -1,15 +1,13 @@
-import { Page, test } from '@playwright/test'
+import { test } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
 import { ApiResponse } from 'common/api-response'
-import * as dotenv from 'dotenv'
 import { closeTimerPopUp } from 'common/timer-helper'
 import { TaskManagementPage } from 'pages/task-management'
 import { closeProductTour } from 'common/product-tour-helper'
 import { generateRandomFileName } from 'common/random-data-generator'
 import { skipSurvey } from 'common/skip-survey'
-import { couldStartTrivia } from 'typescript'
 
-test.describe('task management Test', () => {
+test.describe('Task Management Folder Tests', () => {
   test.beforeEach(async ({ page, baseURL }) => {
     await Allure.step('Navigate to Base URL and Close Popups', async () => {
       await page.goto(baseURL!)
@@ -20,7 +18,7 @@ test.describe('task management Test', () => {
     })
   })
 
-  test('test case one', async ({ page }) => {
+  test('Folder CRUD tests', async ({ page }) => {
     const locators = new TaskManagementPage(page)
 
     const taskmanageprod =
@@ -46,10 +44,10 @@ test.describe('task management Test', () => {
     //Folder creation
     await locators.navigateToTaskManagement()
     await locators.navigateToPinboardSection()
-    await locators.navigateToaddfolder()
+    await locators.navigateToAddFolder()
     await page.waitForTimeout(2000)
-    await locators.navigateTorenamefolder()
-    await locators.navigateTofillfolder(randomFileName)
+    await locators.navigateToRenameFolder()
+    await locators.navigateToFillFolder(randomFileName)
     await locators.renameFolderAndSubmit()
     await page.waitForTimeout(5000)
 
