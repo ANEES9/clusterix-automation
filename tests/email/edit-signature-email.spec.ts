@@ -17,7 +17,7 @@ const currentDate = new Date()
 
 let fetchIdProd: string, fetchIdTest: string
 
-test.describe('Send Test Email', () => {
+test.describe('edit signature in email application', () => {
   test.beforeEach(async ({ page, baseURL }, testInfo) => {
     await Allure.step(
       'Navigate to Base URL, Close Popups and navigate to Email application',
@@ -76,7 +76,7 @@ test.describe('Send Test Email', () => {
     )
   })
 
-  test('Send email', async ({ page }) => {
+  test('edit a signature', async ({ page }) => {
     const locators = new EmailPage(page)
 
     const random_text = generateRandomFileName()
