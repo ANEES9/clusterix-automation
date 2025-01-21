@@ -38,7 +38,7 @@ test.describe('create signature in email application', () => {
           'https://email-controller-testing.innoscripta.com/api/account'
 
         await page.waitForLoadState('networkidle')
-        await locators.navigatetoemail()
+        await locators.navigateToEmail()
         await page.waitForTimeout(5000)
         const fetchAccId = await ApiResponse(
           page,
@@ -80,15 +80,15 @@ test.describe('create signature in email application', () => {
     const locators = new EmailPage(page)
     const random_text = generateRandomFileName()
     await console.log(await page.title())
-    await locators.clickonsettings()
-    await locators.navigatetocomposeandreply()
-    await locators.clickonmanagesignature()
-    await locators.clickonaddsignature()
-    await locators.addtitosignature(random_text)
+    await locators.clickOnSettings()
+    await locators.navigateToComposeAndReply()
+    await locators.clickOnManageSignature()
+    await locators.clickOnAddSignature()
+    await locators.addTitleToSignature(random_text)
     await page.waitForTimeout(2000)
-    await locators.addbodytosignature(random_text)
+    await locators.addBodyToSignature(random_text)
     await page.waitForTimeout(5000)
-    await locators.savethesignature()
+    await locators.saveTheSignature()
     const fetchSetting = await ApiResponse(page, fetchIdProd, fetchIdTest)
 
     await page.waitForTimeout(4000)

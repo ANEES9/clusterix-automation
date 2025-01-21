@@ -40,7 +40,7 @@ test.describe('forward on email', () => {
           'https://email-controller-testing.innoscripta.com/api/account'
 
         await page.waitForLoadState('networkidle')
-        await locators.navigatetoemail()
+        await locators.navigateToEmail()
         await page.waitForTimeout(5000)
         const fetchAccId = await ApiResponse(
           page,
@@ -80,26 +80,26 @@ test.describe('forward on email', () => {
 
   test('forward email test execution', async ({ page }) => {
     const locators = new EmailPage(page)
-    await locators.clickonfirstemail()
-    await locators.clickonforward()
+    await locators.clickOnFirstEmail()
+    await locators.clickOnForward()
     const fetchRemoteId = await ApiResponse(
       page,
       fetchRemoteIdProd,
       fetchRemoteIdTest
     )
-    await locators.fillandentertoaddress(toEmailId)
-    await locators.fillandentersubject(testEmailSubject)
+    await locators.fillAndEnterToAddress(toEmailId)
+    await locators.fillAndEnterSubject(testEmailSubject)
     await page.waitForTimeout(2000)
-    await locators.clickonbodyandfill(testEmailBody)
+    await locators.clickOnBodyAndFill(testEmailBody)
     const { status: fetchRemoteStatus, data: fetchRemoteData } = fetchRemoteId()
     const sendURLProd =
       fetchRemoteIdProd + '/' + fetchRemoteData.remote_id + '/submit'
     const sendURLtest =
       fetchRemoteIdTest + '/' + fetchRemoteData.remote_id + '/submit'
 
-    await locators.clickonsend()
+    await locators.clickOnSend()
     const sendURL = await ApiResponse(page, sendURLProd, sendURLtest)
-    await locators.verifyemailsuccessfultoastmessage()
+    await locators.verifyEmailSuccessfulToastMessage()
     await page.waitForTimeout(2000)
 
     const { status: sendURLStatus, data: sendURLData } = sendURL()

@@ -39,7 +39,7 @@ test.describe('send test email', () => {
           'https://email-controller-testing.innoscripta.com/api/account'
 
         await page.waitForLoadState('networkidle')
-        await locators.navigatetoemail()
+        await locators.navigateToEmail()
         await page.waitForTimeout(5000)
         const fetchAccId = await ApiResponse(
           page,
@@ -79,7 +79,7 @@ test.describe('send test email', () => {
 
   test('send email', async ({ page }) => {
     const locators = new EmailPage(page)
-    await locators.clickonnewemail()
+    await locators.clickOnNewEmail()
     console.log(fetchRemoteIdProd)
     console.log(fetchRemoteIdTest)
     const fetchRemoteId = await ApiResponse(
@@ -88,10 +88,10 @@ test.describe('send test email', () => {
       fetchRemoteIdTest
     )
 
-    await locators.fillandentertoaddress(toEmailId)
-    await locators.fillandentersubject(testEmailSubject)
+    await locators.fillAndEnterToAddress(toEmailId)
+    await locators.fillAndEnterSubject(testEmailSubject)
     await page.waitForTimeout(2000)
-    await locators.clickonbodyandfill(testEmailBody)
+    await locators.clickOnBodyAndFill(testEmailBody)
 
     const { status: fetchRemoteStatus, data: fetchRemoteData } = fetchRemoteId()
     const sendURLProd =
@@ -99,9 +99,9 @@ test.describe('send test email', () => {
     const sendURLtest =
       fetchRemoteIdTest + '/' + fetchRemoteData.remote_id + '/submit'
 
-    await locators.clickonsend()
+    await locators.clickOnSend()
     const sendURL = await ApiResponse(page, sendURLProd, sendURLtest)
-    await locators.verifyemailsuccessfultoastmessage()
+    await locators.verifyEmailSuccessfulToastMessage()
     await page.waitForTimeout(2000)
 
     const { status: sendURLStatus, data: sendURLData } = sendURL()

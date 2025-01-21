@@ -38,7 +38,7 @@ test.describe('delete signature in email application', () => {
           'https://email-controller-testing.innoscripta.com/api/account'
 
         await page.waitForLoadState('networkidle')
-        await locators.navigatetoemail()
+        await locators.navigateToEmail()
         await page.waitForTimeout(5000)
         const fetchAccId = await ApiResponse(
           page,
@@ -81,17 +81,17 @@ test.describe('delete signature in email application', () => {
 
     const random_text = generateRandomFileName()
     const new_text = generateRandomFileName()
-    locators.dynamicxpath = random_text
+    locators.dynamicXPath = random_text
     await console.log(await page.title())
-    await locators.clickonsettings()
-    await locators.navigatetocomposeandreply()
-    await locators.clickonmanagesignature()
-    await locators.clickonaddsignature()
-    await locators.addtitosignature(random_text)
+    await locators.clickOnSettings()
+    await locators.navigateToComposeAndReply()
+    await locators.clickOnManageSignature()
+    await locators.clickOnAddSignature()
+    await locators.addTitleToSignature(random_text)
     await page.waitForTimeout(2000)
-    await locators.addbodytosignature(random_text)
+    await locators.addBodyToSignature(random_text)
     await page.waitForTimeout(4000)
-    await locators.savethesignature()
+    await locators.saveTheSignature()
     const fetchSetting = await ApiResponse(page, fetchIdProd, fetchIdTest)
     await page.waitForTimeout(2000)
     await page.waitForLoadState('networkidle')
@@ -103,8 +103,8 @@ test.describe('delete signature in email application', () => {
     } else {
       console.log(`Signature has been not created : ${fetchSettingStatus}.`)
     }
-    await locators.deletethesignature()
-    await locators.clickonconfirm()
+    await locators.deleteTheSignature()
+    await locators.clickOnConfirm()
     const fetchdeletedSetting = await ApiResponse(
       page,
       fetchIdProd,
