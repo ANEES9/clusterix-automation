@@ -122,6 +122,12 @@ export class SurveyPage {
     )
   }
 
+  async validateRoleTitleLocatorVisible() {
+    await Allure.step(`Should check if the title is visible`, async () => {
+      await expect(this.roleQuestion).toBeVisible()
+    })
+  }
+
   // Select role with assertion
   async selectRole(role: keyof typeof this.roleOptions) {
     await Allure.step(

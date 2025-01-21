@@ -1,18 +1,18 @@
 import { test, expect } from '@playwright/test'
 import { CompanyPage } from '../../pages/company-searcher/company-page'
-import { closeCurrentlyActivePopup } from 'helpers/company-searcher/currently-active-popup'
-import { collapseSidebar } from 'helpers/company-searcher/sidebar-helper'
+import { closeCurrentlyActivePopup } from 'helpers/ui/company-searcher/currently-active-popup'
+import { collapseSidebar } from 'helpers/ui/company-searcher/sidebar-helper'
 import { addCursorStyleAndScript } from 'common/cursor-helper'
-import { searchData } from 'utils/company-searcher/search-data'
+import { searchData } from 'utils/test-data/company-searcher/search-data'
 import { closeProductTour } from 'common/product-tour-helper'
-import { skipSurvey } from 'common/skip-survey'
+import { skipSurveyHelper } from 'common/skip-survey-helper'
 import { Allure } from 'common/allure-helper'
 
 test.describe('Company Searcher Smoke Test', () => {
   let companyPage: CompanyPage
   test.beforeEach(async ({ page, baseURL }) => {
     await page.goto(baseURL!)
-    await skipSurvey(page)
+    await skipSurveyHelper(page)
     await closeProductTour(page)
     await page.waitForLoadState('networkidle')
     await addCursorStyleAndScript(page)

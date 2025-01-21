@@ -3,7 +3,7 @@ import { closeProductTour } from 'common/product-tour-helper'
 import { closeTimerPopUp } from 'common/timer-helper'
 import { openNavigationMenu } from 'helpers/navigation-helper'
 import { addCursorStyleAndScript } from 'common/cursor-helper'
-import { skipSurvey } from 'common/skip-survey'
+import { skipSurveyHelper } from 'common/skip-survey-helper'
 import { ContainerPage } from '../../pages/container-app/container-page'
 import { Allure } from 'common/allure-helper'
 import { APP_NAMES } from 'config/constants/app-names'
@@ -15,7 +15,7 @@ test.describe('Container App Sidebar Navigation Tests', () => {
     containerPage = new ContainerPage(page)
     await page.goto(baseURL!)
     await addCursorStyleAndScript(page)
-    await skipSurvey(page)
+    await skipSurveyHelper(page)
     await closeProductTour(page)
     await closeTimerPopUp(page)
     await openNavigationMenu(page)

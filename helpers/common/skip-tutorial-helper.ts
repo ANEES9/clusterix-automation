@@ -1,7 +1,7 @@
 import { Page, TestInfo } from '@playwright/test'
 import { TutorialPage } from '../../pages/container-app/tutorial-page'
 
-export async function skipTutorial(
+export async function skipTutorialHelper(
   page: Page,
   testInfo: TestInfo
 ): Promise<void> {

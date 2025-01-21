@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
 import { AccountsPage } from '../../../pages/settings/user-and-permissions/accounts-page'
-import { skipSurvey } from 'common/skip-survey'
+import { skipSurveyHelper } from 'common/skip-survey-helper'
 import { closeProductTour } from 'common/product-tour-helper'
 import { closeTimerPopUp } from 'common/timer-helper'
 import { addCursorStyleAndScript } from 'common/cursor-helper'
@@ -22,7 +22,7 @@ test.describe('User and Permissions > Accounts Tests', () => {
     })
 
     await Allure.step('Skip survey', async () => {
-      await skipSurvey(page)
+      await skipSurveyHelper(page)
     })
 
     await Allure.step('Close welcome popup', async () => {

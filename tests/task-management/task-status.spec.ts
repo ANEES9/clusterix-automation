@@ -5,13 +5,13 @@ import { closeTimerPopUp } from 'common/timer-helper'
 import { TaskManagementPage } from 'pages/task-management'
 import { closeProductTour } from 'common/product-tour-helper'
 import { generateRandomFileName } from 'common/random-data-generator'
-import { skipSurvey } from 'common/skip-survey'
+import { skipSurveyHelper } from 'common/skip-survey-helper'
 
 test.describe('Task Management Board Tests', () => {
   test.beforeEach(async ({ page, baseURL }, testInfo) => {
     await Allure.step('Navigate to Base URL and Close Popups', async () => {
       await page.goto(baseURL!)
-      await skipSurvey(page, testInfo)
+      await skipSurveyHelper(page, testInfo)
       await closeProductTour(page)
       await closeTimerPopUp(page)
       await page.waitForLoadState('networkidle')

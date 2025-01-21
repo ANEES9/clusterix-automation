@@ -2,11 +2,6 @@ import { expect, Locator, Page } from '@playwright/test'
 import { APP_URLS } from 'config/constants/app-urls'
 import { LANGUAGES } from 'config/language-config'
 import { getTranslations } from 'common/get-translations-helper'
-import { skipSurvey } from 'common/skip-survey'
-import { addCursorStyleAndScript } from 'common/cursor-helper'
-import { closeProductTour } from 'common/product-tour-helper'
-import { skipTutorial } from 'common/skip-tutorial-helper'
-import { closeTimerPopUp } from 'common/timer-helper'
 
 export class LoginPage {
   private page: Page
@@ -15,6 +10,9 @@ export class LoginPage {
   private emailField: Locator
   private passwordField: Locator
   private loginButton: Locator
+  private login401: Locator
+  private emailError: Locator
+  private passwordErrorLabel: Locator
   private forgotPasswordLink: Locator
   private registerLink: Locator
   private googleLink: Locator
@@ -27,11 +25,8 @@ export class LoginPage {
 
   constructor(page: Page, locale: string) {
     this.page = page
-
-    // Fetch the 'login' namespace translations based on the provided locale
     this.translations = getTranslations('login', locale)
 
-    // Initialize locators using nested translations
     this.emailField = this.page.getByPlaceholder(this.translations.login.email)
     this.passwordField = this.page.getByPlaceholder(
       this.translations.login.password
@@ -42,20 +37,29 @@ export class LoginPage {
         hasText: new RegExp(`^${this.translations.login.login}$`, 'i'),
       }) // Adjust key based on JSON
       .first()
+    this.login401 = this.page.getByText(this.translations.login.login401)
+    this.emailError = this.page.getByText(this.translations.login.emailError)
+    this.passwordErrorLabel = this.page.locator(
+      'div._label_zut04_8._hasError_zut04_29'
+    )
     this.forgotPasswordLink = this.page.getByRole('button', {
-      name: 'Forgot Password?',
+      name: this.translations.login.forgotPassword,
     })
-    this.registerLink = this.page.getByRole('button', { name: 'Register' })
+    this.registerLink = this.page.getByRole('button', {
+      name: this.translations.login.footer2,
+    })
     this.googleLink = this.page.getByRole('button', { name: 'Google' })
     this.microsoftLink = this.page.getByRole('button', { name: 'Microsoft' })
     this.appleLink = this.page.getByRole('button', { name: 'Apple' })
     this.ssoLink = this.page.getByRole('button', { name: 'SSO' })
-    this.rememberMeCheckbox = this.page.getByLabel('Remember me')
+    this.rememberMeCheckbox = this.page.getByLabel(
+      this.translations.login.remember
+    )
     this.backFromForgotPasswordLink = this.page.getByRole('button', {
-      name: 'Back to Login',
+      name: this.translations.recovery.backToLogin,
     })
     this.loginFromRegisterLink = this.page.getByRole('button', {
-      name: 'Login now',
+      name: this.translations.registerContainer.fromFooter2,
     })
   }
 
@@ -88,79 +92,49 @@ export class LoginPage {
    * @param password - User's password.
    */
   async login(email: string, password: string) {
-    if (!email || !password) {
-      throw new Error('Email and password must be provided')
-    }
     await this.emailField.fill(email)
     await this.passwordField.fill(password)
     await this.loginButton.click()
     await this.page.waitForLoadState('networkidle')
   }
 
-  async verifyValidLogin(
-    email: string,
-    password: string,
-    profilename: string,
-    testInfo: any
-  ) {
+  async verifyInvalidPasswordLogin(email: string, password: string) {
     await this.emailField.fill(email)
     await this.passwordField.fill(password)
     await this.loginButton.click()
     await this.page.waitForLoadState('networkidle')
-
-    await addCursorStyleAndScript(this.page)
-    await skipSurvey(this.page, testInfo)
-    await closeProductTour(this.page)
-    await closeTimerPopUp(this.page)
-    await skipTutorial(this.page, testInfo)
-
-    //to clears popup and other stuffs
-    // await this.page.getByRole('button', { name: 'Developer / Designer' }).click();
-    // await this.page.getByRole('button', { name: 'Next' }).click();
-    // await this.page.getByRole('main').getByRole('button', { name: 'Live Chat' }).click();
-    // await this.page.getByRole('button', { name: 'Next' }).click();
-    // await this.page.getByRole('button', { name: 'Complete' }).click();
-    // await this.page.getByRole('button', { name: 'Skip tour' }).click();
-
-    await this.page.getByRole('button', { name: profilename }).click()
-    await this.page.waitForLoadState('networkidle')
-    await expect(this.page.locator(`text=${email}`)).toBeVisible()
+    await expect(this.login401).toBeVisible()
   }
 
-  async verifyInvalidlogin(email: string, password: string) {
-    if (!email || !password) {
-      throw new Error('Email and password must be provided')
-    }
+  async verifyInvalidEmailLogin(email: string, password: string) {
     await this.emailField.fill(email)
     await this.passwordField.fill(password)
     await this.loginButton.click()
     await this.page.waitForLoadState('networkidle')
-    expect(
-      this.page.getByText(
-        'Invalid email or password. Please verify your information and try again.'
-      )
-    )
+    await expect(this.emailError).toBeVisible()
   }
 
-  async verifyInvalidEmaillogin(email: string, password: string) {
+  async verifyEmptyEmailLogin(email: string, password: string) {
     await this.emailField.fill(email)
     await this.passwordField.fill(password)
     await this.loginButton.click()
     await this.page.waitForLoadState('networkidle')
-    await expect(this.page.getByText('Email is invalid')).toBeVisible()
+    await expect(this.emailError).toBeVisible()
   }
 
-  async verifyNoCredlogin() {
+  async verifyEmptyPasswordLogin(email: string, password: string) {
+    await this.emailField.fill(email)
+    await this.passwordField.fill(password)
     await this.loginButton.click()
     await this.page.waitForLoadState('networkidle')
-    await expect(this.page.getByText('Email is invalid')).toBeVisible()
+    await expect(this.passwordErrorLabel).toBeVisible()
   }
 
   async verifyNavigateToForgotPasswordPage() {
     await this.forgotPasswordLink.click()
     await this.page.waitForLoadState('networkidle')
     const currentUrl = this.page.url()
-    expect(currentUrl).toContain('reset-password')
+    expect(currentUrl).toContain(APP_URLS.resetPassword)
   }
 
   async verifyNavigateBackFromForgotPasswordPage() {
@@ -169,13 +143,13 @@ export class LoginPage {
     await this.backFromForgotPasswordLink.click()
     await this.page.waitForLoadState('networkidle')
     const currentUrl = this.page.url()
-    expect(currentUrl).toContain('testing.clusterix.io/login')
+    expect(currentUrl).toContain(APP_URLS.login)
   }
   async verifyNavigateToRegisterPage() {
     await this.registerLink.click()
     await this.page.waitForLoadState('networkidle')
     const currentUrl = this.page.url()
-    expect(currentUrl).toContain('register')
+    expect(currentUrl).toContain(APP_URLS.register)
   }
 
   async verifyNavigateBackFromRegisterPage() {
@@ -184,7 +158,7 @@ export class LoginPage {
     await this.loginFromRegisterLink.click()
     await this.page.waitForLoadState('networkidle')
     const currentUrl = this.page.url()
-    expect(currentUrl).toContain('testing.clusterix.io/login')
+    expect(currentUrl).toContain(APP_URLS.login)
   }
 
   async verifyNavigateToGooglePage() {
@@ -212,7 +186,7 @@ export class LoginPage {
     await this.ssoLink.click()
     await this.page.waitForLoadState('networkidle')
     const currentUrl = this.page.url()
-    expect(currentUrl).toContain('sso')
+    expect(currentUrl).toContain(APP_URLS.sso)
   }
 
   async verifyRememberMeClickable() {
