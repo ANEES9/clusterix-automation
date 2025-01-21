@@ -1829,7 +1829,7 @@
       "descriptionPlaceholder": "Description of the project type",
       "color": "Color",
       "selectWorkflow": "Select a workflow for the project type",
-      "search": "Search by workflow name",
+      "category": "Category",
       "newWorkflow": "New workflow",
       "projectTypeSettings": "Project type settings",
       "markAsRnDProjectLabel": "Mark as R&D project",
