@@ -1,8 +1,8 @@
-import { Page, Locator, expect } from '@playwright/test';
-import { VacationAbsenceDaysPage } from '../my-profile/vacation-absence-days.page';
+import { Page, Locator, expect } from '@playwright/test'
+import { VacationAbsenceDaysPage } from '../my-profile/vacation-absence-days.page'
 
 export class EmployeeManagementPage {
-  readonly page: Page;
+  readonly page: Page
   // Locators
   private holidaysButton: Locator
   private calendarButton: Locator
@@ -10,9 +10,12 @@ export class EmployeeManagementPage {
   private saveButton: Locator
 
   constructor(page: Page) {
-    this.page = page;
+    this.page = page
 
-    this.holidaysButton = this.page.locator('div').filter({ hasText: /^Holidays$/ }).first()
+    this.holidaysButton = this.page
+      .locator('div')
+      .filter({ hasText: /^Holidays$/ })
+      .first()
     this.calendarButton = page.getByRole('button', { name: 'Calendar' }).nth(2)
     this.deleteButton = page.getByRole('button', { name: 'Delete' })
     this.saveButton = page.getByRole('button', { name: 'Save' })
@@ -20,21 +23,24 @@ export class EmployeeManagementPage {
 
   async deleteAppliedLeave(employeeId: number): Promise<void> {
     const vacationAbsenceDaysPage = new VacationAbsenceDaysPage(this.page)
-    await this.page.goto(`https://testing.clusterix.io/hr/employees/${employeeId}`)
-    await this.page.waitForLoadState('networkidle');
+    await this.page.goto(
+      `https://testing.clusterix.io/hr/employees/${employeeId}`
+    )
+    await this.page.waitForLoadState('networkidle')
 
     await this.page.waitForTimeout(3000)
     await this.holidaysButton.click()
     await this.calendarButton.click()
     await this.page.waitForTimeout(3000)
-    const validDay = await vacationAbsenceDaysPage.getValidVacationDay(); // Get the first valid day
+    const validDay = await vacationAbsenceDaysPage.getValidVacationDay() // Get the first valid day
 
     console.log(validDay)
 
     try {
-      const vacationDay = this.page.locator(
-        `[id^="headlessui-dialog-panel-\\:"] div.o8m2LEiBiHsAAiJXPeHm`
-      ).filter({ hasText: new RegExp(`^${validDay}$`) }).nth(1)
+      const vacationDay = this.page
+        .locator(`[id^="headlessui-dialog-panel-\\:"] div.o8m2LEiBiHsAAiJXPeHm`)
+        .filter({ hasText: new RegExp(`^${validDay}$`) })
+        .nth(1)
 
       //console.log('Is Enabled:', await vacationDay.isEnabled())
       await vacationDay.scrollIntoViewIfNeeded()
@@ -51,5 +57,4 @@ export class EmployeeManagementPage {
       console.error(`Failed to delete vacation for day ${validDay}: ${error}`)
     }
   }
-
 }

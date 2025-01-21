@@ -6,33 +6,32 @@ import { skipSurvey } from 'common/skip-survey'
 import { closeProductTour } from 'common/product-tour-helper'
 
 test.describe('Search Filter', () => {
-    test.beforeEach(async ({ page, baseURL }, testInfo) => {
-        await page.goto(baseURL!)
-        await addCursorStyleAndScript(page)
-        await skipSurvey(page, testInfo)
-        await closeProductTour(page)
-        await closeTimerPopUp(page)
-        await page.waitForLoadState('networkidle')
-    })
+  test.beforeEach(async ({ page, baseURL }, testInfo) => {
+    await page.goto(baseURL!)
+    await addCursorStyleAndScript(page)
+    await skipSurvey(page, testInfo)
+    await closeProductTour(page)
+    await closeTimerPopUp(page)
+    await page.waitForLoadState('networkidle')
+  })
 
-    test('To filter by guest and filter by creator ', async ({ page }) => {
-        const calendarPage = new CalendarPage(page)
-        await calendarPage.navigateToCalendar()
+  test('To filter by guest and filter by creator ', async ({ page }) => {
+    const calendarPage = new CalendarPage(page)
+    await calendarPage.navigateToCalendar()
 
-        await page.pause();
-        // Wait for the page to fully load
-        await page.waitForLoadState('networkidle');
+    await page.pause()
+    // Wait for the page to fully load
+    await page.waitForLoadState('networkidle')
 
-        // Wait for the Filter button and click it
-        await page.waitForTimeout(3000);  // Optional: Add a delay
-        
-        await calendarPage.clickOnFilterLocator()
-        await calendarPage.clickOnFilterByCreator()
-        await calendarPage.clickOnStartTypingInFilterCreator()
-        await calendarPage.clickOnFilterByCreatorMe()
-        await calendarPage.clickOnFilterByGuest();
-        await calendarPage.clickOnStartTypingInFilterGuest()
-        await calendarPage.clickOnFilterByGuestMe()
- 
-    })
+    // Wait for the Filter button and click it
+    await page.waitForTimeout(3000) // Optional: Add a delay
+
+    await calendarPage.clickOnFilterLocator()
+    await calendarPage.clickOnFilterByCreator()
+    await calendarPage.clickOnStartTypingInFilterCreator()
+    await calendarPage.clickOnFilterByCreatorMe()
+    await calendarPage.clickOnFilterByGuest()
+    await calendarPage.clickOnStartTypingInFilterGuest()
+    await calendarPage.clickOnFilterByGuestMe()
+  })
 })

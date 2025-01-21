@@ -19,7 +19,7 @@ const testEmailBody = `Testing purpose email via automation. Sent at: ${currentD
 let fetchRemoteIdProd: string, fetchRemoteIdTest: string
 
 test.describe('send test email', () => {
-  test.beforeEach(async ({ page, baseURL },testInfo) => {
+  test.beforeEach(async ({ page, baseURL }, testInfo) => {
     await Allure.step(
       'Navigate to Base URL, Close Popups and navigate to Email application',
       async () => {

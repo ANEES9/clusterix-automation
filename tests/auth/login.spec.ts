@@ -21,30 +21,34 @@ test.describe('Login Page Tests', () => {
     await loginPage.login(email, password)
   })
 
-  test('Should log in with valid login credentials', async ({ page }, testInfo) => {
+  test('Should log in with valid login credentials', async ({
+    page,
+  }, testInfo) => {
     // const locale = testInfo.project.use.locale
     const locale: string = testInfo.project.use?.locale ?? 'en'
     const loginPage = new LoginPage(page, locale)
     const email = process.env.CLUSTERIX_EMAIL || ''
     const password = process.env.CLUSTERIX_PASSWORD || ''
-    const profilename=process.env.PROFILE_NAME || ''
+    const profilename = process.env.PROFILE_NAME || ''
     await loginPage.verifyValidLogin(email, password, profilename, testInfo)
-
   })
 
-  test('Should not log in with invalid login credentials', async ({ page }, testInfo) => {
+  test('Should not log in with invalid login credentials', async ({
+    page,
+  }, testInfo) => {
     //const locale = testInfo.project.use.locale
     const locale: string = testInfo.project.use?.locale ?? 'en'
     const loginPage = new LoginPage(page, locale)
     const email = process.env.CLUSTERIX_EMAIL || ''
     const password = process.env.INVALID_CLUSTERIX_PASSWORD || ''
     await loginPage.verifyInvalidlogin(email, password)
-
   })
 
-  test('Should get error for invalid email address', async ({ page }, testInfo) => {
+  test('Should get error for invalid email address', async ({
+    page,
+  }, testInfo) => {
     //const locale = testInfo.project.use.locale
-   const locale: string = testInfo.project.use?.locale ?? 'en'
+    const locale: string = testInfo.project.use?.locale ?? 'en'
     const loginPage = new LoginPage(page, locale)
     const email = process.env.INVALID_CLUSTERIX_EMAIL || ''
     const password = process.env.CLUSTERIX_PASSWORD || ''
@@ -58,14 +62,18 @@ test.describe('Login Page Tests', () => {
     await loginPage.verifyNoCredlogin()
   })
 
-  test('Should navigate to forgot password screen', async ({ page }, testInfo) => {
+  test('Should navigate to forgot password screen', async ({
+    page,
+  }, testInfo) => {
     //const locale = testInfo.project.use.locale
     const locale: string = testInfo.project.use?.locale ?? 'en'
     const loginPage = new LoginPage(page, locale)
     await loginPage.verifyNavigateToForgotPasswordPage()
   })
 
-  test('Should navigate from Forgot Password screen to login screen', async ({ page }, testInfo) => {
+  test('Should navigate from Forgot Password screen to login screen', async ({
+    page,
+  }, testInfo) => {
     //const locale = testInfo.project.use.locale
     const locale: string = testInfo.project.use?.locale ?? 'en'
     const loginPage = new LoginPage(page, locale)
@@ -79,28 +87,36 @@ test.describe('Login Page Tests', () => {
     await loginPage.verifyNavigateToRegisterPage()
   })
 
-  test('Should navigate from Register screen to Login screen', async ({ page }, testInfo) => {
+  test('Should navigate from Register screen to Login screen', async ({
+    page,
+  }, testInfo) => {
     //const locale = testInfo.project.use.locale
     const locale: string = testInfo.project.use?.locale ?? 'en'
     const loginPage = new LoginPage(page, locale)
     await loginPage.verifyNavigateBackFromRegisterPage()
   })
 
-  test('Should navigate to Google account screen', async ({ page }, testInfo) => {
+  test('Should navigate to Google account screen', async ({
+    page,
+  }, testInfo) => {
     //const locale = testInfo.project.use.locale
     const locale: string = testInfo.project.use?.locale ?? 'en'
     const loginPage = new LoginPage(page, locale)
     await loginPage.verifyNavigateToGooglePage()
   })
 
-  test('Should navigate to Microsoft account screen', async ({ page }, testInfo) => {
+  test('Should navigate to Microsoft account screen', async ({
+    page,
+  }, testInfo) => {
     //const locale = testInfo.project.use.locale
     const locale: string = testInfo.project.use?.locale ?? 'en'
     const loginPage = new LoginPage(page, locale)
     await loginPage.verifyNavigateToMicrosoftPage()
   })
 
-  test('Should navigate to Apple account screen', async ({ page }, testInfo) => {
+  test('Should navigate to Apple account screen', async ({
+    page,
+  }, testInfo) => {
     //const locale = testInfo.project.use.locale
     const locale: string = testInfo.project.use?.locale ?? 'en'
     const loginPage = new LoginPage(page, locale)
@@ -114,13 +130,12 @@ test.describe('Login Page Tests', () => {
     await loginPage.verifyNavigateToSSOPage()
   })
 
-  test('Should be able to check Remember me checkbox', async ({ page }, testInfo) => {
+  test('Should be able to check Remember me checkbox', async ({
+    page,
+  }, testInfo) => {
     //const locale = testInfo.project.use.locale
     const locale: string = testInfo.project.use?.locale ?? 'en'
     const loginPage = new LoginPage(page, locale)
     await loginPage.verifyRememberMeClickable()
   })
-
-
 })
-

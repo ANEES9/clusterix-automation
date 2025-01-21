@@ -1,6 +1,5 @@
-import { test, expect, selectors } from '@playwright/test'
+import { test } from '@playwright/test'
 import { Allure } from 'common/allure-helper' // Import Allure
-import { time } from 'console'
 import { ApiResponse } from 'common/api-response'
 import * as dotenv from 'dotenv'
 import { addCursorStyleAndScript } from 'common/cursor-helper'
@@ -9,16 +8,14 @@ import { closeProductTour } from 'common/product-tour-helper'
 import { closeTimerPopUp } from 'common/timer-helper'
 import { EmailPage } from 'pages/email'
 import { generateRandomFileName } from 'common/random-data-generator'
-import { getEnvBasedUrl } from 'common/get-api-url'
 
 const env = process.env.NODE_ENV || 'production'
 dotenv.config({ path: `.env.${env}` })
-const currentDate = new Date()
-
+new Date()
 let fetchIdProd: string, fetchIdTest: string
 
 test.describe('create signature in email application', () => {
-  test.beforeEach(async ({ page, baseURL },testInfo) => {
+  test.beforeEach(async ({ page, baseURL }, testInfo) => {
     await Allure.step(
       'Navigate to Base URL, Close Popups and navigate to Email application',
       async () => {

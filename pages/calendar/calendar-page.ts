@@ -1,5 +1,4 @@
-import { L } from '@faker-js/faker/dist/airline-BnpeTvY9'
-import { Page, Locator, expect } from '@playwright/test'
+import { Page, Locator } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
 import { APP_URLS } from 'config/constants/app-urls'
 
@@ -32,12 +31,11 @@ export class CalendarPage {
   private startTypingTextInGuest: Locator
   private filterByGuestMe: Locator
 
-
   static readonly URL = '/calendar'
 
   constructor(page: Page, viewEvent?: string) {
     if (viewEvent) {
-      this.viewEvent = viewEvent; // Only set if provided
+      this.viewEvent = viewEvent // Only set if provided
     }
     this.page = page
     this.closeCurrentApp = page.locator('.t2NoaA5h7fzt0q0GapK3')
@@ -49,49 +47,54 @@ export class CalendarPage {
     this.eventName = page.getByPlaceholder('Untitled Event')
     this.participants = page.getByText('Participant(s)')
     this.searchContactEmail = page.getByPlaceholder('Search contact, email or')
-    this.chooseParticipant = page.locator('div.participants-dropdown-dropdown-internal > div > div').getByRole('checkbox', {}).nth(7)
+    this.chooseParticipant = page
+      .locator('div.participants-dropdown-dropdown-internal > div > div')
+      .getByRole('checkbox', {})
+      .nth(7)
     this.saveParticipant = page.getByRole('button', { name: 'Save' })
     this.createEvent = page.getByText('Create Event')
     this.closeEventCreated = page.getByRole('button', { name: 'Close' })
     this.foldOut = page.getByText('').nth(1)
     this.deleteEvent = page.getByText('Delete')
     this.deleteButton = page.getByRole('button', { name: 'Delete' })
-    this.chooseFirstParticipant = page.locator('div.participants-dropdown-dropdown-internal > div > div').getByRole('checkbox', {}).first()
+    this.chooseFirstParticipant = page
+      .locator('div.participants-dropdown-dropdown-internal > div > div')
+      .getByRole('checkbox', {})
+      .first()
     this.saveEvent = page.getByText('Save changes')
     this.filterLocator = page.locator('.FiltersGroups_filtersLabel__PHj7j')
     this.filterByCreator = page.getByText('Filter by creator')
-    this.startTypingTextInCreator = page.getByRole('textbox', { name: 'Please start typing' })
+    this.startTypingTextInCreator = page.getByRole('textbox', {
+      name: 'Please start typing',
+    })
     this.filterByCreatorMe = page.getByText('Me', { exact: true }).first()
     this.filterByGuest = page.getByText('Filter by guest')
-    this.startTypingTextInGuest= page.getByPlaceholder('Please start typing').nth(2)
+    this.startTypingTextInGuest = page
+      .getByPlaceholder('Please start typing')
+      .nth(2)
     this.filterByGuestMe = page.getByText('Me', { exact: true }).nth(1)
   }
-
-
 
   async closeCurrentApplication() {
     await Allure.step(
       'should close the current application modal when cancel is clicked',
       async () => {
-        await this.closeCurrentApp.click();
+        await this.closeCurrentApp.click()
       }
     )
   }
 
   async clickOnFilterByGuestMe() {
-    await Allure.step(
-      'should select me in filter by guest',
-      async () => {
-        await this.filterByGuestMe.click()
-      }
-    )
+    await Allure.step('should select me in filter by guest', async () => {
+      await this.filterByGuestMe.click()
+    })
   }
 
   async clickOnStartTypingInFilterGuest() {
     await Allure.step(
       'should click on start typing here textfield of filter by guest',
       async () => {
-        await this.startTypingTextInGuest.click();
+        await this.startTypingTextInGuest.click()
       }
     )
   }
@@ -106,19 +109,16 @@ export class CalendarPage {
   }
 
   async clickOnFilterByCreatorMe() {
-    await Allure.step(
-      'should select me in filter by creator',
-      async () => {
-        await this.filterByCreatorMe.click()
-      }
-    )
+    await Allure.step('should select me in filter by creator', async () => {
+      await this.filterByCreatorMe.click()
+    })
   }
 
   async clickOnStartTypingInFilterCreator() {
     await Allure.step(
       'should click on start typing here textfield of filter by creator',
       async () => {
-        await this.startTypingTextInCreator.click();
+        await this.startTypingTextInCreator.click()
       }
     )
   }
@@ -132,21 +132,15 @@ export class CalendarPage {
   }
 
   async clickOnFilterLocator() {
-    await Allure.step(
-      'should click on filters ',
-      async () => {
-        await this.filterLocator.click()
-      }
-    )
+    await Allure.step('should click on filters ', async () => {
+      await this.filterLocator.click()
+    })
   }
 
   async clickOnSaveEvent() {
-    await Allure.step(
-      'should click on save event button ',
-      async () => {
-        await this.saveEvent.click()
-      }
-    )
+    await Allure.step('should click on save event button ', async () => {
+      await this.saveEvent.click()
+    })
   }
   //To click on first participant
   async selectFirstParticipant() {
@@ -160,27 +154,25 @@ export class CalendarPage {
 
   //To click on delete button inside the delete modal pop up
   async clickOnDeleteButton() {
-    await Allure.step(
-      'should click on delete button ',
-      async () => {
-        await this.deleteButton.click()
-      }
-    )
+    await Allure.step('should click on delete button ', async () => {
+      await this.deleteButton.click()
+    })
   }
-  //To click on delete button inside the event modal 
+  //To click on delete button inside the event modal
   async clickOnDeleteEvent() {
-    await Allure.step(
-      'should click on delete button ',
-      async () => {
-        await this.deleteEvent.click()
-      }
-    )
+    await Allure.step('should click on delete button ', async () => {
+      await this.deleteEvent.click()
+    })
   }
 
   async clickOnViewEvent() {
     // To Use this.eventName dynamically
-    const eventLocator = this.page.locator('.calendar-event-details-chip-title-name', { hasText: this.viewEvent }).nth(0);
-    await eventLocator.click();
+    const eventLocator = this.page
+      .locator('.calendar-event-details-chip-title-name', {
+        hasText: this.viewEvent,
+      })
+      .nth(0)
+    await eventLocator.click()
   }
 
   async clickOnFoldOut() {
@@ -201,12 +193,9 @@ export class CalendarPage {
   }
 
   async clickOnCreateEvent() {
-    await Allure.step(
-      'should click on create event button',
-      async () => {
-        await this.createEvent.click()
-      }
-    )
+    await Allure.step('should click on create event button', async () => {
+      await this.createEvent.click()
+    })
   }
   async clickOnSaveParticipant() {
     await Allure.step(
@@ -216,7 +205,6 @@ export class CalendarPage {
       }
     )
   }
-
 
   async selectParticipant() {
     await Allure.step(
@@ -256,8 +244,8 @@ export class CalendarPage {
 
   //Function to generate a dynamic event name
   async generateEventName(baseName: string): Promise<string> {
-    const timestamp = new Date().getTime();
-    return `${baseName}_${timestamp}`;
+    const timestamp = new Date().getTime()
+    return `${baseName}_${timestamp}`
   }
   async clickOnAddEvent() {
     await Allure.step(

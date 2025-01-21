@@ -13,12 +13,15 @@ test.describe('Regression Test Suite', () => {
   test.beforeEach(async ({ page, baseURL }) => {
     Allure.addDefaultLabels()
 
-    console.log('Base URL:', baseURL);
-    console.log('Navigating to:', `${baseURL}/profile/vacation-and-absence-days`);
-  
+    console.log('Base URL:', baseURL)
+    console.log(
+      'Navigating to:',
+      `${baseURL}/profile/vacation-and-absence-days`
+    )
+
     await page.goto(`${baseURL}/profile/vacation-and-absence-days`)
-    await page.waitForLoadState('networkidle');
-  
+    await page.waitForLoadState('networkidle')
+
     await skipSurvey(page)
     await closeProductTour(page)
     await closeTimerPopUp(page)
@@ -59,10 +62,13 @@ test.describe('Regression Test Suite', () => {
       await vacationAbsenceDaysPage.clickCreateButton()
     })
 
-    await Allure.step('Step 3: Select a dynamic vacation date and proceed', async () => {
-      await vacationAbsenceDaysPage.selectADay()
-      await vacationAbsenceDaysPage.clickOnNextButton()
-    })
+    await Allure.step(
+      'Step 3: Select a dynamic vacation date and proceed',
+      async () => {
+        await vacationAbsenceDaysPage.selectADay()
+        await vacationAbsenceDaysPage.clickOnNextButton()
+      }
+    )
 
     await Allure.step('Step 4: Select a co-worker and proceed', async () => {
       await vacationAbsenceDaysPage.selectACoWorker()
@@ -76,21 +82,29 @@ test.describe('Regression Test Suite', () => {
         throw new Error('Failed to retrieve employee ID')
       }
 
-      console.log('Vacation request successfully submitted with Employee ID:', employeeId)
+      console.log(
+        'Vacation request successfully submitted with Employee ID:',
+        employeeId
+      )
     })
 
-    await Allure.step('Step 6: Verify and clean up vacation request', async () => {
-      if (employeeId) {
-        await vacationAbsenceDaysPage.verifyConfirmationMessageForVacationDialog()
-        await vacationAbsenceDaysPage.verifyVacationAppliedDate()
-        await vacationAbsenceDaysPage.verifyDescriptionForVacationConfirmationDialog()
-        await vacationAbsenceDaysPage.verifyVacationDialogCloseButton()
+    await Allure.step(
+      'Step 6: Verify and clean up vacation request',
+      async () => {
+        if (employeeId) {
+          await vacationAbsenceDaysPage.verifyConfirmationMessageForVacationDialog()
+          await vacationAbsenceDaysPage.verifyVacationAppliedDate()
+          await vacationAbsenceDaysPage.verifyDescriptionForVacationConfirmationDialog()
+          await vacationAbsenceDaysPage.verifyVacationDialogCloseButton()
 
-        console.log('Cleaning up: Deleting the applied leave')
-        await employeeManagementPage.deleteAppliedLeave(employeeId)
-      } else {
-        throw new Error('Employee ID is missing. Cannot proceed with verification')
+          console.log('Cleaning up: Deleting the applied leave')
+          await employeeManagementPage.deleteAppliedLeave(employeeId)
+        } else {
+          throw new Error(
+            'Employee ID is missing. Cannot proceed with verification'
+          )
+        }
       }
-    })
+    )
   })
 })

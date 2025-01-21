@@ -84,7 +84,5 @@ test.describe('Task Management Board Tests', () => {
         `Error: API returned an unexpected status ${apiResponseStatus}.`
       )
     }
-
-    
   })
 })

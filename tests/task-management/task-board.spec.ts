@@ -8,7 +8,7 @@ import { generateRandomFileName } from 'common/random-data-generator'
 import { skipSurvey } from 'common/skip-survey'
 
 test.describe('Task Management Board Tests', () => {
-  test.beforeEach(async ({ page, baseURL },testInfo) => {
+  test.beforeEach(async ({ page, baseURL }, testInfo) => {
     await Allure.step('Navigate to Base URL and Close Popups', async () => {
       await page.goto(baseURL!)
       await skipSurvey(page, testInfo)

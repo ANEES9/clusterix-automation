@@ -1,4 +1,9 @@
-import { Page, Locator, expect, LocatorScreenshotOptions,} from '@playwright/test'
+import {
+  Page,
+  Locator,
+  expect,
+  LocatorScreenshotOptions,
+} from '@playwright/test'
 import { Allure } from 'common/allure-helper'
 
 export class EmailPage {

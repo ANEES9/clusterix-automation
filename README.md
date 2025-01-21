@@ -419,6 +419,7 @@ allure.attachment('Response Logs', JSON.stringify(response), 'application/json')
 # **Generating Reports**
 
 0. **Clear Old Allure Results if required:**
+
 ```bash
 Remove-Item -Recurse -Force allure-results
 ```

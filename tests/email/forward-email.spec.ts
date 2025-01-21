@@ -28,7 +28,7 @@ test.describe('forward on email', () => {
 
         await page.goto(baseURL!)
         await addCursorStyleAndScript(page)
-        await skipSurvey(page,testInfo)
+        await skipSurvey(page, testInfo)
         await closeProductTour(page)
         await page.waitForTimeout(4000)
         await closeTimerPopUp(page)
