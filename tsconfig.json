@@ -16,7 +16,8 @@
       "helpers/*": ["./helpers/*"],
       "utils/*": ["./utils/*"],
       "types/*": ["./types/*"],
-      "locales/*": ["./locales/*"]
+      "locales/*": ["./locales/*"],
+      "pages/*": ["./pages/*"]
     }
   }
 }

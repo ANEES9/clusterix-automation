@@ -3,7 +3,7 @@ import { Allure } from 'common/allure-helper'
 import {
   confirmationDialogMessages,
   confirmationDialogTitles,
-} from 'utils/my-profile/my-profile-data'
+} from 'utils/test-data/my-profile/my-profile-data'
 
 export class VacationAbsenceDaysPage {
   private page: Page
