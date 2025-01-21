@@ -1,0 +1,1983 @@
+{
+  "common":{
+    "toaster": {
+      "Note": "Notiz",
+      "Error": "Fehler",
+      "Oops! Something Unexpected Happened": "Huch! Es ist etwas Unerwartetes passiert",
+      "Success": "Erfolg",
+      "Downloading": "Herunterladen",
+      "FYI": "Zur Information"
+    },
+    "inDays": "in {{count}} Tag",
+    "inDays_other": "in {{count}} Tagen",
+    "daysAgo": "vor {{count}} Tag",
+    "daysAgo_other": "vor {{count}} Tagen",
+    "daysWord": "Tage",
+    "send": "Senden",
+    "saveAndClose": "Speichern und Schließen",
+    "year": "Jahr",
+    "previousYear": "Vorjahr",
+    "currYear": "aktuelles Jahr",
+    "yes": "Ja",
+    "no": "Nein",
+    "save": "Speichern",
+    "remove": "Löschen",
+    "upload": "Hochladen",
+    "more": "Mehr",
+    "less": "Weniger",
+    "skip": "Überspringen",
+    "fix": "Problem beheben",
+    "warning": "Achtung",
+    "attention": "Achtung",
+    "edit": "Bearbeiten",
+    "close": "Schließen",
+    "cancel": "Abbrechen",
+    "yes_continue": "Ja, weiter",
+    "confirm": "Bestätigen",
+    "pleaseSelect": "Bitte wählen",
+    "selectAll": "Wählen Sie Alle",
+    "select": "Wählen",
+    "selected": "ausgewählt",
+    "allSelected": "Alle Elemente sind ausgewählt",
+    "months": {
+      "january": "Januar",
+      "february": "Februar",
+      "march": "März",
+      "april": "April",
+      "may": "Mai",
+      "june": "Juni",
+      "july": "Juli",
+      "august": "August",
+      "september": "September",
+      "october": "Oktober",
+      "november": "November",
+      "december": "Dezember"
+    },
+    "days": {
+      "monday": "Montag",
+      "tuesday": "Dienstag",
+      "wednesday": "Mittwoch",
+      "thursday": "Donnerstag",
+      "friday": "Freitag",
+      "saturday": "Samstag",
+      "sunday": "Sonntag"
+    },
+    "dateFormat": "TT.MM.JJJJ",
+    "employee": "Mitarbeiter",
+    "page": "Seite",
+    "from": "von",
+    "ceo": "Direktor",
+    "title": "Titel",
+    "country": "Land",
+    "city": "Ort",
+    "street": "Straße",
+    "zip": "PLZ",
+    "phone": "Telefonnummer",
+    "for": "für",
+    "a": "ein",
+    "loading": "Wird geladen",
+    "hello": "Hallo",
+    "logout": "Ausloggen",
+    "step": "Schritt",
+    "to": "Zu den",
+    "monthWord": "Monat",
+    "monthsWord": "Monate",
+    "areYouSure": "Sind Sie sicher?",
+    "at": "um",
+    "is": "Ist",
+    "shall": "Soll",
+    "reset": "Zurücksetzen",
+    "total": "Summe",
+    "available": "Verfügbar",
+    "download": "Herunterladen",
+    "here": "hier",
+    "backTo": "Zurück zum",
+    "ceo2": "Geschäftsführer",
+    "showDetails": "Details anzeigen",
+    "change": "ändern",
+    "set": "setzen",
+    "uploadDocument": "Dokument hochladen",
+    "submit": "Einreichen",
+    "noElementsFound": "Keine Elemente gefunden",
+    "addNew": "Neue hinzufügen",
+    "newOption": "Neu anlegen",
+    "today": "Heute",
+    "clickHere": "hier klicken",
+    "date": "DATUM",
+    "hours_one": "Stunde",
+    "hours_other": "Stunden",
+    "hours_shortened_one": "Std",
+    "hours_shortened_other": "Std.",
+    "notA": "kein",
+    "showMore": "mehr anzeigen",
+    "showLess": "weniger anzeigen",
+    "other": "Anderes",
+    "noOptions": "Keine Optionen gefunden",
+    "noUsers": "Keine Nutzer gefunden",
+    "noKeywords": "Keine Schlüsselwörter gefunden",
+    "noElements": "Keine Elemente gefunden",
+    "requirements": "Anforderungen",
+    "characters": "Zeichen",
+    "max255": "Maximal 255 Zeichen erlaubt.",
+    "mr": "Herr",
+    "mrs": "Frau",
+    "isPlural": "n",
+    "greetingEndingMale": "r",
+    "greetingEndingFemale": "",
+    "brownCoal": "Braunkohlerevier",
+    "numverifyCodes": {
+      "101": "Der Zugangsschlüssel ist ungültig oder fehlt.",
+      "102": "Das Konto des Benutzers ist nicht aktiv. Der Benutzer wird aufgefordert, sich mit dem Kundendienst in Verbindung zu setzen.",
+      "104": "Die monatliche API-Anfrageerlaubnis seines Abonnementplans erreicht oder überschritten hat.",
+      "105": "Der aktuelle Abonnementplan unterstützt keine HTTPS-Verschlüsselung.",
+      "210": "Hat keine Telefonnummer angegeben.",
+      "310": "Einen ungültigen 2-Buchstaben-Ländercode angegeben.",
+      "404": "Eine Ressource angefordert, die nicht existiert"
+    },
+    "Unknown": "Unbekannt",
+    "A user who left the organization": "Ein Benutzer, der die Organisation verlassen hat",
+    "Company": "Unternehmen",
+    "First contact": "Erstkontakt",
+    "Qualification": "Qualifizierung",
+    "Lead confirmed": "Warmer Kontakt",
+    "Hotlist": "Hotlist",
+    "Rocket": "Rakete",
+    "Trash": "Müll",
+    "Please select a status": "Wählen Sie bitte einen Status",
+    "Search user": "Mitarbeiter suchen",
+    "errors": {
+      "Maintenance mode, we will back soon": "Wartungsmodus, wir sind bald zurück.",
+      "Due date is required!": "Das Fälligkeitsdatum ist erforderlich!",
+      "Something went wrong": "Etwas ist schief gelaufen",
+      "Please check your VPN and internet connection": "Bitte überprüfen Sie Ihre VPN- und Internetverbindung",
+      "you can't comment on a company that is not in your campaign!": "Man darf nur in eigenen Kampagnen kommentieren",
+      "please verify you're human": "Bitte bestätigen Sie, dass Sie ein Mensch sind",
+      "Maximum 10 Billion": "Maximum 10 trillion"
+    },
+    "codes": {
+      "404": "Requested a resource which does not exist (404)",
+      "403": "You do not have enough permissions (403)",
+      "500": "Server Error (500)",
+      "422": "Entry Data is not valid (422)"
+    },
+    "table": "tabelle",
+    "image": "bild",
+    "okay": "Okay",
+    "textEditorPlaceholder": "Schreiben Sie hier Ihren Text",
+    "coming_soon": "Demnächst!",
+    "all_projects": "Alle Projekte",
+    "fy": "WJ",
+    "delete": "Löschen",
+    "confirmAndSaveFile": "Bestätigen und Datei speichern",
+    "confirmAndSave": "Bestätigen und speichern",
+    "allCategories": "Alle Kategorien",
+    "startDate": "Datum Des Beginns",
+    "endDate": "Enddatum",
+    "projectData": "Projektdaten",
+    "projectVolume": "Projektvolumen",
+    "company": "Unternehmen",
+    "projectTitle": "Projekttitel",
+    "projectPlan": "Projektplan",
+    "hints": "Hinweise",
+    "involvedEmployees": "Beteiligte Mitarbeiter",
+    "complete": "Vollständig",
+    "notComplete": "Nicht vollständig",
+    "duplicate": "Duplizieren Sie",
+    "status": "Status",
+    "selectExportingData": "Wählen Sie die zu exportierenden Daten",
+    "exportSelectedData": "Exportieren Sie ausgewählte Daten",
+    "vacation": "Urlaub",
+    "sick": "Krank",
+    "home_office": "Anderes",
+    "add_section": "{{section}} hinzufügen",
+    "project": "Projekt",
+    "project_other": "Projekte",
+    "financialYears": "Wirtschaftsjahre",
+    "uploadDocsTitle": "Neue Dokumente hochladen",
+    "uploadDocsSubtitle": "Klick oder Drag&Drop",
+    "dropHint": "Dateien zum Hochladen ablegen",
+    "of": "von",
+    "newMessage": "Neue Nachricht",
+    "newMessage_other": "Neue Nachrichten",
+    "noNewMessages": "Keine neuen Nachrichten",
+    "noFilePreview": "Keine Dateivorschau für diesen Dateityp verfügbar",
+    "allProjects": "Alle Projekte",
+    "allFY": "Alle Wirtschaftsjahre",
+    "search": "Suche",
+    "uploadInProgress": "Upload in Bearbeitung",
+    "cancelUpload": "Upload abbrechen",
+    "deselectAll": "Abwählen",
+    "closeAndDelete": "Schließen und Löschen",
+    "deletePrompt1": "Sie haben {{docsNumber}} nicht kategorisierte Dateien",
+    "deletePrompt2": "Alle nicht kategorisierten Dateien werden gelöscht",
+    "deletePrompt3": "Sind Sie sicher, dass Sie die Kategorisierung abbrechen und dieses Fenster schließen?",
+    "duplicte_sections": {
+      "delete": "Sind Sie sicher, dass Sie diesen Abschnitt löschen möchten?"
+    }
+  },
+  "controlling": {
+    "title": "Projektcontrolling",
+    "tabs": {
+      "performance": "Leistung",
+      "employees": "Mitarbeiter",
+      "contractors": "Auftragnehmer",
+      "costOverview": "Kostenübersicht"
+    },
+    "workplans": {
+      "search": "Suche nach dem Arbeitsplaneintrag",
+      "taskType": "Aufgabentyp",
+      "noGrouping": "Keine Gruppierung",
+      "table": {
+        "project": "Projekt/Arbeitsplan",
+        "connected": "Verbunden mit",
+        "responsible": "Verantwortlich",
+        "velocity": "Geschwindigkeit",
+        "cpi": "Wirkungsgrad",
+        "variance": "Kostenabweichung",
+        "progress": "Fortschritt",
+        "toFolder": "Zum Ordner",
+        "toPinboard": "Zum Pinboard",
+        "task": "Aufgabe",
+        "task_other": "Aufgaben",
+        "subtask": "Teilaufgabe",
+        "subtask_other": "Teilaufgaben",
+        "taskType": "Aufgabentyp",
+        "sprint": "Sprint",
+        "planCost": "Geplante Kosten",
+        "totalCost": "Aktuelle Kosten"
+      }
+    },
+    "employees": {
+      "search": "Suche nach dem Mitarbeiter",
+      "table": {
+        "project": "Projekt/Beauftragter/Position",
+        "connected": "Aufgaben",
+        "cpi": "Wirkungsgrad",
+        "progress": "Progress",
+        "completion": "Pünktliche Fertigstellungsrate",
+        "planHours": "Geplante Stunden",
+        "totalHours": "Gesamtstunden"
+      }
+    },
+    "costOverview": {
+      "search": "Suche nach dem Arbeitsplaneintrag",
+      "seeTotalCost": "Gesamtkosten der einzelnen Projekte nach Aufgabentypen gruppiert anzeigen",
+      "unassignedToTaskType": "Nicht einem Aufgabentyp zugeordnet",
+      "export": {
+        "projectsSelected": "{{count}} Projekte ausgewählt"
+      }
+    }
+  },
+  "crossProjectData": {
+    "project_timeframes": "Projektzeitrahmen",
+    "update_duration": "Dauer aktualisiert",
+    "duration_warning": "Bitte geben Sie einen gültigen Zeitraum ein",
+    "search_by_project_name": "Nach Projektnamen suchen",
+    "all_projects": "Alle Projekte",
+    "new_project": "Neues Projekt",
+    "click_to_remove": "Klicken Sie zum Entfernen",
+    "assigned_projects": "Zugewiesene projekte",
+    "total": "gesamt",
+    "planned": "Geplant",
+    "rnd_employees": "F&E-Mitarbeiter",
+    "rnd_projects": "F&E-Projekte",
+    "active_personnel": "Active personnel",
+    "rnd_related": "F&E-bezogen",
+    "active": "Aktiv",
+    "expired": "Abgelaufen",
+    "budget_personnel_costs": "Budgetierte Personalkosten",
+    "click_to_view_budget_plan": "Klicken Sie hier, um den Budgetplan anzuzeigen",
+    "other_cost_allocation": "Sonstige Kostenzuordnung",
+    "search_for_other_cost": "Suchen Sie nach anderen Kosten",
+    "assign_other_costs_to_each_project": "Ordnen Sie jedem Projekt andere Kosten zu",
+    "assigned_other_cost": "Andere Kosten zugewiesen",
+    "add_new_cost": "Neue Kosten",
+    "new_other_cost": "Neue andere Kosten",
+    "edit_other_cost": "Andere Kosten bearbeiten",
+    "delete_other_cost": "Andere Kosten löschen",
+    "other_cost_input_field_label": "Titel der anderen Kosten",
+    "other_cost_description": "Sie können nach der Erstellung Unterkategorien zu jeder anderen Kostenart hinzufügen.",
+    "sub_other_cost_input_field_label": "Untertitel der anderen Kosten",
+    "delete_other_cost_description": "Sind Sie sicher, dass Sie andere Kostenelemente entfernen möchten?",
+    "delete_other_cost_sub_description": "Dieser andere Kostenposten hat Unterkategorien. Das Entfernen aller Elemente kann Auswirkungen auf andere Projektschritte haben.",
+    "new_sub_other_cost": "Neue Sub-Sonstige Kosten",
+    "edit_sub_other_cost": "Untergeordnete Kosten bearbeiten",
+    "delete_sub_other_cost": "Untergeordnete sonstige Kosten löschen",
+    "contractor_allocation": "Auftragnehmerzuteilung",
+    "personnel_planning": "Personalplanung",
+    "personnel_allocation": "Personalzuteilung",
+    "search_for_employee": "Suche nach Mitarbeiter",
+    "assign_employees_to_each_project": "Weisen Sie jedem Projekt Personal zu",
+    "assign_contractors_to_each_project": "Weisen Sie jedem Projekt Auftragnehmer zu",
+    "assigned_employees": "Zugewiesene mitarbeiter",
+    "assigned_contractors": "Zugewiesene auftragnehmer",
+    "employee_allocation": "Mitarbeiterzuteilung",
+    "add_contractor": "Auftragnehmer hinzufügen",
+    "new_contractor": "Neuer Auftragnehmer",
+    "edit_contractor": "Auftragnehmer bearbeiten",
+    "delete_contractor": "Auftragnehmer löschen",
+    "confirm_action": "Aktion bestätigen",
+    "confirm_remove_employee": "Möchten Sie diese Zuweisung wirklich entfernen?",
+    "confirm_remove_employee_with_pms": "Dieser Mitarbeiter ist {{count}} PMs im Projektplan zugewiesen. Sind Sie sicher, dass Sie ihn abmelden möchten? Diese Aktion entfernt alle zugehörigen Daten.",
+    "edit": "Bearbeiten",
+    "add_sub_category": "Unterkategorie hinzufügen",
+    "delete": "löschen",
+    "confirm": "Bestätigen",
+    "cancel": "Stornieren",
+    "save": "Speichern",
+    "This field is required": "Dieses Feld ist erforderlich",
+    "search": "Suche",
+    "search_for_contractor": "Suche nach auftragnehmer",
+    "table": {
+      "project_title": "Projekttitel",
+      "status": "Status",
+      "duration": "Dauer",
+      "role_not_defined": "Rolle nicht definiert",
+      "assigned_to_project": "Dem Projekt zugewiesen",
+      "assign_to_project": "Dem Projekt zuweisen",
+      "employee_contract_outside_project_timeframe": "Vertragsdaten des Mitarbeiters liegen außerhalb des Projektzeitrahmens",
+      "rnd_role_required": "F&E-Rolle erforderlich",
+      "only_rnd_employees_can_be_allocated": "Nur F&E-Beschäftigte können für F&E-Projekte eingesetzt werden.",
+      "employee_have_tracked_time": "Der Mitarbeiter hat die Zeit erfasst"
+    }
+  },
+  "eventCards": {
+    "user_left_the_organization": "Ein Benutzer, der die Organisation verlassen hat",
+    "entity": "Entität",
+    "trash_card": {
+      "main_reason_title": "Hauptgrund",
+      "comment_title": "Was müsste passieren, damit der Kunde unterschreibt?",
+      "additional_comments_title": "Zusätzliche Kommentare"
+    },
+    "email_card": {
+      "to": "An",
+      "cc": "CC",
+      "bcc": "BCC"
+    },
+    "company_moved_card": {
+      "activity_text": "hat das {{companyName}} ({{campaignName}}) in {{statusName}} verschoben"
+    },
+    "contact_person_created_card": {
+      "added": "fügte hinzu"
+    },
+    "employee_count_card": {
+      "activity_text": "hat die Mitarbeiterzahl von {{companyName}} auf {{employeeCount}} geändert"
+    },
+    "research_cost_per_year_card": {
+      "activity_text": "hat die Forschungskosten von {{companyName}} auf {{researchCost}} geändert"
+    },
+    "call_card": {
+      "activity_text": "{{callerName}} hat {{calleeName}} für {{duration}} Minuten angerufen."
+    },
+    "contract_card": {
+      "activity_text": "hat einen Vertrag mit dem Titel <Title>{{contractTitle}}</Title> erstellt."
+    },
+    "workflow_trash_card": {
+      "activity_text": "hat <ChangedField>Stufe</ChangedField> von <NewValue>{{from}}</NewValue> zu <NewValue>Papierkorb</NewValue> geändert",
+      "unknown": "unbekannt"
+    },
+    "workflow_card": {
+      "activity_text": "hat <ChangedField>Stufe</ChangedField> von <NewValue>{{from}}</NewValue> zu <NewValue>{{to}}</NewValue> geändert",
+      "unknown": "unbekannt"
+    },
+    "contact_person_card": {
+      "with_details": "hat eine neue Kontaktperson <Bold>{{person}}</Bold> hinzugefügt.",
+      "without_details": "hat eine neue Kontaktperson hinzugefügt."
+    },
+    "entity_change_card": {
+      "show_activities_one": "Zeige {{count}} Aktivität",
+      "show_activities_other": "Zeige {{count}} Aktivitäten",
+      "created": "hat die Entität erstellt.",
+      "made_changes": "hat die Entität geändert.",
+      "subtask_created": "hat eine neu Teilaufgabe erstellt.",
+      "task-created": "hat eine neu Aufgabe erstellt.",
+      "checklist-created": "hat eine neu Checkliste erstellt.",
+      "assignee_added": "hat <ChangedField>{{field}}</ChangedField> als Bearbeiter hinzugefügt.",
+      "assignee_deleted": "hat <ChangedField>{{field}}</ChangedField> als Bearbeiter gelöscht.",
+      "watcher_added": "hat <ChangedField>{{field}}</ChangedField> als Watcher hinzugefügt.",
+      "watcher_deleted": "hat <ChangedField>{{field}}</ChangedField> als Watcher gelöscht.",
+      "changed": "hat <ChangedField>{{field}}</ChangedField> von <OldValue>{{before}}</OldValue> zu <NewValue>{{after}}</NewValue> geändert.",
+      "deleted": "hat die Entität gelöscht.",
+      "restored": "hat die Entität wiederhergestellt.",
+      "added_field_value": "hat den Wert <NewValue>{{value}}</NewValue> für <ChangedField>{{field}}</ChangedField> hinzugefügt.",
+      "deleted_field_value": "hat den Wert von <ChangedField>{{field}}</ChangedField> gelöscht.",
+      "tracked_time_started": "hat die Zeitverfolgung gestartet.",
+      "tracked_time_stopped": "hat die Zeitverfolgung gestoppt.",
+      "tracked_time_deleted": "hat die Zeitverfolgung gelöscht.",
+      "new_tag_added": "hat den Tag <NewValue>{{value}}</NewValue> hinzugefügt.",
+      "description_changed": "hat das <ChangedField>{{field}}</ChangedField> aktualisiert."
+    },
+    "write_comment_here": "Schreiben Sie hier einen Kommentar..",
+
+    "user_changed_property": "<Name>{{name}}</Name> hat <Property>{{property}}</Property> in <Value>{{value}}</Value> geändert",
+    "user_changed_status": "<Name>{{name}}</Name> hat den Status von <ValueFrom>{{valueFrom}}</ValueFrom> zu <ValueTo>{{valueTo}}</ValueTo> geändert"
+  },
+  "main": {
+    "language": "de-DE",
+    "h": "Std.",
+    "M": "M",
+
+    "Yes": "Ja",
+    "No": "Nein",
+
+    "Manage Responsible Types": "Verantwortliche Typen verwalten",
+    "Attached partner to project successfully.": "Partner erfolgreich an Projekt angeschlossen.",
+
+    "Please enter a date after submit date.": "Bitte geben Sie ein Datum nach dem Absendedatum ein.",
+    "Please enter a date before finish date.": "Bitte geben Sie ein Datum vor dem Enddatum ein.",
+    "Please enter a date after start date.": "Bitte geben Sie ein Datum nach dem Startdatum ein.",
+
+    "Please enter a valid German postcode.": "Bitte geben Sie eine gültige deutsche Postleitzahl ein.",
+    "Please enter a valid UK postcode.": "Bitte geben Sie eine gültige britische Postleitzahl ein.",
+    "Please enter a valid French postcode.": "Bitte geben Sie eine gültige französische Postleitzahl ein.",
+    "Please enter a valid Italy postcode.": "Bitte geben Sie eine gültige italienische Postleitzahl ein.",
+
+    "Please enter a valid German tax number.": "Bitte geben Sie eine gültige deutsche Steuernummer ein.",
+    "Please enter a valid UK tax number.": "Bitte geben Sie eine gültige britische Steuernummer ein.",
+    "Please enter a valid French tax number.": "Bitte geben Sie eine gültige französische Steuernummer ein.",
+    "Please enter a valid Italy tax number.": "Bitte geben Sie eine gültige italienische Steuernummer ein.",
+
+    "Project deleted": "Das Projekt wurde erfolgreich gelöscht.",
+    "Project created": "Das Projekt wurde erfolgreich erstellt.",
+    "Project Plan Wizard": "Projektplan Wizard",
+    "Total Project": "Gesamtprojekt",
+    "Plan": "Plan",
+
+    "copy in another project type": "Kopieren in einen anderen Projekt-Typ",
+    "select project type in step one": "Wählen Sie aus, welchen Projekttyp Sie kopieren möchten {{ProjectTitle}} Projekt.",
+    "data mapping in step otwo": "Wählen Sie die entsprechenden Datenfelder für den neuen Projekttyp. Es können nur Felder desselben Typs zusammengefügt werden.",
+    "map automatically": "Daten automatisch kartieren",
+    "Copy project to another project type": "Projekt in einen anderen Projekttyp kopieren",
+    "Copy project step 1": "Projekttyp",
+    "Copy project step 2": "Karte",
+    "Copy project step 3": "Überprüfung",
+    "hide project": "Projekt ausblenden",
+    "reveal project": "Projekt enthüllen",
+    "Add contractor": "Auftragnehmer hinzufügen",
+    "Update contractor": "Auftragnehmer aktualisieren",
+
+    "Create a copy": "Erstellen Sie eine Kopie",
+    "deleteConfirmation": "Möchten Sie diesen Projekt wirklich löschen?",
+    "Delete project": "Projekt löschen",
+    "projects deleted successfully": "Projekt erfolgreich gelöscht!",
+    "Copy Project": "Projekt kopieren",
+    "Proceed & Copy Anyway": "Trotzdem fortfahren und kopieren",
+    "confirm for data mapping title": "Sind Sie sicher, dass Sie fortfahren wollen?",
+    "confirm for data mapping description": "Einige Daten im Projekt sind nicht zugeordnet und werden daher während des Kopiervorgangs entfernt. Wenn Sie diese Daten behalten möchten, überprüfen Sie sie bitte und passen Sie sie an, bevor Sie fortfahren.",
+    "warning for data mapping": "Einige Daten im Projekt sind nicht zugeordnet und werden daher während des Kopiervorgangs entfernt. Wenn Sie diese Daten behalten möchten, überprüfen Sie sie bitte und passen Sie sie an, bevor Sie fortfahren.",
+
+    "hide_project_hint": "Versteckte Projekte können in der Projektübersichtsliste mithilfe des Sichtbarkeitsfilters angezeigt werden.",
+    "unknown_project_type": "Unbekannter Projekttyp",
+
+    "First, select all employees involved in the project.": "Wählen Sie als erstes alle am Projekt beteiligten Mitarbeiter aus.",
+    "Employee List": "Mitarbeiterliste",
+    "In the project": "Im Projekt",
+    "Add the collaborators to the project": "Fügen Sie die Mitarbeiter dem Projekt hinzu",
+
+    "Generate": "Erzeugen Sie",
+    "Generates project plan": "Generiert Projektplan",
+
+    "estimated project costs": "geschätzte Projektkosten",
+
+    "Employees Involved": "Beteiligte Mitarbeiter",
+    "Human Resources Cost": "Personalressourcen",
+    "Define Work Packages": "Arbeitspakete definieren",
+    "Define Work Packages intro": "Definieren Sie für Ihr Projekt alle Arbeitspakete in einer sinnvollen. Gliederung mit Haupt- und Unterpunkten.",
+
+    "Now estimate the possible effort of each work package in person-months": "Schätzen Sie nun den etwaigen Aufwand eines jeden Arbeitspakets in Personenmonaten (PM).",
+    "Please note the target value of approx": "Beachten Sie dabei den Zielwert von ca. {{months}}PM um die maximalen Projektkosten von {{euro}} zu erreichen",
+    "app.": "ca.",
+
+    "Effort Estimation": "Aufwandsschätzung",
+    "Schedule": "Zeitlicher Ablauf",
+    "Responsibilities": "Zuständigkeiten",
+
+    "Add project": "Projekt hinzufügen",
+    "overall funding": "Gesamtförderung",
+    "Customize Dashboard": "Dashboard anpassen",
+    "Possible overall promotion": "Mögliche Gesamtförderung",
+    "Achieved from max promotion": "Erreicht von max. Förderung",
+    "Number of research projects": "Anzahl Forschungsprojekte",
+    "Data entry and upload checklist": "Checkliste Dateneingabe und - uploads",
+
+    "project activity": "Projektaktivität",
+    "Activity": "Activity",
+    "time management": "Zeitmanagement",
+    "Analysis": "Detailanalyse",
+    "tables": "Kosten & Zeitaufwand",
+    "graphs": "Prognose",
+
+    "project-timeframes": "Zeitrahmen des Projekts",
+    "employee-allocation": "Zuweisung der Mitarbeiter",
+    "personnel-planning": "Personalplanung",
+
+    "Antrag": "Antrag",
+    "In Prüfung": "In Prüfung",
+    "Laufend": "Laufend",
+    "Abgelehnt": "Abgelehnt",
+    "Beendet": "Beendet",
+
+    "Application": "Antrag",
+    "In Review": "In Prüfung",
+    "Ongoing": "Laufend",
+    "Rejected": "Abgelehnt",
+    "Finished": "Beendet",
+
+    "serverProjectStatus": {
+      "Application": "Antrag",
+      "In Review": "In Prüfung",
+      "Ongoing": "Laufend",
+      "Rejected": "Abgelehnt",
+      "Finished": "Beendet"
+    },
+
+    "table_options": "Tabellenoptionen",
+    "turn_on_grouping": "Gruppierung aktivieren",
+    "turn_off_grouping": "Gruppierung deaktivieren",
+    "show_projects": "Projekte anzeigen",
+    "responsible_employees": "Verantwortliche Mitarbeiter",
+    "project_duration": "Projektdauer",
+
+    "projectPage": {
+      "overview": "Übersicht",
+      "workflow": "Projektdaten",
+      "workflow/basic-data": "Projektdaten",
+      "contractor": "Auftragnehmer",
+      "dashboard-controlling": "Dashboard Controlling",
+      "costs": "Projektkosten",
+      "cost-overview": "Kostenübersicht",
+      "file-archive": "Dateien",
+      "plan": "Projektplan"
+    },
+
+    "overviewMode": {
+      "tile": "Kachelansicht",
+      "list": "Listenansicht",
+      "kanban": "Kanban-Ansicht"
+    },
+
+    "projectWorkflowMenu": {
+      "form-of-activity": "Tätigkeitsform",
+      "basic-data": "Basisdaten",
+      "cooperation-partner": "Kooperationspartner",
+      "description": "Inhaltliche Beschreibung",
+      "confirmation-of-receipt": "Eingangsbestätigung",
+      "responsibles": "Verantwortliche",
+      "queries": "Rückfragen",
+      "reject-and-appeal": "Widerspruch zur Ablehnung",
+      "final-decision": "Finale Entscheidung",
+      "submission": "Einreichung",
+      "submission-rnd": "Bereit zur Überprüfung"
+    },
+
+    "project_costs": {
+      "purpose": {
+        "personal": {
+          "budget": {
+            "title": "Budget Personalkosten",
+            "description": "Das Personalkostenbudget dient als grobe Kostenschätzung und muss vor der Projektplanung als Anhaltspunkt definiert werden."
+          },
+          "planned-costs": {
+            "title": "Plan Personalkosten",
+            "description": "Die geplanten Personalkosten ergeben sich aus den in der Mitarbeiterverwaltung eingetragenen Gehältern in Verbindung mit dem Projektplan."
+          },
+          "expenses": {
+            "title": "Personalkosten",
+            "description": "Die tatsächlichen Personalkosten ergeben sich aus den in der Zeiterfassung erfassten und mit dem Projekt verknüpften Stunden."
+          }
+        },
+        "contractors": {
+          "budget": {
+            "title": "Budget Auftragnehmer",
+            "description": "Das Budget für Unteraufträge dient als Grundlage für die Planung der Unterauftragnehmer und muss vorab definiert werden."
+          },
+          "planned-costs": {
+            "title": "Plan Auftragnehmer",
+            "description": "Die Plankosten des Projekts für Unterauftragnehmer müssen für den Antrag etwas genauer detailliert werden."
+          },
+          "expenses": {
+            "title": "Auftragnehmer",
+            "description": "Die tatsächlichen Kosten für Unterauftragnehmer ergeben sich aus den im Kosten Center erfassten Rechnungen."
+          }
+        },
+        "other": {
+          "budget": {
+            "title": "Budget Sonstige Kosten",
+            "description": "Das Budget für Material- und Sachkosten sowie für projektbezogene Abschreibungen dient zur späteren Kostenkontrolle."
+          },
+          "planned-costs": {
+            "title": "Plan Sonstige Kosten",
+            "description": "Um die Förderfähigkeit zu prüfen und für eine erhöhte Planungssicherheit beim Budget, können Sie sonstige Kosten hier im Detail planen."
+          },
+          "expenses": {
+            "title": "Sonstige Kosten",
+            "description": "Die entstandenen sonstigen Kosten ergeben sich aus erfassten und mit Projekten verknüpften Rechnungen sowie Angaben zu Abschreibungen."
+          }
+        },
+        "sum": {
+          "budget": {
+            "title": "Summe",
+            "description": ""
+          },
+          "planned-costs": {
+            "title": "Summe",
+            "description": ""
+          },
+          "expenses": {
+            "title": "Summe",
+            "description": ""
+          }
+        }
+      },
+      "type": {
+        "budget": {
+          "title": "Budget"
+        },
+        "planned-costs": {
+          "title": "Plankosten"
+        },
+        "expenses": {
+          "title": "Entstandene Kosten"
+        }
+      },
+      "total": "Gesamt",
+      "employees_management": "Zur Mitarbeiterverwaltung",
+      "project_plan": "Zum Projektplan",
+      "subcontractors": "Zur Planung der Unterauftragnehmer",
+      "other_costs": "Zur Planung der sonstigen Kosten",
+      "timetable": "Zur Stundenübersicht",
+      "contractor_cost_management": "Zur Kostenverwaltung Auftragnehmer",
+      "invoice_management": "Zur Rechnungsverwaltung"
+    },
+    "project_cost_overview": {
+      "personnel_cost": "Personalkosten",
+      "contractor_cost": "Auftragnehmer Kosten",
+      "other_cost": "Sonstige Kosten",
+      "total_cost": "Gesamtkosten",
+      "planned_cost": "Geplante Kosten",
+      "actual_cost": "Tatsächliche Kosten",
+      "files": "Dateien",
+      "file": "Datei",
+      "categorize_invoices_banner": "Laden Sie Ihre Rechnungen für Auftragnehmer und andere Kosten hoch, um sie mit den geplanten Kosten abzugleichen.",
+      "upload_your_files": "Laden Sie Ihre Dateien hoch!",
+      "upload_your_files_description": "Klick oder Drag&Drop",
+      "upload_files": "Dateien hochladen"
+    },
+    "contractor_costs": {
+      "title": "Plankosten Unterauftragnehmer",
+      "no_contractors": "Bitte fügen Sie Auftragnehmer hinzu oder bestätigen Sie, dass keine Kosten für Auftragnehmer geplant sind",
+      "no_expeses_planned": "Keine Kosten geplant",
+      "add_contractor": "Auftragnehmer hinzufügen",
+      "contractors_planned": "Plansumme Auftragnehmer",
+      "contractors_budget": "Budget Auftragnehmer",
+      "of_budget": "of budget",
+      "contractor": "Unterauftragnehmer",
+      "eu": {
+        "title": "INNERHALB EU"
+      },
+      "noneu": {
+        "title": "AUSSERHALB EU"
+      }
+    },
+
+    "other_costs": {
+      "title": "Other costs",
+      "plan_other_cost": "Geplante Ausgabe",
+      "other_costs_total": "Summe Sonstige Kosten",
+      "total": "Summe"
+    },
+
+    "contractor": {
+      "title": "NAME DES AUFTRAGNEHMERS",
+      "description": "KURZBESCHREIBUNG",
+      "budget": "BUDGET"
+    },
+
+    "contractor_expenses": {
+      "title": "Contractor expenses",
+      "no_contractors": "Bitte fügen Sie Auftragnehmer hinzu oder bestätigen Sie, dass keine Kosten für Auftragnehmer geplant sind",
+      "no_expeses_planned": "Keine Kosten geplant",
+      "contractors_planned": "Plansumme Auftragnehmer",
+      "contractors_budget": "Budget Auftragnehmer",
+      "of_budget": "of budget",
+      "contractor": "Unterauftragnehmer",
+      "eu": {
+        "title": "INNERHALB EU"
+      },
+      "noneu": {
+        "title": "AUSSERHALB EU"
+      }
+    },
+
+    "other_expenses": {
+      "title": "Other expenses"
+    },
+
+    "Search for projects": "Suche nach Projekten",
+    "your projects": "Ihre Projekte",
+    "all_projects": "Alle Projekte",
+    "filtered_projects": "Gefilterte Projekte",
+    "PROJECT TITLE": "PROJEKTTITEL",
+    "STATUS": "STATUS",
+    "COMPANY": "UNTERNEHMEN",
+    "PROJECT VOLUME": "PROJEKTVOLUMEN",
+    "PROJECT SIZE": "PROJEKTSKIZZE",
+    "QUESTIONS": "FRAGENLISTEN",
+    "PROJECT PLAN": "PROJEKTPLAN",
+    "HINTS": "HINWEISE",
+    "Hide project": "Projekt ausblenden",
+    "Create project outline": "Projektskizze erstellen",
+    "Current status": "Aktueller Status",
+    "This is to be done": "Das ist zu erledigen",
+    "filled in": "ausgefüllt",
+    "Please create the project outline, which describes your research project and represents the heart of your SFF application.": "Bitte erstellen Sie die Projektskizze, welche Ihr Forschungsprojekt beschreibt und das Herzstück Ihres SFF Antrages darstellt.",
+    "Edit": "Bearbeiten",
+    "Download": "Herunterladen",
+    "Fill out commercial data": "Kaufmännische Daten ausfüllen",
+    "Complete project planning": "Projektplanung abschließen",
+    "not completed": "nicht abgeschlossen",
+    "not submitted": "nicht eingereicht",
+    "short title muss ausgefüllt werden. (and 3 more errors)": "short title muss ausgefüllt werden. (and 3 more errors)",
+
+    "Basic Data": "Basisdaten",
+    "Responsible": "Verantwortliche",
+    "Project Planning": "Projektplanung",
+    "Submission and Examination": "Einreichung und Prüfung",
+    "Project Title": "Internes Akyronym",
+    "Project Short Title": "Kurztitel des Projekts",
+    "Project description": "Projektbeschreibung",
+    "Project start": "Projektstart",
+    "Project end": "Projektende",
+    "Short Description": "Kurzbeschreibung",
+    "Enter short description": "Kurzbeschreibung eingeben",
+    "Short title": "Akronym (Kurztitel)",
+    "Create project": "Projekt erstellen",
+
+    "Operating company": "Durchführendes Unternehmen",
+    "Associated application intake": "Zugehörige Antragsaufnahme",
+    "Documents for application acceptance": "Dokumente Antragsaufnahme",
+    "Estimated Submission Date": "Voraussichtliches Einreichdatum",
+    "Responsible Persons In Company": "Verantwortliche durchführendes Unternehmen",
+    "Responsible Persons In Innoscripta": "Verantwortliche innoscripta",
+    "Project Size": "projektskizze",
+    "Please create the project outline, which describes your research project and represents the heart of your SFF application. Make sure the document meets the detailed requirements shown in the questionnaire to stand a chance of approval at the check.": "Bitte erstellen Sie die Projektskizze, welche Ihr Forschungsprojekt beschreibt und das Herzstück Ihres SFF Antrages darstellt. Stellen Sie sicher, dass das Dokument den im Fragebogen gezeigten, detaillierten Anforderungen entspricht um bei der Prüfung eine Chance auf Bewilligung zu haben.",
+    "In order to assess the eligibility of the company and the project, some commercial data is required for the application, which we have summarized for you in a clear list of questions. There is a project-related and a company-related list of questions": "Zur Beurteilung der Förderfähigkeit des Unternehmens und des Projektes werden für den Antrag einige kaufmännische Daten benötigt, welche wir für Sie in einer klaren Fragenliste zusammengefasst haben. Es gibt dabei eine projektbezogene als auch eine firmenbezogene Fragenliste",
+    "Now submit the application in the BSFZ portal and confirm the submission here to change the status of the project to under review.": "Reichen Sie den Antrag nun im BSFZ Portal ein und bestätigen Sie die Einreichung hier um den Status des Projekts auf in Prüfung zu ändern.",
+    "Open project outline": "Projektskizze öffnen",
+    "Open general data": "Allgemeine Daten öffnen",
+    "Open project-specific data": "Projektspezifische Daten öffnen",
+    "Submission": "Einreichung",
+    "Show application proposal": "Antragsvorschlag anzeigen",
+    "To the BSFZ portal": "Zum BSFZ Portal",
+    "I submitted the application": "Ich habe den Antrag eingereicht",
+    "Acknowledgment of receipt": "Eingangsbestätigung",
+    "If you have received the acknowledgment of receipt, please enter the date of the acknowledgment of receipt here for complete documentation.": "Wenn Sie die Eingangsbestätigung erhalten haben, erfassen Sie hier bitte das Datum der Eingangsbestätigung zur vollständigen Dokumentation.",
+    "Queries": "Rückfragen",
+    "Check your mailbox regularly. Any questions can be expected after about 20 days and will be answered within a period of 30 days. To ensure that the documentation is complete, please archive queries and related comments here.": "Prüfen Sie Ihre Mailbox regelmäßig. Eventuelle Rückfragen sind nach etwa 20 Tagen zu erwarten und innerhalb einer Frist von 30 Tagen zu beantworten.Zur Vollsändigkeit der Dokumentation archivieren Sie bitte Rückfragen und zugehörige Stellungnahmen hier.",
+    "Compact header": "Kompakte Kopfleiste",
+    "Detailed header bar": "Ausführliche Kopfleiste",
+
+    "total labor costs": "Gesamtpersonalkosten",
+    "In draft and versioning mode you can create a project plan without other people being able to see the work status. In this mode you can also use the wizard or restore old versions.": "Im Entwurfs- und Versionierungsmodus können Sie einen Projektplan erstellen ohne dass andere Personen den Arbeitsstand sehen können. Sie können in diesem Modus auch den Wizard verwenden oder alte Versionen wieder herstellen.",
+    "Draft and versioning mode": "Entwurfs- und Versionierungsmodus",
+    "Open wizard": "Wizard öffnen",
+    "The wizard structures the necessary information for the initial generation of the project plan in simple and clearly understandable steps. Our AI then creates a plan for you, which you only have to adjust.": "Der Wizard strukturiert für die Erstgenerierung des Projekplans die nötigen Informationen in einfache und klar verständliche Schritte. Unsere AI erstellt dann einen Plan für Sie, den Sie nur noch anpassen müssen.",
+    "Reset to default": "Zurücksetzen",
+    "Final application version": "Finale Antragsversion",
+    "Ready": "Fertig",
+
+    "Only show new ones": "Zeige nur neue",
+    "Impressum": "Impressum",
+    "Datenschutz": "Datenschutz",
+    "AGB": "AGB",
+    "There is no timer running or passed for selected task.": "Für die ausgewählte Aufgabe läuft kein Timer oder ist abgelaufen.",
+    "There is no task for this status, Please change filters.": "Für diesen Status gibt es keine Aufgabe. Bitte ändern Sie die Filter.",
+    "There is no subtask.": "Es gibt keine Unteraufgabe.",
+    "There is no subtask for selected task.": "Für die ausgewählte Aufgabe gibt es keine Unteraufgabe.",
+    "There is no subtask for selected task, if you want press on plus button to create first subtask.": "Für die ausgewählte Aufgabe gibt es keine Unteraufgabe.",
+    "You can select a task to view and edit it": "Sie können eine Aufgabe auswählen, um sie anzuzeigen und zu bearbeiten.",
+    "Comment created successfully": "Kommentar erfolgreich erstellt!",
+    "Task Restored.": "Aufgabe erfolgreich wiederhergestellt!",
+    "Task Deleted.": "Aufgabe erfolgreich gelöscht!",
+    "Task Archived.": "Aufgabe erfolgreich archiviert!",
+    "Project deleted.": "Das Projekt wurde erfolgreich gelöscht!",
+    "You need to select a workplan or task from sidebar to set az parent.": "Sie müssen einen Arbeitsplan oder eine Aufgabe aus der Seitenleiste auswählen, um einen übergeordneten Plan festzulegen.",
+    "at": "um",
+    "Tracked Time": "Erfasste Zeit",
+    "Time tracking and planning": "Zeiterfassung und Planung",
+    "Search users": "Mitarbeiter suchen",
+    "Show Less": "Zeige weniger",
+    "SUBTASKS": "SUBTASKS",
+    "PRIORITY": "PRIORITÄT",
+    "CREATED ON": "ERSTELLT AM",
+    "DUE DATE": "FALLIGKEIT",
+    "RESPONSIBLE": "VERANTWORTLICHE",
+    "TASK TITLE": "TITEL AUFGABE",
+    "More filters": "Weitere Filter",
+    "Entire time frame": "Gesamter Zeitrahmen",
+    "All responsible": "Alle Verantwortliche",
+    "Search task": "Search task",
+
+    "created the task": " hat die Aufgabe erstellt.",
+    "created a new subtask": " eine neue Unteraufgabe erstellt.",
+    "archived the task": " hat die Aufgabe archiviert.",
+    "restored the task": " hat die Aufgabe wiederhergestellt.",
+    "updated task title from {old_title} to {new_title}": " hat den Aufgabentitel von <strong>{{ old_title }}</strong> auf <strong>{{ new_title }}</strong> aktualisiert.",
+    "updated task description": " hat die Aufgabenbeschreibung aktualisiert.",
+    "added deadline": " frist hinzugefügt <strong>{{ deadline }}</strong>.",
+    "updated deadline from {old_deadline} to {new_deadline}": " hat die Frist von <strong>{{ old_deadline }}</strong> auf <strong>{{ new_deadline }}</strong> aktualisiert.",
+    "added status {status}": " hat den Status <strong>{{ status }}</strong> hinzugefügt.",
+    "has changed the status to": " hat den Status auf <strong>{{ status }}</strong> geändert.",
+    "changed status from {old_status} to {new_status}": " hat den Status von <strong>{{ old_status }}</strong> in <strong>{{ new_status }} geändert.</strong>.",
+    "removed status {status}": " hat den Status <strong>{{ status }}</strong> entfernt.",
+    "changed the priority to": " hat die Dringlichkeit auf <strong>{{ priority }}</strong> geändert.",
+    "changed priority from {old_priority} to {new_priority}": " hat die Priorität von <strong>{{ old_priority }}</strong> auf <strong>{{ new_priority }}</strong> geändert.",
+    "assigned {assignee} to the task": " hat <strong>{{ assignee }}</strong> der Aufgabe zugewiesen.",
+    "added watcher {assignee} to the task": " hat Beobachter <strong>{{ assignee }}</strong> zur Aufgabe hinzugefügt.",
+    "started time tracker for the task at {started_at}": " hat die Zeiterfassung für die Aufgabe um <strong>{{ started_at }}</strong> gestartet.",
+    "stopped time tracker for the task at {finished_at}": " hat die Zeiterfassung für die Aufgabe um <strong>{{ finished_at }}</strong> gestoppt.",
+    "removed assignee {assignee} from the task": " hat den Beauftragten <strong>{{ assignee }}</strong> aus der Aufgabe entfernt.",
+    "updated time tracker for the task from {old_started_at} - {old_finished_at} to {new_started_at} - {new_finished_at}": " Zeiterfassung für die Aufgabe von <strong>{{ old_started_at }}</strong> - <strong>{{ old_finished_at }}</strong> bis <strong>{{ new_started_at }}</strong> - <strong> aktualisiert {{ new_finished_at }}</strong>.",
+    "removed watcher {assignee} from the task": " hat Beobachter <strong>{{ assignee }}</strong> aus der Aufgabe entfernt.",
+    "deleted time tracker for the task": " hat die Zeiterfassung für die Aufgabe gelöscht.",
+    "Click here and enter a comment": "Hier klicken und Kommentar eingeben.",
+    "has commented": " hat kommentiert",
+    "until": "bis",
+    "New subtask": "Neue Unteraufgabe",
+    "Subtasks": "Unteraufgaben",
+    "Show More": "Mehr anzeigen",
+    "Deadline": "Deadline",
+    "Task overview": "Aufgabenübersicht",
+    "All current tasks": "Alle aktuellen",
+    "Board": "Board",
+    "Table": "Tabelle",
+    "Description": "Beschreibung",
+    "Show weekend": "Wochenende Anzeigen",
+    "Warning": "Achtung",
+    "Begin": "Beginn",
+    "End": "Ende",
+    "Save": "Speichern",
+    "Close": "Schließen",
+    "Confirm": "Bestätigen",
+    "Cancel": "Abbrechen",
+    "Stop Timer": "Timer stoppen",
+    "Add Timer": "Zeit hinzufügen",
+    "split entry": "Eintrag aufteilen",
+    "Do not delete remaining time": "Restliche Zeit nicht löschen",
+    "Today": "Heute",
+    "Week": "Woche",
+    "statistics": "Statistik",
+    "Month": "Monat",
+    "Not linked to a task": "Nicht mit Aufgabe verknüpft",
+    "Timer created successfully": "Timer erfolgreich erstellt",
+    "Timer updated successfully": "Timer erfolgreich aktualisiert",
+    "Timer deleted successfully": "Timer erfolgreich gelöscht",
+    "Task url copied to clipboard.": "Aufgaben-URL in Zwischenablage kopiert.",
+
+    "Dringend": "Dringend",
+    "Wichtig": "Wichtig",
+    "Normal": "Normal",
+    "Niedrig": "Niedrig",
+    "Not Set": "Not set",
+
+    "Clear all": "Alles löschen",
+    "New Project": "Neuer Arbeitsbereich",
+    "Add Task": "Aufgabe hinzufügen",
+    "Watcher": "Beobachter",
+    "Me As": "Ich als",
+    "Assignee": "Rechtsnachfolger",
+    "Priority": "Priorität",
+    "Add Status": "Status hinzufügen",
+    "App Notifications": "App Benachrichtigungen",
+    "Share Task": "Aufgabe teilen",
+    "Archive Task": "Aufgabe archivieren",
+    "date_format": "MM.DD.YYYY",
+    "days": ["MO", "DI", "MI", "DO", "FR", "SA", "SO"],
+    "Select date": "Datum wählen",
+    "Note": "Notiz",
+    "Error": "Fehler",
+    "Oops! Something Unexpected Happened": "Huch! Es ist etwas Unerwartetes passiert",
+    "Success": "Erfolg",
+    "Downloading": "Herunterladen",
+    "FYI": "Zur Information",
+    "The page is currently loading.": "Die Seite wird gerade geladen.",
+    "We appreciate your patience.": "Wir danken Ihnen für Ihre Geduld.",
+    "New Task": "Neue Aufgabe",
+    "Please select type of research project": "Bitte Art des Forschungsvorhabens wählen",
+
+    "In-house research": "Eigenbetriebliche Forschung",
+    "In-house research Description": "Das Vorhaben beinhaltet ausschließlich Tätigkeiten, die von den Mitarbeitern des antragsstellenden Unternehmens erbracht wurden. Eigene Arbeiten im Auftrag Dritter sind im Sinne des FZulG von der FZul ausgenommen und können nicht als eigenbetriebliche F&E-Kosten im Sinne des FZulG eingebracht werden.",
+    "france In-house research Description": "Bei dem Projekt handelt es sich ausschließlich um Tätigkeiten der Mitarbeiter des antragstellenden Unternehmens.",
+
+    "Partial in-house research": "Teilweise eigenbetriebliche Forschung",
+    "Partial in-house research Description": "Die Aufwände des Vorhabens setzen sich aus Tätigkeiten, die von den Mitarbeitern des antragsstellenden Unternehmens erbracht wurden sowie aus Auftragskosten (Entwicklungs- oder Dienstleistungsaufträge) zusammen. ",
+    "Contract research": "Auftragsforschung",
+    "Contract research Description": "Die Aufwände des Vorhabens setzen sich ausschließlich aus Aufträgen an Dritte zusammen. Es sind keine eigenbetrieblichen Personalkosten im Rahmen des Projektes entstanden. Förderfähige Auftragskosten im Rahmen der FZulG sind z. B. Entwicklungs- oder Dienstleistungsaufträge.",
+
+    "Please enter at least three meaningful keywords in the context of your R&D project. Keywords can consist of numbers, letters and special characters.": "Bitte vergeben Sie mindestens drei aussagekräftige Schlagworte im Kontext Ihres FuE-Vorhabens. Schlagwörter dürfen aus Zahlen, Buchstaben und Sonderzeichen bestehen.",
+    "To change the project status these pages of company data need to be filled": "Um den Projektstatus zu ändern, müssen diese Seiten mit Unternehmensdaten ausgefüllt werden",
+    "Open company data": "Firmendaten öffnen",
+    "Elster Zugang": "Elster Zugang",
+    "Basic company data": "Unternehmensbasisdaten",
+    "Corporate structure": "Unternehmensstruktur",
+    "Commercial data": "Kaufmännische Daten",
+    "Project information": "Projektinformation",
+    "Tagging": "Verschlagwortung",
+    "Tags": "schlagwörter",
+    "Cooperation projects": "Kooperationsvorhaben",
+    "Planned utilization of the results": "Geplante Verwertung der Ergebnisse",
+    "Research branch related to the R&D project": "Forschungszweig bezogen auf das FuE-Vorhaben",
+    "Subcategory related to the selected research branch": "Unterkategorie bezogen auf den ausgewählten Forschungszweig",
+    "Does the cooperation partner have a tax number?": "Hat der Kooperationspartner eine Steuer Nummer?",
+    "Cooperation partner": "Kooperationspartner",
+    "Add cooperation partners": "Kooperationspartner hinzufügen",
+    "Company form": "Unternehmensform",
+    "tax number": "Steuernummer",
+    "street": "Straße",
+    "city": "Stadt",
+    "zip": "PLZ",
+    "number": "Nummer",
+    "Address supplement": "Adresszusatz",
+    "Content/technical data": "Inhaltliche Beschreibung",
+    "filters_panel": {
+      "clear_all_filters": "Alle Filter löschen",
+      "more_filters": "Weitere Filter"
+    },
+    "time_management": {
+      "search_employees_placeholder": "Suche nach Mitarbeitern",
+      "all_projects": "Alle Projekte",
+      "title": "Zeitmanagement",
+      "view_modes": {
+        "scheduled_hours": "Geplante Stunden",
+        "logged_hours": "Erfasste Stunden",
+        "timesheet": "Stundenlistenbestätigung"
+      },
+      "scheduled_hours": {
+        "information_box_content": "Die geplanten Stunden werden automatisch aus dem erstellten Projektplan generiert und gleichmäßig per AI auf die verschiedenen Arbeitspakete verteilt. Wenn Sie die geplanten Stunden manuell ändern wollen, achten Sie darauf, dass die Gesamtzahl der Stunden gleich bleibt."
+      },
+      "detailed_planning_modal": {
+        "detailed_planning_title": "Detailplanung anpassen",
+        "pms_updated_successfully": "Die monatlichen PMs der Mitarbeiter wurden erfolgreich aktualisiert!"
+      },
+      "subpages": {
+        "project_plan": {
+          "label": "Projektplan & -aufwand",
+          "tabs": {
+            "planned": {
+              "label": "Geplanter Aufwand",
+              "table_title": "Summe Planstunden Projekt",
+              "plan": "Plan",
+              "hours_one": "<HourWrapper>{{count}}</HourWrapper> <LabelWrapper>Std.</LabelWrapper>",
+              "hours_other": "<HourWrapper>{{count}}</HourWrapper> <LabelWrapper>Std.</LabelWrapper>"
+            },
+            "actual": {
+              "label": "In Stundenlisten eingetragen",
+              "table_title": "Summe Eingetragene Stunden Projekt",
+              "actual": "Eingetragen",
+              "hours_one": "<HourWrapper>{{count}}</HourWrapper> <LabelWrapper>Std.</LabelWrapper>",
+              "hours_other": "<HourWrapper>{{count}}</HourWrapper> <LabelWrapper>Std.</LabelWrapper>"
+            },
+            "comparison": {
+              "label": "Vergleich Realität zu Plan",
+              "table_title": "Vergleich Realität zu Plan",
+              "comparison": "Vergleich"
+            }
+          }
+        },
+        "my_timesheets": {
+          "label": "Meine Stundenzettel",
+          "download_timetable": "Herunterladen",
+          "import_timetables": "Stundelisten importieren",
+          "enter_sick_days": "Krankheitstage eintragen",
+          "enter_holidays": "Urlaubstage eintragen",
+          "enter_flexitime_days": "Gleitzeittage eintragen",
+          "enter_half_days": "Halbtage eintragen",
+          "overview": "Übersicht",
+          "hours": "Stunden",
+          "flexitime_days": "Gleitzeittage",
+          "half_days": "Halbtage",
+          "holiday_days": "Urlaubstage",
+          "sick_days": "Krankheitstage",
+          "sick": "Krankentag",
+          "vacation": "Ferientag",
+          "holiday": "Urlaub",
+          "half_day": "Halber Tag",
+          "home_office": "Heimbüro",
+          "other": "andere",
+          "edit_hours": "Stunden bearbeitung",
+          "edit_flexitime_days": "Gleitzeittage bearbeitung",
+          "half_days_worked": "Halbtage bearbeitung",
+          "holiday_days_processed": "Urlaubstage bearbeitung",
+          "sick_days_processed": "Krankheistage bearbeitung",
+          "editting_mode": "BEARBEITUNGSMODI",
+          "mode": "Modus:",
+          "only_editable": "Nur bearbeitbare Elemente anzeigen",
+          "work_plan": "Arbeitsplan",
+          "type_of_day": "Art des Tages",
+          "clear_all": "Alle löschen",
+          "search_filter": "Filter suchen",
+          "select_workplan": "Arbeitsplan auswählen",
+          "timesheets": "Stundenlisten",
+          "confirmed": "<Bold>Bestätigt</Bold>",
+          "confirmed_with_date": "<Bold>Bestätigt</Bold><br/>Should be: ‘{{month}} {{year}} wurde am {{date}} von {{signer}}<br/>per Upload der unterschriebenen Stundenlisten bestätigt’",
+          "not_confirmed": "Noch nicht bestätigt",
+          "confirm_details": "{{month}} {{year}} wurde bestätigt per <b>{{confirmationMethod}}</b> der unterschriebenen Stundenlisten",
+          "confirm_details_with_date": "{{month}} {{year}} wurde <b>am {{confirmedDate}}</b> bestätigt per <b>{{confirmationMethod}}</b> der unterschriebenen Stundenlisten",
+          "download_timesheets": "Stundenlisten herunterladen",
+          "change_work_packages": "Bearbeitete Arbeitspakete ändern",
+          "processed_work_packages": "Zuweisung verwalten",
+          "with_time_tracking": "Datenabruf von Time Tracking:",
+          "to_time_tracking": "Zum Time Tracking",
+          "cancel_confirmation": "Bestätigung aufheben",
+          "work_schedule": "Arbeitsplan",
+          "header": {
+            "signature_panel": {
+              "regular": {
+                "title": "Bestätigung Stundenlisten",
+                "subtitle": "Monatlich oder Jährlich",
+                "this_month": "Dieser Monat ({{month}})",
+                "entire_year": "Gesamtes Jahr",
+                "confirm_with_signature": {
+                  "title": "Mit Unterschrift bestätigen",
+                  "description": "Laden Sie die Stundenlisten herunter und laden Sie Sie eine unterschriebene Kopie wieder ins System hoch",
+                  "popover": {
+                    "title": "Scan unterschriebener Stundenlisten hochladen",
+                    "description": "Laden Sie die Stundenlisten herunter, unterschreibenSie diese und laden Sie anschließend hier einenScan hoch um die Bestätigung abzuschließen",
+                    "download_timesheets": "Stundenlisten {{month}} {{year}} herunterladen",
+                    "upload_signed_timesheets": "Unterschriebene Stundenlisten hochladen"
+                  }
+                },
+                "confirm_with_esignature": {
+                  "title": "Mit eSignatur bestätigen",
+                  "description": "Demnächst!",
+                  "popover": {
+                    "title": "Mit eSignatur bestätigen",
+                    "description": "Um Ihre Stundenlisten digital zu bestätigen wird Ihnen und Ihrem Vorgesetzten je eine Mail zugeschickt, von welcher aus Sie die Bestätigung vornehmen müssen."
+                  }
+                }
+              },
+              "subsidies": {
+                "title": "Jahresbestätigung Stundenlisten",
+                "description": "Als Alternative zur Einzelbestätigung jedes Monats können Sie auch Jahresstundenlisten herunterladen, unterschreiben und einen Scan davon hier hochladen. Dadurch werden alle Monate gleichzeitig bestätigt.",
+                "download_timesheets": "Stundenlisten {{month}} {{year}} herunterladen",
+                "upload_signed_timesheets": "Unterschriebene Stundenlisten hochladen"
+              }
+            }
+          },
+          "tutorial" : {
+            "title": "Wie wählt man den Tagesbereich aus?",
+            "step_one_title": "1. Klicken und ziehen",
+            "step_one_description": "Klicken Sie auf den ersten Tag des Bereichs. Halten Sie die Maustaste gedrückt und ziehen Sie die Maus über den gewünschten Bereich von Tagen. Lassen Sie die Maustaste los, um die Auswahl abzuschließen.",
+            "step_two_title": "2. Klicken + SHIFT + Klicken",
+            "step_two_description": "Klicken Sie auf den ersten Tag, halten Sie die Umschalttaste gedrückt, und klicken Sie dann auf den letzten Tag, um den gesamten Bereich zu markieren."
+          },
+          "decimal_converter" : {
+            "title": "Dezimal-Konverter",
+            "description": "Um Berechnungen zu erleichtern, wird die Zeit in Dezimalstunden angegeben. Um Minuten in Dezimalstunden umzurechnen, teilen Sie die Minuten einfach durch 60.",
+            "converter_title": "Minuten in Dezimalzahlen umrechnen",
+            "hours": "Stunden",
+            "minutes": "Minuten",
+            "decimal_time": "Dezimale Zeit"
+          },
+          "table": {
+            "sum": "Summe",
+            "unknown_project": "Unbekanntes Projekt",
+            "cancel_confirmation_to_edit_hours": "Um die Stunden zu aktualisieren, bitte stornieren Sie zuerst die Bestätigung.",
+            "cancel_timetracking_to_edit_hours": "Um die Stunden zu aktualisieren, wechseln Sie bitte zuerst in den manuellen Modus.",
+            "no_assigned_tasks": "Keine zugeordnete Position",
+            "successfully_added": "{{absence}} Feiertag erfolgreich hinzugefügt.",
+            "successfully_deleted": "{{absence}} erfolgreich gelöscht.",
+            "exceeded_working_hours": "Überschreitung der Tagesarbeitszeit"
+
+          },
+          "change_work_items": {
+            "header": "Zuweisung verwalten",
+            "search_placeholder": "Work item suchen",
+            "cant_remove_with_hours": "Work Items mit zugewiesenen Stunden können nicht aus der Stundentabelle entfernt werden. Bitte entfernen Sie die Stunden vom Work Item und versuchen Sie es erneut.",
+            "hours_will_be_removed_warning": "Sie haben derzeit Stunden für diese Aufgabe hinzugefügt. Wenn Sie fortfahren, werden diese Stunden gelöscht.",
+            "success_toast_message": "Erfolgreich zugewiesene Posten",
+            "no_items": "Im {{month}} wurden keine Posten zugewiesen"
+          },
+          "promptModal": {
+            "cancel": "Abbrechen",
+            "keep-manual": "Nein, Manuellen Modus beibehalten",
+            "keep_timetracking": "Nein, Zeiterfassungsmodus beibehalten",
+            "time_tracking_hours_disabled_title": "In den manuellen Modus wechseln?",
+            "time_tracking_hours_disabled_message": "Wenn Sie in den manuellen Modus wechseln, wird die automatische Zeiterfassung deaktiviert. Ihre bisherigen Zeiterfassungsdaten bleiben intakt und zugänglich",
+            "time_tracking_hours_disabled_btn": "Ja, in den manuellen Modus wechseln",
+            "time_tracking_hours_disabled_success": "Erfolgreich in den manuellen Modus gewechselt.",
+            "time_tracking_hours_enabled_title": "In den Zeiterfassungsmodus wechseln?",
+            "time_tracking_hours_enabled_message": "Wenn Sie in den Zeiterfassungsmodus wechseln, werden alle Ihre aktuellen manuellen Zeiterfassungseinträge.",
+            "time_tracking_hours_enabled_btn": "Ja, Einträge wechseln und löschen",
+            "time_tracking_hours_enabled_success": "Manuelle Einträge gelöscht. Erfolgreich in den Zeiterfassungsmodus gewechselt.",
+            "error": "Moduswechsel fehlgeschlagen. Bitte versuchen Sie es erneut oder kontaktieren Sie den Support.",
+            "undone_message": "Diese Aktion kann nicht rückgängig gemacht werden.",
+            "checkbox_label": "Mir ist bekannt, dass beim Wechsel in den Zeiterfassungsmodus alle bestehenden Einträge gelöscht werden."
+          }
+        },
+        "hours_overview": {
+          "label": "Mitarbeiter Stundenübersicht in",
+          "search_placeholder": "Suche nach Namen",
+          "hours": "Stunden",
+          "euro": "Euro",
+          "percentage": "Prozentsatz",
+          "employee": "Mitarbeiter",
+          "total": "Gesamt",
+          "project": "Projekt",
+          "academic_year": "Akademisches jahr",
+          "financial_year": "Wirtschaftsjahr",
+          "toggle_label":"Geplant Gesamt",
+          "yearly_doc_downloaded_successfully": "Der Stundenzettel wurde erfolgreich heruntergeladen."
+        }
+      }
+    },
+    "Goal of the project intro": "Motivation, Ziele und vorgesehene Ergebnisse. Inwieweit zielt das Vorhaben darauf ab, den Stand des Wissens/der Technik zu erweitern oder bereits vorhandene wissenschaftliche, technische, wirtschaftliche oder sonstige einschlägige Erkenntnisse oder Ansätze zu nutzen?",
+    "Goal of the project li 1": "1 Satz Stand der Technik (Aktuell/Nach Stand der Technik werden …)",
+    "Goal of the project li 2": "1 Satz Projektziel (Ziel des Vorhabens ist …)",
+    "Goal of the project li 3": "1 Satz Abgrenzung Stand der Technik (Der Stand der Technik wird hinsichtlich … erweitert, wobei das Wissen um … ausgebaut wird.)",
+    "Goal of the project li 4": "1 Satz Projektergebnis (Geplantes Ergebnis ist …)",
+    "Goal of the project bold": "Achte darauf, dass das Vorhaben spezifische technische Fachwörter für die beschreibung des innovativen Kernes verwendet. Extrem wichtig v.a. für Softwarevorhaben!",
+    "Goal of the project": "Ziel des Vorhabens",
+
+    "Description of the work": "Beschreibung der Arbeiten",
+    "Description of the work intro": "Welche Arbeitsschritte/Aufgaben und Methoden werden/wurden zur Erreichung des Ziels angewendet? Inwieweit werden dabei (für Ihr Unternehmen und/oder den Wirtschaftszweig) neuartige Ansätze verfolgt?",
+    "Description of the work li 1": "3 bis 4 Sätze Aufzählung Arbeitspakete",
+    "Description of the work li 2": "1 abschließender Satz neuer Ansatz (Neuartiger Ansatz ist dabei…)",
+
+    "Innovationsgrad": "Innovationsgrad",
+    "Innovationsgrad bold": "Zielt das Vorhaben auf ein Produkt, Produktionsverfahren, eine Produktionslinie, Dienstleistung oder wissenschaftliche Methodik ab, das/die eine deutliche Weiterentwicklung/Neuheit in Bezug auf den betreffenden Wirtschaftszweig darstellt?",
+    "Innovationsgrad intro": "Falls ja, erläutern Sie dies bitte. Beschreiben Sie kurz den Forschungs- bzw. Entwicklungsstand der Branche und grenzen Sie Ihr Produkt, Produktionsverfahren, ihre Produktionslinie, Dienstleistung oder wissenschaftliche Methodik davon ab. Beschreiben Sie alle neuen zum Einsatz kommenden wissenschaftlichen/technischen Methoden bzw. Lösungsansätze oder Vorgehensweisen. (Exemplarische Beispiele sind: Experimente, Feldstudien, Beobachtungen, Kohortenstudien.)",
+    "Innovationsgrad li 1": "1 Satz Zielsparte/Produktklasse und Abgrenzung Stand der Technik (Das Vorhaben zielt auf … ab, welche hinsichtlich … den Stand der Technik übertreffen sollen.)",
+    "Innovationsgrad li 2": "2 bis 4 Sätze Abgrenzung Stand der Technik mit ca. 2 Parametern zur Abgrenzung",
+
+    "covers": "Bezüge",
+    "covers bold": "Besteht ein konkreter Bezug des Vorhabens zu bestehenden Produkten, Produktionslinien, Produktionsverfahren, Dienstleistungen oder bereits etablierter wissenschaftlicher Methodik in Ihrem Unternehmen?",
+    "covers intro": "Falls ja, verdeutlichen Sie, inwieweit die Arbeiten des Vorhabens über in Ihrem Unternehmen übliche routinemäßige Entwicklungsleistungen hinausgehen. Erläutern Sie die Differenzierung zu im Unternehmen bestehenden Produkten, Produktionslinien, Produktionsverfahren, Dienstleistungen. Wie unterscheidet sich das zu entwickelnde Produkt, Verfahren bzw. die Dienstleistung von jenen, die Ihr Unternehmen bereits anbietet?",
+    "covers li 1": "1 Satz aktuelle Technologien im Unternehmen",
+    "covers li 2": "1 Satz Abgrenzung Funktionalität (Erstmals wird …)",
+    "covers li 3": "2 bis 4 Sätze Abgrenzung Funktionalität und Entwicklungsmethoden",
+
+    "Risks": "Risiken",
+    "Risks bold": "Erläuterung der wissenschaftlichen und/oder technischen Risiken bei der Umsetzung des Vorhabens",
+    "Risks intro": "Erläutern Sie, welche ingenieurs-, natur-, geistes-, oder sozialwissenschaftlichen Hemmnisse für den Lösungsansatz Ihres Vorhabens identifiziert werden können. Beschreiben Sie die wissenschaftlichen (bezogen auf alle Wissenschaftszweige) und/oder die technischen Hemmnisse, Risiken, Unwägbarkeiten oder Herausforderungen, die zum Scheitern des Vorhabens führen könnten. Beschreiben Sie, wie Sie mit vorliegenden Risiken umgehen. Erläutern Sie kurz Meilensteine und Abbruchkriterien. Wir weisen ausdrücklich darauf hin, dass an dieser Stelle keine wirtschaftlichen und/oder finanziellen Risiken - in Bezug auf das spätere Produkt/Verfahren - zu nennen sind.",
+    "Risks li 1": "3 Risiken nach Schema oben",
+
+    "This page has been locked for editing for this step and needs to be unlocked for editing": "Diese Seite wurde für diesen Schritt zur Bearbeitung gesperrt und muss zur Bearbeitung entsperrt werden",
+    "Page blocked": "Seite gesperrt",
+    "Unlock": "Entsperren",
+
+    "Information about submission": "Infos zur Einreichung",
+    "Information about submission intro": "Nach der Einreichung sollten Sie regelmäßig Ihr E-Mail Postfach auf den Eingang eventueller Rückfragen sowie des Bewilligungs- oder Ablehnungsbescheides überprüfen. Sie haben zur Beantwortung von Rückfragen sowie zum Widerspruch im Falle einer Ablehnung gewisse Fristen, die nicht überschritten werden dürfen.",
+    "contradiction": "Widerspruch",
+    "Deadline: 1 month": "Frist: 1 Monat",
+    "Information about submission intro 2": "Sie sollten daher Ihr Postfach mindestens alle 10 Tage prüfen. Nutzen Sie das Datumsfeld unten, um automatisch daran erinnert zu werden.",
+
+    "Submitted on": "Eingereicht am",
+    "Funding indicator": "Förderkennzeichen",
+    "Mailbox last checked on": "Postfach zuletzt geprüft am",
+    "12 days ago": "vor 12 Tagen",
+
+    "Add queries": "Rückfragen hinzufügen",
+    "Query date": "Rückfrage Datum",
+    "Inquiry from": "Rückfrage vom",
+    "Upload question document": "Fragendokument hochladen",
+    "Upload answer document": "Antwortdokument hochladen",
+    "Insert query text here": "Rückfragentext hier einfügen",
+    "Insert statement here": "Stellungname hier einfügen",
+    "upload attachments": "Anhänge hochladen",
+
+    "Contradiction to rejection": "Widerspruch zur Ablehnung",
+    "The objection has been submitted": "Der Widerspruch wurde übermittelt",
+    "Upload reject document": "Abgelehntes Dokument hochladen",
+    "Upload appeal document": "Einspruchsdokument hochladen",
+    "Please upload reject document": "Bitte laden Sie das abgelehnte Dokument hoch",
+    "Please upload appeal document": "Bitte laden Sie das Beschwerdedokument hoch",
+    "Rejected at": "Datum des Bescheids wählen",
+    "Appealed at": "Datum der Übermittlung wählen",
+    "Insert text to object": "Text zum Widerspruch einfügen",
+
+    "final decision rd": "Ihre Bewerbung wird derzeit geprüft. Sie erhalten eine Benachrichtigung, sobald das Projekt genehmigt oder abgelehnt wurde. Der Status ändert sich automatisch.",
+    "final decision": "Finale Entscheidung",
+    "Final Decision": "Finale Entscheidung",
+    "Final Decision intro": "Sollte Ihr Antrag final abgelehnt, sie keinen Einspruch gegen eine erste Ablehnung einlegen wollen oder sollte der Antrag angenommen worden sein, füllen Sie bitte diese Sektion mit den entsprechenden Details aus.",
+    "approval": "Zustimmung",
+    "approval intro": "Sollten Sie einen Zustimmungsbescheid erhalten haben, laden Sie diesen hier hoch, dokumentieren Sie das Datum und drücken Sie “Projekt wurde genehmigt” um den Status des Projekts auf Laufend zu ändern.",
+    "Select date of notification": "Datum des Bescheids wählen",
+    "Project was approved": "Projekt wurde genehmigt",
+    "Rejection": "Ablehnung",
+    "Rejection intro": "Sollten Sie einen finalen Ablehnungsbescheid erhalten haben oder Sie keinen Widerspruch auf einen ersten Ablehnungsbescheid einlegen wollen, laden Sie den Bescheid hier hoch, dokumentieren Sie das Datum und drücken Sie “Projekt wurde genehmigt” um den Status des Projekts auf Abgelehnt zu ändern.",
+    "Project was rejected": "Projekt wurde abgelehnt",
+    "Upload approval notice": "Bewilligungsbescheid hochladen",
+    "Please upload approval notice": "Bitte bewilligungsbescheid hochladen",
+    "Upload rejection letter": "Ablehnungsbescheid hochladen",
+    "Please upload rejection letter": "Bitte ablehnungsbescheid hochladen",
+    "Rejected date": "Datum des Bescheids wählen",
+    "Approved date": "Datum des Bescheids wählen",
+
+    "Confirmation of receipt intro": "Wenn Sie die Eingangsbestätigung erhalten haben, erfassen Sie hier bitte das Datum der Eingangsbestätigung zur vollständigen Dokumentation.",
+    "Confirmation of receipt": "Eingangsbestätigung",
+    "timesheet_calendar": {
+      "absence_day_warning": "Bitte entfernen Sie zuerst die für diesen Tag eingetragenen Arbeitsstunden."
+    },
+    "country": "Land",
+    "Land": "Land",
+    "state": "Zustand",
+    "months": [
+      "Januar",
+      "Februar",
+      "März",
+      "April",
+      "Mai",
+      "Juni",
+      "Juli",
+      "August",
+      "September",
+      "Oktober",
+      "November",
+      "Dezember"
+    ],
+    "Application data": "Antragsdaten",
+    "The project has not been submitted yet": "Das Projekt wurde noch nicht eingereicht",
+    "Mailbox has not been checked yet": "Das Postfach wurde noch nicht überprüft",
+    "You need to unlock then edit fields.": "Sie müssen diesen Abschnitt oben auf der Seite entsperren und dann die Felder bearbeiten.",
+    "Received At": "Empfangen bei",
+    "Add responsible person": "Verantwortlichen hinzufügen",
+    "Copied": "Kopiert",
+    "Project details": "Projektdetails",
+    "Project duration": "Projektlaufzeit",
+    "Short summary": "Kurzzusammenfassung",
+
+    "project overview intro planing - randd": "Sammeln Sie in der Planungsphase wichtige Daten und Dokumente für F&E-Projekte. Füllen Sie alle Felder für Projekt- und Organisationsdetails aus und stellen Sie Pläne und detaillierte Kostenvoranschläge, auch für Unterauftragnehmer, fertig. Dieser Prozess hilft bei der Erstellung umfassender F&E-Projektpläne.",
+    "project overview intro planing": "In der Antragsphase werden die für den BSFZ Antrag nötigen Daten und Dokumente gesammelt. Füllen Sie hierbei die als benötigt markierten Felder in den Projektdaten sowie in den Unternehmensdaten aus, erstellen Sie einen finalisierten Projektplan und füllen Sie die Kostenplanung für die Unterauftragnehmer aus.",
+
+    "project overview intro inReview": "Ihr Antrag wird aktuell von der BSFZ bearbeitet. Prüfen Sie Ihr Postfach regelmäßig auf Rückfragen und Bescheide und dokumentieren Sie den Prozess entsprechend in den Projektdaten. Bei erhaltener Bewilligung können Sie den Status des Projekts auf Laufend, bei finaler Ablehnung auf abgelehnt ändern.",
+    "project overview intro inReview rd": "Ihr Projekt wird derzeit von der Geschäftsführung geprüft. Sobald eine Entscheidung getroffen wurde, werden Sie benachrichtigt und der Status ändert sich automatisch. Überprüfen Sie die Kommentare auf der rechten Seite auf Rückmeldungen.",
+    "project overview intro inReview rd cfo": "Bitte prüfen Sie als Entscheidungsträger anhand der Projektdaten, -planung und -kostenplanung, ob Sie dieses Projekt genehmigen wollen und geben Sie diese Entscheidung an die Projektverantwortlichen hier weiter.<br/><br/>Bitte stellen Sie mögliche Rückfragen oder formulieren Sie die Gründe Ihrer Entscheidung in der Kommentarfunktion rechts.",
+
+    "project rd cfo approve": "Dieses Projekt genehmigen",
+    "project rd cfo reject": "Dieses Projekt ablehnen",
+
+    "cfo approve confirm title": "Projekt genehmigen",
+    "cfo approve confirm message": "Der Projektstatus ändert sich in 'Laufend'",
+    "cfo reject confirm title": "Projekt ablehnen",
+    "cfo reject confirm message": "Der Projektstatus ändert sich in 'Abgelehnt'",
+    "cfo approve confirm text": "Genehmigen",
+    "cfo reject confirm text": "Ablehnen",
+
+    "project overview intro onGoing": "Ihr Projekt wurde erfolgreich bewilligt. Stellen Sie für einen erfolgreichen und rechtssicheren Finanzamtsantrag sicher, dass Sie die Dokumentation sauber durchführen. Dies beinhaltet regelmäßige Berichte im Task Management sowie eine zeitnah gepflegte Zeiterfassung.",
+    "project overview intro rejected": "Ihr Projekt wurde final abgelehnt. Unter Umständen kann eine erfolgreiche Neueinreichung vorgenommen werden. Kontaktieren Sie Ihren innoscripta Kundenbetreuer für eine kostenlose Beratung. Bei einer Neueinreichung können Sie eine Kopie des Projekts erstellen.",
+    "project overview intro rejected 2": "Sie können das Projekt jederzeit ausblenden um Ihre Projektübersicht sauber zu halten. Ausgeblendete Projekte können in den Filtern der Projektübersicht wieder eingeblendet werden.",
+
+    "project overview intro completed": "Dieses Projekt wurde beendet. Es kann keine weitere Bearbeitung vorgenommen werden.",
+    "project overview intro onGoing 2": "Keine Anforderungen. Der Projektstatus kann manuell auf Abgeschlossen geändert werden",
+    "No requirements": "Keine Anforderungen",
+
+    "Project status": "Projektstatus",
+    "Final Status": "Dies ist der endgültige Status!",
+    "Project plan finalized": "Projektplan finalisiert",
+    "Project costs filled out": "Projektkosten ausgefüllt",
+
+    "This field is required.": "Dieses Feld ist erforderlich.",
+    "Must be a string.": "Muss eine Zeichenfolge sein.",
+    "Must be a number.": "Muss eine Nummer sein.",
+    "Please indicate valid number.": "Bitte geben Sie eine gültige Nummer an.",
+    "Invalid email format.": "Ungültiges Email-Format.",
+    "The tax number must be 10-13 digits long.": "Die Steuernummer muss 10-13 Ziffern lang sein.",
+    "Please enter a valid postcode.": "Bitte gib eine gültige Postleitzahl ein.",
+    "Please enter at least 3 digits for postcode.": "Bitte geben Sie als Postleitzahl mindestens 3 Ziffern ein.",
+    "Please indicate valid house number.": "Bitte geben Sie eine gültige Hausnummer an.",
+
+    "Responsible person added successfully.": "Verantwortliche Person erfolgreich hinzugefügt.",
+    "Responsible is detached.": "Die verantwortliche Person wurde erfolgreich abgetrennt.",
+
+    "Project Plan Warnings": {
+      "Too Much PM Scheduled": "Zu {{how}} Monate für dieses Arbeitspaket verplant.",
+
+      "Plan More": "Bitte planen Sie mehr Personen oder mehr Monate für dieses Arbeitspaket ein.",
+      "Plan Less": "Bitte planen Sie weniger Personen oder weniger Monate für dieses Arbeitspaket ein.",
+      "Little": "wenig",
+      "Much": "viel",
+      "To distribute": "zu verteilen",
+      "Distributed too much": "zu viel verteilt",
+
+      "workPackageError": "Arbeitspaketplanungsfehler",
+      "personIsNotEnough": "Monate können in diesem Zeitraum nicht geleistet werden. Entweder mehr Mitarbeiter hinzufügen oder Zeitraum verlängern"
+    },
+    "Remove Confirmation": "Sind Sie sicher, dass Sie sie entfernen möchten?",
+    "Runs": "Im Gange",
+    "Open": "Offen",
+    "Availability years": "Verfügbarkeit Jahre",
+    "workItemTotalDuration": "Die Gesamtdauer des Arbeitspaketes beträgt {{count}} Monat.",
+    "workItemTotalDuration_other": "Die Gesamtdauer des Arbeitspaketes beträgt {{count}} Monate.",
+    "requiredTotalWork": "Insgesamt fallen {{count}} Monat an Arbeitsaufwand an.",
+    "requiredTotalWork_other": "Insgesamt fallen {{count}} Monate an Arbeitsaufwand an.",
+    "allocateFTE": "Es sind somit <0>mindestens {{fte}} FTE zuzuweisen.</0>",
+    "Assign employees": "Mitarbeiter zuweisen",
+    "For project": "Für Projekt",
+    "from": "von",
+    "Total": "Gesamt",
+    "note": "HINWEIS",
+    "assignEmployeeInfo": "Sie wollen mehr Informationen über die genaue Auslastung eines Mitarbeiters? Bleiben Sie mit Ihrer Maus über einer Zahl und erhalten Sie mehr Details.",
+    "Search employees": "Mitarbeiter durchsuchen",
+    "Employees": "Mitarbeiter",
+    "Assigned cost to percent": "Zugewiesene Kosten in Prozent",
+
+    "Are you sure you want to remove": "Sind Sie sicher, dass Sie {{title}} entfernen möchten?",
+    "The total duration of the work package in year": "Die Gesamtdauer des Arbeitspaketes in {{year}} <0>beträgt {{count}} Monat.</0>",
+    "Plan total": "Plansumme",
+    "Available": "Verfügbar",
+
+    "Project Data": "Projektdaten",
+    "Project plan": "Projektplan",
+    "is not finished completely.": "ist noch nicht ganz fertig.",
+    "If you confirm that application submitted in BSFZ portal its status will change to In Review.": "Wenn Sie bestätigen, dass der Antrag im BSFZ-Portal eingereicht wurde, ändert sich sein Status in In Prüfung.",
+    "Mark as ready to submit": "Als bereit zur Übermittlung markieren",
+    "Submit Project": "Projekt einreichen",
+
+    "Once you have completed the above steps, you can mark this project as ready to submit for the last accounting year.": "Sobald Sie die oben genannten Schritte abgeschlossen haben, können Sie dieses Projekt als bereit zur Einreichung für das letzte Rechnungsjahr markieren.",
+    "Once all projects for the accounting year have been marked as ready to submit, proceed to the Subsidies app to submit a year": "Sobald alle Projekte für das Rechnungsjahr als einreichungsbereit markiert wurden, fahren Sie mit der App Subventionen fort, um ein Jahr einzureichen",
+    "Go to Subsidies": "Gehe zu Subsidies",
+
+    "Please upload question document": "Bitte laden Sie das Fragedokument hoch",
+    "Please upload answer document": "Bitte Antwortdokument hochladen",
+
+    "feedbacks": "Rückmeldung",
+    "created successfully": "erfolgreich erstellt",
+    "deleted successfully": "Erfolgreich gelöscht",
+    "Project copied successfully.": "Projekt erfolgreich kopiert.",
+
+    "Project Management Dashboard": "Project Management Dashboard",
+    "Cost Overview Projects": "Kostenübersicht Projekte",
+    "Cost Overview Projects2": "Übersicht Projekte",
+    "Total Project Cost": "Projektkosten aller Projekte",
+    "Subsidized": "davon gefördert",
+    "Missed Funds": "verpasste Förderung",
+    "For a detailed breakdown and instructions on how to increase your funding rate, visit Subsidies App.": "Für eine detaillierte Aufschlüsselung und Anweisungen, wie Sie Ihre Förderquote erhöhen können, besuchen Sie Subsidies App.",
+    "BSFZ Application Preparation": "BSFZ-Antragsvorbereitung",
+    "Sorted by the expected submission date, the data to be filled in for all SFF projects is displayed here.": "Hier werden, sortiert nach dem voraussichtlichen Einreichungsdatum, die auszufüllenden Daten für alle FSF-Projekte angezeigt.",
+    "Project data": "Projektdaten",
+    "For a legally compliant SFF submission, the project documentation must be kept conscientiously and cleanly. Here you can see the corresponding warning messages.": "Für eine gesetzeskonforme FSF-Einreichung muss die Projektdokumentation gewissenhaft und sauber geführt werden. Hier sehen Sie die entsprechenden Warnhinweise.",
+    "Project cost": "Projektkosten",
+    "See here a summary of the reporting frequency of your employees. Click with your mouse on a category to see the list of employees.": "Sehen Sie hier eine Zusammenfassung der Berichtshäufigkeit Ihrer Mitarbeiter. Klicken Sie mit Ihrer Maus auf eine Kategorie um sich die Liste der Mitarbeiter anzeigen zu lassen.",
+    "Timesheets must be maintained cleanly and confirmed in a timely manner. The rating indicates whether the time tracking is carried out cleanly and assigned to the work plan and confirmed promptly.": "Stundenlisten müssen sauber gepflegt und zeitnah bestätigt werden. Das Rating zeigt an, ob das Timetracking sauber und dem Arbeitsplan zugordnet durchgeführt und zeitnah bestätigt wird.",
+    "Go to project": "Zum Projekt gehen",
+
+    "Research Projects": "Forschungsprojekte",
+    "Involved Employee": "Beteiligte Mitarbeiter",
+    "Problematic Projects": "Problematische Projekte",
+    "Last 3 Months": "Letzte 3 Monate",
+    "Reporting Frequency": "Berichtshäufigkeit",
+    "Timesheet Activity": "Pflege Stundenlisten",
+    "Compliance Alerts": "Compliance-Warnungen",
+    "Subsidies App": "Subsidies App",
+    "To Subsidies App": "Zur Subsidies App",
+    "Change project status to “Abgelehnt”": "Projektstatus ändern in “Abgelehnt”",
+    "Change project status to “Laufend”": "Projektstatus ändern in “Laufend”",
+
+    "activity form thirs question": "Beinhaltet das Vorhaben in Kooperation mit mindestens einem Unternehmen und/oder einer Forschungseinrichtung durchgeführte Tätigkeiten?",
+    "Does the project involve in-house activities?": "Beinhaltet das Vorhaben eigenbetriebliche Tätigkeiten?",
+    "Does the project involve commissioned activities?": "Beinhaltet das Vorhaben in Auftrag gegebene Tätigkeiten?",
+
+    "formerly partially commissioned logic": "Teilweise in Auftrag gegeben",
+    "formerly fully commissioned": "Vollständig in Auftrag gegeben",
+
+    "Form of activity": "Tätigkeitsform",
+
+    "dashboard": {
+      "title": "Projektmanagement Dashboard",
+      "recent_activity": {
+        "title": "Neueste Aktivität",
+        "description": "Sehen Sie hier die neueste Aktivität in Ihren Projekten kurz zusammengefasst."
+      },
+      "problematic_workpackage": {
+        "title": "Problematische Arbeitspakete",
+        "description": "Der Personalaufwand sollte in etwa dem Arbeitsplan entsprechen. Bei zu starken Abweichungen werden Ihnen Arbeitspakete hier angezeigt.",
+        "underPlan": "Unter plan"
+      },
+      "project_overview": {
+        "title": "Übersicht Projekte",
+        "research_project": "Forschungsprojekte",
+        "problematic_projects": "Problematisches Projekt"
+      },
+      "reporting_frequency": {
+        "title": "Berichtshäufigkeit",
+        "description": "Sehen Sie hier eine Zusammenfassung der Berichtshäufigkeit Ihrer Mitarbeiter. Klicken Sie mit Ihrer Maus auf eine Kategorie um sich die Liste der Mitarbeiter anzeigen zu lassen."
+      },
+      "budget_comparison": {
+        "title": "Haushaltsvergleich",
+        "description": "Unternehmensweit gibt es keine Überschreitung der Personalkosten im Vergleich zum vorliegenden Budget. Die Kosten liegen 1,5 Mio. unter dem Budget.",
+        "personal": {
+          "budget": {
+            "title": "Personal",
+            "description": "The personnel cost budget serves as a rough cost estimate and must be defined as a guide before project planning."
+          }
+        },
+        "contractors": {
+          "budget": {
+            "title": "Auftragnehmer",
+            "description": "The subcontract budget serves as the basis for subcontractor planning and must be defined in advance."
+          }
+        },
+        "other": {
+          "budget": {
+            "title": "Sonstiges",
+            "description": "The budget for material and material costs as well as for project-related depreciation is used for later cost control."
+          }
+        }
+      },
+      "involved_employee": {
+        "title": "Beteiligte Mitarbeiter"
+      },
+      "workpackage_alerts": {
+        "title": "Problematische Arbeitspakete",
+        "description": "Der Personalaufwand sollte in etwa dem Arbeitsplan entsprechen. Bei zu starken Abweichungen werden Ihnen Arbeitspakete hier angezeigt.",
+        "above_plan": "{{count}}%<br />über Plan",
+        "below_plan": "{{count}}%<br />unter Plan"
+      }
+    },
+
+    "Project hided successfully.": "Projekt erfolgreich versteckt.",
+    "Project revealed successfully.": "Projekt erfolgreich abgeschlossen.",
+
+    "Let’s get started": "Jetzt Projekt anlegen",
+    "Looks like you havent started any projects. Create your first one now?": "Sie haben noch keine Projekte angelegt. Erstellen Sie jetzt Ihr erstes Projekt!",
+    "Create Project": "Neues Projekt erstellen",
+
+    "sidebar_selector": {
+      "current_view": "Aktuelle Ansicht",
+      "change_to": "Wechsel zu",
+      "cfo_view": "CFO Ansicht",
+      "company_view": "Unternehmensansicht",
+      "search_companies": "Suche nach Unternehmen",
+      "no_country": "kein Land",
+      "search": "Suchen"
+    },
+
+    "cfo": {
+      "title": "Globale Projektübersicht",
+      "cost_": "{{cost}} {{currency}}",
+      "cost_thousand": "{{cost}} Tsd. {{currency}}",
+      "cost_million": "{{cost}} Mio. {{currency}}",
+      "cost_billion": "{{cost}} Mrd. {{currency}}",
+      "cost__no_currency": "{{cost}}",
+      "cost_thousand_no_currency": "{{cost}} Tsd.",
+      "cost_million_no_currency": "{{cost}} Mio.",
+      "cost_billion_no_currency": "{{cost}} Mrd.",
+      "project_costs": {
+        "title": "Projektkosten im Unternehmensverbund",
+        "actual_costs": "Tatsächliche Kosten {{year}}",
+        "planned_costs": "Geplante Kosten {{year}}"
+      },
+      "awaiting_decision": {
+        "title": "Projekte, die auf Entscheidung warten",
+        "project_count": "{{value}} Projekte",
+        "description": "Als verantwortlicher Entscheidungsträger überprüfen und genehmigen oder ablehnen Sie bitte diese zur Genehmigung vorgelegten Projekte.",
+        "to_project": "Zum Projekt"
+      },
+      "costs_per_company": {
+        "title": "Projektkosten pro Unternehmen"
+      },
+      "project_health": {
+        "title": "Projektgesundheitswarnungen",
+        "search_project": "Ein Projekt suchen",
+        "within_budget": "innerhalb des Budgets",
+        "within_timeline": "innerhalb des Zeitplans",
+        "critical": "KRITISCH",
+        "exceeded_by": "Überschritten um {{percentage}}%",
+        "not_exceeded": "innerhalb des Budgets",
+        "timeline_exceeds": "Zeitplan überschritten!",
+        "timeline_within": "innerhalb des Zeitplans",
+        "exceeded_months": "+{{months}} Monate"
+      },
+      "budget_overspending": {
+        "title": "Budgetüberschreitungen",
+        "description_under": "Im Unternehmensverbund gibt es keine Überschreitungen im Vergleich zum vorhandenen Budget. Die Kosten liegen <strong>{{budget}} unter dem Budget</strong>",
+        "description_over": "Im Unternehmensverbund gibt es einige Überschreitungen im Vergleich zum vorhandenen Budget. Die Kosten liegen <strong>{{budget}} über dem Budget</strong>",
+        "companies": "Unternehmen",
+        "overspent": "{{cost}} überschritten",
+        "underspent": "{{cost}} unterschritten",
+        "over_budget": "{{percentage}}% über dem Budget",
+        "within_budget": "{{percentage}}% innerhalb des Budgets",
+        "no_budget": "Keine Budgetplanung",
+        "budget": "Budget",
+        "costs": "Kosten"
+      },
+      "planning_gaps": {
+        "title": "Planungslücken",
+        "planning_gap": "{{percentage}}% Planungslücke",
+        "planned_costs": "{{percentage}}% geplante Kosten"
+      },
+      "costs_per_project": {
+        "title": "Kosten pro Projekt",
+        "search_project": "Ein Projekt suchen",
+        "show_project": "Projekt anzeigen"
+      },
+      "project_topic_clusters": {
+        "title": "Projektthemencluster",
+        "project_volume": "Projektvolumen"
+      }
+    },
+
+    "All Statuses": "Alle Status",
+    "Project Type": "Projekttyp",
+    "Project type": "Projekttyp",
+    "All Types": "Alle Typen",
+    "Project Visiblity": "Projektsichtbarkeit",
+
+    "All Projects": "Alle",
+    "Hidden Projects": "Versteckte",
+    "Visibles Projects": "Sichtbare",
+    "completed": "Vollendet",
+    "filled out": "ausgefüllt",
+    "generally": "Allgemein",
+    "project specific": "Projektspezifisch",
+    "no clues": "keine Hinweise",
+    "important notes": "Wichtige Notizen",
+    "project title": "PROJEKTTITEL",
+
+    "status": "status",
+    "company": "UNTERNEHMEN",
+    "volume": "PROJEKTVOLUMEN",
+    "projectOutline": "PROJEKTSKIZZE",
+    "questions": "FRAGENLISTEN",
+    "projectplan": "PROJEKTPLAN",
+    "hints": "HINWEISE",
+
+    "Download project description": "Projektbeschreibung herunterladen",
+    "projects created successfully": "Projekt erfolgreich erstellt.",
+
+    "Please select project type": "Bitte Projekttyp wählen",
+    "Please enter title": "Bitte Titel eingeben",
+    "Please enter short title": "Bitte geben Sie einen Kurztitel ein",
+    "Please enter short description": "Bitte geben Sie eine kurze Beschreibung ein",
+    "Project title": "Internes Akyronym",
+    "Short description": "Kurzbeschreibung",
+    "ready for review r and d": "Jetzt können Sie alle Projektdetails überprüfen und, wenn Sie bereit sind, das Projekt zur Prüfung durch die Geschäftsleitung einreichen.",
+    "Ready for review": "Bereit zur Überprüfung",
+
+    "Ready for executive review": "Bereit für die Überprüfung durch die Geschäftsführung",
+
+    "Configure the project flow, the captured project data and the used functions according to your ideas. Perfectly tailored to the way you work.": "Konfigurieren Sie den Projektablauf, die erfassten Projektdaten und die verwendeten Funktionen nach Ihren Vorstellungen. Perfekt zugeschnitten auf Ihre Arbeitsweise.",
+    "Let's go!": "Los geht's!",
+    "PLANNING COSTS": "PLANKOSTEN",
+
+    "short_title_error": "Der Kurztitel muss zwischen {{min}} und {{max}} Zeichen lang sein.",
+    "title_error": "Der Projekttitel muss zwischen {{min}} und {{max}} Zeichen lang sein.",
+
+    "Create at least one work package and one work item in Work Packages step.": "Erstellen Sie mindestens ein Arbeitspaket und ein Workitem im Schritt Arbeitspakete.",
+    "Ensure all work items have effort assigned.": "Stellen Sie sicher, dass allen Workitems Aufwand zugeordnet ist.",
+    "You assigned more months than planned in #2 Human Resource step.": "Sie haben in Schritt #2 Personalwesen mehr Monate als geplant zugeordnet.",
+    "First select all employees involved in the project.": "Wählen Sie zunächst alle an dem Projekt beteiligten Mitarbeiter aus.",
+    "Please enter data for all employees in at least one year.": "Bitte geben Sie die Daten für alle Mitarbeiter in mindestens einem Jahr ein.",
+    "Assign at least one employee to each work item.": "Ordnen Sie jedem Workitem mindestens einen Mitarbeiter zu.",
+    "You have unassigned employees. Assign all involved employees.": "Sie haben nicht zugeordnete Mitarbeiter. Ordnen Sie alle beteiligten Mitarbeiter zu.",
+    "Ensure each work item has an interval.": "Stellen Sie sicher, dass jedes Workitem ein Intervall hat.",
+
+    "User is already assigned to this work item.": "Der Benutzer ist diesem Arbeitselement bereits zugewiesen.",
+    "warningChangeProjectTimeframe": "Wenn der Projektzeitraum geändert wird, gehen alle Daten verloren, die außerhalb des neuen Zeitraums liegen. Sind Sie sicher, dass Sie fortfahren möchten?",
+    "Yes, Continue": "Ja, weiter",
+
+    "application data": {
+      "Yes": "Ya",
+      "No": "Nein",
+      "Application data": "Application data",
+      "General information": "Allgemeine Angaben",
+      "Project Title": "Titel des FuE-Vorhabens",
+      "Start Date": "Von",
+      "End Date": "Bis",
+      "Main Category": "Forschungszweig bezogen auf das FuE-Vorhaben",
+      "Sub-category": "Unterkategorie bezogen auf den ausgewählten Forschungszweig",
+      "Type of Activity": "Tätigkeitsform",
+      "Project Type": "Art des Forschungsvorhabens",
+      "Cooperation Project?": "Kooperationsvorhaben?",
+      "Content/technical information": "Inhaltliche/Fachliche Angaben",
+      "Corresponding technical content": "Corresponding technical content",
+      "Contractor name": "Name des Auftragnehmers",
+      "Business form": "Geschäftsform",
+      "Invalid legal form": "Ungültige Rechtsform",
+      "Tax number": "Steuernummer",
+      "Add Contact Details": "Kontaktdaten hinzufügen",
+      "Address": "Adresse"
+    },
+    "Hours": "Stunden",
+    "Months": "Monate",
+    "Months (M)": "Monate (M)",
+    "Percentages (%)": "Prozentsätze (%)",
+    "Euro (€)": "Euro (€)",
+    "Personal Cost": "Persönliche Kosten",
+    "Budget": "Haushalt",
+    "Assigned": "Zugewiesen",
+    "Project Total": "Projekt Gesamt",
+    "Employees in project": "Employees in project",
+    "Drag employees to tasks": "Drag employees to tasks",
+    "Activate simplified view": "Vereinfachte Ansicht aktivieren",
+    "from budget": "aus dem Haushalt",
+    "Reset": "Zurücksetzen",
+    "Add Work Item": "Work Item hinzufügen",
+    "Add Work Package": "Work Package hinzufügen",
+    "Contact Details": "Kontaktangaben",
+    "Planned Costs": "Geplante Kosten",
+    "Activity description": "Beschreibung der Tätigkeit",
+    "Planned costs according to WJ": "Geplante Kosten nach WJ",
+
+    "events": {
+      "yes": "Ja",
+      "no": "Nein",
+      "title": "projekttitel",
+      "started_at": "projektstart",
+      "finished_at": "projektende",
+      "received_at": "empfangsdatum",
+      "mailbox_checked_at": "letztes Datum überprüftes Postfach",
+      "funding_indicator": "finanzierungsindikator",
+      "is_fully_commissioned": "ist das Projekt vollständig in betrieb genommen",
+      "is_inhouse": "ist ein Projekt im Haus",
+      "is_commissioned": "ist projektauftrag",
+      "is_cooperation_project": "ist ein kooperationsprojekt",
+      "is_hidden": "projekt ist ausgeblendet",
+      "is_cooperation": "Kooperationsvorhaben?",
+      "approved_at": "Datum der Projektgenehmigung",
+      "short_title": "kurztitel des projekts",
+      "estimated_submission_at": "voraussichtliches einreichdatum",
+      "submitted_at": "Eingereicht am",
+      "is_contractorless": "Ist auftragnehmerlos",
+      "keywords": "keywords"
+    },
+    "characters": "zeichen",
+    "Removed user from task successfully.": "Benutzer erfolgreich aus der Aufgabe entfernt.",
+    "assigned user to task successfully.": "Benutzer erfolgreich einer Aufgabe zugewiesen.",
+    "Project Plan set as completed!": "Der Projektplan gilt als abgeschlossen!",
+
+    "The interval is outside of employee contract.": "Das Intervall liegt außerhalb des Mitarbeitervertrags.",
+    "New Work Item": "Neues Arbeitselement",
+    "New Workpackage": "Neues Arbeitspaket",
+    "Employee is detached.": "Mitarbeiter ist distanziert.",
+    "The character limit is 190, including the project title.": "Die Zeichenbegrenzung beträgt 190, einschließlich des Internes Akronym",
+    "SFF projects cannot be earlier than 02.01.2020.": "SFF-Projekte dürfen nicht vor dem 02.01.2020 durchgeführt werden.",
+    "Quality checklist": "Qualitätscheckliste",
+    "Type of activity indicated? (if already known)": "Tätigkeitsform angegeben? (falls schon bekannt)",
+    "projects-list": "Projekte Liste",
+    "project-types": "Projekttypen",
+    "missing_details_for_sff_project": "Fehlende Details für das SFF-Projekt",
+    "add_description_for_project_name": "Beschreibung für Projekt hinzufügen",
+    "please_provide_details_for_sff_project": "Bitte geben Sie die erforderlichen Details an, um diesen Subunternehmer dem ausgewählten SFF-Projekt zuzuweisen.",
+    "please_add_a_description_of_the_contractor_for_project": "Bitte fügen Sie eine Beschreibung des Auftragnehmers für dieses Projekt hinzu.",
+    "please_add_a_description_of_the_other_cost_for_project": "Bitte fügen Sie eine Beschreibung der sonstigen Kosten für dieses Projekt hinzu.",
+    "company_type": "Unternehmenstyp",
+    "please_select": "Bitte wählen",
+    "field_is_required": "Feld ist erforderlich",
+    "description_for_sff_project": "Beschreibung für SFF-Projekt",
+    "please_enter_maximum_500_words": "Bitte geben Sie (maximal 500 Wörter) ein",
+    "cancel": "Abbrechen",
+    "save": "Speichern",
+    "sidebar": {
+      "recent_projects": "Letzte Projekte",
+      "dashboard": "Dashboard",
+      "projects": "Projekte",
+      "types": "Projekttypen",
+      "overview": "Übersicht",
+      "controlling": "Controlling",
+      "timesheets": "Stundenlisten",
+      "timeframes": "Zeitrahmen",
+      "activity": "Aktivität",
+      "analysis": "Analyse",
+      "cross-project-data": "Projektübergreifende Daten",
+      "resource-planning": "Ressourcenplanung",
+      "contractor-planning": "Auftragnehmer Planung",
+      "other-cost-planning": "Sonstige Kostenkontrolle",
+      "my-timesheets": "Meine Stundenzettel",
+      "employees-timesheets": "Mitarbeiter Stundenübersicht",
+      "resource-allocation": "Ressourcenzuweisung",
+      "personnel-allocation": "Personaleinsatz",
+      "contractor-allocation": "Vertragszuweisung",
+      "subcontractor-allocation": "Auftragnehmerzuteilung",
+      "other-cost-allocation": "Sonstige Kostenzuordnung",
+      "other-cost-control": "Sonstige Kostenkontrolle",
+      "project-timeframes": "Zeitrahmen des Projekts",
+      "employee-allocation": "Zuweisung der Mitarbeiter",
+      "personnel-planning": "Personalplanung"
+    },
+    "errors": {
+      "default": "Beim Laden der Daten ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut oder kontaktieren Sie den Support."
+    },
+    "uploadModal": {
+      "sidebarText": "Dateien wurden hochgeladen, aber noch nicht kategorisiert",
+      "sidebarSubtext": "Bitte kategorisieren Sie sie jetzt",
+      "categorization": "Kategorisierung",
+      "typeOfDocument": "Dokumententyp",
+      "financialYear": "Wirtschaftsjahr",
+      "note": "Hinweis",
+      "addNote": "Hinweis hinzufügen",
+      "notePlaceholder": "Geben Sie hier Text ein, um einen Hinweis hinzuzufügen",
+      "confirmAndSave": "Bestätigen und speichern"
+    },
+
+    "PMHint": {
+      "title": "Was ist ein Personalmonat (PM)?",
+      "desc1": "Ein Personalmonat (PM) stellt die standardmäßige monatliche Arbeitskapazität eines Mitarbeiters dar, basierend auf den gesetzlichen Anforderungen, denen der Mitarbeiter unterliegt. Es bietet eine standardisierte Möglichkeit, den Aufwand über Projekte hinweg zu messen, unter der Annahme einer Vollzeitverfügbarkeit.",
+      "desc2": "Dieser Wert spiegelt den maximalen Aufwand wider, den ein Mitarbeiter in einem Monat entsprechend seiner wöchentlichen Arbeitszeit leisten kann.",
+      "playground": "Spielbereich",
+      "input_hint": "<strong>Standardarbeitszeit</strong> eingeben, um PM zu berechnen:",
+      "hours_shortened_other": "Std."
+    }
+  },
+  "projectCost": {
+    "contractorExpensesModalTitle": "Kostenverwaltung Auftragnehmer",
+    "contractorInvoicesSum": "Rechnungssumme Auftragnehmer",
+    "contractorPlanSum": "Plansumme Auftragnehmer",
+    "searchPlaceholder": "Suche nach Anbeiter, Beschreibung",
+    "contractorsTable": {
+      "contractor": "Auftragnehmer",
+      "description": "Kurzbeschreibung",
+      "planSum": "Plansumme",
+      "invoicesSum": "Summe Rechnungen"
+    },
+    "invoicesModalTitle": "Rechnungsverwaltung",
+    "uploadInvoice": "Rechnungen zur Kategorisierung hochladen",
+    "dropHint": "Dateien zum Hochladen ablegen",
+    "invoicesTable": {
+      "from": "ANBIETER",
+      "amount": "PROJEKTRELEVANTER BETRAG",
+      "number": "RECHNUNGSNR.",
+      "date": "RECHNUNGSDATUM",
+      "category": "KATEGORIEN",
+      "file": "RECHNUNGSDATEI"
+    },
+    "invoicesUploadModal": {
+      "from": "Rechnungssteller",
+      "note": "Hinweis",
+      "addNote": "Hinweis hinzufügen",
+      "notePlaceholder": "Notiz hinzufügen",
+      "amount": "Projektrelevanter Betrag",
+      "number": "Rechnungsnummer",
+      "date": "Rechnungsdatum",
+      "details": "Rechnungsdetails",
+      "category": "Kategorien",
+      "projectRelevant": "Projektrelevant",
+      "projectAmount": "Projektrelevanter Rechnungsbetrag",
+      "categoryPlaceholder": "Bitte Kategorie wählen",
+      "categoryLabel": "Füge Rechnungsposten für folgende Kategorie hinzu",
+      "info": "Dieser Betrag berechnet sich automatisch aus der Summe der unten aufgeführten Posten. Fügen Sie nur projektrelevante Posten hinzu",
+      "contractor_details": "Details zum Auftragnehmer",
+      "other_cost_details": "Andere Kostenangaben",
+      "connected_contractor": "Angeschlossener Auftragnehmer",
+      "document_type": "Art des Dokuments",
+      "total_cost": "Gesamtkosten",
+      "connected_project": "Verbundenes Projekt",
+      "project_related_cost": "Projektbezogene Kosten",
+      "select_contractor_first": "Bitte wählen Sie zuerst einen Auftragnehmer",
+      "select_other_cost_first": "Bitte wählen Sie zuerst eine andere Kostenart",
+      "connected_plan_items": "Verbundene Planposition(en)"
+    },
+    "projectCostsTable": {
+      "viewEditOptions": "Bearbeitungsoptionen anzeigen",
+      "budget": {
+        "year": "Jahr",
+        "personnel": "Budget Personalkosten",
+        "contractor": "Budget Auftragnehmer",
+        "other": "Budget Sonstige Kosten",
+        "sum": "Budget Gesamtkosten",
+        "clickToAddBudget": "Klicken Sie, um das Budget hinzuzufügen"
+      },
+      "planned-costs": {
+        "year": "Jahr",
+        "personnel": "Geplante Personalkosten (im Vergleich zum Budget)",
+        "contractor": "Geplante Auftragnehmerkosten (im Vergleich zum Budget)",
+        "other": "Geplante sonstige Kosten (im Vergleich zum Budget)",
+        "sum": "Geplante Gesamtkosten",
+        "toHRApp": "Zur Mitarbeiterverwaltung",
+        "toProjectPlan": "Zum Projektplan"
+      },
+      "expenses": {
+        "year": "Wirtschaftsjahr",
+        "personnel": "Tatsächliche Personalkosten (im Vergleich zum Plan)",
+        "contractor": "Tatsächliche Auftragnehmerkosten (im Vergleich zum Plan)",
+        "other": "Tatsächliche Sonstige Kosten (im Vergleich zum Plan)",
+        "sum": "Tatsächliche Gesamtkosten",
+        "toTimesheetsOverview": "Zur Stundenübersicht"
+      }
+    }
+  },
+  "projectDetails": {
+    "project_plan": "Project Plan",
+    "version": "Version: <strong>{{version}}</strong>",
+    "save": "Speichern",
+    "planning_versions": "PLANUNGSVERSIONEN",
+    "efforts": "Aufwand",
+    "personnel": "Personal",
+    "contractor": "Auftragnehmer",
+    "other_cost": "Sonstige Kosten",
+
+    "search": "Suchen",
+
+    "not_assigned": "Nicht zugewiesen",
+
+    "total_effort": "Gesamtaufwand",
+    "assigned_effort": "Zugewiesener Aufwand",
+    "responsibles": "Verantwortliche",
+    "status": "Status",
+    "role_not_defined": "Rolle nicht definiert",
+    "plan_complete": "Plan abgeschlossen",
+    "plan_incomplete": "Plan unvollständig",
+    "no_employees_task": "Der Aufgabe sind keine Mitarbeiter zugewiesen",
+    "add_item": "Gegenstand hinzufügen",
+
+    "planned_budget": "Geplantes Budget",
+    "assigned_budget": "Zugewiesenes Budget",
+    "total": "Gesamt",
+    "no_contractors_found": "Keine Auftragnehmer gefunden",
+    "no_contractors_task": "Der Aufgabe wurden keine Auftragnehmer zugewiesen",
+    "no_contractors": "Keine Auftragnehmer hinzugefügt",
+
+    "no_other_costs": "Keine weiteren Kosten hinzugefügt",
+    "no_other_costs_found": "Keine weiteren Kosten gefunden",
+    "no_other_costs_task": "Der Aufgabe wurden keine weiteren Kosten zugewiesen",
+
+    "download_as_pdf": "Als PDF herunterladen",
+    "save_as_a_new_version": "Als neue Version speichern",
+    "undo": "Rückgängig",
+    "redo": "Wiederholen",
+    "reset_project_plan_options": "Projektplan-Optionen zurücksetzen",
+    "months": "Monate",
+    "delete": "Entfernen",
+    "add_desc": "Beschreibung hinzufügen",
+    "add_wp_desc": "Beschreibung des Arbeitspakets hinzufügen",
+    "add_wi_desc": "Beschreibung des Arbeitselements hinzufügen",
+    "columns": "Spalten",
+    "workplan": "Arbeitsplan",
+    "swap_rows_columns": "Zeile/Spalte vertauschen",
+    "timeframe_required": "Erforderlicher Zeitrahmen",
+    "no_employees_assigned": "Dem Projekt sind keine Mitarbeiter zugeordnet",
+    "no_employees_found": "Keine Mitarbeiter gefunden",
+    "assign_employees_in": "Weisen Sie Mitarbeiter auf der Seite „Mitarbeiterzuordnung“ zu",
+
+    "dependencies": "Abhängigkeiten",
+    "waiting_on": "Wartet auf",
+    "blocked_by": "Blockiert durch",
+    "discard_changes": "Möchten Sie fortfahren, ohne Ihre Änderungen zu speichern?",
+    "add_item_waiting": "Arbeitsobjekt hinzufügen, das vor dieser Aufgabe abgeschlossen sein muss",
+    "add_item_blocking": "Arbeitsobjekt hinzufügen, das nicht beginnen kann, bevor dieses Arbeitsobjekt abgeschlossen ist",
+    "work_item": "1 Arbeitsobjekt",
+    "n_work_items": "{{n}} Arbeitsobjekte",
+    "select_waiting": "Wählen Sie, welches auf dieses Arbeitsobjekt wartet",
+    "select_blocked": "Wählen Sie das blockierte Arbeitsobjekt aus",
+    "items_completed_before": "Arbeitsobjekte, die vor dieser Aufgabe abgeschlossen sein müssen.",
+    "items_completed_after": "Arbeitsobjekte, die nicht beginnen können, bevor dieses Arbeitsobjekt abgeschlossen ist.",
+    "no_items_added": "Keine Arbeitsobjekte hinzugefügt",
+    "blocking": "Blockierend"
+  },
+  "projectTypes": {
+    "title": "Projekttypen",
+    "newProjectType": "Neuer Projekttyp",
+    "search": "Suche nach dem Projekttyp",
+    "table": {
+      "icon": "Icon",
+      "projectType": "Projekttyp",
+      "description": "Beschreibung",
+      "projects": "Projekte",
+      "participants": "Teilnehmer",
+      "lastUpdateByOn": "Zuletzt aktualisiert von/am",
+      "lastUpdateOn": "Zuletzt aktualisiert am",
+      "selectParticipants": "Teilnehmer auswählen"
+    },
+    "typeModal": {
+      "title": "Neuer Projekttyp",
+      "editTitle": "Projekttyp bearbeiten",
+      "manageParticipants": "Teilnehmer verwalten",
+      "iconAndTitle": "Icon & Titel",
+      "titlePlaceholder": "Titel des Projekttyps",
+      "description": "Beschreibung (optional)",
+      "descriptionPlaceholder": "Beschreibung des Projekttyps",
+      "color": "Farbe",
+      "selectWorkflow": "Wählen Sie einen Workflow für den Projekttyp",
+      "search": "Suche nach Workflow-Name",
+      "newWorkflow": "Neuer Workflow",
+      "projectTypeSettings": "Projekttyp-Einstellungen",
+      "markAsRnDProjectLabel": "Als F&E-Projekt kennzeichnen",
+      "rndProjectInfo": "Nur Mitarbeiter, die im HR-App als F&E gekennzeichnet sind, können an diesem Projekt teilnehmen.",
+      "cancel": "Abbrechen",
+      "save": "Projekttyp erstellen",
+      "saveEdit": "speichern"
+    },
+    "deletePromptText": "Dieser Projekttyp hat {{count}} Projekt, sind Sie sicher, dass Sie ihn löschen wollen?",
+    "deletePromptTextNoProjects": "Möchten Sie diesen Projekttyp wirklich löschen?",
+    "deletePromptText_other": "Dieser Projekttyp hat {{count}} Projekte, sind Sie sicher, dass Sie ihn löschen wollen?",
+    "deletePromptHint": "Wenn Sie diesen Projekttyp löschen, werden seine Projekte dauerhaft gelöscht. Diese Aktion kann nicht rückgängig gemacht werden.",
+    "deletePromptHintNoProjects": "Diese Aktion kann nicht rückgängig gemacht werden.",
+    "projects": "Projekte",
+    "deleteProjectType": "Projekttyp und seine Projekte löschen",
+    "deleteProjectTypeNoProjects": "Projekttyp löschen",
+    "cancel": "Abbrechen",
+    "manageParticipants": "Teilnehmer verwalten",
+    "participants": "Teilnehmer"
+  },
+  "resourcePlanningData": {
+    "search": "Suche",
+    "pct": {
+      "personnel_control": "Personelle Kontrolle",
+      "search_for_personnel": "Suche nach Personal",
+      "all_projects": "Alle Projekte"
+    },
+    "cct": {
+      "search_for_contractor": "Suche nach Auftragnehmern",
+      "contractor_planning_in_euro": "Auftragnehmerkontrolle in Euro",
+      "planned_contractor_costs": "Geplante Kosten für Auftragnehmer",
+      "assigned_projects": "Zugewiesene Projekte",
+      "manage_documents": "Verwalten von Dokumenten",
+      "upload_from_computer": "Hochladen vom Computer",
+      "select_from_clx_files": "Aus CLX-Dateien auswählen",
+      "table_header_text": "Legen Sie für jedes Projekt den Betrag fest, den der Auftragnehmer zu leisten hat, und versuchen Sie, für jedes Projekt 100 % zu erreichen."
+    },
+    "oct": {
+      "search_for_other_cost": "Suche nach anderen Kosten",
+      "other_cost_planning_in_euro": "Sonstige Kostenplanung in Euro",
+      "other_cost_not_assigned_to_project": "Sonstige nicht dem Projekt zugeordnete Kosten",
+      "planned_other_costs": "Geplante sonstige Kosten",
+      "table_header_text": "Legen Sie für jedes Projekt einen anderen Kostenbetrag fest und versuchen Sie, jedes Projekt auf 100 % zu bringen."
+    },
+    "table": {
+      "planned_cost": "Geplante Kosten",
+      "role_not_defined": "Rolle nicht definiert",
+      "of_capacity": "der Kapazität",
+      "of_budget": "des Budgets",
+      "planned_hours": "Geplante Stunden",
+      "define_employee_work_time_to_get_each_project": "Definieren Sie die Arbeitszeit der Mitarbeiter für jedes Projekt und versuchen Sie, jedes Projekt auf 100% zu bringen.",
+      "total_planned_personeel_costs": "Geplante Personalkosten insgesamt",
+      "total_units_planned": "Geplante Einheiten insgesamt",
+      "employee_not_assigned_to_project": "Mitarbeiter nicht dem Projekt zugewiesen",
+      "no_pms_assigned": "Keine PMs zugewiesen",
+      "contracor_not_assigned_to_project": "Auftragnehmer nicht dem Projekt zugeordnet",
+      "other_cost_not_assigned_to_project": "Sonstige nicht dem Projekt zugeordnete Kosten",
+      "upload_files": "Dateien hochladen",
+      "file": "Datei",
+      "files": "Dateien",
+      "no_file_uploaded": "Keine Datei hochgeladen",
+      "no_invoice_uploaded": "Keine Rechnung hochgeladen",
+      "download": "Herunterladen",
+      "download_all": "Alle herunterladen",
+      "delete": "Löschen",
+      "delete_all": "Alle löschen",
+      "upload_new_file": "Neue Datei hochladen"
+    },
+    "documentUploadModal": {
+      "subcontractor_details": "Details zum Unterauftragnehmer",
+      "contractor_details": "Auftragnehmer Details",
+      "connected_subcontractor": "Verbundener Unterauftragnehmer",
+      "connected_contractor": "Angeschlossener Auftragnehmer",
+      "document_type": "Art des Dokuments",
+      "contract_details": "Details zum Vertrag",
+      "doc_details": "Details zum Dokument",
+      "cost_details": "Kosten Details",
+      "connected_cost": "Verbundene Kosten",
+      "total_cost": "Gesamtkosten",
+      "doc_date": "Datum",
+      "contract_number": "Vertragsnummer",
+      "connected_project": "Verbundenes Projekt",
+      "connected_plan_items": "Verbundene Planpositionen",
+      "project_related_cost": "Projektbezogene Kosten",
+      "note":"Hinweis",
+      "add_note": "Notiz hinzufügen",
+      "add_responsible": "Verantwortlich hinzufügen",
+      "please_select_employee": "Bitte wählen Sie einen Mitarbeiter"
+    }
+  }
+}
