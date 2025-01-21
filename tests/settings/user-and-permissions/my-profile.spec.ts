@@ -2,14 +2,14 @@ import { test, expect } from '@playwright/test'
 import { closeProductTour } from 'common/product-tour-helper'
 import { closeTimerPopUp } from 'common/timer-helper'
 import { addCursorStyleAndScript } from 'common/cursor-helper'
-import { skipSurvey } from 'common/skip-survey'
+import { skipSurveyHelper } from 'common/skip-survey-helper'
 import { faker } from '@faker-js/faker'
-import { getGenderOptions } from 'helpers/settings/hr-settings-helper'
+import { getGenderOptions } from 'helpers/ui/settings/hr-settings-helper'
 
 test.describe('User and Permissions - My Profile Tests', () => {
   test.beforeEach(async ({ page, baseURL }) => {
     await page.goto(`${baseURL}/settings/users-and-permissions`)
-    await skipSurvey(page)
+    await skipSurveyHelper(page)
     await closeProductTour(page)
     await closeTimerPopUp(page)
     await addCursorStyleAndScript(page)

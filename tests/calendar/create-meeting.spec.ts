@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 import { closeTimerPopUp } from '../../helpers/common/timer-helper'
 import { addCursorStyleAndScript } from '../../helpers/common/cursor-helper'
 import { CalendarPage } from 'pages/calendar/calendar-page'
-import { skipSurvey } from 'common/skip-survey'
+import { skipSurveyHelper } from 'common/skip-survey-helper'
 import { closeProductTour } from 'common/product-tour-helper'
 
 // Function to generate a dynamic event name
@@ -16,7 +16,7 @@ test.describe('CRUD Operations for meeting', () => {
     test.setTimeout(60000)
     await page.goto(baseURL!)
     await addCursorStyleAndScript(page)
-    await skipSurvey(page, testInfo)
+    await skipSurveyHelper(page, testInfo)
     await closeProductTour(page)
     await closeTimerPopUp(page)
     await page.waitForLoadState('networkidle')

@@ -4,7 +4,7 @@ import { time } from 'console'
 import { ApiResponse } from 'common/api-response'
 import * as dotenv from 'dotenv'
 import { addCursorStyleAndScript } from 'common/cursor-helper'
-import { skipSurvey } from 'common/skip-survey'
+import { skipSurveyHelper } from 'common/skip-survey-helper'
 import { closeProductTour } from 'common/product-tour-helper'
 import { closeTimerPopUp } from 'common/timer-helper'
 import { EmailPage } from 'pages/email'
@@ -28,7 +28,7 @@ test.describe('reply on email', () => {
 
         await page.goto(baseURL!)
         await addCursorStyleAndScript(page)
-        await skipSurvey(page, testInfo)
+        await skipSurveyHelper(page, testInfo)
         await closeProductTour(page)
         await page.waitForTimeout(4000)
         await closeTimerPopUp(page)

@@ -1,6 +1,6 @@
 import { test, expect, Page } from '@playwright/test'
 import { closeTimerPopUp } from 'common/timer-helper'
-import { skipSurvey } from 'common/skip-survey'
+import { skipSurveyHelper } from 'common/skip-survey-helper'
 import { closeProductTour } from 'common/product-tour-helper'
 import { openNavigationMenu } from '../../helpers/navigation-helper'
 import { addCursorStyleAndScript } from 'common/cursor-helper'
@@ -15,7 +15,7 @@ test.describe('File Reggression Suite', () => {
     console.log('Base URL:', baseURL)
     console.log('Navigating to:', `${baseURL}/cluster-space`)
     await filesPage.goto(baseURL)
-    await skipSurvey(page, testInfo)
+    await skipSurveyHelper(page, testInfo)
     await closeProductTour(page)
     await closeTimerPopUp(page)
     await addCursorStyleAndScript(page)

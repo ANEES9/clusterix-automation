@@ -4,7 +4,7 @@ import { addCursorStyleAndScript } from '../../helpers/common/cursor-helper'
 import { EmployeeManagementPage } from '../../pages/hr/employee-management-page'
 import { Allure } from '../../helpers/common/allure-helper'
 import { VacationAbsenceDaysPage } from '../../pages/my-profile/vacation-absence-days.page'
-import { skipSurvey } from 'common/skip-survey'
+import { skipSurveyHelper } from 'common/skip-survey-helper'
 import { closeProductTour } from 'common/product-tour-helper'
 
 let employeeId: number | null = null
@@ -22,7 +22,7 @@ test.describe('Regression Test Suite', () => {
     await page.goto(`${baseURL}/profile/vacation-and-absence-days`)
     await page.waitForLoadState('networkidle')
 
-    await skipSurvey(page)
+    await skipSurveyHelper(page)
     await closeProductTour(page)
     await closeTimerPopUp(page)
     await addCursorStyleAndScript(page)

@@ -2,7 +2,7 @@ import { test } from '@playwright/test'
 import { PageLocators } from '../../pages/accounting/accounting-page'
 import { generateRandomGermanIBAN } from 'common/iban-generator'
 import { addCursorStyleAndScript } from 'common/cursor-helper'
-import { skipSurvey } from 'common/skip-survey'
+import { skipSurveyHelper } from 'common/skip-survey-helper'
 import { closeProductTour } from 'common/product-tour-helper'
 import { closeTimerPopUp } from 'common/timer-helper'
 import { Allure } from 'common/allure-helper'
@@ -19,7 +19,7 @@ test.describe('Accounting Application API Tests', () => {
     await Allure.step('Navigate to Base URL and Close Popups', async () => {
       await page.goto(baseURL!)
       await addCursorStyleAndScript(page)
-      await skipSurvey(page)
+      await skipSurveyHelper(page)
       await closeProductTour(page)
       await closeTimerPopUp(page)
       await page.waitForLoadState('networkidle')

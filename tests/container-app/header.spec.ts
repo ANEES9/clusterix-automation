@@ -1,13 +1,13 @@
 import { test } from '@playwright/test'
 import { ContainerPage } from '../../pages/container-app/container-page'
 import { addCursorStyleAndScript } from 'common/cursor-helper'
-import { skipSurvey } from 'common/skip-survey'
+import { skipSurveyHelper } from 'common/skip-survey-helper'
 import { closeProductTour } from 'common/product-tour-helper'
 import { closeTimerPopUp } from 'common/timer-helper'
 import { Allure } from 'common/allure-helper'
 import { NotificationsPanelPage } from 'pages/notifications/notifications-panel-page'
 import { APP_NAMES } from 'config/constants/app-names'
-import { skipTutorial } from 'common/skip-tutorial-helper'
+import { skipTutorialHelper } from 'common/skip-tutorial-helper'
 
 test.describe('Container App Header Navigation Tests', () => {
   let containerPage: ContainerPage
@@ -19,9 +19,9 @@ test.describe('Container App Header Navigation Tests', () => {
     await Allure.step('Navigate to Base URL and Close Popups', async () => {
       await page.goto(baseURL!)
       await addCursorStyleAndScript(page)
-      await skipSurvey(page, testInfo)
+      await skipSurveyHelper(page, testInfo)
       await closeProductTour(page)
-      await skipTutorial(page, testInfo)
+      await skipTutorialHelper(page, testInfo)
       await closeTimerPopUp(page)
       await page.waitForLoadState('networkidle')
     })

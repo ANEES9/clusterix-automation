@@ -1,6 +1,8 @@
 export const APP_URLS = {
   login: '/login',
   register: '/register',
+  resetPassword: '/reset-password',
+  sso: '/sso',
   settings: {
     base: '/settings',
     usersAndPermissions: {
