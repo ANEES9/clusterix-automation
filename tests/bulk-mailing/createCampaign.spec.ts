@@ -2,21 +2,21 @@ import { test, expect } from '@playwright/test';
 import { closeProductTour } from 'common/product-tour-helper.js';
 import { closeTimerPopUp } from 'common/timer-helper.js';
 import { addCursorStyleAndScript } from '../../helpers/common/cursor-helper.js';
-import { BulkMailingPage } from 'pages/bulk-mailing/bulk-mailing-page.js';
+import { bulkMailingPage } from 'pages/bulk-mailing/bulk-mailing-page.js';
 import { skipSurvey } from 'common/skip-survey'
 
 //  import { Allure } from '../../helpers/common/allure-helper.js';
 const campaignname = 'Demo Campaign'
 const subject = 'Check Bulk Mailing'
 
-let locators: BulkMailingPage;
+let locators: bulkMailingPage;
 test.describe('Verify Bulk Mailing Functionalities', () => {
   
   test.beforeEach(async ({ page, baseURL }, testInfo) => {
     // await Allure.step('Navigate to Base URL and Close Popups', async () => {
     await page.goto(baseURL!)
     await skipSurvey(page, testInfo)
-    locators = new BulkMailingPage(page);
+    locators = new bulkMailingPage(page);
     await closeProductTour(page)
     await page.waitForLoadState('networkidle')
     await closeTimerPopUp(page)

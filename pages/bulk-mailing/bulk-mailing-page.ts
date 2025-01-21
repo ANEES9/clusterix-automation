@@ -1,7 +1,7 @@
 import { Page, Locator, expect } from '@playwright/test'
 import { Allure } from 'common/allure-helper';
 
-export class BulkMailingPage {
+export class bulkMailingPage {
   private page: Page;
 
   public bulkMailing: Locator;
