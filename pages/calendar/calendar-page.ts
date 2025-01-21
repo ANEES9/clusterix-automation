@@ -30,6 +30,10 @@ export class CalendarPage {
   private filterByGuest: Locator
   private startTypingTextInGuest: Locator
   private filterByGuestMe: Locator
+  private yearView:Locator
+  private listView:Locator
+  private dayView:Locator
+  private twoDaysView:Locator
 
   static readonly URL = '/calendar'
 
@@ -40,8 +44,12 @@ export class CalendarPage {
     this.page = page
     this.closeCurrentApp = page.locator('.t2NoaA5h7fzt0q0GapK3')
     this.calendarApp = page.getByRole('button', { name: 'Calendar' })
+    this.dayView = page.getByRole('button', { name: 'Day', exact: true })
+    this.twoDaysView = page.getByRole('button', { name: 'Days'})
     this.weekView = page.getByRole('button', { name: 'Week' })
     this.monthView = page.getByRole('button', { name: 'Month' })
+    this.yearView = page.getByRole('button', { name: 'Year' })
+    this.listView = page.getByRole('button', { name: 'List' })
     this.collapseButton = page.locator('._collapseButton_16zcl_522')
     this.addEvent = page.getByRole('button', { name: 'Add Event' })
     this.eventName = page.getByPlaceholder('Untitled Event')
@@ -290,7 +298,41 @@ export class CalendarPage {
       }
     )
   }
+  async navigateToYearView() {
+    await Allure.step(
+      'should navigate to calendar year view when dropdown year value is clicked',
+      async () => {
+        await this.yearView.click()
+      }
+    )
+  }
 
+  async navigateToListView() {
+    await Allure.step(
+      'should navigate to calendar list view when dropdown list value is clicked',
+      async () => {
+        await this.listView.click()
+      }
+    )
+  }
+
+  async navigateToDayView() {
+    await Allure.step(
+      'should navigate to calendar day view when dropdown day value is clicked',
+      async () => {
+        await this.dayView.click()
+      }
+    )
+  }
+
+  async navigateToTwoDaysView() {
+    await Allure.step(
+      'should navigate to calendar 2 days view when dropdown 2 days value is clicked',
+      async () => {
+        await this.twoDaysView.click()
+      }
+    )
+  }
   async goto(baseURL: string | undefined) {
     await Allure.step('Navigate to Calendar URL', async () => {
       //await this.page.goto(`${baseURL}${CalendarPage.URL}`)

@@ -19,9 +19,8 @@ test.describe('Search Filter', () => {
     const calendarPage = new CalendarPage(page)
     await calendarPage.navigateToCalendar()
 
-    await page.pause()
-    // Wait for the page to fully load
-    await page.waitForLoadState('networkidle')
+        // Wait for the page to fully load
+        await page.waitForLoadState('networkidle');
 
     // Wait for the Filter button and click it
     await page.waitForTimeout(3000) // Optional: Add a delay
