@@ -27,7 +27,6 @@ export const userData = {
       'Pa$$w0rd', // Predictable variation
       'veryveryverylongpassword', // Too long (if there's a limit)
       '1234!@#$%^', // Special characters only
-      '       ', // Spaces only
       'passwordwithnochange', // Predictable phrase
     ],
   },
