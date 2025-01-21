@@ -8,7 +8,7 @@ import { generateRandomFileName } from 'common/random-data-generator'
 import { skipSurvey } from 'common/skip-survey'
 
 test.describe('Task Management Board Tests', () => {
-  test.beforeEach(async ({ page, baseURL },testInfo) => {
+  test.beforeEach(async ({ page, baseURL }, testInfo) => {
     await Allure.step('Navigate to Base URL and Close Popups', async () => {
       await page.goto(baseURL!)
       await skipSurvey(page, testInfo)
@@ -18,13 +18,13 @@ test.describe('Task Management Board Tests', () => {
     })
   })
 
-  test('Pinboard CRUD Tests', async ({ page }) => {
+  test('Status creation Tests', async ({ page }) => {
     const locators = new TaskManagementPage(page)
 
     const taskmanageprod =
-      'https://task-management-backend.innoscripta.com/api/boards'
+      'https://task-management-backend.innoscripta.com/api/tasks'
     const taskmanagetest =
-      'https://task-management-backend-testing.innoscripta.com/api/boards'
+      'https://task-management-backend-testing.innoscripta.com/api/tasks'
 
     const taskmanage = await ApiResponse(page, taskmanageprod, taskmanagetest)
     const currentDate = new Date()
@@ -39,13 +39,14 @@ test.describe('Task Management Board Tests', () => {
     console.log(board_click_name)
     console.log('Randomly Generated File Name:', randomFileName)
     locators.savexpath = randomFileName
+    locators.savexpathboard = board_click_name
     await page.waitForLoadState('networkidle')
 
     //Folder creation
     await locators.navigatetotaskmanagement()
     await locators.navigatetopinboardsection()
     await locators.navigatetoaddfolder()
-    await page.waitForTimeout(2000)
+    await page.waitForTimeout(7000)
     await locators.navigatetorenamefolder()
     await locators.navigatetofillfolder(randomFileName)
     await locators.renamefolderandsubmit()
@@ -55,11 +56,24 @@ test.describe('Task Management Board Tests', () => {
 
     await locators.clickonfolder()
     await locators.navigatetoaddpinboard()
-    await page.waitForTimeout(3000)
+    await page.waitForTimeout(7000)
     await locators.navigatetorenameboard()
     await locators.navigatetofillboard(randomFileName)
     await locators.renameboardandsubmit()
-    await page.waitForTimeout(5000)
+    await page.waitForTimeout(7000)
+
+    //status creation
+    await locators.clickonboard()
+    await locators.navigatetoaddstatus()
+    await locators.navigatetofillstatus(randomFileName)
+    await locators.statussubmit()
+    await page.waitForTimeout(1000)
+
+    // Task creation
+    await locators.navigatetoaddtask()
+    await locators.navigatetofilltask(randomFileName)
+    await locators.tasksubmit()
+    await page.waitForTimeout(3000)
 
     const { status: apiResponseStatus } = taskmanage()
     // Check the response and log messages accordingly
@@ -71,7 +85,6 @@ test.describe('Task Management Board Tests', () => {
       )
     }
 
-    // Assert that the API returned 201
-    //expect(apiResponseStatus).toBe(201);
+    
   })
 })

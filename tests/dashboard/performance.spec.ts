@@ -1,5 +1,5 @@
 import { test, expect, Page } from '@playwright/test'
-import { closeWelcomePopUp } from '../../helpers/common/welcome-popup-helper'
+
 import { closeTimerPopUp } from '../../helpers/common/timer-helper'
 import { openNavigationMenu } from '../../helpers/navigation-helper'
 import { closeCurrentlyActivePopup } from '../../helpers/company-searcher-helper'
@@ -11,7 +11,7 @@ test.describe('Clusterix Performance Tests', () => {
 
   test.beforeEach(async ({ page, baseURL }) => {
     await page.goto(baseURL!)
-    await closeWelcomePopUp(page)
+
     await closeTimerPopUp(page)
     await openNavigationMenu(page)
     await page.waitForLoadState('networkidle')

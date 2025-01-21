@@ -8,10 +8,10 @@ import { generateRandomFileName } from 'common/random-data-generator'
 import { skipSurvey } from 'common/skip-survey'
 
 test.describe('Task Management Folder Tests', () => {
-  test.beforeEach(async ({ page, baseURL }) => {
+  test.beforeEach(async ({ page, baseURL }, testInfo) => {
     await Allure.step('Navigate to Base URL and Close Popups', async () => {
       await page.goto(baseURL!)
-      await skipSurvey(page)
+      await skipSurvey(page, testInfo)
       await closeProductTour(page)
       await closeTimerPopUp(page)
       await page.waitForLoadState('networkidle')
@@ -38,17 +38,17 @@ test.describe('Task Management Folder Tests', () => {
     const board_click_name = randomFileName + customFormattedDate
     console.log(board_click_name)
     console.log('Randomly Generated File Name:', randomFileName)
-    locators.saveXPath = randomFileName
+    locators.savexpath = randomFileName
     await page.waitForLoadState('networkidle')
 
     //Folder creation
-    await locators.navigateToTaskManagement()
-    await locators.navigateToPinboardSection()
-    await locators.navigateToAddFolder()
+    await locators.navigatetotaskmanagement()
+    await locators.navigatetopinboardsection()
+    await locators.navigatetoaddfolder()
     await page.waitForTimeout(2000)
-    await locators.navigateToRenameFolder()
-    await locators.navigateToFillFolder(randomFileName)
-    await locators.renameFolderAndSubmit()
+    await locators.navigatetorenamefolder()
+    await locators.navigatetofillfolder(randomFileName)
+    await locators.renamefolderandsubmit()
     await page.waitForTimeout(5000)
 
     const { status: apiResponseStatus } = taskmanage()
@@ -61,7 +61,5 @@ test.describe('Task Management Folder Tests', () => {
       )
     }
 
-    // Assert that the API returned 201
-    //expect(apiResponseStatus).toBe(201);
   })
 })
