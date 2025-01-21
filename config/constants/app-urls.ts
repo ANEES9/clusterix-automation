@@ -63,6 +63,18 @@ export const APP_URLS = {
   },
   projectManagement: {
     base: '/project-management/',
+    projects: {
+      base: '/project-management/projects',
+      overview: '/project-management/projects/overview',
+      projectTypes: '/project-management/projects/types',
+      controlling: {
+        base: '/project-management/projects/controlling',
+        performance: '/project-management/projects/controlling/performance',
+        employees: '/project-management/projects/controlling/employees',
+      },
+      timeframes: '/project-management/projects/timeframes',
+      activity: '/project-management/projects/activity',
+    },
   },
   taskManagement: {
     base: '/task-management',
