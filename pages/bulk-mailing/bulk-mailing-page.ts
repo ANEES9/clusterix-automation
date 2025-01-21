@@ -106,6 +106,10 @@ export class BulkMailingPage {
   public value2: Locator;
   public emailSelect: Locator;
   public formTextInput: Locator;
+  public newCampaignNameFields: Locator;
+  public addNewAudience: Locator;
+  public audienceTitle: Locator;
+
 
   constructor(page: Page) {
     this.page = page;
@@ -124,6 +128,9 @@ export class BulkMailingPage {
     this.fileUploadedText = this.page.getByText('file uploaded');
     this.newCampaignButton = this.page.getByText('New Campaign');
     this.newCampaignNameField = this.page.getByText('Untitled campaign');
+    
+    this.newCampaignNameFields = this.page.locator(".kW_6nAcmh8OvfvpQH78n");
+    this.addNewAudience = this.page.getByRole('button', { name: 'Add Audience' });
     this.templateSelect = this.page.getByRole('img', { name: 'Bulk Mailing - Rejection' });
     this.sendToDropdown = this.page.getByLabel('Send to');
     this.selectEmailAddressDrodown = this.page.getByPlaceholder('Select email address');
@@ -206,11 +213,14 @@ export class BulkMailingPage {
     this.emailRefreshButton = this.page.getByText('Refresh Emails');
     this.recruiterName = this.page.getByText('Recruiter Name');
     this.greetingName = this.page.getByText('Greeting Name');
-    this.recruiterNameaudienceDropdown = this.page.locator('.recruiter-dropdown');
-    this.greetingNameaudienceDropdown = this.page.locator('.greeting-dropdown');
-    this.value1 = this.page.locator('.value-1');
-    this.value2 = this.page.locator('.value-2');
+    this.recruiterNameaudienceDropdown = this.page.getByRole('textbox', { name: 'Select audience column' });
+    this.greetingNameaudienceDropdown = this.page.getByRole('textbox', { name: 'Select audience column' }).nth(1);
+    this.value1 = this.page.getByText('Firstname').first();
+    this.value2 = this.page.getByText('Firstname').nth(1);
     this.emailSelect = this.page.locator('.email-select');
     this.formTextInput = this.page.locator('.form-text-input');
+    this.audienceTitle = this.page.locator('input[name="name"]');
+    
+   
   }
 }
