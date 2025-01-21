@@ -7,6 +7,40 @@ import {
 } from 'config/constants/app-owners'
 
 export class Allure {
+  static readonly DEFAULT_TEAM = 'QA Team'
+  static readonly DEFAULT_OWNER = 'Anees'
+
+  // Default app-specific owners
+  static readonly APP_OWNERS: { [key: string]: string } = {
+    Dashboard: 'Sharath',
+    Auth: 'Sagar',
+    Settings: 'Büşra',
+    Customers: 'Neil',
+    Accounting: 'Karthik',
+    ByteBuilder: 'No Assignment',
+    Calendar: 'Clarissa',
+    Office: 'Chetan',
+    CompanySearcher: 'Neil',
+    Contacts: 'No Assignment',
+    Files: 'Chetan',
+    Email: 'Sharath',
+    HR: 'Anees',
+    Chat: 'Sagar',
+    Login: 'No Assignment',
+    MyOrganization: 'Sharath',
+    Notifications: 'Ganganna',
+    ProjectManagement: 'Sania',
+    Subsidies: 'Sania',
+    TaskManagement: 'Shwetha',
+    TemplateManager: 'Ganganna',
+    TimeTracking: 'Clarissa',
+    NoCode: 'Büşra',
+    PDF: 'No Assignment',
+    Meet: 'No Assignment',
+    BulkMailing: 'Ganganna',
+    Profile: 'Anees',
+  }
+
   /**
    * Adds a description to the test.
    * @param description - Test description.

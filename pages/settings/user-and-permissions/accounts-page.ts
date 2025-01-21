@@ -2,7 +2,7 @@ import { Page, Locator } from '@playwright/test'
 import { allure } from 'allure-playwright'
 
 export class AccountsPage {
-  private page: Page
+  readonly page: Page
   private collapseButton: Locator
   private usersPermissionsButton: Locator
   private accountsButton: Locator
