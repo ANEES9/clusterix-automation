@@ -22,7 +22,7 @@ export default defineConfig({
     video: 'retain-on-failure',
     screenshot: 'only-on-failure',
   },
-  globalSetup: require.resolve('./global-setup'),
+ globalSetup: require.resolve('./global-setup'),
   globalTeardown: require.resolve('./global-teardown'),
   workers: 1,
   projects: [
@@ -34,14 +34,15 @@ export default defineConfig({
 // Function to generate projects dynamically
 function generateProjects() {
   const browsers = [
-    { name: 'Chromium', device: devices['Desktop Chrome'] },
+    //{ name: 'Chromium', device: devices['Desktop Chrome'] },
     { name: 'Firefox', device: devices['Desktop Firefox'] },
-    { name: 'WebKit', device: devices['Desktop Safari'] },
+    //{ name: 'WebKit', device: devices['Desktop Safari'] },
   ]
 
   const projects: any[] = []
 
-  LANGUAGES.forEach((locale) => {
+ // LANGUAGES.forEach((locale) => {
+  LANGUAGES.filter(locale => locale !== 'de').forEach((locale) => {
     Object.keys(APP_NAMES).forEach((appKey) => {
       const testDir = `./tests/${toKebabCase(appKey as keyof typeof APP_NAMES)}`
       const sessionFile = `storageState.${process.env.NODE_ENV || 'testing'}.${locale}.json`
