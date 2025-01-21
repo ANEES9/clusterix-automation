@@ -1,5 +1,6 @@
-import { test } from '@playwright/test'
-import { Allure } from 'common/allure-helper'
+import { test, expect, selectors } from '@playwright/test'
+import { Allure } from 'common/allure-helper' // Import Allure
+import { time } from 'console'
 import { ApiResponse } from 'common/api-response'
 import * as dotenv from 'dotenv'
 import { addCursorStyleAndScript } from 'common/cursor-helper'
@@ -18,7 +19,7 @@ const testEmailBody = `Testing purpose email via automation. Sent at: ${currentD
 
 let fetchRemoteIdProd: string, fetchRemoteIdTest: string
 
-test.describe('send test email', () => {
+test.describe('reply on email', () => {
   test.beforeEach(async ({ page, baseURL }, testInfo) => {
     await Allure.step(
       'Navigate to Base URL, Close Popups and navigate to Email application',
@@ -77,22 +78,19 @@ test.describe('send test email', () => {
     )
   })
 
-  test('send email', async ({ page }) => {
+  test('reply email test execution', async ({ page }) => {
     const locators = new EmailPage(page)
-    await locators.clickOnNewEmail()
-    console.log(fetchRemoteIdProd)
-    console.log(fetchRemoteIdTest)
+    await locators.clickOnFirstEmail()
+    await locators.clickOnReply()
     const fetchRemoteId = await ApiResponse(
       page,
       fetchRemoteIdProd,
       fetchRemoteIdTest
     )
-
     await locators.fillAndEnterToAddress(toEmailId)
     await locators.fillAndEnterSubject(testEmailSubject)
     await page.waitForTimeout(2000)
     await locators.clickOnBodyAndFill(testEmailBody)
-
     const { status: fetchRemoteStatus, data: fetchRemoteData } = fetchRemoteId()
     const sendURLProd =
       fetchRemoteIdProd + '/' + fetchRemoteData.remote_id + '/submit'
@@ -106,7 +104,7 @@ test.describe('send test email', () => {
 
     const { status: sendURLStatus, data: sendURLData } = sendURL()
     if (sendURLStatus === 200) {
-      console.log('Email has been sent successfully')
+      console.log('Reply of the Email has been sent successfully')
     } else {
       console.log(
         `Email has been not sent. API has returned status : ${sendURLStatus}.`

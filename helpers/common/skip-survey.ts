@@ -9,37 +9,39 @@ export async function skipSurvey(
   const surveyPage = new SurveyPage(page, locale)
 
   try {
-    // 1. Role selection
-    await surveyPage.completeRoleQuestion('developerOption')
+    // Ensure page is fully loaded
+    await page.waitForLoadState('domcontentloaded')
 
-    // 2. App interest selection (selecting first 3 options as an example)
-    await surveyPage.completeAppInterestQuestion([
-      'calendar',
-      'email',
-      'liveChat',
-    ])
+    // Check if the role question is attached to the DOM
+    const isRoleQuestionAttached = await surveyPage.roleQuestion
+      .waitFor({ state: 'attached', timeout: 10000 })
+      .then(() => true)
+      .catch(() => false)
 
-    // 3. Other tools
-    await surveyPage.completeOtherToolsQuestion('None')
-  } catch (error: unknown) {
-    // If survey is already completed
-    if (error instanceof Error) {
-      console.log(
-        'Survey might be already completed or not visible:',
-        error.message
-      )
+    if (!isRoleQuestionAttached) {
+      console.log('Survey role question is not attached, skipping...')
+      return
     }
-  }
-}
 
-export async function skipSurveyWithDom(page: Page): Promise<void> {
-  try {
-    await page.evaluate(() => {
-      localStorage.setItem('survey_completed', 'true')
-    })
-  } catch (error: unknown) {
+    // Check if the survey is visible
+    const isSurveyVisible = await surveyPage.roleQuestion.isVisible()
+    console.log('Is survey visible:', isSurveyVisible)
+
+    if (isSurveyVisible) {
+      console.log('Survey is visible, proceeding with completion...')
+
+      // Complete the survey steps
+      await surveyPage.completeRoleQuestion('developerOption')
+      await surveyPage.completeAppInterestQuestion(['calendar', 'email'])
+      await surveyPage.completeOtherToolsQuestion('None')
+
+      console.log('Survey completed successfully.')
+    } else {
+      console.log('Survey is not visible, skipping...')
+    }
+  } catch (error) {
     if (error instanceof Error) {
-      console.log('Error while skipping survey:', error.message)
+      console.error('Error occurred while skipping the survey:', error.message)
     }
   }
 }

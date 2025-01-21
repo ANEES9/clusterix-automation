@@ -1,5 +1,5 @@
 import { test } from '@playwright/test'
-import { Allure } from 'common/allure-helper'
+import { Allure } from 'common/allure-helper' // Import Allure
 import { ApiResponse } from 'common/api-response'
 import * as dotenv from 'dotenv'
 import { addCursorStyleAndScript } from 'common/cursor-helper'
@@ -7,18 +7,14 @@ import { skipSurvey } from 'common/skip-survey'
 import { closeProductTour } from 'common/product-tour-helper'
 import { closeTimerPopUp } from 'common/timer-helper'
 import { EmailPage } from 'pages/email'
+import { generateRandomFileName } from 'common/random-data-generator'
 
 const env = process.env.NODE_ENV || 'production'
 dotenv.config({ path: `.env.${env}` })
-const currentDate = new Date()
+new Date()
+let fetchIdProd: string, fetchIdTest: string
 
-const toEmailId = 'bhat@innoscripta.com'
-const testEmailSubject = 'Testing purpose email via automation'
-const testEmailBody = `Testing purpose email via automation. Sent at: ${currentDate.toString()}`
-
-let fetchRemoteIdProd: string, fetchRemoteIdTest: string
-
-test.describe('send test email', () => {
+test.describe('create signature in email application', () => {
   test.beforeEach(async ({ page, baseURL }, testInfo) => {
     await Allure.step(
       'Navigate to Base URL, Close Popups and navigate to Email application',
@@ -70,47 +66,37 @@ test.describe('send test email', () => {
         }
 
         // Construct URLs after processing the ID
-        fetchRemoteIdProd = `https://email-controller.innoscripta.com/api/account-data/${id}/email/drafts`
-        fetchRemoteIdTest = `https://email-controller-testing.innoscripta.com/api/account-data/${id}/email/drafts`
+        fetchIdProd = `https://email-controller.innoscripta.com/api/account-data/${id}/settings`
+        fetchIdTest = `https://email-controller-testing.innoscripta.com/api/account-data/${id}/settings`
         await page.waitForTimeout(2000)
       }
     )
   })
 
-  test('send email', async ({ page }) => {
+  test('create a new signature', async ({ page }) => {
     const locators = new EmailPage(page)
-    await locators.clickOnNewEmail()
-    console.log(fetchRemoteIdProd)
-    console.log(fetchRemoteIdTest)
-    const fetchRemoteId = await ApiResponse(
-      page,
-      fetchRemoteIdProd,
-      fetchRemoteIdTest
-    )
-
-    await locators.fillAndEnterToAddress(toEmailId)
-    await locators.fillAndEnterSubject(testEmailSubject)
+    const random_text = generateRandomFileName()
+    await console.log(await page.title())
+    await locators.clickOnSettings()
+    await locators.navigateToComposeAndReply()
+    await locators.clickOnManageSignature()
+    await locators.clickOnAddSignature()
+    await locators.addTitleToSignature(random_text)
     await page.waitForTimeout(2000)
-    await locators.clickOnBodyAndFill(testEmailBody)
+    await locators.addBodyToSignature(random_text)
+    await page.waitForTimeout(5000)
+    await locators.saveTheSignature()
+    const fetchSetting = await ApiResponse(page, fetchIdProd, fetchIdTest)
 
-    const { status: fetchRemoteStatus, data: fetchRemoteData } = fetchRemoteId()
-    const sendURLProd =
-      fetchRemoteIdProd + '/' + fetchRemoteData.remote_id + '/submit'
-    const sendURLtest =
-      fetchRemoteIdTest + '/' + fetchRemoteData.remote_id + '/submit'
-
-    await locators.clickOnSend()
-    const sendURL = await ApiResponse(page, sendURLProd, sendURLtest)
-    await locators.verifyEmailSuccessfulToastMessage()
-    await page.waitForTimeout(2000)
-
-    const { status: sendURLStatus, data: sendURLData } = sendURL()
-    if (sendURLStatus === 200) {
-      console.log('Email has been sent successfully')
+    await page.waitForTimeout(4000)
+    await page.waitForLoadState('networkidle')
+    const { status: fetchSettingStatus, data: fetchSettingData } =
+      fetchSetting()
+    console.log(fetchSettingStatus)
+    if (fetchSettingStatus === 200) {
+      console.log('Signature has been created sucessfully')
     } else {
-      console.log(
-        `Email has been not sent. API has returned status : ${sendURLStatus}.`
-      )
+      console.log(`Signature has been not created : ${fetchSettingStatus}.`)
     }
   })
 })

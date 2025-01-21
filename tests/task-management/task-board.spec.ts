@@ -8,10 +8,10 @@ import { generateRandomFileName } from 'common/random-data-generator'
 import { skipSurvey } from 'common/skip-survey'
 
 test.describe('Task Management Board Tests', () => {
-  test.beforeEach(async ({ page, baseURL }) => {
+  test.beforeEach(async ({ page, baseURL }, testInfo) => {
     await Allure.step('Navigate to Base URL and Close Popups', async () => {
       await page.goto(baseURL!)
-      await skipSurvey(page)
+      await skipSurvey(page, testInfo)
       await closeProductTour(page)
       await closeTimerPopUp(page)
       await page.waitForLoadState('networkidle')
@@ -38,27 +38,27 @@ test.describe('Task Management Board Tests', () => {
     const board_click_name = randomFileName + customFormattedDate
     console.log(board_click_name)
     console.log('Randomly Generated File Name:', randomFileName)
-    locators.saveXPath = randomFileName
+    locators.savexpath = randomFileName
     await page.waitForLoadState('networkidle')
 
     //Folder creation
-    await locators.navigateToTaskManagement()
-    await locators.navigateToPinboardSection()
-    await locators.navigateToAddFolder()
+    await locators.navigatetotaskmanagement()
+    await locators.navigatetopinboardsection()
+    await locators.navigatetoaddfolder()
     await page.waitForTimeout(2000)
-    await locators.navigateToRenameFolder()
-    await locators.navigateToFillFolder(randomFileName)
-    await locators.renameFolderAndSubmit()
-    await page.waitForTimeout(5000)
+    await locators.navigatetorenamefolder()
+    await locators.navigatetofillfolder(randomFileName)
+    await locators.renamefolderandsubmit()
+    await page.waitForTimeout(7000)
 
     //board creation
 
-    await locators.clickOnFolder()
-    await locators.navigateToAddPinboard()
+    await locators.clickonfolder()
+    await locators.navigatetoaddpinboard()
     await page.waitForTimeout(3000)
-    await locators.navigateToRenameBoard()
-    await locators.navigateToFillBoard(randomFileName)
-    await locators.renameBoardAndSubmit()
+    await locators.navigatetorenameboard()
+    await locators.navigatetofillboard(randomFileName)
+    await locators.renameboardandsubmit()
     await page.waitForTimeout(5000)
 
     const { status: apiResponseStatus } = taskmanage()

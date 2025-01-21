@@ -6,30 +6,41 @@ export async function ApiResponse(
   apiProdUrl: string,
   apiTestUrl?: string
 ) {
-  let status: number | null = null,
-    data: any = null
+  const apiUrl = getEnvBasedUrl(apiProdUrl, apiTestUrl)
+  console.log(apiUrl)
+  let status: number | null = null
+  let data: any = null
 
   // Intercept the API request
-  await page.route(getEnvBasedUrl(apiProdUrl, apiTestUrl), async (route) => {
-    route.continue()
+  await page.route(apiUrl, async (route) => {
+    console.log('Intercepting API Request:', apiUrl)
+    route.continue() // Allow the request to proceed
+  })
 
-    const response = await route.request().response()
-    if (response) {
+  // Wait for the API response
+  const response = await page.waitForResponse(
+    (response) =>
+      response.url() === apiUrl &&
+      response.status() >= 200 &&
+      response.status() < 300,
+    { timeout: 60000 } // Adjust the timeout as needed
+  )
+
+  if (response) {
+    try {
       // Capture the status
       status = response.status()
       console.log('API Response Status:', status)
 
-      try {
-        // Extract the JSON response body (if applicable)
-        data = await response.json().then((data) => data?.data || null)
-        console.log('API Response Body:', data)
-      } catch (error) {
-        console.error('Error parsing response body:', error)
-      }
-    } else {
-      console.log('No response received for the API call.')
+      // Extract the JSON response body (if applicable)
+      data = await response.json().then((res) => res?.data || null)
+      console.log('API Response Body:', data)
+    } catch (error) {
+      console.error('Error processing API response:', error)
     }
-  })
+  } else {
+    console.error('No response received for the API call.')
+  }
 
   return () => ({
     status,
