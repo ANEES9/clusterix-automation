@@ -5,42 +5,9 @@ import {
   DEFAULT_OWNER,
   DEFAULT_TEAM,
 } from 'config/constants/app-owners'
+import { ALLURE_TAGS } from 'config/constants/allure-tags'
 
 export class Allure {
-  static readonly DEFAULT_TEAM = 'QA Team'
-  static readonly DEFAULT_OWNER = 'Anees'
-
-  // Default app-specific owners
-  static readonly APP_OWNERS: { [key: string]: string } = {
-    Dashboard: 'Sharath',
-    Auth: 'Sagar',
-    Settings: 'Büşra',
-    Customers: 'Neil',
-    Accounting: 'Karthik',
-    ByteBuilder: 'No Assignment',
-    Calendar: 'Clarissa',
-    Office: 'Chetan',
-    CompanySearcher: 'Neil',
-    Contacts: 'No Assignment',
-    Files: 'Chetan',
-    Email: 'Sharath',
-    HR: 'Anees',
-    Chat: 'Sagar',
-    Login: 'No Assignment',
-    MyOrganization: 'Sharath',
-    Notifications: 'Ganganna',
-    ProjectManagement: 'Sania',
-    Subsidies: 'Sania',
-    TaskManagement: 'Shwetha',
-    TemplateManager: 'Ganganna',
-    TimeTracking: 'Clarissa',
-    NoCode: 'Büşra',
-    PDF: 'No Assignment',
-    Meet: 'No Assignment',
-    BulkMailing: 'Ganganna',
-    Profile: 'Anees',
-  }
-
   /**
    * Adds a description to the test.
    * @param description - Test description.
@@ -50,11 +17,28 @@ export class Allure {
   }
 
   /**
-   * Adds a tag to the test for grouping purposes.
-   * @param tag - Custom tag.
+   * Adds a predefined tag to the test.
+   * @param tagKey - The key of the tag (from ALLURE_TAGS).
    */
-  static addTag(tag: string) {
-    allure.tag(tag)
+  static addTag(tagKey: keyof typeof ALLURE_TAGS) {
+    const tag = ALLURE_TAGS[tagKey]
+    if (tag) {
+      allure.tag(tag)
+    } else {
+      throw new Error(
+        `Invalid tag key: "${tagKey}". Please use a valid key from ALLURE_TAGS.`
+      )
+    }
+  }
+
+  /**
+   * Adds multiple tags to a test.
+   * @param tagKeys - Array of tag keys (from ALLURE_TAGS).
+   */
+  static addTags(tagKeys: Array<keyof typeof ALLURE_TAGS>) {
+    for (const tagKey of tagKeys) {
+      this.addTag(tagKey)
+    }
   }
 
   /**
