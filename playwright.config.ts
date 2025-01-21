@@ -6,9 +6,6 @@ import { APP_NAMES } from 'config/constants/app-names'
 
 dotenv.config({ path: `.env.${process.env.NODE_ENV || 'production'}` })
 
-/**
- * See https://playwright.dev/docs/test-configuration.
- */
 export default defineConfig({
   testDir: './tests',
   retries: 0,
@@ -18,10 +15,6 @@ export default defineConfig({
     ['allure-playwright', { outputFolder: 'results' }],
   ],
   use: {
-    /* Base URL to use in actions like `await page.goto('/')`. */
-    // baseURL: 'http://127.0.0.1:3000',
-
-    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
     headless: false,
     baseURL: process.env.CLUSTERIX_BASE_URL,
