@@ -1,8 +1,8 @@
 import { test } from '@playwright/test'
-import { ContainerPage } from '../../pages/container-app/container-page'
+import { ContainerPage } from 'pages/container-app/container-page'
 import { addCursorStyleAndScript } from 'common/cursor-helper'
 import { skipSurveyHelper } from 'common/skip-survey-helper'
-import { closeProductTour } from 'common/product-tour-helper'
+import { skipProductTourHelper } from 'common/skip-product-tour-helper'
 import { closeTimerPopUp } from 'common/timer-helper'
 import { Allure } from 'common/allure-helper'
 import { NotificationsPanelPage } from 'pages/notifications/notifications-panel-page'
@@ -20,7 +20,7 @@ test.describe('Container App Header Navigation Tests', () => {
       await page.goto(baseURL!)
       await addCursorStyleAndScript(page)
       await skipSurveyHelper(page, testInfo)
-      await closeProductTour(page)
+      await skipProductTourHelper(page, testInfo)
       await skipTutorialHelper(page, testInfo)
       await closeTimerPopUp(page)
       await page.waitForLoadState('networkidle')

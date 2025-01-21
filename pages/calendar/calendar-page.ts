@@ -30,12 +30,10 @@ export class CalendarPage {
   private filterByGuest: Locator
   private startTypingTextInGuest: Locator
   private filterByGuestMe: Locator
-  private yearView:Locator
-  private listView:Locator
-  private dayView:Locator
-  private twoDaysView:Locator
-
-  static readonly URL = '/calendar'
+  private yearView: Locator
+  private listView: Locator
+  private dayView: Locator
+  private twoDaysView: Locator
 
   constructor(page: Page, viewEvent?: string) {
     if (viewEvent) {
@@ -45,7 +43,7 @@ export class CalendarPage {
     this.closeCurrentApp = page.locator('.t2NoaA5h7fzt0q0GapK3')
     this.calendarApp = page.getByRole('button', { name: 'Calendar' })
     this.dayView = page.getByRole('button', { name: 'Day', exact: true })
-    this.twoDaysView = page.getByRole('button', { name: 'Days'})
+    this.twoDaysView = page.getByRole('button', { name: 'Days' })
     this.weekView = page.getByRole('button', { name: 'Week' })
     this.monthView = page.getByRole('button', { name: 'Month' })
     this.yearView = page.getByRole('button', { name: 'Year' })
@@ -81,6 +79,13 @@ export class CalendarPage {
       .getByPlaceholder('Please start typing')
       .nth(2)
     this.filterByGuestMe = page.getByText('Me', { exact: true }).nth(1)
+  }
+
+  async goto(baseURL: string | undefined) {
+    await Allure.step('Navigate to Calendar URL', async () => {
+      //await this.page.goto(`${baseURL}${CalendarPage.URL}`)
+      await this.page.goto(`${baseURL}${APP_URLS.calendar.base}`)
+    })
   }
 
   async closeCurrentApplication() {
@@ -332,11 +337,5 @@ export class CalendarPage {
         await this.twoDaysView.click()
       }
     )
-  }
-  async goto(baseURL: string | undefined) {
-    await Allure.step('Navigate to Calendar URL', async () => {
-      //await this.page.goto(`${baseURL}${CalendarPage.URL}`)
-      await this.page.goto(`${baseURL}${APP_URLS.calendar.base}`)
-    })
   }
 }

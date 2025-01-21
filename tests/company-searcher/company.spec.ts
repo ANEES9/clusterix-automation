@@ -4,16 +4,16 @@ import { closeCurrentlyActivePopup } from 'helpers/ui/company-searcher/currently
 import { collapseSidebar } from 'helpers/ui/company-searcher/sidebar-helper'
 import { addCursorStyleAndScript } from 'common/cursor-helper'
 import { searchData } from 'utils/test-data/company-searcher/search-data'
-import { closeProductTour } from 'common/product-tour-helper'
+import { skipProductTourHelper } from 'common/skip-product-tour-helper'
 import { skipSurveyHelper } from 'common/skip-survey-helper'
 import { Allure } from 'common/allure-helper'
 
 test.describe('Company Searcher Smoke Test', () => {
   let companyPage: CompanyPage
-  test.beforeEach(async ({ page, baseURL }) => {
+  test.beforeEach(async ({ page, baseURL }, testInfo) => {
     await page.goto(baseURL!)
-    await skipSurveyHelper(page)
-    await closeProductTour(page)
+    await skipSurveyHelper(page, testInfo)
+    await skipProductTourHelper(page, testInfo)
     await page.waitForLoadState('networkidle')
     await addCursorStyleAndScript(page)
     companyPage = new CompanyPage(page)

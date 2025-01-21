@@ -1,7 +1,7 @@
 import { chromium } from '@playwright/test'
 import * as fs from 'fs'
 import dotenv from 'dotenv'
-import { LoginPage } from './pages/auth/login-page'
+import { LoginPage } from 'pages/auth/login-page'
 import { LANGUAGES, getSessionFilePath } from 'config/language-config'
 
 dotenv.config({ path: `.env.${process.env.NODE_ENV || 'testing'}` })
@@ -12,7 +12,7 @@ dotenv.config({ path: `.env.${process.env.NODE_ENV || 'testing'}` })
  * @param sessionFilePath - The file path where the session state is saved.
  */
 async function createSessionForLocale(locale: string, sessionFilePath: string) {
-  const browser = await chromium.launch({ headless: true })
+  const browser = await chromium.launch({ headless: false })
   const context = await browser.newContext()
   const page = await context.newPage()
 

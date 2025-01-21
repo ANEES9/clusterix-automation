@@ -1,16 +1,16 @@
 import { test, expect } from '@playwright/test'
-import { closeTimerPopUp } from '../../helpers/common/timer-helper'
-import { addCursorStyleAndScript } from '../../helpers/common/cursor-helper'
-import { EmployeeManagementPage } from '../../pages/hr/employee-management-page'
-import { Allure } from '../../helpers/common/allure-helper'
-import { VacationAbsenceDaysPage } from '../../pages/my-profile/vacation-absence-days.page'
+import { closeTimerPopUp } from 'common/timer-helper'
+import { addCursorStyleAndScript } from 'common/cursor-helper'
+import { EmployeeManagementPage } from 'pages/hr/employee-management-page'
+import { Allure } from 'common/allure-helper'
+import { VacationAbsenceDaysPage } from 'pages/my-profile/vacation-absence-days.page'
 import { skipSurveyHelper } from 'common/skip-survey-helper'
-import { closeProductTour } from 'common/product-tour-helper'
+import { skipProductTourHelper } from 'common/skip-product-tour-helper'
 
 let employeeId: number | null = null
 
 test.describe('Regression Test Suite', () => {
-  test.beforeEach(async ({ page, baseURL }) => {
+  test.beforeEach(async ({ page, baseURL }, testInfo) => {
     Allure.addDefaultLabels()
 
     console.log('Base URL:', baseURL)
@@ -22,8 +22,8 @@ test.describe('Regression Test Suite', () => {
     await page.goto(`${baseURL}/profile/vacation-and-absence-days`)
     await page.waitForLoadState('networkidle')
 
-    await skipSurveyHelper(page)
-    await closeProductTour(page)
+    await skipSurveyHelper(page, testInfo)
+    await skipProductTourHelper(page, testInfo)
     await closeTimerPopUp(page)
     await addCursorStyleAndScript(page)
     await page.waitForLoadState('networkidle')
@@ -31,7 +31,6 @@ test.describe('Regression Test Suite', () => {
 
   test('TC01: Verify All Available Absence Types', async ({ page }) => {
     Allure.addDescription('Verify all available absence types in the system')
-    Allure.addTag('Vacation')
     Allure.addSeverity('normal')
 
     const vacationAbsenceDaysPage = new VacationAbsenceDaysPage(page)
@@ -47,7 +46,6 @@ test.describe('Regression Test Suite', () => {
 
   test.only('TC02: Apply Vacation Days', async ({ page }) => {
     Allure.addDescription('Test the application of vacation days in the system')
-    Allure.addTag('Vacation')
     Allure.addSeverity('critical')
 
     const vacationAbsenceDaysPage = new VacationAbsenceDaysPage(page)

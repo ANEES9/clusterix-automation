@@ -3,7 +3,7 @@ import { closeTimerPopUp } from '../../helpers/common/timer-helper'
 import { addCursorStyleAndScript } from '../../helpers/common/cursor-helper'
 import { CalendarPage } from 'pages/calendar/calendar-page'
 import { skipSurveyHelper } from 'common/skip-survey-helper'
-import { closeProductTour } from 'common/product-tour-helper'
+import { skipProductTourHelper } from 'common/skip-product-tour-helper'
 
 // Function to generate a dynamic event name
 function generateEventName(baseName: string): string {
@@ -17,7 +17,7 @@ test.describe('CRUD Operations for meeting', () => {
     await page.goto(baseURL!)
     await addCursorStyleAndScript(page)
     await skipSurveyHelper(page, testInfo)
-    await closeProductTour(page)
+    await skipProductTourHelper(page, testInfo)
     await closeTimerPopUp(page)
     await page.waitForLoadState('networkidle')
   })
