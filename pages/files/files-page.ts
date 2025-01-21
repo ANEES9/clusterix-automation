@@ -1,6 +1,6 @@
 import { Page } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
-import { APP_URLS } from 'config/constants'
+import { APP_URLS } from 'config/constants/app-urls'
 
 export class EmailPage {
   private page: Page

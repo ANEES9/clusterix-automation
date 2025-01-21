@@ -1,0 +1,187 @@
+{
+  "generalData": {
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "gender": "Geschlecht",
+    "location": "Standort",
+    "username": "Account Name",
+    "duty": "Aufgabenbereich",
+    "team": "Team",
+    "recruiter": "Recruiter",
+    "preRecruiter": "Pre Recruiter"
+  },
+  "contactData": {
+    "personalPhone": "Telefon privat",
+    "workPhone": "Telefon geschäftlich",
+    "personalEmail": "E-Mail privat",
+    "workEmail": "E-Mail geschäftlich",
+    "street": "Straße",
+    "number": "Nr.",
+    "address": "Adresszusatz",
+    "postcode": "PLZ",
+    "city": "Stadt"
+  },
+  "contractData": {
+    "start": "Vertragsbeginn",
+    "end": "Vertragsende",
+    "type": "Vertragsart",
+    "workHours": "Wochenstunden",
+    "legal": "Gesetzliche Vorgaben ",
+    "probation": "Probezeit endet am",
+    "access": "Zugang gewährt bis",
+    "contractType": "Vertragsart",
+    "vacationType": "Urlaubsanspruch"
+  },
+  "salaryManagement": {
+    "salary_records": "Gehaltsunterlagen"
+  },
+  "literals": {
+    "all": "Allen",
+    "moreFilters": "Weitere Filter",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "updateSuccess": "Erfolgreich geupdated",
+    "delete": "Loschen",
+    "submit": "Einreichen",
+    "next": "Weiter"
+  },
+  "modules": {
+    "employees": "Mitarbeiter",
+    "applicants": "Bewerber",
+    "locationTeams": "Standort und Teams",
+    "inventory": "Inventar",
+    "hrCalendar": "HR Kalender"
+  },
+  "validation": {
+    "isRequired": "ist erforderlich",
+    "isInvalid": "ist ungültig",
+    "longerThan": "sollte mindestens {{length}} Zeichen lang sein",
+    "shorterThan": "darf nicht mehr als {{length}} Zeichen lang sein",
+    "numeric": "darf nur numerische Werte enthalten",
+    "same": "Der {{first}} und der {{second}} sollten derselbe sein",
+    "notSame": "Der {{first}} und der {{second}} sollten nicht derselbe sein",
+    "startsWith": "Die {{parameter}} muss mit {{character}} beginnen"
+  },
+  "toaster": {
+    "error": "Fehler",
+    "warning": "Achtung",
+    "success": "Erfolg",
+    "downloading": "Herunterladen von",
+    "fyi": "zur Information",
+    "copy": {
+      "success": "Wert wurde in Zwischenablage kopiert",
+      "error": "Wert konnte nicht in die Zwischenablage kopiert werden"
+    },
+    "httpErrorCodes": {
+      "0": "Dienst nicht erreichbar / kein Internet",
+      "300": "Mehrfachauswahl",
+      "301": "Dauerhaft bewegt",
+      "303": "Siehe andere",
+      "305": "Proxy verwenden",
+      "400": "Bad Request",
+      "401": "Nicht Autorisiert",
+      "402": "Zahlung erforderlich",
+      "403": "Der Benutzer hat keine der erforderlichen Zugriffsrechte",
+      "404": "Nicht gefunden",
+      "405": "Methode nicht erlaubt",
+      "406": "Nicht akzeptabel",
+      "407": "Proxy-Authentifizierung erforderlich",
+      "408": "Anfrage Timeout",
+      "409": "Konflikt",
+      "410": "Gone",
+      "411": "Länge erforderlich",
+      "412": "Voraussetzung fehlgeschlagen",
+      "413": "Entitätseinheit zu groß anfordern",
+      "414": "Request-URL Too Long",
+      "415": "Nicht unterstützter Medientyp",
+      "416": "Angeforderter Bereich nicht erfüllbar",
+      "417": "Erwartung fehlgeschlagen",
+      "422": "Nicht verarbeitbare Entität",
+      "423": "Gesperrt",
+      "424": "Fehlgeschlagene Abhängigkeit",
+      "426": "Upgrade erforderlich",
+      "428": "Voraussetzung erforderlich",
+      "429": "Zu viele Anfragen",
+      "431": "Headerfelder zu groß anfordern",
+      "444": "Keine Antwort",
+      "451": "Aus rechtlichen Gründen nicht verfügbar",
+      "499": "Client Closed Request",
+      "500": "Interner Serverfehler",
+      "501": "Nicht implementiert",
+      "502": "Bad Gateway",
+      "503": "Dienst nicht verfügbar",
+      "504": "Gateway Timeout",
+      "505": "HTTP-Version wird nicht unterstützt",
+      "506": "Variante verhandelt auch",
+      "507": "Unzureichender Speicher",
+      "508": "Schleife erkannt",
+      "509": "Bandbreitenlimit überschritten",
+      "510": "Nicht erweitert",
+      "511": "Netzwerkauthentifizierung erforderlich",
+      "598": "Timeout-Fehler beim Lesen des Netzwerks",
+      "599": "Timeout-Fehler bei Netzwerkverbindung",
+      "unknown": "Huch! Etwas Unerwartetes ist passiert..."
+    }
+  },
+  "employees": {
+    "main": {
+      "table": {
+        "title": "Mitarbeiter",
+        "createButtonTitle": "Mitarbeiter anlegen",
+        "columns": {
+          "name": "MITARBEITER",
+          "email": "E-MAIL AND ACCOUNT",
+          "startDate": "STARTDATUM",
+          "endDate": "ENDDATUM",
+          "contract": "VERTRAGSART",
+          "location": "STANDORT",
+          "workHours": "WS",
+          "team": "TEAM",
+          "department": "ABTEILUNG",
+          "export": "Export",
+          "columns": "Spalten"
+        },
+        "actions": {
+          "massAction": "Massenaktionen",
+          "marked": "Markiert",
+          "deleteMarked": "Markierte Löschen",
+          "exportMarked": "Markierte Exportieren",
+          "emailMarked": "E-Mail an markierte senden"
+        },
+        "filters": {
+          "search": "Suche nach Mitarbeiter",
+          "currentEmployees": "Aktuelle"
+        }
+      },
+      "editModal": {
+        "generalData": {
+          "title": "Allgemeine Daten",
+          "recruiterTitle": "Recruiter"
+        },
+        "contractData": {
+          "title": "Vertragsdaten"
+        },
+        "contactData": {
+          "title": "Kontaktdaten",
+          "addressTitle": "Adresse"
+        },
+        "vacation": {
+          "title": "Abwesenheit"
+        },
+        "document": {
+          "title": "Dokumente"
+        },
+        "communication": {
+          "title": "Kommunikation",
+          "commentPlaceholder": "Hier klicken und Kommentar eingeben"
+        },
+        "notes": {
+          "title": "Notizen"
+        },
+        "linkedin": {
+          "title": "Linkedin"
+        }
+      }
+    }
+  }
+}

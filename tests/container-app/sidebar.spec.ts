@@ -6,7 +6,7 @@ import { addCursorStyleAndScript } from 'common/cursor-helper'
 import { skipSurvey } from 'common/skip-survey'
 import { ContainerPage } from '../../pages/container-app/container-page'
 import { Allure } from 'common/allure-helper'
-import { APP_NAMES } from 'config/constants'
+import { APP_NAMES } from 'config/constants/app-names'
 
 test.describe('Container App Sidebar Navigation Tests', () => {
   let containerPage: ContainerPage

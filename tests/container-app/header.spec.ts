@@ -6,20 +6,22 @@ import { closeProductTour } from 'common/product-tour-helper'
 import { closeTimerPopUp } from 'common/timer-helper'
 import { Allure } from 'common/allure-helper'
 import { NotificationsPanelPage } from 'pages/notifications/notifications-panel-page'
-import { APP_NAMES } from 'config/constants'
+import { APP_NAMES } from 'config/constants/app-names'
+import { skipTutorial } from 'common/skip-tutorial-helper'
 
 test.describe('Container App Header Navigation Tests', () => {
   let containerPage: ContainerPage
 
-  test.beforeEach(async ({ page, baseURL }) => {
+  test.beforeEach(async ({ page, baseURL }, testInfo) => {
     containerPage = new ContainerPage(page)
     Allure.addFeature('Navigation')
     Allure.addAppOwner('ContainerApp')
     await Allure.step('Navigate to Base URL and Close Popups', async () => {
       await page.goto(baseURL!)
       await addCursorStyleAndScript(page)
-      await skipSurvey(page)
+      await skipSurvey(page, testInfo)
       await closeProductTour(page)
+      await skipTutorial(page, testInfo)
       await closeTimerPopUp(page)
       await page.waitForLoadState('networkidle')
     })
@@ -38,7 +40,7 @@ test.describe('Container App Header Navigation Tests', () => {
     await Allure.step('Open Notifications Panel', async () => {
       await containerPage.openNotificationsPanel()
     })
-    await Allure.step('Check Current App', async () => {
+    await Allure.step('Check Navigation Panel Header', async () => {
       await notificationsPanelPage.validateNotificationsPanelHeader()
     })
   })

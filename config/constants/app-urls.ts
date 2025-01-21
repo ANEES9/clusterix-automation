@@ -1,4 +1,6 @@
 export const APP_URLS = {
+  login: '/login',
+  register: '/register',
   settings: {
     base: '/settings',
     usersAndPermissions: {
@@ -97,38 +99,3 @@ export const APP_URLS = {
     base: '/template-manager',
   },
 }
-
-export const APP_NAMES = {
-  ContainerApp: 'Home',
-  notifications: 'Notifications',
-  calendar: 'Calendar',
-  timeTracking: 'Time Tracking',
-  email: 'Email',
-  liveChat: 'Live Chat',
-  projectManagement: 'Project Management',
-  taskManagement: 'Task Management',
-  hr: 'HR',
-  files: 'Files',
-  office: 'Office',
-  pdf: 'PDF',
-  companySearcher: 'Company Searcher',
-  noCode: 'No Code',
-  templateManager: 'Template Manager',
-  accounting: 'Accounting',
-  subsidies: 'Subsidies',
-  bulkMailing: 'Bulk Mailing',
-  customers: 'Customers',
-  externalForms: 'External Forms',
-  byteBuilder: 'Byte Builder',
-  integration: 'Integration',
-}
-
-export const AppOwners: Record<string, { name: string; email: string }> = {
-  ContainerApp: { name: 'Büşra', email: 'b.ozturk@innoscripta.com' },
-  Auth: { name: 'Sagar', email: 'acharya@innoscripta.com' },
-  Settings: { name: 'Büşra', email: 'b.ozturk@innoscripta.com' },
-}
-
-export const DEFAULT_TEAM = 'QA Team'
-export const DEFAULT_OWNER = 'Büşra'
-export type AppName = (typeof APP_NAMES)[keyof typeof APP_NAMES]

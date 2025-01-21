@@ -1,18 +1,23 @@
-import { test, expect } from '@playwright/test'
-import * as dotenv from 'dotenv'
+import { test } from '@playwright/test'
+import { LoginPage } from 'pages/auth/login-page'
+import * as process from 'node:process'
 
-const env = process.env.NODE_ENV || 'production'
-dotenv.config({ path: `.env.${env}` })
+test.describe('Login Page Tests', () => {
+  test.beforeEach(async ({ page, baseURL }, testInfo) => {
+    const locale = testInfo.project.use.locale || 'en'
+    const loginPage = new LoginPage(page, locale)
 
-test('Login to Clusterix', async ({ page }) => {
-  await page.goto(process.env.CLUSTERIX_BASE_URL || '')
-  await page.getByRole('button', { name: 'Login' }).nth(1).click()
-  await page.getByPlaceholder('Email').fill(process.env.EMAIL || '')
-  await page.getByPlaceholder('Password').fill(process.env.PASSWORD || '')
-  await page
-    .locator('div')
-    .filter({ hasText: /^Login$/ })
-    .first()
-    .click()
-  await expect(page).toHaveURL(`${process.env.CLUSTERIX_BASE_URL}`)
+    // Navigate to the login page and set the locale
+    await loginPage.goto(baseURL)
+  })
+
+  test('Should log in with valid credentials', async ({ page }, testInfo) => {
+    const locale = testInfo.project.use.locale
+    const loginPage = new LoginPage(page, locale)
+    const email = process.env.CLUSTERIX_EMAIL || ''
+    const password = process.env.CLUSTERIX_PASSWORD || ''
+
+    // Perform login
+    await loginPage.login(email, password)
+  })
 })

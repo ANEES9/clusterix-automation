@@ -3,6 +3,7 @@
     "target": "ESNext",
     "module": "CommonJS",
     "strict": true,
+    "resolveJsonModule": true,
     "esModuleInterop": true,
     "types": ["node", "@playwright/test"],
     "moduleResolution": "node",
@@ -14,7 +15,8 @@
       "config/*": ["./config/*"],
       "helpers/*": ["./helpers/*"],
       "utils/*": ["./utils/*"],
-      "types/*": ["./types/*"]
+      "types/*": ["./types/*"],
+      "locales/*": ["./locales/*"]
     }
   }
 }

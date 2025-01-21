@@ -1,0 +1,187 @@
+{
+  "generalData": {
+    "firstName": "First name",
+    "lastName": "Last name",
+    "gender": "Gender",
+    "location": "Location",
+    "username": "Username",
+    "duty": "Duty",
+    "team": "Team",
+    "recruiter": "Recruiter",
+    "preRecruiter": "Pre Recruiter"
+  },
+  "contactData": {
+    "personalPhone": "Personal phone",
+    "workPhone": "Work phone",
+    "personalEmail": "Personal email",
+    "workEmail": "Work email",
+    "street": "Street",
+    "number": "Number",
+    "address": "Address",
+    "postcode": "Post Code",
+    "city": "City"
+  },
+  "contractData": {
+    "start": "Contract Start",
+    "end": "Contract End",
+    "type": "Contract Type",
+    "workHours": "Work hours",
+    "legal": "Legal requirements",
+    "probation": "Probation ends at",
+    "access": "Access until",
+    "contractType": "Contract Type",
+    "vacationType": "Vacation Type"
+  },
+  "literals": {
+    "all": "All",
+    "moreFilters": "More Filters",
+    "save": "Save",
+    "cancel": "Cancel",
+    "updateSuccess": "Successfully updated",
+    "delete": "Delete",
+    "submit": "Submit",
+    "next": "Next"
+  },
+  "salaryManagement": {
+    "salary_records": "Salary Records"
+  },
+  "modules": {
+    "employees": "Employees",
+    "applicants": "Applicants",
+    "locationTeams": "Location and Teams",
+    "inventory": "Inventory",
+    "hrCalendar": "HR Calendar"
+  },
+  "validation": {
+    "isRequired": "is required",
+    "isInvalid": "is invalid",
+    "longerThan": "must be at least {{length}} characters long",
+    "shorterThan": "must not be more than {{length}} characters long",
+    "numeric": "must only contain numeric values",
+    "same": "The {{first}} and the {{second}} should be the same",
+    "notSame": "The {{first}} and the {{second}} should not be the same",
+    "startsWith": "The {{parameter}} must start with {{character}}"
+  },
+  "toaster": {
+    "error": "Error",
+    "warning": "Warning",
+    "success": "Success",
+    "downloading": "Downloading",
+    "fyi": "FYI",
+    "copy": {
+      "success": "Value was copied to clipboard",
+      "error": "Value could not be copied to the clipboard"
+    },
+    "httpErrorCodes": {
+      "0": "Service unavailable / No internet",
+      "300": "Multiple selection",
+      "301": "Moved Permanently",
+      "303": "See other",
+      "305": "Use Proxy",
+      "400": "Bad Request",
+      "401": "Unauthorized",
+      "402": "Payment Required",
+      "403": "User does not have any of the necessary access rights",
+      "404": "Not Found",
+      "405": "Method not allowed",
+      "406": "Not acceptable",
+      "407": "Proxy authentication required",
+      "408": "Request timeout",
+      "409": "conflict",
+      "410": "Gone",
+      "411": "length required",
+      "412": "requirement failed",
+      "413": "Request entity too large",
+      "414": "Request URI Too Long",
+      "415": "Unsupported Media Type",
+      "416": "Requested range cannot be fulfilled",
+      "417": "Expectation Failed",
+      "422": "Unprocessable entity",
+      "423": "Locked",
+      "424": "Failed Dependency",
+      "426": "Upgrade Required",
+      "428": "Prerequisite Required",
+      "429": "Too many requests",
+      "431": "Request header fields too large",
+      "444": "No response",
+      "451": "Not available for legal reasons",
+      "499": "Client Closed Request",
+      "500": "Internal Server Error",
+      "501": "Not Implemented",
+      "502": "Bad Gateway",
+      "503": "Service Unavailable",
+      "504": "Gateway Timeout",
+      "505": "HTTP version not supported",
+      "506": "Variant also negotiating",
+      "507": "Insufficient memory",
+      "508": "Loop detected",
+      "509": "Bandwidth limit exceeded",
+      "510": "Not extended",
+      "511": "Network authentication required",
+      "598": "Network read timeout error",
+      "599": "Network connection timeout error",
+      "unknown": "Oops! Something unexpected happened..."
+    }
+  },
+  "employees": {
+    "main": {
+      "table": {
+        "title": "Employees",
+        "createButtonTitle": "Create Employee",
+        "columns": {
+          "name": "EMPLOYEE",
+          "email": "EMAIL",
+          "startDate": "START DATE",
+          "endDate": "END DATE",
+          "contract": "CONTRACT",
+          "location": "LOCATION",
+          "workHours": "WS",
+          "team": "TEAM",
+          "department": "DEPARTMENT",
+          "export": "Export",
+          "columns": "Columns"
+        },
+        "actions": {
+          "massAction": "Mass action",
+          "marked": "Marked",
+          "deleteMarked": "Delete Marked",
+          "exportMarked": "Export Marked",
+          "emailMarked": "Send Email to Marked"
+        },
+        "filters": {
+          "search": "Search for employees",
+          "currentEmployees": "Current"
+        }
+      },
+      "editModal": {
+        "generalData": {
+          "title": "Allgemeine Daten",
+          "recruiterTitle": "HR"
+        },
+        "contractData": {
+          "title": "Vertragsdaten"
+        },
+        "contactData": {
+          "title": "Kontaktdaten",
+          "addressTitle": "Adresse"
+        },
+        "vacation": {
+          "title": "Abwesenheit"
+        },
+        "document": {
+          "title": "Dokumente"
+        },
+        "communication": {
+          "title": "Communication",
+          "commentPlaceholder": "Click and write a comment"
+        },
+        "notes": {
+          "title": "Notes"
+        },
+        "linkedin": {
+          "title": "Linkedin"
+        }
+      }
+    }
+  }
+}
