@@ -1,141 +1,119 @@
-import { test, expect } from '@playwright/test'
+import { test } from '@playwright/test'
 import { LoginPage } from 'pages/auth/login-page'
-import * as process from 'node:process'
+import { userData } from 'utils/test-data/auth/user-data'
+import { SurveyPage } from 'pages/container-app/survey-page'
 
 test.describe('Login Page Tests', () => {
+  let surveyPage: SurveyPage
+  let loginPage: LoginPage
   test.beforeEach(async ({ page, baseURL }, testInfo) => {
     const locale: string = testInfo.project.use?.locale ?? 'en'
-    //const locale = testInfo.project.use.locale || 'en'
-    const loginPage = new LoginPage(page, locale)
-
-    // Navigate to the login page and set the locale
+    loginPage = new LoginPage(page, locale)
+    surveyPage = new SurveyPage(page, locale)
     await loginPage.goto(baseURL)
   })
 
-  test('Should log in with valid credentials', async ({ page }, testInfo) => {
-    //const locale = testInfo.project.use.locale
-    const locale: string = testInfo.project.use?.locale ?? 'en'
-    const loginPage = new LoginPage(page, locale)
-    const email = process.env.CLUSTERIX_EMAIL || ''
-    const password = process.env.CLUSTERIX_PASSWORD || ''
+  test('Should log in with valid env credentials', async () => {
+    const { email, password } = userData.valid
     await loginPage.login(email, password)
+    await surveyPage.validateRoleTitleLocatorVisible()
   })
 
-  test('Should log in with valid login credentials', async ({
-    page,
-  }, testInfo) => {
-    // const locale = testInfo.project.use.locale
-    const locale: string = testInfo.project.use?.locale ?? 'en'
-    const loginPage = new LoginPage(page, locale)
-    const email = process.env.CLUSTERIX_EMAIL || ''
-    const password = process.env.CLUSTERIX_PASSWORD || ''
-    const profilename = process.env.PROFILE_NAME || ''
-    await loginPage.verifyValidLogin(email, password, profilename, testInfo)
+  // Test invalid emails
+  userData.invalid.emails.forEach((invalidEmail, index) => {
+    test(`Should not log in with invalid email [${index + 1}]: ${invalidEmail}`, async () => {
+      await loginPage.verifyInvalidEmailLogin(
+        invalidEmail,
+        userData.valid.password
+      )
+    })
   })
 
-  test('Should not log in with invalid login credentials', async ({
-    page,
-  }, testInfo) => {
-    //const locale = testInfo.project.use.locale
-    const locale: string = testInfo.project.use?.locale ?? 'en'
-    const loginPage = new LoginPage(page, locale)
-    const email = process.env.CLUSTERIX_EMAIL || ''
-    const password = process.env.INVALID_CLUSTERIX_PASSWORD || ''
-    await loginPage.verifyInvalidlogin(email, password)
+  // Test invalid passwords
+  userData.invalid.passwords.forEach((invalidPassword, index) => {
+    test(`Should not log in with invalid password [${index + 1}]: ${invalidPassword}`, async () => {
+      await loginPage.verifyInvalidPasswordLogin(
+        userData.valid.email,
+        invalidPassword
+      )
+    })
   })
 
-  test('Should get error for invalid email address', async ({
-    page,
-  }, testInfo) => {
-    //const locale = testInfo.project.use.locale
-    const locale: string = testInfo.project.use?.locale ?? 'en'
-    const loginPage = new LoginPage(page, locale)
-    const email = process.env.INVALID_CLUSTERIX_EMAIL || ''
-    const password = process.env.CLUSTERIX_PASSWORD || ''
-    await loginPage.verifyInvalidEmaillogin(email, password)
+  test('Should not log in with empty email', async () => {
+    await loginPage.verifyEmptyEmailLogin(
+      userData.empty.emptyEmail,
+      userData.valid.password
+    )
   })
 
-  test('Should not log in with no credentials', async ({ page }, testInfo) => {
-    //const locale = testInfo.project.use.locale
-    const locale: string = testInfo.project.use?.locale ?? 'en'
-    const loginPage = new LoginPage(page, locale)
-    await loginPage.verifyNoCredlogin()
+  test('Should not log in with empty password', async () => {
+    await loginPage.verifyEmptyPasswordLogin(
+      userData.valid.email,
+      userData.empty.emptyPassword
+    )
   })
 
-  test('Should navigate to forgot password screen', async ({
-    page,
-  }, testInfo) => {
-    //const locale = testInfo.project.use.locale
-    const locale: string = testInfo.project.use?.locale ?? 'en'
-    const loginPage = new LoginPage(page, locale)
+  test('Should not log in with only one space email', async () => {
+    await loginPage.verifyEmptyEmailLogin(
+      userData.empty.oneSpaceEmail,
+      userData.valid.password
+    )
+  })
+
+  test('Should not log in with only one space password', async () => {
+    await loginPage.verifyEmptyPasswordLogin(
+      userData.valid.email,
+      userData.empty.oneSpacePassword
+    )
+  })
+
+  test('Should not log in with only ten space email', async () => {
+    await loginPage.verifyEmptyEmailLogin(
+      userData.empty.tenSpaceEmail,
+      userData.valid.password
+    )
+  })
+
+  test('Should not log in with only ten space password', async () => {
+    await loginPage.verifyEmptyPasswordLogin(
+      userData.valid.email,
+      userData.empty.tenSpacePassword
+    )
+  })
+
+  test('Should navigate to forgot password screen', async () => {
     await loginPage.verifyNavigateToForgotPasswordPage()
   })
 
-  test('Should navigate from Forgot Password screen to login screen', async ({
-    page,
-  }, testInfo) => {
-    //const locale = testInfo.project.use.locale
-    const locale: string = testInfo.project.use?.locale ?? 'en'
-    const loginPage = new LoginPage(page, locale)
+  test('Should navigate from Forgot Password screen to login screen', async () => {
     await loginPage.verifyNavigateBackFromForgotPasswordPage()
   })
 
-  test('Should navigate to Register screen', async ({ page }, testInfo) => {
-    //const locale = testInfo.project.use.locale
-    const locale: string = testInfo.project.use?.locale ?? 'en'
-    const loginPage = new LoginPage(page, locale)
+  test('Should navigate to Register screen', async () => {
     await loginPage.verifyNavigateToRegisterPage()
   })
 
-  test('Should navigate from Register screen to Login screen', async ({
-    page,
-  }, testInfo) => {
-    //const locale = testInfo.project.use.locale
-    const locale: string = testInfo.project.use?.locale ?? 'en'
-    const loginPage = new LoginPage(page, locale)
+  test('Should navigate from Register screen to Login screen', async () => {
     await loginPage.verifyNavigateBackFromRegisterPage()
   })
 
-  test('Should navigate to Google account screen', async ({
-    page,
-  }, testInfo) => {
-    //const locale = testInfo.project.use.locale
-    const locale: string = testInfo.project.use?.locale ?? 'en'
-    const loginPage = new LoginPage(page, locale)
+  test('Should navigate to Google account screen', async () => {
     await loginPage.verifyNavigateToGooglePage()
   })
 
-  test('Should navigate to Microsoft account screen', async ({
-    page,
-  }, testInfo) => {
-    //const locale = testInfo.project.use.locale
-    const locale: string = testInfo.project.use?.locale ?? 'en'
-    const loginPage = new LoginPage(page, locale)
+  test('Should navigate to Microsoft account screen', async () => {
     await loginPage.verifyNavigateToMicrosoftPage()
   })
 
-  test('Should navigate to Apple account screen', async ({
-    page,
-  }, testInfo) => {
-    //const locale = testInfo.project.use.locale
-    const locale: string = testInfo.project.use?.locale ?? 'en'
-    const loginPage = new LoginPage(page, locale)
+  test('Should navigate to Apple account screen', async () => {
     await loginPage.verifyNavigateToApplePage()
   })
 
-  test('Should navigate to SSO screen', async ({ page }, testInfo) => {
-    //const locale = testInfo.project.use.locale
-    const locale: string = testInfo.project.use?.locale ?? 'en'
-    const loginPage = new LoginPage(page, locale)
+  test('Should navigate to SSO screen', async () => {
     await loginPage.verifyNavigateToSSOPage()
   })
 
-  test('Should be able to check Remember me checkbox', async ({
-    page,
-  }, testInfo) => {
-    //const locale = testInfo.project.use.locale
-    const locale: string = testInfo.project.use?.locale ?? 'en'
-    const loginPage = new LoginPage(page, locale)
+  test('Should be able to check Remember me checkbox', async () => {
     await loginPage.verifyRememberMeClickable()
   })
 })
