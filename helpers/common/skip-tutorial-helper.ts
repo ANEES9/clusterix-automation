@@ -1,5 +1,5 @@
 import { Page, TestInfo } from '@playwright/test'
-import { TutorialPage } from '../../pages/container-app/tutorial-page'
+import { TutorialPage } from 'pages/container-app/tutorial-page'
 
 export async function skipTutorialHelper(
   page: Page,
@@ -10,6 +10,10 @@ export async function skipTutorialHelper(
 
   try {
     // Check if the tutorial modal is visible
+    await tutorialPage.getStartedButton.waitFor({
+      state: 'visible',
+      timeout: 3000,
+    })
     const isModalVisible = await tutorialPage.modalTitle.isVisible()
     console.log('Tutorial Modal Visible:', isModalVisible)
 
