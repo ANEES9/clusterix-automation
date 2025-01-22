@@ -9,157 +9,188 @@ export class VacationAbsenceDaysPage {
   private page: Page
 
   // Locators
-  private newRequest: Locator
-  private paidVacationOption: Locator
-  private sickLeaveOption: Locator
-  private homeOfficeOption: Locator
-  private otherAbsenceOption: Locator
-  private selectAbsenceTypeHeading: Locator
-  private pleaseChooseDesc: Locator
-  private paidVacation: Locator
-  private sickLeave: Locator
-  private homeOffice: Locator
-  private createButton: Locator
-  private enterMessage: Locator
-  private nextButton: Locator
-  private sendButton: Locator
-  private responsibleDropdown: Locator
-  private responsibleDropdownList: Locator
-  private closeResponsibleDropdownList: Locator
-  private vacationConfirmationDialogMessage: Locator
-  private sickConfirmationDialogMessage: Locator
-  private homeOfficeConfirmationDialogMessage: Locator
-  private vacationAppliedDate: Locator
-  private vacationConfirmationDialogDesc: Locator
-  private vacationDialogCloseButton: Locator
+  private newRequestLocator: Locator
+  private paidVacationLocatorOptionLocator: Locator
+  private sickLeaveLocatorOptionLocator: Locator
+  private homeOfficeLocatorOptionLocator: Locator
+  private otherAbsenceOptionLocator: Locator
+  private selectAbsenceTypeHeadingLocator: Locator
+  private pleaseChooseDescLocator: Locator
+  private paidVacationLocator: Locator
+  private sickLeaveLocator: Locator
+  private homeOfficeLocator: Locator
+  private createButtonLocator: Locator
+  private enterMessageLocator: Locator
+  private nextButtonLocator: Locator
+  private sendButtonLocator: Locator
+  private responsibleDropdownLocator: Locator
+  private responsibleDropdownListLocator: Locator
+  private closeResponsibleDropdownListLocator: Locator
+  private vacationConfirmationDialogMessageLocator: Locator
+  private sickConfirmationDialogMessageLocator: Locator
+  private homeOfficeConfirmationDialogMessageLocator: Locator
+  private vacationAppliedDateLocator: Locator
+  private vacationConfirmationDialogDescLocator: Locator
+  private vacationDialogCloseButtonLocator: Locator
+  private totalDaysLocator: Locator
+  private totalDaysInNumberLocator: Locator
+  private daysAvailableLocator: Locator
+  private daysAvailableInNumberLocator: Locator
+  private daysUsedLocator: Locator
+  private daysUsedInNumberLocator: Locator
+  private sickDaysUsedLocator: Locator
+  private sickDaysUsedInNumberLocator: Locator
+  private daysSelectedLocator: Locator
+  private selectFilterLocator: Locator
+  private selectFilterOptionsLocator: Locator
+  private halfDayCheckBoxLocator: Locator
 
   constructor(page: Page) {
     this.page = page
 
     // Initialize locators
-    this.newRequest = page
+    this.newRequestLocator = page
       .locator('div')
       .filter({ hasText: /^New Request$/ })
       .nth(1)
 
-    this.paidVacationOption = page.locator(
+    this.paidVacationLocatorOptionLocator = page.locator(
       '(//*[@class="Tbns5pyn_LdzU09XB_0r"])[1]'
     )
-    this.sickLeaveOption = page.locator(
+    this.sickLeaveLocatorOptionLocator = page.locator(
       '(//*[@class="Tbns5pyn_LdzU09XB_0r"])[2]'
     )
-    this.homeOfficeOption = page.locator(
+    this.homeOfficeLocatorOptionLocator = page.locator(
       '(//*[@class="Tbns5pyn_LdzU09XB_0r"])[3]'
     )
-    this.otherAbsenceOption = page.locator(
+    this.otherAbsenceOptionLocator = page.locator(
       '(//*[@class="Tbns5pyn_LdzU09XB_0r"])[4]'
     )
 
-    this.createButton = page.getByRole('button', { name: 'Create a request' })
+    this.createButtonLocator = page.getByRole('button', { name: 'Create a request' })
 
-    this.selectAbsenceTypeHeading = page.getByText('Select absence type')
-    this.pleaseChooseDesc = page.getByText('Please choose the type of')
-    this.paidVacation = page.getByText('Paid Vacation', { exact: true })
-    this.sickLeave = page.getByText('Sick Leave')
-    this.homeOffice = page.getByText('Home Office', { exact: true })
+    this.selectAbsenceTypeHeadingLocator = page.getByText('Select absence type')
+    this.pleaseChooseDescLocator = page.getByText('Please choose the type of')
+    this.paidVacationLocator = page.getByText('Paid Vacation', { exact: true })
+    this.sickLeaveLocator = page.getByText('Sick Leave')
+    this.homeOfficeLocator = page.getByText('Home Office', { exact: true })
 
-    this.enterMessage = page.getByPlaceholder('Message to your teamlead')
+    this.enterMessageLocator = page.getByPlaceholder('Message to your teamlead')
 
-    this.nextButton = page.getByRole('button', { name: 'Next' })
-    this.sendButton = page.getByRole('button', { name: 'Send' })
+    this.nextButtonLocator = page.getByRole('button', { name: 'Next' })
+    this.sendButtonLocator = page.getByRole('button', { name: 'Send' })
+    this.halfDayCheckBoxLocator = page.locator(
+      ' (//*[@class="_field__checkbox_12ii0_7"])[2]'
+    )
 
-    this.responsibleDropdown = page.getByPlaceholder('Please select')
-    this.responsibleDropdownList = page.locator(
+    this.responsibleDropdownLocator = page.getByPlaceholder('Please select')
+    this.responsibleDropdownListLocator = page.locator(
       '(//*[@data-ui-element="dropdown-list"])[4]//div[1]/div[1]/div'
     )
-    this.closeResponsibleDropdownList = page.locator('.ca-fixed')
+    this.closeResponsibleDropdownListLocator = page.locator('.ca-fixed')
 
-    this.vacationConfirmationDialogMessage = page.getByText(
+    this.vacationConfirmationDialogMessageLocator = page.getByText(
       'Your vacation request is sent!'
     )
-    this.sickConfirmationDialogMessage = page.getByText(
+    this.sickConfirmationDialogMessageLocator = page.getByText(
       'Your sick days are added!'
     )
-    this.homeOfficeConfirmationDialogMessage = page.getByText(
+    this.homeOfficeConfirmationDialogMessageLocator = page.getByText(
       'Your home office request is sent'
     )
 
-    this.vacationAppliedDate = page.locator(
+    this.vacationAppliedDateLocator = page.locator(
       '//*[@class="gWc1kJi6nF3s2lJE2JbJ"]/span[2]'
     )
-    this.vacationConfirmationDialogDesc = page.locator(
+    this.vacationConfirmationDialogDescLocator = page.locator(
       '//*[@class="P3XclPtF4XBYW7l57ez1"]'
     )
-    this.vacationDialogCloseButton = page.getByRole('button', { name: 'Close' })
+    this.vacationDialogCloseButtonLocator = page.getByRole('button', { name: 'Close' })
+    this.totalDaysLocator = this.page.locator('//div[normalize-space()="Total Days"]')
+    this.totalDaysInNumberLocator = this.page.locator('//div[text()="Total Days"]/following-sibling::div')
+    this.daysAvailableLocator = this.page.locator('//div[normalize-space()="Days Available"]')
+    this.daysAvailableInNumberLocator = this.page.locator('//div[text()="Days Available"]/following-sibling::div')
+    this.daysUsedLocator = this.page.locator('//div[normalize-space()="Days used"]')
+    this.daysUsedInNumberLocator = this.page.locator('//div[text()="Days used"]/following-sibling::div')
+    this.sickDaysUsedLocator = this.page.getByText('Sick days used')
+    this.sickDaysUsedInNumberLocator = this.page.locator('//div[text()="Sick days used"]/following-sibling::div')
+    this.daysSelectedLocator = this.page.getByText('Day selected')
+    this.selectFilterLocator = this.page.locator('(//*[@class="PartWrapper-module_partWrapper__I8EIP"])[2]')
+    this.selectFilterOptionsLocator = this.page.locator('((//div[@data-ui-element="dropdown-list"])[3])/div/div')
+
   }
 
   async openNewRequest() {
     await Allure.step('should Click on New Request Button', async () => {
-      await this.newRequest.click()
+      await this.page.waitForTimeout(2000)
+      await this.newRequestLocator.click()
     })
   }
 
   async VerifyAvailableAbsenceTypes() {
     await Allure.step('should Choose paid vacation', async () => {
-      await expect(this.selectAbsenceTypeHeading).toBeVisible()
+      await expect(this.selectAbsenceTypeHeadingLocator).toBeVisible()
       console.log('select Absence Type Heading is displayed')
 
-      await expect(this.pleaseChooseDesc).toBeVisible()
+      await expect(this.pleaseChooseDescLocator).toBeVisible()
       console.log('please choose descrption is visible')
 
-      await expect(this.paidVacation).toBeVisible()
+      await expect(this.paidVacationLocator).toBeVisible()
       console.log('Paid vacation is visible')
 
-      await expect(this.sickLeave).toBeVisible()
+      await expect(this.sickLeaveLocator).toBeVisible()
       console.log('sick Leave is visible')
 
-      await expect(this.homeOffice).toBeVisible()
+      await expect(this.homeOfficeLocator).toBeVisible()
       console.log('home Office is visible')
     })
   }
 
   async selectPaidVacation() {
     await Allure.step('should Choose paid vacation', async () => {
-      expect(this.paidVacationOption).toBeVisible()
-      await this.paidVacationOption.click()
+      expect(this.paidVacationLocatorOptionLocator).toBeVisible()
+      await this.page.waitForTimeout(2000)
+      await this.paidVacationLocatorOptionLocator.click()
       console.log('Choosed paid vacation option')
     })
   }
 
   async selectSickLeave() {
     await Allure.step('should Choose sick leave', async () => {
-      expect(this.sickLeaveOption).toBeVisible()
-      await this.sickLeaveOption.click()
+      expect(this.sickLeaveLocatorOptionLocator).toBeVisible()
+      await this.page.waitForTimeout(2000)
+      await this.sickLeaveLocatorOptionLocator.click()
       console.log('Choosed sick leave option')
     })
   }
 
   async selectHomeOffice() {
     await Allure.step('should Choose home office', async () => {
-      expect(this.homeOfficeOption).toBeVisible()
-      await this.homeOfficeOption.click()
+      expect(this.homeOfficeLocatorOptionLocator).toBeVisible()
+      await this.homeOfficeLocatorOptionLocator.click()
       console.log('Choosed home office option')
     })
   }
 
   async selectOtherAbsence() {
     await Allure.step('should Choose other absence', async () => {
-      expect(this.otherAbsenceOption).toBeVisible()
-      await this.otherAbsenceOption.click()
+      expect(this.otherAbsenceOptionLocator).toBeVisible()
+      await this.otherAbsenceOptionLocator.click()
       console.log('Choosed other absence option')
     })
   }
 
   async clickCreateButton() {
     await Allure.step('Clicked on the create Button', async () => {
-      expect(this.createButton).toBeVisible()
-      await this.createButton.click()
+      expect(this.createButtonLocator).toBeVisible()
+      await this.createButtonLocator.click()
       console.log('Clicked on the create Button')
     })
   }
 
   async selectADay() {
     await Allure.step('select a day', async () => {
+      await this.page.waitForTimeout(2000)
       await this.findAndApplyVacation()
       console.log('Day is selected')
     })
@@ -167,55 +198,61 @@ export class VacationAbsenceDaysPage {
 
   async clickOnHalfDayCheckBox() {
     await Allure.step('Half day is selected', async () => {
-      await this.clickOnHalfDayCheckBox()
+      await this.halfDayCheckBoxLocator.click();
       console.log('Half Day is selected')
     })
   }
 
   async enterAMessage() {
     await Allure.step('Enter a message', async () => {
-      expect(this.enterMessage).toBeVisible()
-      await this.enterMessage.fill('sick')
+      expect(this.enterMessageLocator).toBeVisible()
+      await this.enterMessageLocator.fill('sick')
       console.log('Message entered')
     })
   }
 
   async clickOnNextButton() {
-    await Allure.step('Clicked on the Next Button', async () => {
-      expect(this.nextButton).toBeVisible()
-      await this.nextButton.click()
-      console.log('Clicked on the Next Button')
-    })
+    await Allure.step(
+      'Clicked on the Next Button',
+      async () => {
+        expect(this.nextButtonLocator).toBeVisible()
+        await this.page.waitForTimeout(2000)
+        await this.nextButtonLocator.click()
+        console.log("Clicked on the Next Button")
+
+      }
+    )
   }
 
-  async clickOnSendButton() {
+  async clickOnsendButton() {
     await Allure.step('Clicked on the Send Button', async () => {
-      expect(this.sendButton).toBeVisible()
-      await this.sendButton.click()
+      expect(this.sendButtonLocator).toBeVisible()
+      await this.page.waitForTimeout(2000)
+      await this.sendButtonLocator.click()
       console.log('Clicked on the Send Button')
     })
   }
 
   async selectACoWorker() {
     await Allure.step('Co-worker is selected', async () => {
-      await expect(this.responsibleDropdown).toBeVisible()
-      await this.responsibleDropdown.click()
+      await expect(this.responsibleDropdownLocator).toBeVisible()
+      await this.responsibleDropdownLocator.click()
       console.log('Opened responsible dropdown')
 
-      await expect(this.responsibleDropdownList).toBeVisible()
-      await this.responsibleDropdownList.click()
+      await expect(this.responsibleDropdownListLocator).toBeVisible()
+      await this.responsibleDropdownListLocator.click()
       console.log('Choosed 1-st Person from dropdown')
 
-      await expect(this.closeResponsibleDropdownList).toBeVisible()
-      await this.closeResponsibleDropdownList.click()
+      await expect(this.closeResponsibleDropdownListLocator).toBeVisible()
+      await this.closeResponsibleDropdownListLocator.click()
       console.log('Closed responsible dropdown')
     })
   }
 
   async verifyConfirmationMessageForVacationDialog() {
     await Allure.step('vacation Confirmation Dialog is opened', async () => {
-      await expect(this.vacationConfirmationDialogMessage).toBeVisible()
-      await expect(this.vacationConfirmationDialogMessage).toHaveText(
+      await expect(this.vacationConfirmationDialogMessageLocator).toBeVisible()
+      await expect(this.vacationConfirmationDialogMessageLocator).toHaveText(
         confirmationDialogTitles.vacation
       )
       console.log('Vacation Confirmation Dialog is opened')
@@ -223,8 +260,8 @@ export class VacationAbsenceDaysPage {
   }
   async verifyConfirmationMessageForSickDialog() {
     await Allure.step('vacation Confirmation Dialog is opened ', async () => {
-      await expect(this.sickConfirmationDialogMessage).toBeVisible()
-      await expect(this.sickConfirmationDialogMessage).toHaveText(
+      await expect(this.sickConfirmationDialogMessageLocator).toBeVisible()
+      await expect(this.sickConfirmationDialogMessageLocator).toHaveText(
         confirmationDialogTitles.sick
       )
       console.log('Sick Confirmation Dialog is opened')
@@ -232,13 +269,64 @@ export class VacationAbsenceDaysPage {
   }
 
   async verifyConfirmationMessageForHomeOfficeDialog() {
-    await Allure.step('vacation Confirmation Dialog is opened ', async () => {
-      await expect(this.homeOfficeConfirmationDialogMessage).toBeVisible()
-      await expect(this.homeOfficeConfirmationDialogMessage).toHaveText(
-        confirmationDialogTitles.homeOffice
-      )
-      console.log('Sick Confirmation Dialog is opened')
-    })
+    await Allure.step(
+      'vacation Confirmation Dialog is opened ',
+      async () => {
+        await expect(this.homeOfficeConfirmationDialogMessageLocator).toBeVisible()
+        await expect(this.homeOfficeConfirmationDialogMessageLocator).toHaveText(confirmationDialogTitles.homeOffice)
+        console.log("Sick Confirmation Dialog is opened")
+      }
+    )
+  }
+
+  async verifyRemainingNumberOfPaidLeaves() {
+
+    this.totalDaysLocator.isVisible
+    this.totalDaysInNumberLocator.isVisible
+    console.log(await this.totalDaysLocator.textContent(), ':', await this.totalDaysInNumberLocator.textContent());
+
+    this.daysAvailableLocator.isVisible
+    this.daysAvailableInNumberLocator.isVisible
+    console.log(await this.daysAvailableLocator.textContent(), ':', await this.daysAvailableInNumberLocator.textContent());
+
+    this.daysUsedLocator.isVisible
+    this.daysUsedInNumberLocator.isVisible
+    console.log(await this.daysUsedLocator.textContent(), ':', await this.daysUsedInNumberLocator.textContent());
+
+  }
+
+  async verifyRemainingNumberOfSickLeaves() {
+
+    this.sickDaysUsedLocator.isVisible
+    this.sickDaysUsedInNumberLocator.isVisible
+    console.log(await this.sickDaysUsedLocator.textContent(), ':', await this.sickDaysUsedInNumberLocator.textContent());
+
+  }
+
+  async VerifySelectedDaysText() {
+
+    this.daysSelectedLocator.isVisible()
+    console.log(await this.daysSelectedLocator.textContent());
+    await this.page.waitForTimeout(2000)
+
+  }
+
+  async VerifyAllStatusesFilter() {
+    this.selectFilterLocator.isVisible()
+    this.selectFilterLocator.click()
+
+    // Get the count of items in the list
+    const itemCount = await this.selectFilterOptionsLocator.count();
+    console.log('item count :', itemCount)
+
+    for (let i = 0; i < itemCount; i++) {
+      // Select the item at index `i`
+      await this.selectFilterOptionsLocator.nth(i).click();
+      // Add a small delay to observe each selection
+      await this.page.waitForTimeout(2000);
+      console.log(`Selected item ${i + 1}`);
+    }
+
   }
 
   async verifyVacationAppliedDate() {
@@ -249,7 +337,7 @@ export class VacationAbsenceDaysPage {
       const year = currentDate.getFullYear() // Get the full year, e.g., 2025
 
       const formattedDate = `${day} ${month}. ${year} - ${day} ${month}. ${year}`
-      await expect(this.vacationAppliedDate).toHaveText(formattedDate) // Validate the displayed date.
+      await expect(this.vacationAppliedDateLocator).toHaveText(formattedDate) // Validate the displayed date.
       console.log('Able to see the date format')
     })
   }
@@ -258,7 +346,7 @@ export class VacationAbsenceDaysPage {
     await Allure.step(
       'Vacation confirmation description message is displayed',
       async () => {
-        await expect(this.vacationConfirmationDialogDesc).toHaveText(
+        await expect(this.vacationConfirmationDialogDescLocator).toHaveText(
           confirmationDialogMessages.vacation
         )
         console.log('Vacation confirmation description message is displayed')
@@ -270,7 +358,7 @@ export class VacationAbsenceDaysPage {
     await Allure.step(
       'Other Vacation confirmation description message is displayed',
       async () => {
-        await expect(this.vacationConfirmationDialogDesc).toHaveText(
+        await expect(this.vacationConfirmationDialogDescLocator).toHaveText(
           confirmationDialogMessages.otherVacation
         )
         console.log(
@@ -284,7 +372,7 @@ export class VacationAbsenceDaysPage {
     await Allure.step(
       'Vacation confirmation description message is displayed',
       async () => {
-        await expect(this.vacationConfirmationDialogDesc).toHaveText(
+        await expect(this.vacationConfirmationDialogDescLocator).toHaveText(
           confirmationDialogMessages.sick
         )
         console.log('sick confirmation description message is displayed')
@@ -296,7 +384,7 @@ export class VacationAbsenceDaysPage {
     await Allure.step(
       'Vacation confirmation description message is displayed',
       async () => {
-        await expect(this.vacationConfirmationDialogDesc).toHaveText(
+        await expect(this.vacationConfirmationDialogDescLocator).toHaveText(
           confirmationDialogMessages.homeOffice
         )
         console.log('Home Office confirmation description message is displayed')
@@ -306,8 +394,8 @@ export class VacationAbsenceDaysPage {
 
   async verifyVacationDialogCloseButton() {
     await Allure.step('vacation Confirmation Dialog is closed', async () => {
-      await expect(this.vacationDialogCloseButton).toBeVisible()
-      await this.vacationDialogCloseButton.click() // Close the confirmation dialog.
+      await expect(this.vacationDialogCloseButtonLocator).toBeVisible()
+      await this.vacationDialogCloseButtonLocator.click() // Close the confirmation dialog.
       console.log('vacation Confirmation Dialog is closed')
     })
   }
@@ -355,23 +443,20 @@ export class VacationAbsenceDaysPage {
   }
 
   async selectDynamicVacationDay(day: number): Promise<Locator | null> {
-    try {
-      const vacationDay = this.page
-        .locator('div')
-        .filter({
-          hasText: new RegExp(`^${day}$`), // Match the exact day
-        })
-        .first()
+    const vacationDay = this.page
+      .getByText(`${day}`, { exact: true })
 
-      await vacationDay.isVisible()
-      console.log(`Selecting vacation for the ${day}th.`)
-      await vacationDay.click()
+    // await vacationDay.scrollIntoViewIfNeeded()
+    await vacationDay.waitFor({ state: 'visible' })
 
-      return vacationDay
-    } catch (error) {
-      console.error(`Failed to select vacation for day ${day}: ${error}`)
-      return null
+    if (await vacationDay.isEnabled()) {
+      await vacationDay.click();
+      console.log(`Successfully clicked on day: ${day}`)
+    } else {
+      console.error(`Day ${day} is not enabled or clickable.`)
     }
+    return null
+
   }
 
   async findAndApplyVacation(): Promise<number | null> {
@@ -401,11 +486,13 @@ export class VacationAbsenceDaysPage {
           response.url().includes('api/days_off/requests') &&
           response.status() === 200
       ),
-      this.clickOnSendButton(),
+      this.clickOnsendButton(),
     ])
 
     const responseBody = await response.json()
     console.log('Employee ID from response:', responseBody?.employee_id)
     return responseBody?.employee_id ?? null
   }
+
+
 }
