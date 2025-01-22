@@ -30,7 +30,7 @@ export class TutorialPage {
       `div.userflowjs-bubble-button-text:has-text("${this.translations.welcome_step.button.text}")`
     )
     this.closeTutorialCrossIcon = page.locator(
-      'button.userflowjs-bubble-toolbar-button'
+      '[data-test-id="tour-close-button"]'
     )
   }
   // Navigate to page and ensure modal is visible
