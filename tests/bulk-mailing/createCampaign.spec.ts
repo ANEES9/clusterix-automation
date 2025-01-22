@@ -8,8 +8,8 @@ import { skipSurvey } from 'common/skip-survey.js'
 //  import { Allure } from '../../helpers/common/allure-helper.js';
 const campaignname = 'Demo Campaign'
 const subject = 'Check Bulk Mailing'
-
 let locators: bulkMailingPage
+
 test.describe('Verify Bulk Mailing Functionalities', () => {
   test.beforeEach(async ({ page, baseURL }, testInfo) => {
     // await Allure.step('Navigate to Base URL and Close Popups', async () => {

@@ -45,7 +45,6 @@ while (!templateFound) {
         await locators.deleteButton.click(); 
         await locators.deleteButtonPrompt.click(); 
         console.log("Assertion Passed: Template Deleted Successfully.")
-
     } else {
         // Navigate to the next page if the template is not found
         const nextPageButton = await page.locator('.PaginationBar-module_paginationBar__7eGhR > button:nth-child(3)');
