@@ -30,6 +30,14 @@ export class EmailPage {
   private deleteSignature!: Locator
   private replyEmail: Locator
   private confirmPopup: Locator
+  private createFolder: Locator
+  private folderName: Locator
+  private saveFolder: Locator
+  private folderSuccessfulToastMessage: Locator
+  private duplicateFolderErrorToastMessage: Locator
+  private emailNameDropdown: Locator
+  private switchBetweenEmail!: Locator
+  private switchBackToEmail!: Locator
   static readonly URL = '/email'
 
   constructor(page: Page) {
@@ -60,6 +68,16 @@ export class EmailPage {
     this.saveSignature = page.getByText('Save')
     this.replyEmail = page.locator('#thread-action-bar').getByText('Reply')
     this.confirmPopup = page.getByRole('button', { name: 'Confirm' })
+    this.createFolder = page.getByRole('button', { name: 'Create new folder' })
+    this.folderName = page.getByPlaceholder('Enter a name for the folder')
+    this.saveFolder = page.getByText('Create folder')
+    this.folderSuccessfulToastMessage = page.getByText(
+      'The folder has been created'
+    )
+    this.duplicateFolderErrorToastMessage = page.getByText(
+      "The Mailbox couldn't be"
+    )
+    this.emailNameDropdown = page.locator('.DropDownSelect_a1__DpNtD')
   }
 
   set dynamicXPath(signName: string) {
@@ -77,6 +95,17 @@ export class EmailPage {
       .filter({ hasText: new RegExp(`^${signName}$`) })
       .getByRole('button')
       .nth(1)
+  }
+
+  set switchBetweenEmailLocator(emailID: string) {
+    this.switchBetweenEmail = this.page.getByText(emailID)
+  }
+
+  set switchBackToEmailLocator(emailID: string) {
+    this.switchBackToEmail = this.page
+      .locator('div')
+      .filter({ hasText: new RegExp(`^${emailID}$`) })
+      .first()
   }
 
   async goTo(baseURL: string | undefined) {
@@ -225,6 +254,60 @@ export class EmailPage {
   async clickOnConfirm() {
     await Allure.step('click on confirm button', async () => {
       await this.confirmPopup.click()
+    })
+  }
+
+  async clickOnCreateFolder() {
+    await Allure.step('click on create folder button', async () => {
+      await this.createFolder.click()
+    })
+  }
+
+  async fillFolderName(folderName: string) {
+    await Allure.step('fill folder name', async () => {
+      await this.folderName.fill(folderName)
+    })
+  }
+
+  async clickOnSaveFolder() {
+    await Allure.step('click on save folder button', async () => {
+      await this.saveFolder.click()
+    })
+  }
+
+  async verifyFolderSuccessfulToastMessage() {
+    await Allure.step(
+      'should verify folder creation successful toast message',
+      async () => {
+        await expect(this.folderSuccessfulToastMessage).toBeVisible()
+      }
+    )
+  }
+
+  async verifyDuplicateFolderErrorToastMessage() {
+    await Allure.step(
+      'should verify duplicate folder error toast message',
+      async () => {
+        await expect(this.duplicateFolderErrorToastMessage).toBeVisible()
+      }
+    )
+  }
+
+  async clickOnEmailNameDropdown() {
+    await Allure.step('click on email name dropdown', async () => {
+      await this.emailNameDropdown.click()
+    })
+  }
+
+  async clickOnSwitchBetweenEmail() {
+    await Allure.step('click on switch between email', async () => {
+      await this.switchBetweenEmail.click()
+    })
+  }
+
+  async clickOnSwitchBackToEmail() {
+    await Allure.step('click on switch back to email', async () => {
+      await this.switchBackToEmail.click()
     })
   }
 }
