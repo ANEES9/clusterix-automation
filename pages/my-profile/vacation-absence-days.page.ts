@@ -494,20 +494,5 @@ export class VacationAbsenceDaysPage {
     return responseBody?.employee_id ?? null
   }
 
-  async closeFeedbackForm(): Promise<void | any> {
-
-    await this.page.waitForLoadState();
-    await this.page.getByRole('button', { name: 'CEO / CFO / COO' }).click();
-    await this.page.getByRole('button', { name: 'Next' }).click();
-    await this.page.getByRole('main').getByRole('button', { name: 'Calendar' }).click();
-    await this.page.getByRole('button', { name: 'Next' }).click();
-    await this.page.getByRole('button', { name: 'Complete' }).click();
-    await this.page.getByLabel('Product Tour').getByRole('button').first().click();
-    await this.page.waitForLoadState();
-
-
-
-
-  }
 
 }
