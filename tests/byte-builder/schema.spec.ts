@@ -96,7 +96,7 @@ test.describe('Bytebuilder > Schema Tests', () => {
     })
   })
 
-  test.only('Verify invalid schema search', async () => {
+  test('Verify invalid schema search', async () => {
     Allure.addDescription('Validates that a non-existent schema title does not appear in the table.')
     Allure.addTag('search')
     await Allure.step('Search for an invalid schema and verify it is not present', async () => {
