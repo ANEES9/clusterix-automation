@@ -22,11 +22,11 @@ export default defineConfig({
     video: 'retain-on-failure',
     screenshot: 'only-on-failure',
   },
-  expect: {
+  /*expect: {
     timeout: 90 * 1000, // Timeout for expect assertions (1 minute)
   },
 timeout: 90 * 1000, // Global timeout for each test (1 minute)
-
+*/
   globalSetup: require.resolve('./global-setup'),
   //globalTeardown: require.resolve('./global-teardown'),
   workers: 1,

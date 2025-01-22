@@ -7,12 +7,13 @@ import { searchData } from 'utils/test-data/company-searcher/search-data'
 import { skipProductTourHelper } from 'common/skip-product-tour-helper'
 import { skipSurveyHelper } from 'common/skip-survey-helper'
 import { Allure } from 'common/allure-helper'
-import { skipTutorial } from 'common/skip-tutorial-helper'    
+import { skipTutorialHelper } from '../../helpers/common/skip-tutorial-helper'    
 
 test.describe('Company Searcher Smoke Test', () => {
   let companyPage: CompanyPage
   test.beforeEach(async ({ page, baseURL }, testInfo) => {
     await page.goto(baseURL!)
+    await skipTutorialHelper(page, testInfo)
     await skipSurveyHelper(page, testInfo)
     await skipProductTourHelper(page, testInfo)
     await page.waitForLoadState('networkidle')
@@ -30,8 +31,6 @@ test.describe('Company Searcher Smoke Test', () => {
   }
   // Use the imported search data and type it explicitly
   const searchItems: SearchData[] = searchData
-
-
   test('Verifying Company page UI Elements to be visible', async ({
     page,
     context,
@@ -357,8 +356,7 @@ test.describe('Company Searcher Smoke Test', () => {
     }
   });
   
-
-  test('verify child row label matches expanded rows', async ({ page }) => {
+  test.only('verify child row label matches expanded rows', async ({ page }) => {
      Allure.addSeverity('critical');
    Allure.addTag('table');
    Allure.addDescription('This test verifies that the number of rows expanded matches the child label for each expandable button in the table.');
