@@ -26,7 +26,7 @@ test.describe('Task Management Board Tests', () => {
     const taskmanagetest =
       'https://task-management-backend-testing.innoscripta.com/api/statuses'
 
-    const taskmanage = await ApiResponse(page, taskmanageprod, taskmanagetest)
+   
     const currentDate = new Date()
     const formattedDate = currentDate.toLocaleDateString('en-GB') // This will give you the format DD/MM/YYYY
 
@@ -38,35 +38,36 @@ test.describe('Task Management Board Tests', () => {
     const board_click_name = randomFileName + customFormattedDate
     console.log(board_click_name)
     console.log('Randomly Generated File Name:', randomFileName)
-    locators.savexpath = randomFileName
-    locators.savexpathboard = board_click_name
+    locators.saveXPath = randomFileName
+    locators.saveXPathPinboard = board_click_name
     await page.waitForLoadState('networkidle')
 
     //Folder creation
-    await locators.navigatetotaskmanagement()
-    await locators.navigatetopinboardsection()
-    await locators.navigatetoaddfolder()
+    await locators.navigateToTaskManagement()
+    await locators.navigateToPinboardSection()
+    await locators.navigateToAddFolder()
     await page.waitForTimeout(7000)
-    await locators.navigatetorenamefolder()
-    await locators.navigatetofillfolder(randomFileName)
-    await locators.renamefolderandsubmit()
+    await locators.navigateToRenameFolder()
+    await locators.navigateToFillFolder(randomFileName)
+    await locators.renameFolderAndSubmit()
     await page.waitForTimeout(7000)
 
     //board creation
 
-    await locators.clickonfolder()
-    await locators.navigatetoaddpinboard()
+    await locators.clickOnFolder()
+    await locators.navigateToAddPinboard()
     await page.waitForTimeout(7000)
-    await locators.navigatetorenameboard()
-    await locators.navigatetofillboard(randomFileName)
-    await locators.renameboardandsubmit()
+    await locators.navigateToRenameBoard()
+    await locators.navigateToFillBoard(randomFileName)
+    await locators.renameBoardAndSubmit()
     await page.waitForTimeout(7000)
 
     //status creation
-    await locators.clickonboard()
-    await locators.navigatetoaddstatus()
-    await locators.navigatetofillstatus(randomFileName)
-    await locators.statussubmit()
+    await locators.clickOnBoard()
+    await locators.navigateToAddStatus()
+    await locators.navigateToFillStatus(randomFileName)
+    await locators.statusSubmit()
+    const taskmanage = await ApiResponse(page, taskmanageprod, taskmanagetest)
     await page.waitForTimeout(1000)
 
     const { status: apiResponseStatus } = taskmanage()
