@@ -1,13 +1,12 @@
 import { test, expect } from '@playwright/test'
 import { CompanyPage } from '../../pages/company-searcher/company-page'
-import { closeCurrentlyActivePopup } from 'helpers/ui/company-searcher/currently-active-popup'
-import { collapseSidebar } from 'helpers/ui/company-searcher/sidebar-helper'
+import { closeCurrentlyActivePopup } from '../../helpers/ui/company-searcher/currently-active-popup'
+import { collapseSidebar } from '../../helpers/ui/company-searcher/sidebar-helper'
 import { addCursorStyleAndScript } from 'common/cursor-helper'
 import { searchData } from 'utils/test-data/company-searcher/search-data'
 import { skipProductTourHelper } from 'common/skip-product-tour-helper'
 import { skipSurveyHelper } from 'common/skip-survey-helper'
 import { Allure } from 'common/allure-helper'
-import { skipTutorial } from 'common/skip-tutorial-helper'    
 
 test.describe('Company Searcher Smoke Test', () => {
   let companyPage: CompanyPage
