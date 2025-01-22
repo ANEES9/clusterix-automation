@@ -1,4 +1,0 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
-git fetch origin && LOCAL=$(git rev-parse @) && REMOTE=$(git rev-parse @{u}) && [ "$LOCAL" != "$REMOTE" ] && echo '❌ Remote branch has new changes. Please run git pull before pushing.' && exit 1
