@@ -18,7 +18,7 @@ test.describe('Task Management Folder Tests', () => {
     })
   })
 
-  test('Folder CRUD tests', async ({ page }) => {
+  test('Folder Create tests', async ({ page }) => {
     const locators = new TaskManagementPage(page)
 
     const taskmanageprod =
@@ -26,7 +26,7 @@ test.describe('Task Management Folder Tests', () => {
     const taskmanagetest =
       'https://task-management-backend-testing.innoscripta.com/api/folders'
 
-    const taskmanage = await ApiResponse(page, taskmanageprod, taskmanagetest)
+    
     const currentDate = new Date()
     const formattedDate = currentDate.toLocaleDateString('en-GB') // This will give you the format DD/MM/YYYY
 
@@ -38,27 +38,155 @@ test.describe('Task Management Folder Tests', () => {
     const board_click_name = randomFileName + customFormattedDate
     console.log(board_click_name)
     console.log('Randomly Generated File Name:', randomFileName)
-    locators.savexpath = randomFileName
+    locators.saveXPath = randomFileName
     await page.waitForLoadState('networkidle')
 
     //Folder creation
-    await locators.navigatetotaskmanagement()
-    await locators.navigatetopinboardsection()
-    await locators.navigatetoaddfolder()
+    await locators.navigateToTaskManagement()
+    await locators.navigateToPinboardSection()
+    await locators.navigateToAddFolder()
+    const taskmanage = await ApiResponse(page, taskmanageprod, taskmanagetest)
     await page.waitForTimeout(2000)
-    await locators.navigatetorenamefolder()
-    await locators.navigatetofillfolder(randomFileName)
-    await locators.renamefolderandsubmit()
+    await locators.navigateToRenameFolder()
+    await locators.navigateToFillFolder(randomFileName)
+    await locators.renameFolderAndSubmit()
     await page.waitForTimeout(5000)
 
     const { status: apiResponseStatus } = taskmanage()
     // Check the response and log messages accordingly
-    if (apiResponseStatus === 200) {
-      console.log('Success: API returned status 200.')
-    } else if (apiResponseStatus !== 200) {
+    if (apiResponseStatus === 201) {
+      console.log('Success: API returned status 201.')
+    } else if (apiResponseStatus !== 201) {
       console.log(
         `Error: API returned an unexpected status ${apiResponseStatus}.`
       )
     }
   })
+
+
+
+  test('Folder Update tests', async ({ page }) => {
+    const locators = new TaskManagementPage(page)
+
+    const taskmanageprod =
+      'https://task-management-backend.innoscripta.com/api/folders'
+    const taskmanagetest =
+      'https://task-management-backend-testing.innoscripta.com/api/folders'
+
+    
+    const currentDate = new Date()
+    const formattedDate = currentDate.toLocaleDateString('en-GB') // This will give you the format DD/MM/YYYY
+
+    // For DD.MM.YYYY format, replace the slashes with dots
+    const customFormattedDate = formattedDate.replace(/\//g, '.')
+
+    console.log(customFormattedDate)
+    const randomFileName = generateRandomFileName()
+    const board_click_name = randomFileName + customFormattedDate
+    console.log(board_click_name)
+    console.log('Randomly Generated File Name:', randomFileName)
+    locators.saveXPath = randomFileName
+    locators.saveXPathRightClickFolder = randomFileName
+    const new_name = generateRandomFileName()
+    await page.waitForLoadState('networkidle')
+
+    //Folder creation
+    await locators.navigateToTaskManagement()
+    await locators.navigateToPinboardSection()
+    await locators.navigateToAddFolder()
+    const taskmanage = await ApiResponse(page, taskmanageprod, taskmanagetest)
+    await page.waitForTimeout(2000)
+    await locators.navigateToRenameFolder()
+    await locators.navigateToFillFolder(randomFileName)
+    await locators.renameFolderAndSubmit()
+    await page.waitForTimeout(5000)
+
+
+    const { status: apiResponseStatus } = taskmanage()
+    // Check the response and log messages accordingly
+    if (apiResponseStatus === 201) {
+      console.log('Success: API returned status 201.')
+    } else if (apiResponseStatus !== 201) {
+      console.log(
+        `Error: API returned an unexpected status ${apiResponseStatus}.`
+      )
+    }
+
+
+    // Renameing part starts here
+    await locators.rightClickOnFolder()
+    await page.waitForTimeout(2000)
+    await locators.renameFolder()
+    await locators.navigateToRenameFolder()
+    await locators.navigateToFillFolder(new_name)
+    await locators.renameFolderAndSubmit()
+    await locators.clickOnFolder()
+    console.log('Raname folder name:', new_name)
+
+    
+
+  })
+
+
+  test('Folder Delete tests', async ({ page }) => {
+    const locators = new TaskManagementPage(page)
+
+    const taskmanageprod =
+      'https://task-management-backend.innoscripta.com/api/folders'
+    const taskmanagetest =
+      'https://task-management-backend-testing.innoscripta.com/api/folders'
+
+    
+    const currentDate = new Date()
+    const formattedDate = currentDate.toLocaleDateString('en-GB') // This will give you the format DD/MM/YYYY
+
+    // For DD.MM.YYYY format, replace the slashes with dots
+    const customFormattedDate = formattedDate.replace(/\//g, '.')
+
+    console.log(customFormattedDate)
+    const randomFileName = generateRandomFileName()
+    const board_click_name = randomFileName + customFormattedDate
+    console.log(board_click_name)
+    console.log('Randomly Generated File Name:', randomFileName)
+    locators.saveXPath = randomFileName
+    locators.saveXPathRightClickFolder = randomFileName
+    const new_name = generateRandomFileName()
+    await page.waitForLoadState('networkidle')
+
+    //Folder creation
+    await locators.navigateToTaskManagement()
+    await locators.navigateToPinboardSection()
+    await locators.navigateToAddFolder()
+    const taskmanage = await ApiResponse(page, taskmanageprod, taskmanagetest)
+    await page.waitForTimeout(2000)
+    await locators.navigateToRenameFolder()
+    await locators.navigateToFillFolder(randomFileName)
+    await locators.renameFolderAndSubmit()
+    await page.waitForTimeout(5000)
+
+    const { status: apiResponseStatus } = taskmanage()
+    // Check the response and log messages accordingly
+    if (apiResponseStatus === 201) {
+      console.log('Success: API returned status 201.')
+    } else if (apiResponseStatus !== 201) {
+      console.log(
+        `Error: API returned an unexpected status ${apiResponseStatus}.`
+      )
+    }
+
+    // deletion part starts here
+    await locators.rightClickOnFolder()
+    await page.waitForTimeout(2000)
+    await locators.deleteFolder()
+    await locators.confirmDelete()
+    console.log('Folder Deleted')
+
+    
+
+  })
+
+
+
+
+
 })
