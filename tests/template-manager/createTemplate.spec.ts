@@ -55,7 +55,6 @@ test.describe('Verify Bulk Mailing Functionalities', () => {
     await locators.templateDescriptionField.fill('Automation')
     await locators.templateTagField.click()
     await locators.tagSelection.click()
-
     await locators.createTemplate.click()
 
     const editor = locators.editor

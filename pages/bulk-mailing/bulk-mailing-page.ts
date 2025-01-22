@@ -279,9 +279,7 @@ export class bulkMailingPage {
     this.campaignClearAllFilterButton = this.page.getByText('Clear All')
     this.templateFilterButton = this.page.getByText('Templates')
     this.templateFilterDropdownButton = this.page.locator('.dropdown-button')
-    this.templateFilterDropdownSearchField = this.page.getByPlaceholder(
-      'Search templates...'
-    )
+    this.templateFilterDropdownSearchField = this.page.getByPlaceholder(      'Search templates...'    )
     this.templateFilterDropdownOption = this.page.locator('.dropdown-option')
     this.userFilterButton = this.page.getByText('Users')
     this.userFilterDropdownOption = this.page.locator('.user-option')

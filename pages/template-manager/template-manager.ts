@@ -24,6 +24,7 @@ export class templateManagerPage {
   public sideBarCollapse: Locator
   public searchField: Locator
 
+
   constructor(page: Page) {
     this.page = page
 
@@ -47,8 +48,5 @@ export class templateManagerPage {
     this.deleteButtonPrompt = this.page.getByText('Delete')
     this.sideBarCollapse = this.page.locator('.Sidebar-module_collapseButton__1NSyf')
     this.searchField = this.page.getByPlaceholder('Search by template')
-}
-
-
-    
+}   
 }

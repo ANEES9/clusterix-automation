@@ -84,20 +84,6 @@ test.describe('Verify Bulk Mailing Functionalities', () => {
     await page.getByPlaceholder('Example: Email address, First').fill('gowdadr@innoscripta.com, Ganganna, Gowda\nnarayanav@innoscripta.com, Karthik,Narayan\nraos@innoscripta.com, Shwetha, Rao\nbhat@innoscripta.com, Sharath, Bhat\n');
     await page.getByText('Preview').click();
     await page.locator('.Pmt4XLAw45QKoMAcH8cQ > .SmartTable-module_tableWrapper__O2vT5 > .SmartTable-module_smartTable__nylwu > thead > tr > th > .DraggableHeader-module_headerCellWrapper__nvR-Y > .DraggableHeader-module_headerCell__Y5Iwz > .HeaderCell-module_headerCell__4FmTJ > .HeaderCell-module_headerText__-eOWT').first().click();
-    // await page.getByText('gowdadr@innoscripta.com', { exact: true }).click();
-    // await page.getByText('narayanav@innoscripta.com', { exact: true }).click();
-    // await page.getByText('raos@innoscripta.com', { exact: true }).click();
-    // await page.getByText('bhat@innoscripta.com', { exact: true }).click();
-    // await page.getByText('First name').click();
-    // await page.getByText('Ganganna', { exact: true }).click();
-    // await page.getByText('Karthik', { exact: true }).click();
-    // await page.getByText('Shwetha', { exact: true }).click();
-    // await page.getByText('Sharath', { exact: true }).click();
-    // await page.getByText('Last name').click();
-    // await page.getByText('Gowda', { exact: true }).click();
-    // await page.getByText('Narayan', { exact: true }).click();
-    // await page.getByText('Rao', { exact: true }).click();
-    // await page.getByText('Bhat', { exact: true }).click();
     await page.getByText('Upload').click();
 
    try {
