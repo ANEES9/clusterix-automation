@@ -1,6 +1,8 @@
 export const APP_URLS = {
   login: '/login',
   register: '/register',
+  resetPassword: '/reset-password',
+  sso: '/sso',
   settings: {
     base: '/settings',
     usersAndPermissions: {
@@ -40,6 +42,9 @@ export const APP_URLS = {
   },
   accounting: {
     base: '/accounting',
+    payments: {
+      bankAccounts: '/accounting/payments/bank-accounts',
+    },
   },
   byteBuilder: {
     base: '/byte-builder',
@@ -58,6 +63,18 @@ export const APP_URLS = {
   },
   projectManagement: {
     base: '/project-management/',
+    projects: {
+      base: '/project-management/projects',
+      overview: '/project-management/projects/overview',
+      projectTypes: '/project-management/projects/types',
+      controlling: {
+        base: '/project-management/projects/controlling',
+        performance: '/project-management/projects/controlling/performance',
+        employees: '/project-management/projects/controlling/employees',
+      },
+      timeframes: '/project-management/projects/timeframes',
+      activity: '/project-management/projects/activity',
+    },
   },
   taskManagement: {
     base: '/task-management',
@@ -97,5 +114,15 @@ export const APP_URLS = {
   },
   templateManager: {
     base: '/template-manager',
+  },
+  bulkMailing: {
+    base: '/bulk-mailing',
+    dashboard: '/bulk-mailing/dashboard',
+    campaigns: {
+      base: '/bulk-mailing/campaigns',
+      newCampaign: '/bulk-mailing/campaigns/new',
+      campaign: (campaignId: string) => `/bulk-mailing/campaigns/${campaignId}`,
+    },
+    audience: '/bulk-mailing/audiences',
   },
 }

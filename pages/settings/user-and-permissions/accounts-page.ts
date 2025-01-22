@@ -1,8 +1,12 @@
 import { Page, Locator } from '@playwright/test'
-import { allure } from 'allure-playwright'
+import { Allure } from 'common/allure-helper'
+import { getTranslations } from 'common/get-translations-helper'
+import { APP_URLS } from 'config/constants/app-urls'
 
 export class AccountsPage {
   readonly page: Page
+  private translations: Record<string, any>
+
   private collapseButton: Locator
   private usersPermissionsButton: Locator
   private accountsButton: Locator
@@ -16,10 +20,10 @@ export class AccountsPage {
   private filteredUserDiv: Locator
   private filteredUserNameLocator: Locator
 
-  static readonly URL = '/settings/users-and-permissions/accounts'
-
-  constructor(page: Page) {
+  constructor(page: Page, locale: string) {
     this.page = page
+    this.translations = getTranslations('settings', locale)
+
     this.collapseButton = page.locator('button._collapseButton_16zcl_522')
     this.usersPermissionsButton = page.getByRole('button', {
       name: 'Users and Permissions',
@@ -30,7 +34,7 @@ export class AccountsPage {
       exact: true,
     })
     this.searchInput = page.locator(
-      'input[placeholder="Search person or email"]'
+      `input[placeholder="${this.translations.accounts.filter1_placeholder}"]`
     )
     this.userDiv = page.locator('div div.y98XZMsrV0BeV8r7YwnA')
     this.userNameLocator = this.userDiv.locator('strong').nth(0)
@@ -50,13 +54,15 @@ export class AccountsPage {
   }
 
   async goto(baseURL: string | undefined) {
-    await allure.step('Navigate to Accounts URL', async () => {
-      await this.page.goto(`${baseURL}${AccountsPage.URL}`)
+    await Allure.step('Navigate to Accounts URL', async () => {
+      await this.page.goto(
+        `${baseURL}${APP_URLS.settings.usersAndPermissions.accounts}`
+      )
     })
   }
 
   async navigateToAccounts() {
-    await allure.step('Navigate to Accounts section', async () => {
+    await Allure.step('Navigate to Accounts section', async () => {
       await this.collapseButton.click()
       await this.usersPermissionsButton.click()
       await this.accountsButton.click()

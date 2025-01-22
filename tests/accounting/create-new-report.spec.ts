@@ -1,119 +1,130 @@
 import { test, expect } from '@playwright/test'
-import { PageLocators } from 'helpers/accounting-locaters-helpers'
+import { addCursorStyleAndScript } from 'common/cursor-helper'
+import { skipSurveyHelper } from 'common/skip-survey-helper'
+import { skipProductTourHelper } from 'common/skip-product-tour-helper'
+import { closeTimerPopUp } from 'common/timer-helper'
+import { Allure } from 'common/allure-helper'
+import { skipTutorialHelper } from 'common/skip-tutorial-helper'
 
-test.beforeEach(async ({ page }) => {
-  await page.goto('https://testing.clusterix.io/')
+test.describe('Accounting Application Add manual tracking bank account Tests', () => {
+  let locators: PageLocators
 
-  await page.getByRole('button', { name: 'Login' }).nth(1).click()
-  await page.getByPlaceholder('Email').fill('cop@test.de')
-  await page.getByPlaceholder('Password').fill('1')
-  await page
-    .locator('div')
-    .filter({ hasText: /^Login$/ })
-    .first()
-    .click()
-  await page
-    .locator('div')
-    .filter({ hasText: /^Skip tour$/ })
-    .first()
-    .click()
-  await page.waitForLoadState('domcontentloaded')
-})
+  test.beforeEach(async ({ page, baseURL }, testInfo) => {
+    locators = new PageLocators(page)
 
-// Test - Add Financial Report
-test('Add Financial report', async ({ page }) => {
-  const locators = new PageLocators(page)
+    Allure.addFeature('Navigation')
+    Allure.addAppOwner('ContainerApp')
 
-  // Add test steps for navigating and creating the report
-  await AssertionHelper.clickWithAssertion(locators.accountingListButton)
-  await AssertionHelper.clickWithAssertion(locators.reportsSidebarButton)
-  await page.getByRole('button', { name: 'New Report' }).click()
-  await page.getByRole('button', { name: 'Untitled' }).click()
-  await page.getByText('Untitled', { exact: true }).press('ControlOrMeta+a')
-  await page.getByText('Untitled', { exact: true }).fill('Test 1')
-  await page.getByRole('button', { name: 'Add point' }).click()
+    await Allure.step('Navigate to Base URL and Close Popups', async () => {
+      await page.goto(baseURL!)
+      skipTutorialHelper(page, testInfo)
+      await addCursorStyleAndScript(page)
+      await skipSurveyHelper(page, testInfo)
+      await skipProductTourHelper(page, testInfo)
+      await closeTimerPopUp(page)
+      await page.waitForLoadState('networkidle')
+    })
+  })
 
-  // Fix for Add Column button - select the first one
-  const addColumnButton = page
-    .getByRole('button', { name: 'Add column' })
-    .nth(0)
-  await addColumnButton.waitFor({ state: 'visible' })
-  await addColumnButton.scrollIntoViewIfNeeded()
-  await addColumnButton.click()
+  // Test case: Add Financial Report
+  test('Add Financial report', async ({ page }) => {
+    locators = new PageLocators(page)
 
-  // Select Month and Jan
-  await page.getByRole('button', { name: 'Months' }).click()
-  await page.getByRole('button', { name: 'Jan', exact: true }).click()
-  await page.getByLabel('Add total').click()
+    // Navigate to Accounting List and open the Reports section
+    await locators.accountinglistbutton.click()
+    await locators.reportssidebarbutton.click()
 
-  // Select Company
-  await page.getByPlaceholder('Select a company').click()
-  await page.getByRole('button', { name: 'Schaeffler AG' }).first().click()
+    // Create a new report and set a title
+    await locators.createnewreportbutton.click()
+    await locators.reporttitlebutton.click()
+    await page.getByRole('strong').fill('Test 1')
 
-  // Filling descriptions dynamically per row
-  const descriptions = ['Desc 1', 'Desc 2', 'Desc 3']
-  for (let i = 0; i < descriptions.length; i++) {
-    const row = page.locator('tr').nth(i + 1) // Target specific row dynamically
+    // Add a point to the report
+    await locators.addpointbutton.click()
 
-    // Scroll the row into view and wait for visibility
-    await row.scrollIntoViewIfNeeded()
-    await row.waitFor({ state: 'visible', timeout: 2000 })
+    // Add a column to the report
+    console.log(
+      'Checking visibility and interactability of Add Column button...'
+    )
+    if (await locators.addcolumnbutton.isVisible()) {
+      console.log('Add Column button is visible. Clicking it...')
+      await locators.addcolumnbutton.scrollIntoViewIfNeeded() // Ensure it's in view
+      await locators.addcolumnbutton.click()
+      console.log('Clicked Add Column button successfully.')
+    } else {
+      console.error('Add Column button is not visible or not found.')
+      throw new Error('Failed to locate Add Column button.')
+    }
 
-    // Attempt to use the provided locators in sequence
-    let descriptionFilled = false
-    const locators = [
-      row.getByText('Add description'),
-      page.getByText('Add description').first(),
-      page.locator(
-        'td:nth-child(3) > .FBgnEJocClp3FW0Q6gGx > .I_AYGSY_cCfPmhKt60K7 > .qbslhCzDn2yxLqTCAfBP > .IHk8i8QMhbXxNn3agTxb > .e9hboVSvByEVqJLwWGcg > .Qt0BcFdhZ0gnWLG3t5q2'
-      ),
-      page.locator('.IHk8i8QMhbXxNn3agTxb').first(),
-    ]
+    // Select a time period (Month: May)
+    console.log('Opening the Months dropdown...')
+    await locators.monthsbutton.click()
+    console.log('Selecting May from the dropdown...')
+    await locators.maybutton.click()
+    console.log('Selected May from the dropdown.')
 
-    for (const locator of locators) {
-      if (await locator.isVisible()) {
-        await locator.click()
-        await page.getByPlaceholder('Add description').fill(descriptions[i])
-        descriptionFilled = true
-        console.log(`Row ${i + 1}: Description added successfully.`)
-        break
+    // Fill descriptions dynamically for rows
+    await locators.adddescriptionbutton.first().click()
+    await locators.descriptionfield.fill('Desc 1')
+    await locators.adddescriptionbutton.click()
+    await locators.descriptionfield.fill('Desc 2')
+
+    // Fill values dynamically for rows
+    await locators.valuefield.first().click()
+    await locators.valueinputfield.fill('100')
+    await locators.valuefield.first().click()
+    await locators.valueinputfield.fill('200')
+    await locators.valuefield.nth(1).click()
+    await locators.valueinputfield.fill('500')
+    await locators.valuefield.nth(1).click()
+    await locators.valueinputfield.fill('600')
+
+    // Add a KPI to the report
+    await locators.kpirow.click()
+    await locators.addkpibutton.click()
+    await locators.adddescriptionbutton.click()
+    await locators.descriptionfield.fill('KPI Desc 1')
+
+    // Fill KPI formulas
+    await locators.valuefield.first().click()
+    await locators.valueinputfield.fill('=A1*B1')
+    await locators.valueinputfield.press('Enter')
+    await locators.valuefield.first().click()
+    await locators.valueinputfield.fill('=B2-A2')
+    await locators.valueinputfield.press('Enter')
+
+    // Assign a company and users
+    await locators.companydropdown.click()
+    await locators.selectcompanyplaceholder.click()
+    await locators.companyoption.first().click()
+    await locators.assignusersdiv
+      .filter({ hasText: /^Assign users$/ })
+      .locator('div')
+      .nth(1)
+      .click()
+    await locators.useroption.filter({ hasText: 'Anton Pravdin IT' }).click()
+    await locators.useroption.filter({ hasText: '111' }).first().click()
+    await locators.finalassignusersbutton.click()
+
+    // Save the report
+    console.log('Attempting to save the report...')
+    await locators.reportsavebutton.click()
+    console.log('Save button clicked.')
+
+    // Verify the success message
+    const successMessage = locators.successtoast
+    try {
+      console.log('Waiting for success toast...')
+      await expect(successMessage).toBeVisible({ timeout: 15000 })
+      console.log('Success toast is visible: Report created successfully.')
+    } catch (error) {
+      // Log additional details if the toast is not visible
+      if ((await successMessage.count()) === 0) {
+        console.error('Success toast element is not present in the DOM.')
+      } else {
+        console.error('Success toast element exists but is not visible.')
       }
+      throw error // Re-throw the error to fail the test
     }
-
-    if (!descriptionFilled) {
-      console.log(
-        `Row ${i + 1}: Failed to add description. Button not visible.`
-      )
-    }
-
-    // Slight delay for stability
-    await page.waitForTimeout(500)
-  }
-
-  // Filling values dynamically per row
-  const values = ['200', '400', '600']
-  for (let i = 0; i < values.length; i++) {
-    const row = page.locator('tr').nth(i + 1) // Target the row
-    await row.getByText('0.00', { exact: true }).click()
-    await page.locator('input[type="text"]').fill(values[i])
-    await page.locator('input[type="text"]').press('Enter')
-  }
-
-  // Formula calculations for specific cells
-  await page
-    .locator('tr')
-    .nth(1)
-    .locator('input[type="text"]')
-    .fill('=A1+B2*B1')
-  await page.locator('input[type="text"]').press('Enter')
-
-  await page.locator('tr').nth(2).locator('input[type="text"]').fill('=A2*A1')
-  await page.locator('input[type="text"]').press('Enter')
-
-  // Save Report
-  await page.pause()
-  await page.getByRole('button', { name: 'Save' }).click()
-
-  // Assert report is created
-  await expect(page.locator('text=Report created successfully!')).toBeVisible()
+  })
 })

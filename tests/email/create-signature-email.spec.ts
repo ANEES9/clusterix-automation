@@ -3,8 +3,8 @@ import { Allure } from 'common/allure-helper' // Import Allure
 import { ApiResponse } from 'common/api-response'
 import * as dotenv from 'dotenv'
 import { addCursorStyleAndScript } from 'common/cursor-helper'
-import { skipSurvey } from 'common/skip-survey'
-import { closeProductTour } from 'common/product-tour-helper'
+import { skipSurveyHelper } from 'common/skip-survey-helper'
+import { skipProductTourHelper } from 'common/skip-product-tour-helper'
 import { closeTimerPopUp } from 'common/timer-helper'
 import { EmailPage } from 'pages/email'
 import { generateRandomFileName } from 'common/random-data-generator'
@@ -23,8 +23,8 @@ test.describe('create signature in email application', () => {
 
         await page.goto(baseURL!)
         await addCursorStyleAndScript(page)
-        await skipSurvey(page, testInfo)
-        await closeProductTour(page)
+        await skipSurveyHelper(page, testInfo)
+        await skipProductTourHelper(page, testInfo)
         await page.waitForTimeout(4000)
         await closeTimerPopUp(page)
         await page.waitForLoadState('networkidle')

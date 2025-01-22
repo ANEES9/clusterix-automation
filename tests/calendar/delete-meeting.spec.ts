@@ -2,16 +2,16 @@ import { test, expect } from '@playwright/test'
 import { closeTimerPopUp } from '../../helpers/common/timer-helper'
 import { addCursorStyleAndScript } from '../../helpers/common/cursor-helper'
 import { CalendarPage } from 'pages/calendar/calendar-page'
-import { skipSurvey } from 'common/skip-survey'
-import { closeProductTour } from 'common/product-tour-helper'
+import { skipSurveyHelper } from 'common/skip-survey-helper'
+import { skipProductTourHelper } from 'common/skip-product-tour-helper'
 
 test.describe('CRUD Operations for meeting', () => {
   test.beforeEach(async ({ page, baseURL }, testInfo) => {
     test.setTimeout(60000)
     await page.goto(baseURL!)
     await addCursorStyleAndScript(page)
-    await skipSurvey(page, testInfo)
-    await closeProductTour(page)
+    await skipSurveyHelper(page, testInfo)
+    await skipProductTourHelper(page, testInfo)
     await closeTimerPopUp(page)
     await page.waitForLoadState('networkidle')
   })

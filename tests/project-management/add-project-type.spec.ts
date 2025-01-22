@@ -1,20 +1,18 @@
 import { test } from '@playwright/test'
 import { expect } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
-import { ApiResponse } from 'common/api-response'
 import { closeTimerPopUp } from 'common/timer-helper'
-import { TaskManagementPage } from 'pages/task-management'
-import { closeProductTour } from 'common/product-tour-helper'
+import { skipProductTourHelper } from 'common/skip-product-tour-helper'
 import { generateRandomFileName } from 'common/random-data-generator'
-import { skipSurvey } from 'common/skip-survey'
+import { skipSurveyHelper } from 'common/skip-survey-helper'
 const globalProjectTitle = 'Automated Project-' + generateRandomFileName()
 
 test.describe('Clusterix Project Managament', () => {
   test.beforeEach(async ({ page, baseURL }, testInfo) => {
     await Allure.step('Navigate to Base URL and Close Popups', async () => {
       await page.goto(baseURL!)
-      await skipSurvey(page, testInfo)
-      await closeProductTour(page)
+      await skipSurveyHelper(page, testInfo)
+      await skipProductTourHelper(page, testInfo)
       await closeTimerPopUp(page)
       await page.waitForLoadState('networkidle')
     })

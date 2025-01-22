@@ -5,6 +5,7 @@ export const ALLURE_TAGS = {
   forms: 'Forms',
   modals: 'Modals',
   buttons: 'Buttons',
+  filter: 'Filter',
   validation: 'Validation',
   api: 'API',
   performance: 'Performance',

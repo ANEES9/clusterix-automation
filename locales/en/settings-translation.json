@@ -1,0 +1,238 @@
+{
+  "modal": {
+    "role_modal": {
+      "header": "New Role",
+      "header2": "Edit Role",
+      "input1_label": "Color",
+      "input2_label": "Role Title",
+      "input3_label": "Permissions based on"
+    },
+    "save": "Save",
+    "cancel": "Cancel"
+  },
+  "role_list": {
+    "header": "User Roles",
+    "button_label": "Add role",
+    "search_roles": "Search role"
+  },
+  "permission_list": {
+    "toggle": "Role has access",
+    "toggle_false": "Role does not have access",
+    "button_copy": "Make a copy",
+    "button_delete": "Delete this role",
+    "no_permission": "You don't have the permission",
+    "delete_confirmation": "Are you sure you want to delete the role {{role}}?"
+  },
+  "sidebar": {
+    "header1": "General Settings",
+    "header2": "Users and Permissions",
+    "header3": "App Settings",
+    "header4": "My Subscription",
+    "header5": "System Log",
+    "header6": "Integrations",
+    "header2_my_profile": "My Profile",
+    "header2_sub1": "Accounts",
+    "header2_sub2": "Roles and Permissions",
+    "header3_sub1": "HR",
+    "header3_sub2": "Documents",
+    "header3_sub3": "Company Search",
+    "header3_sub4": "Task Management",
+    "header3_sub5": "Customers",
+    "header3_sub6": "Workflows",
+    "header3_sub7": "Calendar",
+    "header3_sub8": "Email",
+    "header3_sub9": "Live Chat"
+  },
+  "accounts": {
+    "header": "Accounts",
+    "header_button": "Add user",
+    "filter1_placeholder": "Search person or email",
+    "filter2_placeholder": "All Roles",
+    "delete_modal_message": "This user will be permanently deleted. Are you sure you want to delete this user?",
+    "activate_modal_message": "This user will be activated. Are you sure you want to activate this user?",
+    "deactivate_modal_message": "This user will be disabled. Are you sure you want to disable this user?",
+    "activate_and_reset_password_modal_message": "This user is disabled. Are you sure you want to activate this user and send the password reset email?",
+    "activate_user_error": "An error occurred while activating the user.",
+    "filter_button": "More Filters",
+    "with_inactive": "With Inactive",
+    "2fa_checked": "2FA Enabled",
+    "clear": "Clear",
+    "table": {
+      "column_user": "USER",
+      "column_email": "EMAIL",
+      "column_phone": "PHONE",
+      "column_birthday": "BIRTHDAY",
+      "column_role": "ROLE",
+      "column_auth": "2FA",
+      "enabled": "ENABLED",
+      "password_reset": "Send new password"
+    },
+    "modal": {
+      "connect_user": "Link to employees from HR app",
+      "connect_user_description": "As a user of the HR app, you can directly select one of your employees to link the account to an employee and fill in the data",
+      "connect_user_dropdown_label": "Select employee",
+      "connect_user_dropdown_placeholder": "No link",
+      "connect_user_warning": "User data will be filled by Employee application",
+      "basic_data": "Basic Data",
+      "add_role": "Add Role",
+      "first_name": "First Name",
+      "first_name_placeholder": "Please enter first name",
+      "last_name": "Last Name",
+      "last_name_placeholder": "Please enter last name",
+      "gender": "Gender",
+      "gender_placeholder": "Please select gender",
+      "birth_date": "Date of birth",
+      "email": "Email (Account Login)",
+      "phone": "Phone",
+      "save": "Save",
+      "cancel": "Cancel",
+      "sizeError": "Max allowed file size: {{size}} MB",
+      "empty_fields_error": "Please fill out all required fields",
+      "no_role_error": "Please select at least one role",
+      "success": "Success!",
+      "roles": "Roles",
+      "legacy_roles": "Legacy Roles"
+    }
+  },
+  "my_profile_page": {
+    "basic_data": "Basic Data",
+    "first_name": "First Name",
+    "first_name_placeholder": "Please enter first name",
+    "last_name": "Last Name",
+    "last_name_placeholder": "Please enter last name",
+    "gender": "Gender",
+    "gender_placeholder": "Please select gender",
+    "birth_date": "Date of birth",
+    "email": "Email (Account Login)",
+    "phone": "Phone",
+    "two_factor": "Two factor Authentication",
+    "activate_two_factor": "Activate two factor authentication for this account",
+    "enabled": "Enabled",
+    "disabled": "Disabled",
+    "apply_button": "Apply",
+    "update_user_success": "Profile data updated.",
+    "2fa_enable_success": "Two factor authentication activated",
+    "2fa_disable_success": "Two factor authentication disabled",
+    "linked_devices": "Linked Devices",
+    "logout_from_all": "Log Out From All Devices",
+    "current_device": "Current Device",
+    "other_devices": "Other Devices",
+    "last_activity": "Last activity"
+  },
+  "my_profile_list": {
+    "header": "My Profile",
+    "basic_data": "Basic Data",
+    "security": "Security and Privacy"
+  },
+  "enable_two_factor_modal": {
+    "header": "Activate two factor authentication",
+    "item1_title": "1. Mobile Authenticator App",
+    "item1_text": "In order to activate two-step verification on Innos, you must have an authenticator application on your mobile device.",
+    "item1_authenticator_microsoft": "Microsoft Authenticator",
+    "item1_authenticator_google": "Google Authenticator",
+    "item1_badge_title": "InnOS Authenticator",
+    "item2_title": "QR Code",
+    "item2_text": "Read the qr code through the authenticator app on your mobile device.",
+    "item3_title": "2. Validation Code",
+    "item3_text": "After reading the QR code, enter the one-time password you see on your mobile device.",
+    "item4_title": "Activate",
+    "item4_label": "Enter your 6 digit verification code",
+    "error_message": "Wrong code. Please try again.",
+    "success_message": "Success!"
+  },
+  "disable_two_factor_modal": {
+    "header": "Disable two factor authentication",
+    "title": "Deactivate",
+    "code_label": "Enter the code from your email",
+    "otp_label": "Enter your 6 digit verification code",
+    "send_mail_text": "Don't have access to Authenticator",
+    "error_message": "Wrong code. Please try again.",
+    "success_message": "Success!"
+  },
+  "logout_confirmation_modal": {
+    "header": "Are you sure you want to log out from all accounts?",
+    "text": "This action cannot be undone.",
+    "logout": "Log out",
+    "cancel": "Cancel",
+    "logged_out": "Logged out from all devices"
+  },
+  "application_settings_page": {
+    "input_placeholder": "Search for the setting",
+    "button_placeholder": "Reset to default",
+    "enabled": "Enabled",
+    "disabled": "Disabled",
+    "reset_modules": "All settings on this page will be set to their default values. Are you sure you want to reset?",
+    "edit_entity": "Edit options",
+    "add_entity": "Add option",
+    "entity_update_success": "Options updated"
+  },
+  "confirm_modal": {
+    "confirm": "Confirm",
+    "cancel": "Cancel"
+  },
+  "calendar_list": {
+    "header": "Calendar",
+    "meeting_types": "Meeting types",
+    "notifications": "Notifications",
+    "integrations": "Integrations"
+  },
+  "meeting_types_directory": {
+    "input_placeholder": "Search for the setting",
+    "button_placeholder": "Reset to default"
+  },
+  "notifications_directory": {
+    "input_placeholder": "Search for the setting",
+    "button_placeholder": "Reset to default",
+    "main_notifications_title": "Main Notifications",
+    "notification_time_reminder_title": "Notification Time Reminder",
+    "Events created by myself": "Events created by myself",
+    "Show or hide comments & history tab inside the employee modal communication tab": "Show or hide comments & history tab inside the employee modal communication tab",
+    "Invited events": "Invited events",
+    "Enable or disable notifications for events which I am invited": "Enable or disable notifications for events which I am invited",
+    "minutes": "minutes",
+    "hour": "hour",
+    "hours": "hours",
+    "day": "day",
+    "days": "days",
+    "before": "before",
+    "success_message": "Success!",
+    "enable": "Enable",
+    "disable": "Disable"
+  },
+  "avatar": {
+    "new_photo": "New Photo",
+    "delete_photo": "Delete Photo"
+  },
+  "integrations_page": {
+    "integrations": "Integration",
+    "credentials": "Credentials",
+    "sso_modal_title": "{{app}} SSO integration",
+    "sso_modal_desc": "connect {{app}} SSO",
+    "modal_title": "{{app}} and {{integration}} Integration",
+    "modal_desc": "Connect your {{integration}} account to clusterix",
+    "connected": "connected",
+    "already_connected": "{{app}} already connected",
+    "disconnect_sso": "This will disconnect from {{app}} SSO and remove the settings. Are you sure you want to disconnect?",
+    "update_success_message": "{{app}} setting has been updated successfully.",
+    "apps": {
+      "github": {
+        "description": "GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere."
+      },
+      "gitlab": {
+        "description": "GitLab is a web-based Git repository that provides free open and private repositories, issue-following capabilities, and wikis."
+      },
+      "zoom": {
+        "description": "Zoom is a video conferencing platform that enables users to connect online for meetings, webinars, and collaborative projects. It offers features like screen sharing, real-time messaging, and virtual backgrounds to enhance remote communication."
+      },
+      "microsoft_team": {
+        "description": "Microsoft Teams is a collaboration platform that offers chat, video meetings, and file integration within Microsoft 365. It enhances teamwork with tools for communication and productivity."
+      },
+      "sign_now": {
+        "description": "SignNow is a cloud-based provider of electronic signature technology, developed in the United States. The company's software-as-a-service platform is intended for individuals and businesses to sign, and manage documents from any computer."
+      },
+      "okta": {
+        "description": "Okta SSO is a cloud service that enables single sign-on access to multiple applications with one set of credentials. It simplifies and secures user authentication."
+      }
+    }
+  }
+}

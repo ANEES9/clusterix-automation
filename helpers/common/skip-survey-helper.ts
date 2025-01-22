@@ -1,7 +1,7 @@
 import { Page, TestInfo } from '@playwright/test'
-import { SurveyPage } from '../../pages/container-app/survey-page'
+import { SurveyPage } from 'pages/container-app/survey-page'
 
-export async function skipSurvey(
+export async function skipSurveyHelper(
   page: Page,
   testInfo: TestInfo
 ): Promise<void> {

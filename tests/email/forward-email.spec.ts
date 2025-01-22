@@ -4,8 +4,8 @@ import { time } from 'console'
 import { ApiResponse } from 'common/api-response'
 import * as dotenv from 'dotenv'
 import { addCursorStyleAndScript } from 'common/cursor-helper'
-import { skipSurvey } from 'common/skip-survey'
-import { closeProductTour } from 'common/product-tour-helper'
+import { skipSurveyHelper } from 'common/skip-survey-helper'
+import { skipProductTourHelper } from 'common/skip-product-tour-helper'
 import { closeTimerPopUp } from 'common/timer-helper'
 import { EmailPage } from 'pages/email'
 
@@ -28,8 +28,8 @@ test.describe('forward on email', () => {
 
         await page.goto(baseURL!)
         await addCursorStyleAndScript(page)
-        await skipSurvey(page, testInfo)
-        await closeProductTour(page)
+        await skipSurveyHelper(page, testInfo)
+        await skipProductTourHelper(page, testInfo)
         await page.waitForTimeout(4000)
         await closeTimerPopUp(page)
         await page.waitForLoadState('networkidle')

@@ -1,0 +1,228 @@
+{
+  "modal": {
+    "role_modal": {
+      "header": "Neue Rolle",
+      "header2": "Rolle bearbeiten",
+      "input1_label": "Farbe",
+      "input2_label": "Titel der Rolle",
+      "input3_label": "Berechtigungen basieren auf"
+    },
+    "save": "Speichern",
+    "cancel": "Abbrechen"
+  },
+  "role_list": {
+    "header": "Nutzerrollen",
+    "button_label": "Rolle hinzufügen",
+    "search_roles": "Rolle suchen"
+  },
+  "permission_list": {
+    "toggle": "Rolle hat Zugriff",
+    "toggle_false": "Die Rolle hat keinen Zugriff",
+    "button_copy": "Kopie erstellen",
+    "button_delete": "Diese Rolle löschen",
+    "no_permission": "Sie haben nicht die Erlaubnis",
+    "delete_confirmation": "Sind Sie sicher, dass Sie die {{role}} löschen möchten?"
+  },
+  "sidebar": {
+    "header1": "Allgemeine Einstellungen",
+    "header2": "Nutzer und Berechtigungen",
+    "header3": "App Einstellungen",
+    "header4": "Mein Abonnement",
+    "header5": "Systemlog",
+    "header6": "Integrationen",
+    "header2_sub1": "Accounts",
+    "header2_sub2": "Rollen und Berechtigungen"
+  },
+  "accounts": {
+    "header": "Accounts",
+    "header_button": "Benutzer hinzufügen",
+    "filter1_placeholder": "Person oder E-Mail suchen",
+    "filter2_placeholder": "Alle Rollen",
+    "delete_modal_message": "Dieser Benutzer wird dauerhaft gelöscht. Sind Sie sicher, dass Sie diesen Benutzer löschen möchten?",
+    "activate_modal_message": "Dieser Benutzer wird aktiviert. Möchten Sie diesen Benutzer wirklich aktivieren?",
+    "deactivate_modal_message": "Dieser Benutzer wird deaktiviert. Möchten Sie diesen Benutzer wirklich deaktivieren?",
+    "activate_and_reset_password_modal_message": "Dieser Benutzer ist deaktiviert. Möchten Sie diesen Benutzer wirklich aktivieren und die E-Mail zum Zurücksetzen des Passworts senden?",
+    "activate_user_error": "Beim Aktivieren des Benutzers ist ein Fehler aufgetreten.",
+    "filter_button": "Weitere Filter",
+    "with_inactive": "Mit Inaktiv",
+    "2fa_checked": "2FA aktiviert",
+    "clear": "Klar",
+    "table": {
+      "column_user": "PERSON",
+      "column_email": "E-MAIL",
+      "column_phone": "TELEPHONE",
+      "column_birthday": "GEBURTSDATUM",
+      "column_role": "ROLLE",
+      "column_auth": "2FA",
+      "enabled": "AKTIVIERT",
+      "password_reset": "Neues Passwort senden"
+    },
+    "modal": {
+      "connect_user": "Verknüpfung mit Mitarbeiter aus HR App",
+      "connect_user_description": "Als Nutzer der HR App können Sie direkt einen Ihrer Mitarbeiter wählen\u2028um den Account mit einem Mitarbeiter zu verknüpfen und die Daten auszufüllen",
+      "connect_user_dropdown_label": "Mitarbeiter wählen",
+      "connect_user_dropdown_placeholder": "Keine Verlinkung",
+      "connect_user_warning": "Die Benutzerdaten werden durch die Mitarbeiterbewerbung ausgefüllt",
+      "basic_data": "Basisdaten",
+      "add_role": "Rolle hinzufügen",
+      "first_name": "Vorname",
+      "first_name_placeholder": "Bitte Vorname eingeben",
+      "last_name": "Nachname",
+      "last_name_placeholder": "Bitte Nachname eingeben",
+      "gender": "Geschlecht",
+      "gender_placeholder": "Bitte wähle ein Geschlecht",
+      "birth_date": "Geburtsdatum",
+      "email": "E-Mail (Account-Login)",
+      "phone": "Telefon",
+      "save": "Speichern",
+      "cancel": "Abbrechen",
+      "sizeError": "Maximal zulässige Dateigröße: {{size}} MB",
+      "empty_fields_error": "Bitte füllen Sie alle erforderlichen Felder aus",
+      "no_role_error": "Bitte wählen Sie mindestens eine Rolle aus",
+      "success": "Erfolg!",
+      "roles": "Rollen",
+      "legacy_roles": "Legacy-Rollen"
+    }
+  },
+  "my_profile_page": {
+    "basic_data": "Grundlegende Daten",
+    "first_name": "Vorname",
+    "first_name_placeholder": "Bitte geben Sie den Vornamen ein",
+    "last_name": "Nachname",
+    "last_name_placeholder": "Bitte geben Sie den Nachnamen ein",
+    "gender": "Geschlecht",
+    "gender_placeholder": "Bitte Geschlecht auswählen",
+    "birth_date": "Geburtsdatum",
+    "email": "E-Mail (Kontoanmeldung)",
+    "phone": "Telefon",
+    "two_factor": "Zwei-Faktor-Authentifizierung",
+    "activate_two_factor": "Aktivieren Sie die Zwei-Faktor-Authentifizierung für dieses Konto",
+    "enabled": "Aktiviert",
+    "disabled": "Deaktiviert",
+    "apply_button": "Anwenden",
+    "update_user_success": "Profilinformationen aktualisiert.",
+    "2fa_enable_success": "Zwei-Faktor-Authentifizierung aktiviert",
+    "2fa_disable_success": "Zwei-Faktor-Authentifizierung deaktiviert",
+    "linked_devices": "Verbundene Geräte",
+    "logout_from_all": "Von allen Geräten abmelden",
+    "current_device": "Aktuelles Gerät",
+    "other_devices": "Andere Geräte",
+    "last_activity": "Letzte Aktivität"
+  },
+  "my_profile_list": {
+    "header": "Mein Profil",
+    "basic_data": "Grundlegende Daten",
+    "security": "Sicherheit und Datenschutz"
+  },
+  "enable_two_factor_modal": {
+    "header": "Zwei-Faktor-Authentifizierung aktivieren",
+    "item1_title": "1. Mobile Authenticator-App",
+    "item1_text": "Um die Zwei-Schritt-Verifizierung auf Innos zu aktivieren, benötigen Sie eine Authentifizierungs-App auf Ihrem Mobilgerät.",
+    "item1_authenticator_microsoft": "Microsoft Authenticator",
+    "item1_authenticator_google": "Google Authenticator",
+    "item1_badge_title": "InnOS-Authentifizierung",
+    "item2_title": "QR-Code",
+    "item2_text": "Scannen Sie den QR-Code mit der Authentifizierungs-App auf Ihrem Mobilgerät.",
+    "item3_title": "2. Bestätigungscode",
+    "item3_text": "Geben Sie nach dem Scannen des QR-Codes den einmaligen Passwort ein, den Sie auf Ihrem Mobilgerät sehen.",
+    "item4_title": "Aktivieren",
+    "item4_label": "Geben Sie Ihren 6-stelligen Bestätigungscode ein",
+    "error_message": "Falscher Code. Bitte versuchen Sie es erneut.",
+    "success_message": "Erfolg!"
+  },
+  "disable_two_factor_modal": {
+    "header": "Zwei-Faktor-Authentifizierung deaktivieren",
+    "title": "Deaktivieren",
+    "code_label": "Geben Sie den Code aus Ihrer E-Mail ein",
+    "otp_label": "Geben Sie Ihren 6-stelligen Bestätigungscode ein",
+    "send_mail_text": "Kein Zugriff auf den Authenticator",
+    "error_message": "Falscher Code. Bitte versuchen Sie es erneut.",
+    "success_message": "Erfolg!"
+  },
+  "logout_confirmation_modal": {
+    "header": "Möchten Sie sich wirklich von allen Konten abmelden?",
+    "text": "Diese Aktion kann nicht rückgängig gemacht werden.",
+    "logout": "Abmelden",
+    "cancel": "Abbrechen",
+    "logged_out": "Von allen Geräten abgemeldet"
+  },
+  "application_settings_page": {
+    "input_placeholder": "Suchen Sie nach der Einstellung",
+    "button_placeholder": "Zurücksetzen",
+    "enabled": "Aktiviert",
+    "disabled": "Deaktiviert",
+    "reset_modules": "Alle Einstellungen auf dieser Seite werden auf ihre Standardwerte gesetzt. Möchten Sie wirklich zurücksetzen?",
+    "edit_entity": "Optionen bearbeiten",
+    "add_entity": "Option hinzufügen",
+    "entity_update_success": "Optionen aktualisiert"
+  },
+  "confirm_modal": {
+    "confirm": "Bestätigen",
+    "cancel": "Absagen"
+  },
+  "calendar_list": {
+    "header": "Kalender",
+    "meeting_types": "Sitzungsarten",
+    "notifications": "Benachrichtigungen",
+    "integrations": "Integrationen"
+  },
+  "meeting_types_directory": {
+    "input_placeholder": "Suche nach der Einstellung",
+    "button_placeholder": "Auf Standard zurücksetzen"
+  },
+  "notifications_directory": {
+    "input_placeholder": "Suche nach der Einstellung",
+    "button_placeholder": "Auf Standard zurücksetzen",
+    "main_notifications_title": "Wichtigste Benachrichtigungen",
+    "notification_time_reminder_title": "Erinnerung an die Benachrichtigungszeit",
+    "Events created by myself": "Von mir selbst erstellte Veranstaltungen",
+    "Show or hide comments & history tab inside the employee modal communication tab": "Ein- oder Ausblenden der Registerkarte \"Kommentare und Verlauf\" innerhalb der modalen Kommunikationsregisterkarte für Mitarbeiter",
+    "Invited events": "Eingeladene Veranstaltungen",
+    "Enable or disable notifications for events which I am invited": "Aktivieren oder Deaktivieren von Benachrichtigungen für Veranstaltungen, zu denen ich eingeladen bin",
+    "minutes": "minuten",
+    "hour": "stunde",
+    "hours": "stunden",
+    "day": "tag",
+    "days": "tage",
+    "before": "vorher",
+    "success_message": "Erfolg!",
+    "enable": "Aktivieren",
+    "disable": "Deaktivieren"
+  },
+  "avatar": {
+    "new_photo": "Neues Foto",
+    "delete_photo": "Foto löschen"
+  },
+  "integrations_page": {
+    "integrations": "Integrations",
+    "credentials": "Berechtigungsnachweise",
+    "sso_modal_title": "{{app}} SSO-Integration",
+    "sso_modal_desc": "verbinden {{app}} SSO",
+    "modal_title": "{{app}} und {{integration}} Integration",
+    "modal_desc": "Verbinden Sie Ihr {{integration}} Konto mit clusterix",
+    "connected": "verbunden",
+    "already_connected": "{{app}} bereits verbunden",
+    "disconnect_sso": "Dadurch wird die Verbindung zu {{app}} SSO und entfernt die Einstellungen. Sind Sie sicher, dass Sie die Verbindung trennen möchten?",
+    "update_success_message": "{{app}} instelling is succesvol bijgewerkt.",
+    "apps": {
+      "github": {
+        "description": "GitHub is een codehostingplatform voor versiebeheer en samenwerking. Hiermee kunnen u en anderen overal samenwerken aan projecten."
+      },
+      "gitlab": {
+        "description": "GitLab is een webgebaseerde Git-repository die gratis open en privé-repository's, mogelijkheden voor het volgen van problemen en wiki's biedt."
+      },
+      "zoom": {
+        "description": "Zoom is een videoconferentieplatform waarmee gebruikers online verbinding kunnen maken voor vergaderingen, webinars en samenwerkingsprojecten. Het biedt functies zoals scherm delen, realtime berichtenuitwisseling en virtuele achtergronden om communicatie op afstand te verbeteren."
+      },
+      "microsoft_team": {
+        "description": "Microsoft Teams is een samenwerkingsplatform dat chat, videovergaderingen en bestandsintegratie biedt binnen Microsoft 365. Het verbetert teamwerk met tools voor communicatie en productiviteit."
+      },
+      "sign_now": {
+        "description": "SignNow is een cloudgebaseerde leverancier van elektronische handtekeningtechnologie, ontwikkeld in de Verenigde Staten. Het Software-as-a-Service-platform van het bedrijf is bedoeld voor particulieren en bedrijven om documenten vanaf elke computer te ondertekenen en te beheren."
+      },
+      "okta": {
+        "description": "Okta SSO is een cloudservice die single sign-on-toegang tot meerdere applicaties mogelijk maakt met één set inloggegevens. Het vereenvoudigt en beveiligt gebruikersauthenticatie."
+      }
+    }
+  }
+}
