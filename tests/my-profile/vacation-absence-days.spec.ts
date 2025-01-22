@@ -174,7 +174,6 @@ test.describe('Regression Test Suite', () => {
         await vacationAbsenceDaysPage.verifyVacationDialogCloseButton()
 
         console.log('Cleaning up: Deleting the applied leave')
-        //await employeeManagementPage.deleteAppliedLeave(employeeId)
         await employeeManagementPage.deleteAppliedLeave(223)
       } else {
         throw new Error('Employee ID is missing. Cannot proceed with verification')

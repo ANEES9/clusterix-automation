@@ -4,21 +4,21 @@ import { VacationAbsenceDaysPage } from '../my-profile/vacation-absence-days.pag
 export class EmployeeManagementPage {
   readonly page: Page
   // Locators
-  private holidaysButton: Locator
-  private calendarButton: Locator
-  private deleteButton: Locator
-  private saveButton: Locator
+  private holidaysButtonLocator: Locator
+  private calendarButtonLocator: Locator
+  private deleteButtonLocator: Locator
+  private saveButtonLocator: Locator
 
   constructor(page: Page) {
     this.page = page
 
-    this.holidaysButton = this.page
+    this.holidaysButtonLocator = this.page
       .locator('div')
       .filter({ hasText: /^Holidays$/ })
       .first()
-    this.calendarButton = page.getByRole('button', { name: 'Calendar' }).nth(2)
-    this.deleteButton = page.getByRole('button', { name: 'Delete' })
-    this.saveButton = page.getByRole('button', { name: 'Save' })
+    this.calendarButtonLocator = page.getByRole('button', { name: 'Calendar' }).nth(2)
+    this.deleteButtonLocator = page.getByRole('button', { name: 'Delete' })
+    this.saveButtonLocator = page.getByRole('button', { name: 'Save' })
   }
 
   async deleteAppliedLeave(employeeId: number): Promise<void> {
@@ -29,8 +29,8 @@ export class EmployeeManagementPage {
     await this.page.waitForLoadState('networkidle')
 
     await this.page.waitForTimeout(3000)
-    await this.holidaysButton.click()
-    await this.calendarButton.click()
+    await this.holidaysButtonLocator.click()
+    await this.calendarButtonLocator.click()
     await this.page.waitForTimeout(3000)
     const validDay = await vacationAbsenceDaysPage.getValidVacationDay(); // Get the first valid day
   
@@ -51,9 +51,9 @@ export class EmployeeManagementPage {
 
       await vacationDay.click({ force: true })
       await this.page.waitForTimeout(2000)
-      await this.deleteButton.click()
+      await this.deleteButtonLocator.click()
       await this.page.waitForTimeout(2000)
-      await this.saveButton.click()
+      await this.saveButtonLocator.click()
 
       console.log(`Successfully deleted vacation for the day ${validDay}`)
     } catch (error) {
