@@ -7,11 +7,13 @@ import { searchData } from 'utils/company-searcher/search-data'
 import { closeProductTour } from 'common/product-tour-helper'
 import { skipSurvey } from 'common/skip-survey'
 import { Allure } from 'common/allure-helper'
+import { skipTutorial } from 'common/skip-tutorial-helper'    
 
 test.describe('Company Searcher Smoke Test', () => {
   let companyPage: CompanyPage
   test.beforeEach(async ({ page, baseURL }, testInfo) => {
     await page.goto(baseURL!)
+    skipTutorial(page, testInfo)
  await skipSurvey(page, testInfo)
     await closeProductTour(page)
     await page.waitForLoadState('networkidle')
@@ -268,7 +270,7 @@ test.describe('Company Searcher Smoke Test', () => {
     const companyPage = new CompanyPage(page);
    // Allure tags and metadata
    Allure.addSeverity('critical');
-   Allure.addTag('pagination');
+   Allure.addTag('navigation');
    Allure.addDescription('Test to verify that clicking the Next button navigates to the next page.');
    Allure.addFeature('Pagination');
     // Configurable variable: number of pages to navigate
@@ -310,9 +312,7 @@ test.describe('Company Searcher Smoke Test', () => {
     const companyPage = new CompanyPage(page);
    // Allure metadata
    Allure.addSeverity('critical');
-   Allure.addTag('pagination');
    Allure.addTag('navigation');
-   Allure.addTag('backwards-navigation');
    Allure.addDescription('Test to verify that clicking the "Previous" button navigates to the previous page.');
 
     // Configurable variable: Number of pages to navigate backwards
@@ -359,10 +359,9 @@ test.describe('Company Searcher Smoke Test', () => {
   });
   
 
-
   test('verify child row label matches expanded rows', async ({ page }) => {
      Allure.addSeverity('critical');
-   Allure.addTag('CompanyTable');
+   Allure.addTag('table');
    Allure.addDescription('This test verifies that the number of rows expanded matches the child label for each expandable button in the table.');
     const companyPage = new CompanyPage(page);
 
