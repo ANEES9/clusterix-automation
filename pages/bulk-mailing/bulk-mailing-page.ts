@@ -106,13 +106,29 @@ export class bulkMailingPage {
   public newCampaignNameFields: Locator
   public addNewAudience: Locator
   public audienceTitle: Locator
+  public audienceButton: Locator
+  public campaignButton: Locator
+  public appConnection: Locator
+  public selectApp: Locator
+  public hrEmployees: Locator
+  public saveAppConnection: Locator
+
 
   constructor(page: Page) {
     this.page = page
+    this.campaignButton = this.page.getByRole('button', { name: 'Campaigns' })
+
+    this.audienceButton = this.page.getByRole('button', { name: 'Audience' })
 
     this.bulkMailing = page.getByRole('link', {
       name: 'Bulk Mailing Send one-time',
     })
+    this.saveAppConnection = this.page.getByText('Save')
+
+    this.hrEmployees = this.page.getByText('Human Resources Employees')
+    this.selectApp = this.page.getByPlaceholder('Select app')
+
+    this.appConnection = this.page.getByText('App connection')
     this.upcomingMail = this.page.getByText('Upcoming Mail DatesHere are')
     this.campaignPerformance = this.page.getByText('Campaign Performance')
     this.importFromClusterix = this.page
@@ -263,9 +279,7 @@ export class bulkMailingPage {
     this.campaignClearAllFilterButton = this.page.getByText('Clear All')
     this.templateFilterButton = this.page.getByText('Templates')
     this.templateFilterDropdownButton = this.page.locator('.dropdown-button')
-    this.templateFilterDropdownSearchField = this.page.getByPlaceholder(
-      'Search templates...'
-    )
+    this.templateFilterDropdownSearchField = this.page.getByPlaceholder(      'Search templates...'    )
     this.templateFilterDropdownOption = this.page.locator('.dropdown-option')
     this.userFilterButton = this.page.getByText('Users')
     this.userFilterDropdownOption = this.page.locator('.user-option')

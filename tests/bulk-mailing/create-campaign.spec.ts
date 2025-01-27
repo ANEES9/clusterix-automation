@@ -1,25 +1,23 @@
 import { test, expect } from '@playwright/test'
-import { closeProductTour } from 'common/product-tour-helper.js'
+import { skipProductTourHelper } from 'common/skip-product-tour-helper'
 import { closeTimerPopUp } from 'common/timer-helper.js'
-import { addCursorStyleAndScript } from '../../helpers/common/cursor-helper.js'
 import { bulkMailingPage } from 'pages/bulk-mailing/bulk-mailing-page.js'
-import { skipSurvey } from 'common/skip-survey.js'
+import { skipSurveyHelper } from 'common/skip-survey-helper'
 
 //  import { Allure } from '../../helpers/common/allure-helper.js';
 const campaignname = 'Demo Campaign'
 const subject = 'Check Bulk Mailing'
-let locators: bulkMailingPage
 
+let locators: bulkMailingPage
 test.describe('Verify Bulk Mailing Functionalities', () => {
   test.beforeEach(async ({ page, baseURL }, testInfo) => {
     // await Allure.step('Navigate to Base URL and Close Popups', async () => {
     await page.goto(baseURL!)
-    await skipSurvey(page, testInfo)
+    await skipSurveyHelper(page, testInfo)
     locators = new bulkMailingPage(page)
-    await closeProductTour(page)
+    await skipProductTourHelper(page, testInfo)
     await page.waitForLoadState('networkidle')
     await closeTimerPopUp(page)
-    await addCursorStyleAndScript(page)
     await page.waitForLoadState('domcontentloaded')
   })
 
@@ -79,7 +77,6 @@ test.describe('Verify Bulk Mailing Functionalities', () => {
         error
       )
     }
-
     await page.waitForTimeout(3000)
     await locators.campaignSendButton.click()
 
@@ -98,5 +95,50 @@ test.describe('Verify Bulk Mailing Functionalities', () => {
     }
   })
 
-  
+  test.only('Create Audience Bulk Mailing File Upload', async ({ page }) => {
+    await locators.bulkMailing.click()
+    await locators.audienceButton.click()
+    await locators.addNewAudience.click()
+    await locators.fileUpload.click()
+    await locators.nextButton.click()
+    await locators.audienceTitle.click()
+    await page.locator('input[name="name"]').fill('My Audience')
+    await page.getByText('Drop file(s) hereorBrowse').click()
+    const fileInput = page.locator('input[type="file"]')
+    const filePath = 'C:/Users/Lenovo/Downloads/3emails.csv' // Replace with your file path
+    await fileInput.setInputFiles(filePath)
+    // Verify if file is uploaded (adjust based on your UI)
+    const uploadedFileName = await page.getByText('3emails.csv').textContent()
+    expect(uploadedFileName).toContain('3emails.csv')
+    await console.log('Uploaded file:', filePath.split('/').pop())
+    await locators.createAudienceButton.click()
+    try {
+      // Await the assertion
+      await page.getByText('Audience created successfully')
+
+      // Log success if the assertion passed
+      console.log("Recieved toast message: 'Audience Created Successfully'.")
+    } catch (error) {
+      // Log error details if the assertion failed
+      console.error(
+        "Assertion failed: 'Audience Created Text' element state did not meet expectations.",
+        error
+      )
+    }
+    try {
+      // Await the assertion
+      await page.locator('.NotificationCard_wrapper__1-myM')
+
+      // Log success if the assertion passed
+      console.log(
+        "Recieved Notification message: 'Audience Created Successfully'."
+      )
+    } catch (error) {
+      // Log error details if the assertion failed
+      console.error(
+        "Assertion failed: 'Audience Created Notification' element state did not meet expectations.",
+        error
+      )
+    }
+  })
 })

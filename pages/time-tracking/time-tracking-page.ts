@@ -1,11 +1,11 @@
 import { Page, Locator, expect } from '@playwright/test'
-import { Allure } from '../../helpers/common/allure-helper'
+import { Allure } from 'common/allure-helper'
+import { APP_URLS } from 'config/constants/app-urls'
+import { APP_NAMES } from 'config/constants/app-names'
 
 export class TimeTrackingPage {
   private page: Page
   private currentApp: Locator
-
-  static readonly URL = '/timetracking'
 
   constructor(page: Page) {
     this.page = page
@@ -14,11 +14,13 @@ export class TimeTrackingPage {
 
   async goto(baseURL: string | undefined) {
     await Allure.step('Navigate to Time Tracking URL', async () => {
-      await this.page.goto(`${baseURL}${TimeTrackingPage.URL}`)
+      await this.page.goto(`${baseURL}${APP_URLS.timeTracking.base}`)
     })
   }
   async validateCurrentApp() {
-    await expect(this.page).toHaveURL(new RegExp(`${TimeTrackingPage.URL}$`))
-    await expect(this.currentApp).toContainText('Time Tracking')
+    await expect(this.page).toHaveURL(
+      new RegExp(`${APP_URLS.timeTracking.base}$`)
+    )
+    await expect(this.currentApp).toContainText(APP_NAMES.timeTracking)
   }
 }
