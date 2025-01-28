@@ -1,0 +1,168 @@
+{
+  "common": {
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "save": "Save",
+    "value": "Value",
+    "from": "From",
+    "to": "To",
+    "true": "True",
+    "false": "False",
+    "clear": "Clear"
+  },
+  "pages": {
+    "schemas": "Schemas"
+  },
+  "error_page": {
+    "banner_text": "Something went wrong.",
+    "title": "Page not found",
+    "description": "Seems you took a wrong turn somewhere"
+  },
+  "schemas_page": {
+    "columns": {
+      "name": "Schema Name",
+      "data_number": "Data Number"
+    },
+    "data_count": "{{data}} Data",
+    "no_data": "No data",
+    "no_schema": "No schema available",
+    "delete": {
+      "title": "All data related to this schema will be lost!",
+      "message": "Are you sure you want to continue?"
+    },
+    "import": "Import Schema",
+    "new_schema": "New Schema",
+    "search_placeholder": "Search by schema name",
+    "welcome": "Welcome to Byte Builder",
+    "start_building": "Start building your custom application by creating a flow",
+    "blank": "Blank",
+    "create_flow": "Create a flow"
+  },
+  "schema_page": {
+    "delete": {
+      "title": "This data will be deleted",
+      "message": "Are you sure you want to continue?"
+    },
+    "delete_schema": {
+      "label": "Delete Schema",
+      "title": "All data related to this schema will be lost!",
+      "message": "Are you sure you want to continue?"
+    },
+    "schema_not_found": "Schema not found",
+    "import_from_file": "Import From File",
+    "add_data": "Add New Data",
+    "export": "Export",
+    "export_all": "Export All Data",
+    "schema_actions": "Schema Actions",
+    "data_actions": "Data Actions",
+    "edit_schema": "Edit Schema",
+    "search_data_placeholder": "Search all fields",
+    "no_data": "No data available",
+    "edit_panel": {
+      "required": "Required",
+      "add_data": "Add data",
+      "update_data": "Update Data",
+      "add_new_data": "Add new data"
+    },
+    "blank_page": {
+      "welcome": "Welcome to your schema",
+      "import_your_data": "Import your data or add it manually",
+      "manual": "Manual",
+      "add_manually": "Add data manually",
+      "import": "Import",
+      "import_file": "Import from File"
+    }
+  },
+  "redux": {
+    "error": "Error",
+    "codes": {
+      "400": "Bad request",
+      "422": "Invalid data",
+      "404": "Not found"
+    },
+    "success": {
+      "add_byte": "Data added",
+      "update_byte": "Data updated",
+      "delete_byte": "Data deleted",
+      "import_bytes": "Dateset imported",
+      "publish_schema": "Schema published",
+      "delete_schema": "Schema deleted"
+    }
+  },
+  "sidebar": {
+    "load_more": "Load more"
+  },
+  "create_schema": {
+    "delete": {
+      "title": "Are you sure you want to close this page?",
+      "message": "All changes you made will be lost"
+    },
+    "title_placeholder": "Untitled Schema",
+    "new_schema": "New Schema",
+    "edit_schema": "Edit Schema",
+    "preview": "Preview",
+    "side_panel": {
+      "schema_items": "Schema Items",
+      "basic_items": "Basic Items"
+    },
+    "create_tab": {
+      "required": "Required",
+      "sort": "Sort",
+      "filter": "Filter",
+      "search": "Search",
+      "item_properties": "Item Properties",
+      "field_name": "Field Name",
+      "cant_rename_column": "Can't rename columns in edit mode",
+      "mark_required": "Mark as required",
+      "minimum_value": "Minimum value",
+      "maximum_value": "Maximum value",
+      "value_explanation": "The minimum and maximum value that attribute can have",
+      "minimum_length": "Minimum length",
+      "maximum_length": "Maximum length",
+      "length_explanation": "The minimum and maximum length that attribute can have",
+      "is_sortable": "Is this item sortable?",
+      "yes": "Yes",
+      "no": "No",
+      "is_filterable": "Is this item filterable?",
+      "is_searchable": "Is this item searchable?",
+      "filter_explanation": "Select to make the items active for sorting or filtering or searching",
+      "drag_items": "Drag items here to create a schema"
+    }
+  },
+  "import_schema": {
+    "leave_page": "Leave page?",
+    "changes_not_saved": "Changes you made may not be saved",
+    "uploading_file": "Uploading 1 file",
+    "something_wrong": "Something went wrong",
+    "schema_failed": "Schema generation failed",
+    "close": "Close",
+    "cancel_upload": "Cancel upload",
+    "import_file": "Import File: ",
+    "select_data_types": {
+      "select_header": "Select header data types",
+      "data_type_represent": "Data types represent the value that columns contains. For example, If you column is for collecting the names of your customers, the data type should be Text",
+      "columns_not_assigned": "Columns not assigned to a data type",
+      "columns_assigned": "All columns are assigned to a data type"
+    },
+    "is_selected_header": "Is the selected row the header of this spreadsheet?",
+    "select_another": "Select another row",
+    "no_header": "No header"
+  },
+  "validations": {
+    "is_higher": "Cannot be higher than maximum length",
+    "is_higher_than": "Cannot be higher than {{value}}",
+    "is_negative": "Cannot be negative",
+    "is_empty": "Cannot be empty",
+    "not_email": "Not an email",
+    "not_color": "Invalid color",
+    "not_phone": "Not a valid phone number",
+    "higher_length": "Text length should be higher than {{value}} characters",
+    "lower_length": "Text length should be lower than {{value}} characters",
+    "between_length": "Text length should be between {{min}} and {{max}} characters",
+    "not_url": "Not a valid url",
+    "not_ip": "Not a valid IP address",
+    "higher_value": "Number should be higher than {{value}}",
+    "lower_value": "Number should be lower than {{value}}",
+    "between_value": "Number should be between {{min}} and {{max}}"
+  }
+}
