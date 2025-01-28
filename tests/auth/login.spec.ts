@@ -15,11 +15,10 @@ test.describe('Login Page Tests', () => {
 
   test('Should log in with valid env credentials', async () => {
     const { email, password } = userData.valid
-    await loginPage.login(email, password)
+    await loginPage.loginAndValidate(email, password, 200)
     await surveyPage.validateRoleTitleLocatorVisible()
   })
 
-  // Test invalid emails
   userData.invalid.emails.forEach((invalidEmail, index) => {
     test(`Should not log in with invalid email [${index + 1}]: ${invalidEmail}`, async () => {
       await loginPage.verifyInvalidEmailLogin(
@@ -29,7 +28,6 @@ test.describe('Login Page Tests', () => {
     })
   })
 
-  // Test invalid passwords
   userData.invalid.passwords.forEach((invalidPassword, index) => {
     test(`Should not log in with invalid password [${index + 1}]: ${invalidPassword}`, async () => {
       await loginPage.verifyInvalidPasswordLogin(

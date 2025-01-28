@@ -1,43 +1,43 @@
-export class ResponseHelper {
-  /**
-   * Validates the response status code.
-   * @param status - The actual status code returned from the response.
-   * @param expectedStatus - The expected status code or array of acceptable status codes.
-   */
-  static validateStatus(
-    status: number,
-    expectedStatus: number | number[]
-  ): void {
-    const isValid = Array.isArray(expectedStatus)
-      ? expectedStatus.includes(status)
-      : status === expectedStatus
+import { APIResponse } from '@playwright/test'
 
-    if (!isValid) {
+export class ResponseValidator {
+  /**
+   * Validates the response status and optionally its data.
+   * Throws an error if validation fails.
+   * @param response - The APIResponse object to validate.
+   * @param expectedStatus - The expected HTTP status code(s).
+   * @param validateDataFn - An optional function to validate the response data.
+   */
+  static async validate(
+    response: APIResponse,
+    expectedStatus: number | number[],
+    validateDataFn?: (data: any) => void
+  ): Promise<void> {
+    const actualStatus = response.status()
+    const isValidStatus = Array.isArray(expectedStatus)
+      ? expectedStatus.includes(actualStatus)
+      : actualStatus === expectedStatus
+
+    if (!isValidStatus) {
       throw new Error(
-        `Unexpected response status: received ${status}, expected ${
+        `Unexpected response status: received ${actualStatus}, expected ${
           Array.isArray(expectedStatus)
             ? `one of [${expectedStatus.join(', ')}]`
             : expectedStatus
         }.`
       )
     }
-  }
 
-  /**
-   * Checks if the response status indicates success.
-   * @param status - The actual status code returned from the response.
-   */
-  static isSuccessStatus(status: number): boolean {
-    return status >= 200 && status < 300
-  }
+    const responseData = await response.json()
 
-  /**
-   * Validates if the response status indicates success.
-   * @param status - The actual status code returned from the response.
-   */
-  static ensureSuccessStatus(status: number): void {
-    if (!this.isSuccessStatus(status)) {
-      throw new Error(`Response status ${status} does not indicate success.`)
+    if (validateDataFn) {
+      try {
+        validateDataFn(responseData)
+      } catch (error) {
+        throw new Error(
+          `Response data validation failed: ${(error as Error).message}`
+        )
+      }
     }
   }
 }

@@ -2,6 +2,8 @@ import { expect, Locator, Page } from '@playwright/test'
 import { APP_URLS } from 'config/constants/app-urls'
 import { LANGUAGES } from 'config/language-config'
 import { getTranslations } from 'common/get-translations-helper'
+import { getEndpoint } from 'helpers/api/get-endpoint-helper'
+import { UIResponseValidator } from 'common/ui-response-validator'
 
 export class LoginPage {
   private page: Page
@@ -96,6 +98,30 @@ export class LoginPage {
     await this.passwordField.fill(password)
     await this.loginButton.click()
     await this.page.waitForLoadState('networkidle')
+  }
+  /**
+   * Log in and validate the API response.
+   * @param email - User's email address.
+   * @param password - User's password.
+   * @param expectedStatus - The expected HTTP status code(s).
+   * @param validateDataFn - Optional function to validate the response data.
+   */
+  async loginAndValidate(
+    email: string,
+    password: string,
+    expectedStatus: number | number[],
+    validateDataFn?: (data: any) => void
+  ) {
+    const loginUrl = getEndpoint('authService', 'login')
+    await this.emailField.fill(email)
+    await this.passwordField.fill(password)
+    await UIResponseValidator.validate(
+      this.page,
+      this.loginButton,
+      loginUrl,
+      expectedStatus,
+      validateDataFn
+    )
   }
 
   async verifyInvalidPasswordLogin(email: string, password: string) {
