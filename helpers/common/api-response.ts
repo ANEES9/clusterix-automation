@@ -17,11 +17,14 @@ export async function ApiResponse(
     route.continue() // Allow the request to proceed
   })
 
-    // Wait for the API response
-    const response = await page.waitForResponse(
-        (response) => response.url() === apiUrl && response.status() >= 200 && response.status() < 600,
-        { timeout: 60000 } // Adjust the timeout as needed
-    );
+  // Wait for the API response
+  const response = await page.waitForResponse(
+    (response) =>
+      response.url() === apiUrl &&
+      response.status() >= 200 &&
+      response.status() < 600,
+    { timeout: 80000 } // Adjust the timeout as needed
+  )
 
   if (response) {
     try {
