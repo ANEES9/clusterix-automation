@@ -1,6 +1,6 @@
-// utils/schema-testdata.ts
 export const schemaTestData = {
-  schemaTitle: "Dxt Automated test",
+  schemaTitle: "DxT Automated test",
+  updatedSchemaTitle: 'DxT Automated test updated',
   fieldName: "Employee Name",
   invalidSearchTitle: "Non ExistentSchema",
   minLength: "2",
