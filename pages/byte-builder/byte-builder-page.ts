@@ -356,13 +356,13 @@ export class BytebuilderPage {
 
   async clickSchemaCancelButton() {
     await Allure.step('Click Schema Cancel button', async () => {
-      await this.schemaCancelButton.click();
+      await this.schemaCancelButton.click()
     })
   }
 
   async clickSchemaCloseButton() {
     await Allure.step('Click Schema Close button', async () => {
-      await this.schemaCloseButton.click();
+      await this.schemaCloseButton.click()
     })
   }
   async verifySchemaCancelModal() {
