@@ -12,7 +12,7 @@ dotenv.config({ path: `.env.${process.env.NODE_ENV || 'testing'}` })
  * @param sessionFilePath - The file path where the session state is saved.
  */
 async function createSessionForLocale(locale: string, sessionFilePath: string) {
-  const browser = await chromium.launch({ headless: true })
+  const browser = await chromium.launch({ headless: false })
   const context = await browser.newContext()
   const page = await context.newPage()
 
