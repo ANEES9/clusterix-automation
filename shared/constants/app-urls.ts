@@ -74,7 +74,8 @@ export const APP_URLS = {
       },
       timeframes: '/project-management/projects/timeframes',
       activity: '/project-management/projects/activity',
-      resourceAllocation: '/project-management/resource-allocation/personnel-allocation',
+      resourceAllocation:
+        '/project-management/resource-allocation/personnel-allocation',
     },
   },
   taskManagement: {
