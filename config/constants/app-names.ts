@@ -1,6 +1,6 @@
 export const APP_NAMES = {
   auth: 'Auth',
-  containerApp: 'Container App',
+  home: 'Home',
   notifications: 'Notifications',
   calendar: 'Calendar',
   timeTracking: 'Time Tracking',
