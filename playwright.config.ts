@@ -4,10 +4,11 @@ import path from 'node:path'
 import { LANGUAGES } from 'config/language-config'
 import { APP_NAMES } from 'constants/app-names'
 
-dotenv.config({ path: `.env.${process.env.NODE_ENV || 'production'}` })
+dotenv.config({ path: `.env.${process.env.NODE_ENV || 'testing'}` })
+console.log('Loaded BASE_URL:', process.env.CLUSTERIX_BASE_URL)
 
 export default defineConfig({
-  testDir: './tests',
+  testDir: '../tests',
   retries: 0,
   reporter: [
     ['list'],
@@ -31,6 +32,8 @@ export default defineConfig({
   ],
   testMatch: ['**/*.spec.ts'],
 })
+
+console.log('BASE_URL:', process.env.CLUSTERIX_BASE_URL)
 
 // Function to generate projects dynamically
 function generateProjects() {
