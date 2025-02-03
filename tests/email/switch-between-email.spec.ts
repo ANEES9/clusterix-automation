@@ -5,7 +5,7 @@ import * as dotenv from 'dotenv'
 import { addCursorStyleAndScript } from 'common/cursor-helper'
 import { skipSurveyHelper } from 'common/skip-survey-helper'
 import { skipProductTourHelper } from 'common/skip-product-tour-helper'
-import { closeTimerPopUp } from 'common/timer-helper'
+import { skipTimerHelper } from 'common/skip-timer-helper'
 import { EmailPage } from 'pages/email'
 import { getEnvBasedUrl } from 'common/get-api-url'
 
@@ -27,7 +27,7 @@ test.describe('switch between email', () => {
         await skipSurveyHelper(page, testInfo)
         await skipProductTourHelper(page, testInfo)
         await page.waitForTimeout(4000)
-        await closeTimerPopUp(page)
+        await skipTimerHelper(page)
         await page.waitForLoadState('networkidle')
 
         const fetchAccIdProd =
