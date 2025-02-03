@@ -15,11 +15,12 @@ dotenv.config({ path: `.env.${env}` })
 let accountId: string | null = null
 
 test.describe('verify create folder and prevention of duplicate folder creation in Email', () => {
+  let emailPage: EmailPage
   test.beforeEach(async ({ page, baseURL }, testInfo) => {
     await Allure.step(
       'Navigate to Base URL, Close Popups and navigate to Email application',
       async () => {
-        const emailPage = new EmailPage(page)
+        emailPage = new EmailPage(page)
         await page.goto(baseURL!)
         await addCursorStyleAndScript(page)
         await skipSurveyHelper(page, testInfo)
@@ -38,7 +39,7 @@ test.describe('verify create folder and prevention of duplicate folder creation 
   })
 
   test('creation of folder in email', async ({ page }) => {
-    const emailPage = new EmailPage(page)
+    emailPage = new EmailPage(page)
     Allure.addSeverity('normal')
     Allure.addTag('smoke')
     Allure.addDescription(
@@ -85,7 +86,7 @@ test.describe('verify create folder and prevention of duplicate folder creation 
   })
 
   test('prevention creation of duplicate folder in email', async ({ page }) => {
-    const emailPage = new EmailPage(page)
+    emailPage = new EmailPage(page)
     Allure.addSeverity('normal')
     Allure.addTag('smoke')
     Allure.addDescription(

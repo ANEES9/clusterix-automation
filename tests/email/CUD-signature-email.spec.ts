@@ -15,11 +15,12 @@ new Date()
 let accountId: string | null = null
 
 test.describe('Validation of create, update and delete opertaion signature in email application', () => {
+  let emailPage: EmailPage
   test.beforeEach(async ({ page, baseURL }, testInfo) => {
     await Allure.step(
       'Navigate to Base URL, Close Popups and navigate to Email application',
       async () => {
-        const emailPage = new EmailPage(page)
+        emailPage = new EmailPage(page)
         await page.goto(baseURL!)
         await addCursorStyleAndScript(page)
         await skipSurveyHelper(page, testInfo)
@@ -38,7 +39,7 @@ test.describe('Validation of create, update and delete opertaion signature in em
   })
 
   test('create a new signature', async ({ page }) => {
-    const emailPage = new EmailPage(page)
+    emailPage = new EmailPage(page)
     Allure.addSeverity('normal')
     Allure.addTag('smoke')
     Allure.addDescription(
@@ -114,7 +115,7 @@ test.describe('Validation of create, update and delete opertaion signature in em
   })
 
   test('update a signature', async ({ page }) => {
-    const emailPage = new EmailPage(page)
+    emailPage = new EmailPage(page)
     Allure.addSeverity('normal')
     Allure.addTag('smoke')
     Allure.addDescription(
@@ -253,7 +254,7 @@ test.describe('Validation of create, update and delete opertaion signature in em
   })
 
   test('delete a signature', async ({ page }) => {
-    const emailPage = new EmailPage(page)
+    emailPage = new EmailPage(page)
     Allure.addSeverity('normal')
     Allure.addTag('smoke')
     Allure.addDescription(
