@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { closeTimerPopUp } from 'common/timer-helper'
+import { skipTimerHelper } from 'common/skip-timer-helper'
 import { skipSurveyHelper } from 'common/skip-survey-helper'
 import { skipProductTourHelper } from 'common/skip-product-tour-helper'
 import { addCursorStyleAndScript } from 'common/cursor-helper'
@@ -15,7 +15,7 @@ test.describe('File Reggression Suite', () => {
     await filesPage.goto(baseURL)
     await skipSurveyHelper(page, testInfo)
     await skipProductTourHelper(page, testInfo)
-    await closeTimerPopUp(page)
+    await skipTimerHelper(page)
     await addCursorStyleAndScript(page)
     await page.waitForLoadState('networkidle')
   })

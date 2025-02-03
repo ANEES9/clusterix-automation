@@ -1,6 +1,6 @@
 import { Page } from '@playwright/test'
 
-export async function closeTimerPopUp(page: Page) {
+export async function skipTimerHelper(page: Page) {
   try {
     const continueWithoutTimerSelector =
       '//div[contains(text(), "Continue without timer")]'

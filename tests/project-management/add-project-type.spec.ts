@@ -1,7 +1,7 @@
 import { test } from '@playwright/test'
 import { expect } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
-import { closeTimerPopUp } from 'common/timer-helper'
+import { skipTimerHelper } from 'common/skip-timer-helper'
 import { skipProductTourHelper } from 'common/skip-product-tour-helper'
 import { generateRandomFileName } from 'common/random-data-generator'
 import { skipSurveyHelper } from 'common/skip-survey-helper'
@@ -13,7 +13,7 @@ test.describe('Clusterix Project Managament', () => {
       await page.goto(baseURL!)
       await skipSurveyHelper(page, testInfo)
       await skipProductTourHelper(page, testInfo)
-      await closeTimerPopUp(page)
+      await skipTimerHelper(page)
       await page.waitForLoadState('networkidle')
     })
   })

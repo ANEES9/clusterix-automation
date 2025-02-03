@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 import { skipProductTourHelper } from 'common/skip-product-tour-helper'
-import { closeTimerPopUp } from 'common/timer-helper.js'
+import { skipTimerHelper } from 'common/skip-timer-helper'
 import { bulkMailingPage } from 'pages/bulk-mailing/bulk-mailing-page.js'
 import { skipSurveyHelper } from 'common/skip-survey-helper'
 
@@ -17,7 +17,7 @@ test.describe('Verify Bulk Mailing Functionalities', () => {
     locators = new bulkMailingPage(page)
     await skipProductTourHelper(page, testInfo)
     await page.waitForLoadState('networkidle')
-    await closeTimerPopUp(page)
+    await skipTimerHelper(page)
     await page.waitForLoadState('domcontentloaded')
   })
 

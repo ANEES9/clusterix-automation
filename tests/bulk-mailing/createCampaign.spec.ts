@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 import { closeProductTour } from 'common/product-tour-helper.js'
-import { closeTimerPopUp } from 'common/timer-helper.js'
+import { skipTimerHelper } from 'common/skip-timer-helper'
 import { addCursorStyleAndScript } from '../../helpers/common/cursor-helper.js'
 import { bulkMailingPage } from 'pages/bulk-mailing/bulk-mailing-page.js'
 import { skipSurvey } from 'common/skip-survey.js'
@@ -18,7 +18,7 @@ test.describe('Verify Bulk Mailing Functionalities', () => {
     locators = new bulkMailingPage(page)
     await closeProductTour(page)
     await page.waitForLoadState('networkidle')
-    await closeTimerPopUp(page)
+    await skipTimerHelper(page)
     await addCursorStyleAndScript(page)
     await page.waitForLoadState('domcontentloaded')
   })
@@ -97,6 +97,4 @@ test.describe('Verify Bulk Mailing Functionalities', () => {
       )
     }
   })
-
-  
 })

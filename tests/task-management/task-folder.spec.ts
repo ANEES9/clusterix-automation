@@ -1,7 +1,7 @@
 import { test } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
 import { ApiResponse } from 'common/api-response'
-import { closeTimerPopUp } from 'common/timer-helper'
+import { skipTimerHelper } from 'common/skip-timer-helper'
 import { TaskManagementPage } from 'pages/task-management'
 import { skipProductTourHelper } from 'common/skip-product-tour-helper'
 import { generateRandomFileName } from 'common/random-data-generator'
@@ -13,7 +13,7 @@ test.describe('Task Management Folder Tests', () => {
       await page.goto(baseURL!)
       await skipSurveyHelper(page, testInfo)
       await skipProductTourHelper(page, testInfo)
-      await closeTimerPopUp(page)
+      await skipTimerHelper(page)
       await page.waitForLoadState('networkidle')
     })
   })
@@ -26,7 +26,6 @@ test.describe('Task Management Folder Tests', () => {
     const taskmanagetest =
       'https://task-management-backend-testing.innoscripta.com/api/folders'
 
-    
     const currentDate = new Date()
     const formattedDate = currentDate.toLocaleDateString('en-GB') // This will give you the format DD/MM/YYYY
 
@@ -63,8 +62,6 @@ test.describe('Task Management Folder Tests', () => {
     }
   })
 
-
-
   test('Folder Update tests', async ({ page }) => {
     const locators = new TaskManagementPage(page)
 
@@ -73,7 +70,6 @@ test.describe('Task Management Folder Tests', () => {
     const taskmanagetest =
       'https://task-management-backend-testing.innoscripta.com/api/folders'
 
-    
     const currentDate = new Date()
     const formattedDate = currentDate.toLocaleDateString('en-GB') // This will give you the format DD/MM/YYYY
 
@@ -101,7 +97,6 @@ test.describe('Task Management Folder Tests', () => {
     await locators.renameFolderAndSubmit()
     await page.waitForTimeout(5000)
 
-
     const { status: apiResponseStatus } = taskmanage()
     // Check the response and log messages accordingly
     if (apiResponseStatus === 201) {
@@ -112,7 +107,6 @@ test.describe('Task Management Folder Tests', () => {
       )
     }
 
-
     // Renameing part starts here
     await locators.rightClickOnFolder()
     await page.waitForTimeout(2000)
@@ -122,11 +116,7 @@ test.describe('Task Management Folder Tests', () => {
     await locators.renameFolderAndSubmit()
     await locators.clickOnFolder()
     console.log('Raname folder name:', new_name)
-
-    
-
   })
-
 
   test('Folder Delete tests', async ({ page }) => {
     const locators = new TaskManagementPage(page)
@@ -136,7 +126,6 @@ test.describe('Task Management Folder Tests', () => {
     const taskmanagetest =
       'https://task-management-backend-testing.innoscripta.com/api/folders'
 
-    
     const currentDate = new Date()
     const formattedDate = currentDate.toLocaleDateString('en-GB') // This will give you the format DD/MM/YYYY
 
@@ -180,13 +169,5 @@ test.describe('Task Management Folder Tests', () => {
     await locators.deleteFolder()
     await locators.confirmDelete()
     console.log('Folder Deleted')
-
-    
-
   })
-
-
-
-
-
 })

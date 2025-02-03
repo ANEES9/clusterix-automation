@@ -1,5 +1,5 @@
 import { test } from '@playwright/test'
-import { closeTimerPopUp } from 'common/timer-helper'
+import { skipTimerHelper } from 'common/skip-timer-helper'
 import { addCursorStyleAndScript } from 'common/cursor-helper'
 import { CalendarPage } from 'pages/calendar/calendar-page'
 import { skipSurveyHelper } from 'common/skip-survey-helper'
@@ -11,7 +11,7 @@ test.describe('Testcases to view calendar using filters', () => {
     await addCursorStyleAndScript(page)
     await skipSurveyHelper(page, testInfo)
     await skipProductTourHelper(page, testInfo)
-    await closeTimerPopUp(page)
+    await skipTimerHelper(page)
     await page.waitForLoadState('networkidle')
   })
 

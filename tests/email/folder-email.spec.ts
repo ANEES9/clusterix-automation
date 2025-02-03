@@ -4,7 +4,7 @@ import * as dotenv from 'dotenv'
 import { addCursorStyleAndScript } from 'common/cursor-helper'
 import { skipSurveyHelper } from 'common/skip-survey-helper'
 import { skipProductTourHelper } from 'common/skip-product-tour-helper'
-import { closeTimerPopUp } from 'common/timer-helper'
+import { skipTimerHelper } from 'common/skip-timer-helper'
 import { EmailPage } from 'pages/email'
 import { generateRandomFileName } from 'common/random-data-generator'
 import { FetchRemoteData } from './helpers/email-request'
@@ -25,7 +25,7 @@ test.describe('verify create folder and prevention of duplicate folder creation 
         await skipSurveyHelper(page, testInfo)
         await skipProductTourHelper(page, testInfo)
         await page.waitForTimeout(4000)
-        await closeTimerPopUp(page)
+        await skipTimerHelper(page)
         await page.waitForLoadState('networkidle')
 
         //Navigateion to Email Application

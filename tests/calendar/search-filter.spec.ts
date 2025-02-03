@@ -1,6 +1,6 @@
 import { test } from '@playwright/test'
-import { closeTimerPopUp } from '../../helpers/common/timer-helper'
-import { addCursorStyleAndScript } from '../../helpers/common/cursor-helper'
+import { skipTimerHelper } from 'common/skip-timer-helper'
+import { addCursorStyleAndScript } from 'common/cursor-helper'
 import { CalendarPage } from 'pages/calendar/calendar-page'
 import { skipSurveyHelper } from 'common/skip-survey-helper'
 import { skipProductTourHelper } from 'common/skip-product-tour-helper'
@@ -11,7 +11,7 @@ test.describe('Search Filter', () => {
     await addCursorStyleAndScript(page)
     await skipSurveyHelper(page, testInfo)
     await skipProductTourHelper(page, testInfo)
-    await closeTimerPopUp(page)
+    await skipTimerHelper(page)
     await page.waitForLoadState('networkidle')
   })
 

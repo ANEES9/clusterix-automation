@@ -3,7 +3,7 @@ import { Allure } from 'common/allure-helper'
 import { AccountsPage } from 'pages/settings/user-and-permissions/accounts-page'
 import { skipSurveyHelper } from 'common/skip-survey-helper'
 import { skipProductTourHelper } from 'common/skip-product-tour-helper'
-import { closeTimerPopUp } from 'common/timer-helper'
+import { skipTimerHelper } from 'common/skip-timer-helper'
 
 test.describe('User and Permissions > Accounts Tests', () => {
   let accountsPage: AccountsPage
@@ -15,7 +15,7 @@ test.describe('User and Permissions > Accounts Tests', () => {
     await accountsPage.goto(baseURL)
     await skipSurveyHelper(page, testInfo)
     await skipProductTourHelper(page, testInfo)
-    await closeTimerPopUp(page)
+    await skipTimerHelper(page)
     await page.waitForLoadState('networkidle')
   })
 

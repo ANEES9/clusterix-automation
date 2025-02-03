@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { closeTimerPopUp } from '../../helpers/common/timer-helper'
+import { skipTimerHelper } from 'common/skip-timer-helper'
 import { addCursorStyleAndScript } from '../../helpers/common/cursor-helper'
 import { CalendarPage } from 'pages/calendar/calendar-page'
 import { skipSurveyHelper } from 'common/skip-survey-helper'
@@ -12,7 +12,7 @@ test.describe('CRUD Operations for meeting', () => {
     await addCursorStyleAndScript(page)
     await skipSurveyHelper(page, testInfo)
     await skipProductTourHelper(page, testInfo)
-    await closeTimerPopUp(page)
+    await skipTimerHelper(page)
     await page.waitForLoadState('networkidle')
   })
 

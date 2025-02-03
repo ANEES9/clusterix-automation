@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 import { closeProductTour } from 'common/product-tour-helper.js'
-import { closeTimerPopUp } from 'common/timer-helper.js'
+import { skipTimerHelper } from 'common/skip-timer-helper'
 import { addCursorStyleAndScript } from '../../helpers/common/cursor-helper.js'
 import { bulkMailingPage } from 'pages/bulk-mailing/bulk-mailing-page.js'
 import { skipSurvey } from 'common/skip-survey.js'
@@ -18,7 +18,7 @@ test.describe('Verify Bulk Mailing Functionalities', () => {
     locators = new bulkMailingPage(page)
     await closeProductTour(page)
     await page.waitForLoadState('networkidle')
-    await closeTimerPopUp(page)
+    await skipTimerHelper(page)
     await addCursorStyleAndScript(page)
     await page.waitForLoadState('domcontentloaded')
   })
@@ -75,20 +75,29 @@ test.describe('Verify Bulk Mailing Functionalities', () => {
     await locators.audienceButton.click()
     await locators.addNewAudience.click()
     await locators.fileUpload.click()
-    await locators.copyPaste.click();
+    await locators.copyPaste.click()
     await locators.nextButton.click()
     await locators.audienceTitle.click()
-    await page.locator('input[name="name"]').fill('My Audience Copy Pasted');
-    await page.locator('span:nth-child(20)').click();
-    await page.getByPlaceholder('Example: Email address, First').click();
-    await page.getByPlaceholder('Example: Email address, First').fill('gowdadr@innoscripta.com, Ganganna, Gowda\nnarayanav@innoscripta.com, Karthik,Narayan\nraos@innoscripta.com, Shwetha, Rao\nbhat@innoscripta.com, Sharath, Bhat\n');
-    await page.getByText('Preview').click();
-    await page.locator('.Pmt4XLAw45QKoMAcH8cQ > .SmartTable-module_tableWrapper__O2vT5 > .SmartTable-module_smartTable__nylwu > thead > tr > th > .DraggableHeader-module_headerCellWrapper__nvR-Y > .DraggableHeader-module_headerCell__Y5Iwz > .HeaderCell-module_headerCell__4FmTJ > .HeaderCell-module_headerText__-eOWT').first().click();
-    await page.getByText('Upload').click();
+    await page.locator('input[name="name"]').fill('My Audience Copy Pasted')
+    await page.locator('span:nth-child(20)').click()
+    await page.getByPlaceholder('Example: Email address, First').click()
+    await page
+      .getByPlaceholder('Example: Email address, First')
+      .fill(
+        'gowdadr@innoscripta.com, Ganganna, Gowda\nnarayanav@innoscripta.com, Karthik,Narayan\nraos@innoscripta.com, Shwetha, Rao\nbhat@innoscripta.com, Sharath, Bhat\n'
+      )
+    await page.getByText('Preview').click()
+    await page
+      .locator(
+        '.Pmt4XLAw45QKoMAcH8cQ > .SmartTable-module_tableWrapper__O2vT5 > .SmartTable-module_smartTable__nylwu > thead > tr > th > .DraggableHeader-module_headerCellWrapper__nvR-Y > .DraggableHeader-module_headerCell__Y5Iwz > .HeaderCell-module_headerCell__4FmTJ > .HeaderCell-module_headerText__-eOWT'
+      )
+      .first()
+      .click()
+    await page.getByText('Upload').click()
 
-   try {
+    try {
       // Await the assertion
-      await page.getByText('Audience created successfully').click();
+      await page.getByText('Audience created successfully').click()
 
       // Log success if the assertion passed
       console.log(
@@ -101,43 +110,45 @@ test.describe('Verify Bulk Mailing Functionalities', () => {
         error
       )
     }
-  
   })
 
-  test.only('Create Audience using CLustrix Import Human Resources Employees ', async ({ page }) => {
+  test.only('Create Audience using CLustrix Import Human Resources Employees ', async ({
+    page,
+  }) => {
     await locators.bulkMailing.click()
     await locators.audienceButton.click()
     await locators.addNewAudience.click()
     await locators.fileUpload.click()
-    await locators.importFromClusterix.click();
+    await locators.importFromClusterix.click()
     await locators.nextButton.click()
     await locators.audienceTitle.click()
-  await page.locator('input[name="name"]').fill('My Audience CLustrix Import');
-  await page.locator('.ColorItem-module_color__Lp-yV').first().click();
-  await locators.appConnection.click();
-  await locators.selectApp.click();
-  await locators.hrEmployees.click();
-  await locators.selectApp.click();
+    await page.locator('input[name="name"]').fill('My Audience CLustrix Import')
+    await page.locator('.ColorItem-module_color__Lp-yV').first().click()
+    await locators.appConnection.click()
+    await locators.selectApp.click()
+    await locators.hrEmployees.click()
+    await locators.selectApp.click()
 
-await page.pause();
-  await page.locator('.vwGFw_vMUYEgvxeHK5oj').click();
-  await page.locator('#ca-portal-root').getByText('HR', { exact: true }).click();
-  await page.pause();
-  await page.getByRole('button', { name: 'HR' }).nth(1).click()
-  await page.waitForTimeout(5000)
-  await page.locator('.ca-fixed').click();
-  await locators.saveAppConnection.click();
-  await locators.createAudienceButton.click()
-  // await page.getByText('An unknown error occurred.').click();
+    await page.pause()
+    await page.locator('.vwGFw_vMUYEgvxeHK5oj').click()
+    await page
+      .locator('#ca-portal-root')
+      .getByText('HR', { exact: true })
+      .click()
+    await page.pause()
+    await page.getByRole('button', { name: 'HR' }).nth(1).click()
+    await page.waitForTimeout(5000)
+    await page.locator('.ca-fixed').click()
+    await locators.saveAppConnection.click()
+    await locators.createAudienceButton.click()
+    // await page.getByText('An unknown error occurred.').click();
 
-
-   try {
+    try {
       // Await the assertion
-      await page.getByText('Audience created successfully');
+      await page.getByText('Audience created successfully')
 
       // Log success if the assertion passed
       console.log("Recieved toast message: 'Audience Created Successfully'.")
-   
     } catch (error) {
       // Log error details if the assertion failed
       console.error(
@@ -147,7 +158,7 @@ await page.pause();
     }
     try {
       // Await the assertion
-      await page.locator('.NotificationCard_wrapper__1-myM');
+      await page.locator('.NotificationCard_wrapper__1-myM')
 
       // Log success if the assertion passed
       console.log(
@@ -160,37 +171,36 @@ await page.pause();
         error
       )
     }
-
-  
   })
 
-  test('Create Audience using CLustrix Import Human Resources Candidates ', async ({ page }) => {
+  test('Create Audience using CLustrix Import Human Resources Candidates ', async ({
+    page,
+  }) => {
     await locators.bulkMailing.click()
     await locators.audienceButton.click()
     await locators.addNewAudience.click()
     await locators.fileUpload.click()
-    await locators.importFromClusterix.click();
+    await locators.importFromClusterix.click()
     await locators.nextButton.click()
     await locators.audienceTitle.click()
-  await page.locator('input[name="name"]').fill('My Audience CLustrix Import');
-  await page.locator('.ColorItem-module_color__Lp-yV').first().click();
-  await locators.appConnection.click();
-  await locators.selectApp.click();
-  await page.getByText('Human Resources Candidates').click();
-  await page.pause();
-  await page.locator('.vwGFw_vMUYEgvxeHK5oj').click();
-  await page.getByText('Bulk Mailing Demo - Dont Delete-Full Time').click();
-  await page.pause();
-  await locators.saveAppConnection.click();
-  await locators.createAudienceButton.click()
+    await page.locator('input[name="name"]').fill('My Audience CLustrix Import')
+    await page.locator('.ColorItem-module_color__Lp-yV').first().click()
+    await locators.appConnection.click()
+    await locators.selectApp.click()
+    await page.getByText('Human Resources Candidates').click()
+    await page.pause()
+    await page.locator('.vwGFw_vMUYEgvxeHK5oj').click()
+    await page.getByText('Bulk Mailing Demo - Dont Delete-Full Time').click()
+    await page.pause()
+    await locators.saveAppConnection.click()
+    await locators.createAudienceButton.click()
 
-   try {
+    try {
       // Await the assertion
-      await page.getByText('Audience created successfully');
+      await page.getByText('Audience created successfully')
 
       // Log success if the assertion passed
       console.log("Recieved toast message: 'Audience Created Successfully'.")
-      
     } catch (error) {
       // Log error details if the assertion failed
       console.error(
@@ -200,7 +210,7 @@ await page.pause();
     }
     try {
       // Await the assertion
-      await page.locator('.NotificationCard_wrapper__1-myM');
+      await page.locator('.NotificationCard_wrapper__1-myM')
 
       // Log success if the assertion passed
       console.log(
@@ -213,11 +223,5 @@ await page.pause();
         error
       )
     }
-
-  
   })
-
 })
-
-
-
