@@ -33,8 +33,6 @@ export default defineConfig({
   testMatch: ['**/*.spec.ts'],
 })
 
-console.log('BASE_URL:', process.env.CLUSTERIX_BASE_URL)
-
 // Function to generate projects dynamically
 function generateProjects() {
   const browsers = [

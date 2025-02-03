@@ -10,7 +10,7 @@ export class ProductTourPage {
 
   constructor(page: Page, locale: string) {
     this.page = page
-    this.translations = getTranslations('container', locale)
+    this.translations = getTranslations('home', locale)
 
     this.titleText = page.locator(
       `span:has-text("${this.translations.product_tour.homepage.title_personal}")`

@@ -41,7 +41,7 @@ export class HomePage {
 
   constructor(page: Page, locale: string) {
     this.page = page
-    this.translations = getTranslations('container', locale)
+    this.translations = getTranslations('home', locale)
     //Header items
     this.currentAppHeader = page.locator('//p[contains(text(), "Current App")]')
     this.activeAppName = page.locator(
