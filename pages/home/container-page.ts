@@ -2,7 +2,7 @@ import { Page, Locator, expect } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
 import { BrowserContext } from 'playwright'
 import { getTranslations } from 'common/get-translations-helper'
-import { APP_NAMES } from 'config/constants/app-names'
+import { APP_NAMES } from 'constants/app-names'
 
 export class HomePage {
   private page: Page

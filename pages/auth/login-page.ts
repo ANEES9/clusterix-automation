@@ -1,5 +1,5 @@
 import { expect, Locator, Page } from '@playwright/test'
-import { APP_URLS } from 'config/constants/app-urls'
+import { APP_URLS } from '../../shared/constants/app-urls'
 import { LANGUAGES } from 'config/language-config'
 import { getTranslations } from 'common/get-translations-helper'
 import { getEndpoint } from 'helpers/api/get-endpoint-helper'

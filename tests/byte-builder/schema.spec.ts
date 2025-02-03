@@ -1,4 +1,4 @@
-import { expect, test, TestInfo } from '@playwright/test'
+import { test, TestInfo } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
 import { BytebuilderPage } from 'pages/byte-builder/byte-builder-page'
 import { skipSurveyHelper } from 'common/skip-survey-helper'

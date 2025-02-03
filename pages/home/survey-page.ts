@@ -1,7 +1,7 @@
 import { Page, Locator, expect } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
 import { getTranslations } from 'common/get-translations-helper'
-import { APP_NAMES } from 'config/constants/app-names'
+import { APP_NAMES } from '../../shared/constants/app-names'
 
 export class SurveyPage {
   readonly page: Page

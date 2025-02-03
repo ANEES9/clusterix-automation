@@ -2,7 +2,7 @@ import { defineConfig, devices } from '@playwright/test'
 import * as dotenv from 'dotenv'
 import path from 'node:path'
 import { LANGUAGES } from 'config/language-config'
-import { APP_NAMES } from 'config/constants/app-names'
+import { APP_NAMES } from 'constants/app-names'
 
 dotenv.config({ path: `.env.${process.env.NODE_ENV || 'production'}` })
 
@@ -29,6 +29,7 @@ export default defineConfig({
     // Generate projects dynamically
     ...generateProjects(),
   ],
+  testMatch: ['**/*.spec.ts'],
 })
 
 // Function to generate projects dynamically

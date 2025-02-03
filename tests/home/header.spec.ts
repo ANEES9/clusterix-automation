@@ -2,7 +2,7 @@ import { test } from '@playwright/test'
 import { HomePage } from 'pages/home/container-page'
 import { Allure } from 'common/allure-helper'
 import { NotificationsPanelPage } from 'pages/notifications/notifications-panel-page'
-import { APP_NAMES } from 'config/constants/app-names'
+import { APP_NAMES } from 'constants/app-names'
 import { setupTestContext } from 'utils/test-context'
 test.describe('Container App Header Navigation Tests', () => {
   let containerPage: HomePage

@@ -1,6 +1,6 @@
 import { Page, Locator } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
-import { APP_URLS } from 'config/constants/app-urls'
+import { APP_URLS } from 'constants/app-urls'
 
 export class CalendarPage {
   private page: Page

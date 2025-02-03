@@ -1,7 +1,7 @@
 import { test } from '@playwright/test'
 import { HomePage } from 'pages/home/container-page'
 import { Allure } from 'common/allure-helper'
-import { APP_NAMES } from 'config/constants/app-names'
+import { APP_NAMES } from 'constants/app-names'
 import { setupTestContext } from 'utils/test-context'
 
 test.describe('Container App Sidebar Navigation Tests', () => {

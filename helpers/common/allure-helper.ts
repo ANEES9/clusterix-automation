@@ -1,11 +1,7 @@
 import { allure } from 'allure-playwright'
 import { Page } from '@playwright/test'
-import {
-  APP_OWNERS,
-  DEFAULT_OWNER,
-  DEFAULT_TEAM,
-} from 'config/constants/app-owners'
-import { ALLURE_TAGS } from 'config/constants/allure-tags'
+import { APP_OWNERS, DEFAULT_OWNER, DEFAULT_TEAM } from 'constants/app-owners'
+import { ALLURE_TAGS } from 'constants/allure-tags'
 
 export class Allure {
   /**

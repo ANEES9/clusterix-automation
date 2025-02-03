@@ -1,7 +1,7 @@
 import { Page, Locator, expect } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
-import { APP_URLS } from 'config/constants/app-urls'
-import { APP_NAMES } from 'config/constants/app-names'
+import { APP_URLS } from 'constants/app-urls'
+import { APP_NAMES } from 'constants/app-names'
 
 export class TimeTrackingPage {
   private page: Page

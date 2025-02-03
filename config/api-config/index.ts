@@ -1,5 +1,5 @@
-import { authServiceConfig } from './auth-service'
-import { emailServiceConfig } from 'config/api-config/email-service'
+import { authServiceConfig } from './auth-service-config'
+import { emailServiceConfig } from 'config/api-config/email-service-config'
 
 export const services = {
   authService: authServiceConfig,
