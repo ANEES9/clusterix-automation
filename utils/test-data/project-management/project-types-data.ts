@@ -5,7 +5,7 @@ export const projectTypeTestData = [
     description: 'Alpha testing project type',
     color: 'rgb(113, 208, 242)',
     category: 'Development Workflow',
-    participants: ['Wahyuq Febrianto', 'John Doe'],
+    participants: ['Mohamed AlFarsi', 'John Doe'],
     isResearchProject: true,
   },
   {
