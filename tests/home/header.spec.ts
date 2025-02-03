@@ -1,17 +1,17 @@
 import { test } from '@playwright/test'
-import { ContainerPage } from 'pages/container-app/container-page'
+import { HomePage } from 'pages/home/container-page'
 import { Allure } from 'common/allure-helper'
 import { NotificationsPanelPage } from 'pages/notifications/notifications-panel-page'
 import { APP_NAMES } from 'config/constants/app-names'
 import { setupTestContext } from 'utils/test-context'
 test.describe('Container App Header Navigation Tests', () => {
-  let containerPage: ContainerPage
+  let containerPage: HomePage
 
   test.beforeEach(async ({ page, baseURL }, testInfo) => {
     Allure.addFeature('Navigation')
     Allure.addAppOwner('Home')
     const { locale } = await setupTestContext(page, testInfo)
-    containerPage = new ContainerPage(page, locale)
+    containerPage = new HomePage(page, locale)
     await containerPage.goto(baseURL)
   })
 

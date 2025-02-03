@@ -1,19 +1,15 @@
 import { test } from '@playwright/test'
-import { skipProductTourHelper } from 'common/skip-product-tour-helper'
-import { skipTimerHelper } from 'common/skip-timer-helper'
-import { addCursorStyleAndScript } from 'common/cursor-helper'
-import { skipSurveyHelper } from 'common/skip-survey-helper'
-import { ContainerPage } from 'pages/container-app/container-page'
+import { HomePage } from 'pages/home/container-page'
 import { Allure } from 'common/allure-helper'
 import { APP_NAMES } from 'config/constants/app-names'
 import { setupTestContext } from 'utils/test-context'
 
 test.describe('Container App Sidebar Navigation Tests', () => {
-  let containerPage: ContainerPage
+  let containerPage: HomePage
 
   test.beforeEach(async ({ page, baseURL }, testInfo) => {
     const { locale } = await setupTestContext(page, testInfo)
-    containerPage = new ContainerPage(page, locale)
+    containerPage = new HomePage(page, locale)
     await page.goto(baseURL!)
   })
   test('Validate Home Page Navigation from Sidebar', async () => {

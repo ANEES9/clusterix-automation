@@ -1,10 +1,13 @@
 import { Page, Locator, expect } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
 import { BrowserContext } from 'playwright'
+import { getTranslations } from 'common/get-translations-helper'
 import { APP_NAMES } from 'config/constants/app-names'
 
-export class ContainerPage {
+export class HomePage {
   private page: Page
+  translations: Record<string, any>
+
   public currentAppHeader: Locator
   public activeAppName: Locator
 
@@ -36,8 +39,9 @@ export class ContainerPage {
   private noCodeSidebarButton: Locator
   private templateManagerSidebarButton: Locator
 
-  constructor(page: Page) {
+  constructor(page: Page, locale: string) {
     this.page = page
+    this.translations = getTranslations('container', locale)
     //Header items
     this.currentAppHeader = page.locator('//p[contains(text(), "Current App")]')
     this.activeAppName = page.locator(
@@ -98,7 +102,7 @@ export class ContainerPage {
       'button[group="workforce-management"]:has-text("Task Management")'
     )
     this.timeTrackingSideBarButton = page
-      .locator('#container-app-sidebar')
+      .locator('#home-sidebar')
       .getByRole('button', { name: 'Time Tracking', exact: true })
     this.accountingSidebarButton = page.locator(
       'button[group="cash-management"]:has-text("Accounting")'
@@ -129,6 +133,16 @@ export class ContainerPage {
     )
     this.templateManagerSidebarButton = page.locator(
       'button[group="configurator"]:has-text("Template Manager")'
+    )
+  }
+
+  // Navigate to survey
+  async goto(baseURL: string | undefined) {
+    await Allure.step(
+      'Role question should be visible when user navigate to base url',
+      async () => {
+        await this.page.goto(`${baseURL}`)
+      }
     )
   }
 
@@ -189,7 +203,7 @@ export class ContainerPage {
           this.liveChatHeaderButton.click(),
         ])
         await newPage.waitForLoadState()
-        const liveChatContainer = new ContainerPage(newPage)
+        const liveChatContainer = new HomePage(newPage, locale)
         await liveChatContainer.validateCurrentApp(APP_NAMES.liveChat)
       }
     )

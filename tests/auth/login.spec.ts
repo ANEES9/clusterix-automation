@@ -1,7 +1,7 @@
 import { test } from '@playwright/test'
 import { LoginPage } from 'pages/auth/login-page'
 import { userData } from 'utils/test-data/auth/user-data'
-import { SurveyPage } from 'pages/container-app/survey-page'
+import { SurveyPage } from 'pages/home/survey-page'
 
 test.describe('Login Page Tests', () => {
   let surveyPage: SurveyPage

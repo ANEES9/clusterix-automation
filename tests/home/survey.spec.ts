@@ -1,5 +1,5 @@
 import { test } from '@playwright/test'
-import { SurveyPage } from 'pages/container-app/survey-page'
+import { SurveyPage } from 'pages/home/survey-page'
 import { setupTestContext } from 'utils/test-context'
 
 test.describe('Survey Tests', () => {

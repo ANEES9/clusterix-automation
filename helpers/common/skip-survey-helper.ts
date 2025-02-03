@@ -1,5 +1,5 @@
 import { Page, TestInfo } from '@playwright/test'
-import { SurveyPage } from 'pages/container-app/survey-page'
+import { SurveyPage } from 'pages/home/survey-page'
 
 export async function skipSurveyHelper(
   page: Page,

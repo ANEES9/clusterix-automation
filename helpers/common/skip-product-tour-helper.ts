@@ -1,5 +1,5 @@
 import { Page, TestInfo } from '@playwright/test'
-import { ProductTourPage } from 'pages/container-app/product-tour-page'
+import { ProductTourPage } from 'pages/home/product-tour-page'
 
 export async function skipProductTourHelper(
   page: Page,

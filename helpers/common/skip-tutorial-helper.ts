@@ -1,5 +1,5 @@
 import { Page, TestInfo } from '@playwright/test'
-import { TutorialPage } from 'pages/container-app/tutorial-page'
+import { TutorialPage } from 'pages/home/tutorial-page'
 
 export async function skipTutorialHelper(
   page: Page,
