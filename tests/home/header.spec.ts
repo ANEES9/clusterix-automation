@@ -1,30 +1,18 @@
 import { test } from '@playwright/test'
 import { ContainerPage } from 'pages/container-app/container-page'
-import { addCursorStyleAndScript } from 'common/cursor-helper'
-import { skipSurveyHelper } from 'common/skip-survey-helper'
-import { skipProductTourHelper } from 'common/skip-product-tour-helper'
-import { closeTimerPopUp } from 'common/timer-helper'
 import { Allure } from 'common/allure-helper'
 import { NotificationsPanelPage } from 'pages/notifications/notifications-panel-page'
 import { APP_NAMES } from 'config/constants/app-names'
-import { skipTutorialHelper } from 'common/skip-tutorial-helper'
-
+import { setupTestContext } from 'utils/test-context'
 test.describe('Container App Header Navigation Tests', () => {
   let containerPage: ContainerPage
 
   test.beforeEach(async ({ page, baseURL }, testInfo) => {
-    containerPage = new ContainerPage(page)
     Allure.addFeature('Navigation')
-    Allure.addAppOwner('ContainerApp')
-    await Allure.step('Navigate to Base URL and Close Popups', async () => {
-      await page.goto(baseURL!)
-      await addCursorStyleAndScript(page)
-      await skipSurveyHelper(page, testInfo)
-      await skipProductTourHelper(page, testInfo)
-      await skipTutorialHelper(page, testInfo)
-      await closeTimerPopUp(page)
-      await page.waitForLoadState('networkidle')
-    })
+    Allure.addAppOwner('Home')
+    const { locale } = await setupTestContext(page, testInfo)
+    containerPage = new ContainerPage(page, locale)
+    await containerPage.goto(baseURL)
   })
 
   test('Validate Notifications Panel Opens on Button Click', async ({

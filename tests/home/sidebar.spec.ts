@@ -1,23 +1,20 @@
 import { test } from '@playwright/test'
 import { skipProductTourHelper } from 'common/skip-product-tour-helper'
-import { closeTimerPopUp } from 'common/timer-helper'
+import { skipTimerHelper } from 'common/skip-timer-helper'
 import { addCursorStyleAndScript } from 'common/cursor-helper'
 import { skipSurveyHelper } from 'common/skip-survey-helper'
 import { ContainerPage } from 'pages/container-app/container-page'
 import { Allure } from 'common/allure-helper'
 import { APP_NAMES } from 'config/constants/app-names'
+import { setupTestContext } from 'utils/test-context'
 
 test.describe('Container App Sidebar Navigation Tests', () => {
   let containerPage: ContainerPage
 
   test.beforeEach(async ({ page, baseURL }, testInfo) => {
-    containerPage = new ContainerPage(page)
+    const { locale } = await setupTestContext(page, testInfo)
+    containerPage = new ContainerPage(page, locale)
     await page.goto(baseURL!)
-    await addCursorStyleAndScript(page)
-    await skipSurveyHelper(page, testInfo)
-    await skipProductTourHelper(page, testInfo)
-    await closeTimerPopUp(page)
-    await page.waitForLoadState('networkidle')
   })
   test('Validate Home Page Navigation from Sidebar', async () => {
     Allure.addFeature('Home Navigation')
