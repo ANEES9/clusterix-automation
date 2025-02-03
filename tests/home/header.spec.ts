@@ -1,18 +1,18 @@
 import { test } from '@playwright/test'
-import { HomePage } from 'pages/home/container-page'
+import { HomePage } from 'pages/home/home-page'
 import { Allure } from 'common/allure-helper'
 import { NotificationsPanelPage } from 'pages/notifications/notifications-panel-page'
 import { APP_NAMES } from 'constants/app-names'
 import { setupTestContext } from 'utils/test-context'
 test.describe('Container App Header Navigation Tests', () => {
-  let containerPage: HomePage
+  let homePage: HomePage
 
   test.beforeEach(async ({ page, baseURL }, testInfo) => {
     Allure.addFeature('Navigation')
     Allure.addAppOwner('Home')
     const { locale } = await setupTestContext(page, testInfo)
-    containerPage = new HomePage(page, locale)
-    await containerPage.goto(baseURL)
+    homePage = new HomePage(page, locale)
+    await homePage.goto(baseURL)
   })
 
   test('Validate Notifications Panel Opens on Button Click', async ({
@@ -26,7 +26,7 @@ test.describe('Container App Header Navigation Tests', () => {
     )
     const notificationsPanelPage = new NotificationsPanelPage(page)
     await Allure.step('Open Notifications Panel', async () => {
-      await containerPage.openNotificationsPanel()
+      await homePage.openNotificationsPanel()
     })
     await Allure.step('Check Navigation Panel Header', async () => {
       await notificationsPanelPage.validateNotificationsPanelHeader()
@@ -37,10 +37,10 @@ test.describe('Container App Header Navigation Tests', () => {
     Allure.addFeature('Calendar')
     Allure.addSeverity('normal')
     await Allure.step('Navigate to Calendar Page', async () => {
-      await containerPage.navigateToCalendarFromHeader()
+      await homePage.navigateToCalendarFromHeader()
     })
     await Allure.step('Check Current App', async () => {
-      await containerPage.validateCurrentApp(APP_NAMES.calendar)
+      await homePage.validateCurrentApp(APP_NAMES.calendar)
     })
   })
 
@@ -48,10 +48,10 @@ test.describe('Container App Header Navigation Tests', () => {
     Allure.addFeature('Time Tracking')
     Allure.addSeverity('normal')
     await Allure.step('Navigate to Time Tracking Page', async () => {
-      await containerPage.navigateToTimeTrackingFromHeader()
+      await homePage.navigateToTimeTrackingFromHeader()
     })
     await Allure.step('Check Current App', async () => {
-      await containerPage.validateCurrentApp(APP_NAMES.timeTracking)
+      await homePage.validateCurrentApp(APP_NAMES.timeTracking)
     })
   })
 
@@ -59,10 +59,10 @@ test.describe('Container App Header Navigation Tests', () => {
     Allure.addFeature('Email')
     Allure.addSeverity('normal')
     await Allure.step('Navigate to Email Page', async () => {
-      await containerPage.navigateToEmailFromHeader()
+      await homePage.navigateToEmailFromHeader()
     })
     await Allure.step('Check Current App', async () => {
-      await containerPage.validateCurrentApp(APP_NAMES.email)
+      await homePage.validateCurrentApp(APP_NAMES.email)
     })
   })
 
@@ -71,7 +71,7 @@ test.describe('Container App Header Navigation Tests', () => {
     Allure.addSeverity('minor')
 
     await Allure.step('Open Live Chat in New Tab and Validate', async () => {
-      await containerPage.openLiveChatAndValidate(context)
+      await homePage.openLiveChatAndValidate(context)
     })
   })
 
@@ -80,7 +80,7 @@ test.describe('Container App Header Navigation Tests', () => {
     Allure.addSeverity('trivial')
 
     await Allure.step('Open Profile Dropdown Menu', async () => {
-      await containerPage.openProfileDropdown()
+      await homePage.openProfileDropdown()
     })
   })
 
@@ -89,7 +89,7 @@ test.describe('Container App Header Navigation Tests', () => {
     Allure.addSeverity('trivial')
 
     await Allure.step('Open Profile Dropdown Menu', async () => {
-      await containerPage.validateProfileDropdownUserName()
+      await homePage.validateProfileDropdownUserName()
     })
   })
 })
