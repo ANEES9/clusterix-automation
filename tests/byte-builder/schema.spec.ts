@@ -1,47 +1,22 @@
 import { test, TestInfo } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
 import { BytebuilderPage } from 'pages/byte-builder/byte-builder-page'
-import { skipSurveyHelper } from 'common/skip-survey-helper'
-import { skipProductTourHelper } from 'common/skip-product-tour-helper'
-import { skipTimerHelper } from 'common/skip-timer-helper'
-import { addCursorStyleAndScript } from 'common/cursor-helper'
 import { schemaTestData } from 'utils/test-data/byte-builder/schema-data'
+import { setupTestContext } from 'utils/test-context'
 
-test.describe('Bytebuilder > Schema Tests', () => {
+test.describe('Byte Builder > Schema Tests', () => {
   let byteBuilderPage: BytebuilderPage
+  let locale: string
 
   test.beforeEach(async ({ page, baseURL }, testInfo: TestInfo) => {
-    // Allure.addEpic('Byte Builder Schema')
-    // Allure.addFeature('Schema Management')
-    const locale: string = testInfo.project.use?.locale ?? 'en'
-
-    Allure.addAppOwner('Bytebuilder')
-
+    Allure.addAppOwner('Byte Builder')
+    Allure.addSeverity('normal')
+    Allure.addTag('smoke')
+    const testContext = await setupTestContext(page, testInfo)
+    locale = testContext.locale
     byteBuilderPage = new BytebuilderPage(page, locale)
-
-    await Allure.step('Navigate to Builder page', async () => {
-      await byteBuilderPage.goto(baseURL)
-    })
-
-    await Allure.step('Skip survey', async () => {
-      await skipSurveyHelper(page, testInfo)
-    })
-
-    await Allure.step('Close welcome popup', async () => {
-      await skipProductTourHelper(page, testInfo)
-    })
-
-    await Allure.step('Close timer popup', async () => {
-      await skipTimerHelper(page)
-    })
-
-    await Allure.step('Add cursor style and script', async () => {
-      await addCursorStyleAndScript(page)
-    })
-
-    await Allure.step('Wait for network idle', async () => {
-      await page.waitForLoadState('networkidle')
-    })
+    await byteBuilderPage.goto(baseURL)
+    await page.waitForLoadState('networkidle')
   })
 
   test('Verify New Schema button functionality', async () => {
@@ -113,7 +88,7 @@ test.describe('Bytebuilder > Schema Tests', () => {
     )
   })
 
-  test('Verify schema cancel confirmation popup', async ({}) => {
+  test('Verify schema cancel confirmation popup', async () => {
     Allure.addDescription(
       'This test checks if the schema cancel confirmation modal appears when clicking the Cancel or Close button without saving.'
     )
@@ -133,7 +108,7 @@ test.describe('Bytebuilder > Schema Tests', () => {
     )
   })
 
-  test('Verify schema confirmation buttons functionality', async ({ page }) => {
+  test('Verify schema confirmation buttons functionality', async () => {
     Allure.addDescription(
       'This test ensures that the schema cancel confirmation modal closes when clicking Cancel and proceeds when Confirm is clicked.'
     )
