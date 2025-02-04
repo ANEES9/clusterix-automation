@@ -19,29 +19,19 @@ export async function skipSurveyHelper(
       .catch(() => false)
 
     if (!isRoleQuestionAttached) {
-      console.log('Survey role question is not attached, skipping...')
       return
     }
 
     // Check if the survey is visible
     const isSurveyVisible = await surveyPage.roleQuestion.isVisible()
-    console.log('Is survey visible:', isSurveyVisible)
 
     if (isSurveyVisible) {
-      console.log('Survey is visible, proceeding with completion...')
-
       // Complete the survey steps
       await surveyPage.completeRoleQuestion('developerOption')
       await surveyPage.completeAppInterestQuestion(['calendar', 'email'])
       await surveyPage.completeOtherToolsQuestion('None')
-
-      console.log('Survey completed successfully.')
-    } else {
-      console.log('Survey is not visible, skipping...')
     }
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error('Error occurred while skipping the survey:', error.message)
-    }
+  } catch {
+    // Silently catch any errors without logging
   }
 }

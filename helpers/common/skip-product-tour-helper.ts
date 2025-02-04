@@ -19,27 +19,16 @@ export async function skipProductTourHelper(
       .catch(() => false)
 
     if (!isSkipTourAttached) {
-      console.log('Skip tour button is not attached, skipping...')
       return
     }
 
     // Check if the Skip Tour button is visible
     const isSkipTourVisible = await productTourPage.skipTour.isVisible()
-    console.log('Is Skip Tour button visible:', isSkipTourVisible)
 
     if (isSkipTourVisible) {
-      console.log('Skip tour button is visible, clicking it...')
-      await productTourPage.skipTour.click()
-      console.log('Product tour skipped successfully.')
-    } else {
-      console.log('Skip tour button is not visible, skipping...')
+      await productTourPage.skipProductTour()
     }
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error(
-        'Error occurred while skipping the product tour:',
-        error.message
-      )
-    }
+  } catch {
+    // Silently catch any errors without logging
   }
 }
