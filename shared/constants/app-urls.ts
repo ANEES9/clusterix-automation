@@ -44,7 +44,16 @@ export const APP_URLS = {
     base: '/accounting',
     payments: {
       bankAccounts: '/accounting/payments/bank-accounts',
+      paymentTransactions: '/accounting/payments/transactions',
+      chartOfAccounts: '/accounting/payments/chart-of-accounts',
     },
+    income: {
+      customers: '/accounting/income/customers',
+      invoices: '/accounting/income/invoices',
+      products: '/accounting/income/products',
+    },
+    categories: '/accounting/categories',
+    reports: '/accounting/financial-reports',
   },
   byteBuilder: {
     base: '/byte-builder',

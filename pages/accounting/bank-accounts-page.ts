@@ -6,7 +6,7 @@ export class BankAccountsPage {
   private page: Page
   private translations: Record<string, any>
 
-  // Locators
+  public bankAccountsPageTitle: Locator
   private connectBankButton: Locator
   private ibanInput: Locator
   private currencyDropdown: Locator
@@ -19,6 +19,10 @@ export class BankAccountsPage {
   constructor(page: Page, locale: string) {
     this.page = page
     this.translations = getTranslations('accounting', locale)
+
+    this.bankAccountsPageTitle = this.page.getByRole('heading', {
+      name: this.translations.bank_accounts.title,
+    })
 
     this.connectBankButton = this.page.getByRole('button', {
       name: this.translations.bank_accounts.connect,
@@ -55,6 +59,9 @@ export class BankAccountsPage {
     await this.page.goto(
       `${baseURL}${APP_URLS.accounting.payments.bankAccounts}`
     )
+  }
+  getBankAccountsPageTitle(): Locator {
+    return this.bankAccountsPageTitle
   }
 
   /**
