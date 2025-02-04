@@ -5,7 +5,6 @@ import { LANGUAGES } from 'config/language-config'
 import { APP_NAMES } from 'constants/app-names'
 
 dotenv.config({ path: `.env.${process.env.NODE_ENV || 'testing'}` })
-console.log('Loaded BASE_URL:', process.env.CLUSTERIX_BASE_URL)
 
 export default defineConfig({
   testDir: '../tests',

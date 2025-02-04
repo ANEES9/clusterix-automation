@@ -31,10 +31,6 @@ async function createSessionForLocale(locale: string, sessionFilePath: string) {
 
     // Save the storage state
     await context.storageState({ path: sessionFilePath })
-    console.log(`Session for locale "${locale}" created at: ${sessionFilePath}`)
-  } catch (error) {
-    console.error(`Failed to create session for locale "${locale}":`, error)
-    throw error
   } finally {
     await browser.close()
   }
@@ -51,12 +47,7 @@ async function globalSetup() {
 
     // Check if the session file exists; create it if not
     if (!fs.existsSync(sessionFilePath)) {
-      console.log(`Creating session for locale "${locale}"...`)
       await createSessionForLocale(locale, sessionFilePath)
-    } else {
-      console.log(
-        `Session for locale "${locale}" already exists at: ${sessionFilePath}`
-      )
     }
   }
 }

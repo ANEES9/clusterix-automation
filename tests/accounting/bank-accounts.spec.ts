@@ -1,5 +1,5 @@
 import { test } from '@playwright/test'
-import { generateRandomIBAN } from 'common/accounting/iban-generator'
+import { generateRandomIBAN } from '../../helpers/accounting/iban-generator'
 import { skipSurveyHelper } from 'common/skip-survey-helper'
 import { skipProductTourHelper } from 'common/skip-product-tour-helper'
 import { skipTimerHelper } from 'common/skip-timer-helper'
@@ -20,7 +20,7 @@ test.describe('Bank Accounts Tab Tests', () => {
       await skipSurveyHelper(page, testInfo)
       await skipProductTourHelper(page, testInfo)
       await skipTutorialHelper(page, testInfo)
-      await skipTimerHelper(page)
+      await skipTimerHelper(page, testInfo)
     })
   })
 
