@@ -1,6 +1,5 @@
 import { Page, TestInfo } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
-import { addCursorStyleAndScript } from 'common/cursor-helper'
 import { skipSurveyHelper } from 'common/skip-survey-helper'
 import { skipProductTourHelper } from 'common/skip-product-tour-helper'
 import { skipTutorialHelper } from 'common/skip-tutorial-helper'
@@ -40,7 +39,6 @@ export async function setupTestContext(page: Page, testInfo: TestInfo) {
 
     await page.goto(baseURL, { waitUntil: 'networkidle' })
     await page.waitForLoadState('domcontentloaded')
-    await addCursorStyleAndScript(page)
 
     const setupActions: {
       key: keyof TestSetupConfig['global']
