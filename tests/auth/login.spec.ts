@@ -2,12 +2,15 @@ import { test } from '@playwright/test'
 import { LoginPage } from 'pages/auth/login-page'
 import { userData } from 'utils/test-data/auth/user-data'
 import { SurveyPage } from 'pages/home/survey-page'
+import { setupTestContext } from 'utils/test-context'
 
 test.describe('Login Page Tests', () => {
   let surveyPage: SurveyPage
   let loginPage: LoginPage
+  let locale: string
   test.beforeEach(async ({ page, baseURL }, testInfo) => {
-    const locale: string = testInfo.project.use?.locale ?? 'en'
+    const testContext = await setupTestContext(page, testInfo)
+    locale = testContext.locale
     loginPage = new LoginPage(page, locale)
     surveyPage = new SurveyPage(page, locale)
     await loginPage.goto(baseURL)
