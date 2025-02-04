@@ -127,4 +127,8 @@ export const APP_URLS = {
     },
     audience: '/bulk-mailing/audiences',
   },
+  myProfile: {
+    base: 'profile',
+    vacationAndAbsenceDays: '/profile/vacation-and-absence-days',
+  },
 }
