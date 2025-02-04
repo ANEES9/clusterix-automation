@@ -1,21 +1,18 @@
 import { test, expect } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
 import { AccountsPage } from 'pages/settings/user-and-permissions/accounts-page'
-import { skipSurveyHelper } from 'common/skip-survey-helper'
-import { skipProductTourHelper } from 'common/skip-product-tour-helper'
-import { skipTimerHelper } from 'common/skip-timer-helper'
+import { setupTestContext } from 'utils/test-context'
 
 test.describe('User and Permissions > Accounts Tests', () => {
   let accountsPage: AccountsPage
+  let locale: string
 
   test.beforeEach(async ({ page, baseURL }, testInfo) => {
-    const locale: string = testInfo.project.use?.locale ?? 'en'
     Allure.addAppOwner('Settings')
+    const testContext = await setupTestContext(page, testInfo)
+    locale = testContext.locale
     accountsPage = new AccountsPage(page, locale)
     await accountsPage.goto(baseURL)
-    await skipSurveyHelper(page, testInfo)
-    await skipProductTourHelper(page, testInfo)
-    await skipTimerHelper(page)
     await page.waitForLoadState('networkidle')
   })
 

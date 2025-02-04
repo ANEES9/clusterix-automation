@@ -4,13 +4,17 @@ import { Allure } from 'common/allure-helper'
 import { NotificationsPanelPage } from 'pages/notifications/notifications-panel-page'
 import { APP_NAMES } from 'constants/app-names'
 import { setupTestContext } from 'utils/test-context'
-test.describe('Container App Header Navigation Tests', () => {
+test.describe('Home Header Navigation Tests', () => {
   let homePage: HomePage
+  let locale: string
 
   test.beforeEach(async ({ page, baseURL }, testInfo) => {
-    Allure.addFeature('Navigation')
+    Allure.addFeature(' Header navigation')
     Allure.addAppOwner('Home')
-    const { locale } = await setupTestContext(page, testInfo)
+    Allure.addSeverity('critical')
+    Allure.addTag('smoke')
+    const testContext = await setupTestContext(page, testInfo)
+    locale = testContext.locale
     homePage = new HomePage(page, locale)
     await homePage.goto(baseURL)
   })
@@ -18,13 +22,7 @@ test.describe('Container App Header Navigation Tests', () => {
   test('Validate Notifications Panel Opens on Button Click', async ({
     page,
   }) => {
-    Allure.addFeature('Notifications')
-    Allure.addSeverity('critical')
-    Allure.addTag('smoke')
-    Allure.addDescription(
-      'Validate the Notifications panel opens correctly when header button is clicked'
-    )
-    const notificationsPanelPage = new NotificationsPanelPage(page)
+    const notificationsPanelPage = new NotificationsPanelPage(page, locale)
     await Allure.step('Open Notifications Panel', async () => {
       await homePage.openNotificationsPanel()
     })
@@ -34,8 +32,6 @@ test.describe('Container App Header Navigation Tests', () => {
   })
 
   test('Validate Calendar Navigation on Button Click', async () => {
-    Allure.addFeature('Calendar')
-    Allure.addSeverity('normal')
     await Allure.step('Navigate to Calendar Page', async () => {
       await homePage.navigateToCalendarFromHeader()
     })
@@ -45,8 +41,6 @@ test.describe('Container App Header Navigation Tests', () => {
   })
 
   test('Validate Time Tracking Navigation on Button Click', async () => {
-    Allure.addFeature('Time Tracking')
-    Allure.addSeverity('normal')
     await Allure.step('Navigate to Time Tracking Page', async () => {
       await homePage.navigateToTimeTrackingFromHeader()
     })
@@ -56,8 +50,6 @@ test.describe('Container App Header Navigation Tests', () => {
   })
 
   test('Validate Email Navigation on Button Click', async () => {
-    Allure.addFeature('Email')
-    Allure.addSeverity('normal')
     await Allure.step('Navigate to Email Page', async () => {
       await homePage.navigateToEmailFromHeader()
     })
@@ -67,27 +59,18 @@ test.describe('Container App Header Navigation Tests', () => {
   })
 
   test('Validate Live Chat Navigation on Button Click', async ({ context }) => {
-    Allure.addFeature('Live Chat')
-    Allure.addSeverity('minor')
-
     await Allure.step('Open Live Chat in New Tab and Validate', async () => {
-      await homePage.openLiveChatAndValidate(context)
+      await homePage.openLiveChatAndValidate(context, locale)
     })
   })
 
   test('Validate Profile Menu Opens on Avatar Click', async () => {
-    Allure.addFeature('Profile')
-    Allure.addSeverity('trivial')
-
     await Allure.step('Open Profile Dropdown Menu', async () => {
       await homePage.openProfileDropdown()
     })
   })
 
   test('Validate Profile Menu Username on Dropdown', async () => {
-    Allure.addFeature('Profile')
-    Allure.addSeverity('trivial')
-
     await Allure.step('Open Profile Dropdown Menu', async () => {
       await homePage.validateProfileDropdownUserName()
     })
