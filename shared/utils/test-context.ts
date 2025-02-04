@@ -26,8 +26,13 @@ function getConfigValue(
  * Applies test setup configurations dynamically.
  * @param page - Playwright page instance.
  * @param testInfo - Test metadata.
+ * @param targetPath - Optional specific path from APP_URLS.
  */
-export async function setupTestContext(page: Page, testInfo: TestInfo) {
+export async function setupTestContext(
+  page: Page,
+  testInfo: TestInfo,
+  targetPath?: string
+) {
   const testFile = testInfo.file ?? 'unknown.spec.ts'
   const testFolder = testFile.split('/').slice(-2, -1)[0] || 'default'
   const locale = testInfo.project?.use?.locale || 'en'
@@ -37,7 +42,9 @@ export async function setupTestContext(page: Page, testInfo: TestInfo) {
   await Allure.step(`Initializing test context`, async () => {
     if (!baseURL) throw new Error('Test Context: baseURL is undefined!')
 
-    await page.goto(baseURL, { waitUntil: 'networkidle' })
+    const finalURL = targetPath ? `${baseURL}${targetPath}` : baseURL
+
+    await page.goto(finalURL, { waitUntil: 'networkidle' })
     await page.waitForLoadState('domcontentloaded')
 
     const setupActions: {
