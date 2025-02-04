@@ -1,13 +1,11 @@
-import {
-  Page,
-  Locator,
-  expect,
-  LocatorScreenshotOptions,
-} from '@playwright/test'
+import { Page, Locator, expect } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
+import { getTranslations } from 'common/get-translations-helper'
 
 export class EmailPage {
   private page: Page
+  private translations: Record<string, any>
+
   private currentApp: Locator
   private email: Locator
   private newEmail: Locator
@@ -40,8 +38,9 @@ export class EmailPage {
   private switchBackToEmail!: Locator
   static readonly URL = '/email'
 
-  constructor(page: Page) {
+  constructor(page: Page, locale: string) {
     this.page = page
+    this.translations = getTranslations('email', locale)
     this.currentApp = page.locator('p.m5ZbRpDkQfW8BXDqdzmY')
     this.email = page.locator("//button[@title='Email']").first()
     this.newEmail = page.getByText('New email')
@@ -51,7 +50,9 @@ export class EmailPage {
     this.sendEmail = page.getByText('Send', { exact: true })
     this.emailSuccessfulToastMessage = page.getByText('Message has been sent')
     this.firstEmail = page.getByTestId('innomail-today-1')
-    this.topForwardEmail = page.locator('#thread-action-bar').getByText('Forward')
+    this.topForwardEmail = page
+      .locator('#thread-action-bar')
+      .getByText('Forward')
     this.settings = page.locator('.ca-flex > button').first()
     this.composeAndReply = page.getByRole('button', {
       name: 'Compose and Reply',
@@ -140,7 +141,7 @@ export class EmailPage {
     await Allure.step('Verify To Address field is visible', async () => {
       await expect(this.toAddress).toBeVisible()
     })
-  }  
+  }
 
   async fillAndEnterToAddress(toAddress: string) {
     await Allure.step('should fill to address and press enter', async () => {
@@ -230,11 +231,13 @@ export class EmailPage {
     })
   }
 
-
   async verifyComposeAndReply() {
-    await Allure.step('Verify Compose and Reply section is visible', async () => {
-      await expect(this.composeAndReply).toBeVisible()
-    })
+    await Allure.step(
+      'Verify Compose and Reply section is visible',
+      async () => {
+        await expect(this.composeAndReply).toBeVisible()
+      }
+    )
   }
 
   async navigateToComposeAndReply() {
@@ -255,7 +258,6 @@ export class EmailPage {
     })
   }
 
-
   async verifyAddSignatureButton() {
     await Allure.step('Verify Add Signature Field is visible', async () => {
       await expect(this.addSignature).toBeVisible()
@@ -269,9 +271,12 @@ export class EmailPage {
   }
 
   async verifyTitleFieldOfSignature() {
-    await Allure.step('Verify Title field is visible in Manage Signature Modal', async () => {
-      await expect(this.addSignatureTitle).toBeVisible()
-    })
+    await Allure.step(
+      'Verify Title field is visible in Manage Signature Modal',
+      async () => {
+        await expect(this.addSignatureTitle).toBeVisible()
+      }
+    )
   }
   async addTitleToSignature(title: string) {
     await Allure.step('should click and add title', async () => {
@@ -281,9 +286,12 @@ export class EmailPage {
   }
 
   async verifyBodyFieldOfSignature() {
-    await Allure.step('Verify Body field is visible in Manage Signature Modal', async () => {
-      await expect(this.addSignatureBody).toBeVisible()
-    })
+    await Allure.step(
+      'Verify Body field is visible in Manage Signature Modal',
+      async () => {
+        await expect(this.addSignatureBody).toBeVisible()
+      }
+    )
   }
 
   async addBodyToSignature(body: string) {
@@ -294,9 +302,12 @@ export class EmailPage {
   }
 
   async verifySaveButtonOfSignature() {
-    await Allure.step('Verify Save Button is visible in Manage Signature Modal', async () => {
-      await expect(this.saveSignature).toBeVisible()
-    })
+    await Allure.step(
+      'Verify Save Button is visible in Manage Signature Modal',
+      async () => {
+        await expect(this.saveSignature).toBeVisible()
+      }
+    )
   }
 
   async saveTheSignature() {
@@ -304,7 +315,6 @@ export class EmailPage {
       await this.saveSignature.click()
     })
   }
-
 
   async verifyEditSiganture() {
     await Allure.step('Verify Edit Signature Button is visible', async () => {
@@ -316,7 +326,7 @@ export class EmailPage {
       await this.editSignature.click()
     })
   }
-  
+
   async verifyNewSignatureIsPresent() {
     await Allure.step('Verify New Signature is visible', async () => {
       await expect(this.selectSignature).toBeVisible()
@@ -340,9 +350,12 @@ export class EmailPage {
   }
 
   async verifyTopReplyButton() {
-    await Allure.step('Verify Top Reply To Email button is visible', async () => {
-      await expect(this.topReplyEmail).toBeVisible()
-    })
+    await Allure.step(
+      'Verify Top Reply To Email button is visible',
+      async () => {
+        await expect(this.topReplyEmail).toBeVisible()
+      }
+    )
   }
 
   async clickOnTopReplyButton() {
@@ -398,7 +411,6 @@ export class EmailPage {
       await this.saveFolder.click()
     })
   }
-  
 
   async verifyFolderSuccessfulToastMessage() {
     await Allure.step(
@@ -430,9 +442,12 @@ export class EmailPage {
   }
 
   async verifyEmailIDIsPresent() {
-    await Allure.step('Verify Selected Email ID in dropdown is visible', async () => {
-      await expect(this.switchBetweenEmail).toBeVisible()
-    })
+    await Allure.step(
+      'Verify Selected Email ID in dropdown is visible',
+      async () => {
+        await expect(this.switchBetweenEmail).toBeVisible()
+      }
+    )
   }
 
   async clickOnSwitchBetweenEmail() {
@@ -442,9 +457,12 @@ export class EmailPage {
   }
 
   async verifyOrginalEmailIDIsPresent() {
-    await Allure.step('Verify Original Email ID in dropdown is visible', async () => {
-      await expect(this.switchBackToEmail).toBeVisible()
-    })
+    await Allure.step(
+      'Verify Original Email ID in dropdown is visible',
+      async () => {
+        await expect(this.switchBackToEmail).toBeVisible()
+      }
+    )
   }
   async clickOnSwitchBackToEmail() {
     await Allure.step('click on switch back to email', async () => {

@@ -18,7 +18,7 @@ test.describe('Verify Bulk Mailing Functionalities', () => {
     locators = new bulkMailingPage(page)
     await closeProductTour(page)
     await page.waitForLoadState('networkidle')
-    await skipTimerHelper(page)
+    await skipTimerHelper(page, locale)
     await addCursorStyleAndScript(page)
     await page.waitForLoadState('domcontentloaded')
   })

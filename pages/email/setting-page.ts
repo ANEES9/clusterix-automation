@@ -1,13 +1,11 @@
-import {
-  Page,
-  Locator,
-  expect,
-  LocatorScreenshotOptions,
-} from '@playwright/test'
+import { Page, Locator, expect } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
+import { getTranslations } from 'common/get-translations-helper'
 
 export class Setting {
   private page: Page
+  private translations: Record<string, any>
+
   private generalSettingButton: Locator
   private generalTab: Locator
   private lastSelectedSignature: Locator
@@ -81,7 +79,7 @@ export class Setting {
   private noDelayOption: Locator
   private automaticReplyMailHeading: Locator
   private subjectField: Locator
-  
+
   private textBox: Locator
   private saveButton: Locator
 
@@ -100,8 +98,10 @@ export class Setting {
   private moveInvitationEmailDropdown: Locator
   private moveInvitationEmailSelectOption: Locator
 
-  constructor(page: Page) {
+  constructor(page: Page, locale: string) {
     this.page = page
+    this.translations = getTranslations('email', locale)
+
     this.generalSettingButton = page.getByRole('button', {
       name: 'General Settings',
     })
@@ -201,7 +201,9 @@ export class Setting {
       .first()
 
     //Automatic Reply Section
-    this.automaticRepliesButton = page.getByRole('button', { name: 'Automatic Reply' })
+    this.automaticRepliesButton = page.getByRole('button', {
+      name: 'Automatic Reply',
+    })
     this.automaticRepliesHeading = page.getByText('Automatic replies').first()
     this.automaticRepliesSubHeading = page.getByText('Automatic replies').nth(1)
     this.useAutomaticRepliesText = page.getByText(
@@ -219,7 +221,7 @@ export class Setting {
       name: 'Automatic Reply Mail',
     })
     this.subjectField = page.getByText('Subject')
-    
+
     this.textBox = page.getByRole('textbox').nth(4)
     this.saveButton = page.getByRole('button', { name: 'Save' })
 
@@ -849,8 +851,6 @@ export class Setting {
       await expect(this.subjectField).toBeVisible()
     })
   }
-
-  
 
   async verifyTextBox() {
     await Allure.step('Verify text box is visible', async () => {

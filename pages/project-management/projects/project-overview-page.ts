@@ -6,8 +6,8 @@ import { addProjectData } from 'utils/test-data/project-management/add-project-d
 
 export class ProjectOverview {
   private page: Page
-
   private translations: Record<string, any>
+
   private tableProject: Locator
   private projectOverviewMain: Locator
   private editButton: Locator

@@ -1,22 +1,27 @@
-import { Page, Locator, expect } from '@playwright/test'
+import { Page, Locator } from '@playwright/test'
 import { VacationAbsenceDaysPage } from '../my-profile/vacation-absence-days.page'
+import { getTranslations } from 'common/get-translations-helper'
 
 export class EmployeeManagementPage {
   readonly page: Page
+  private translations: Record<string, any>
   // Locators
   private holidaysButtonLocator: Locator
   private calendarButtonLocator: Locator
   private deleteButtonLocator: Locator
   private saveButtonLocator: Locator
 
-  constructor(page: Page) {
+  constructor(page: Page, locale: string) {
     this.page = page
+    this.translations = getTranslations('hr', locale)
 
     this.holidaysButtonLocator = this.page
       .locator('div')
       .filter({ hasText: /^Holidays$/ })
       .first()
-    this.calendarButtonLocator = page.getByRole('button', { name: 'Calendar' }).nth(2)
+    this.calendarButtonLocator = page
+      .getByRole('button', { name: 'Calendar' })
+      .nth(2)
     this.deleteButtonLocator = page.getByRole('button', { name: 'Delete' })
     this.saveButtonLocator = page.getByRole('button', { name: 'Save' })
   }
@@ -32,14 +37,16 @@ export class EmployeeManagementPage {
     await this.holidaysButtonLocator.click()
     await this.calendarButtonLocator.click()
     await this.page.waitForTimeout(3000)
-    const validDay = await vacationAbsenceDaysPage.getValidVacationDay(); // Get the first valid day
-  
+    const validDay = await vacationAbsenceDaysPage.getValidVacationDay() // Get the first valid day
+
     console.log(validDay)
 
     try {
-      
-      const vacationDay = this.page.locator('div').filter({ hasText: new RegExp(`^${validDay}$`) }).nth(1);
-      
+      const vacationDay = this.page
+        .locator('div')
+        .filter({ hasText: new RegExp(`^${validDay}$`) })
+        .nth(1)
+
       /*this.page.locator(
         `[id^="headlessui-dialog-panel-\\:"] div.o8m2LEiBiHsAAiJXPeHm`
       ).filter({ hasText: new RegExp(`^${9}$`) }).nth(3) */

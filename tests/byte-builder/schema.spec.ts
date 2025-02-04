@@ -1,11 +1,11 @@
 import { test, TestInfo } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
-import { BytebuilderPage } from 'pages/byte-builder/byte-builder-page'
+import { ByteBuilderPage } from 'pages/byte-builder/byte-builder-page'
 import { schemaTestData } from 'utils/test-data/byte-builder/schema-data'
 import { setupTestContext } from 'utils/test-context'
 
 test.describe('Byte Builder > Schema Tests', () => {
-  let byteBuilderPage: BytebuilderPage
+  let byteBuilderPage: ByteBuilderPage
   let locale: string
 
   test.beforeEach(async ({ page, baseURL }, testInfo: TestInfo) => {
@@ -14,7 +14,7 @@ test.describe('Byte Builder > Schema Tests', () => {
     Allure.addTag('smoke')
     const testContext = await setupTestContext(page, testInfo)
     locale = testContext.locale
-    byteBuilderPage = new BytebuilderPage(page, locale)
+    byteBuilderPage = new ByteBuilderPage(page, locale)
     await byteBuilderPage.goto(baseURL)
     await page.waitForLoadState('networkidle')
   })

@@ -13,10 +13,11 @@ test.describe('Home Header Navigation Tests', () => {
     Allure.addAppOwner('Home')
     Allure.addSeverity('critical')
     Allure.addTag('smoke')
+    await homePage.goto(baseURL)
     const testContext = await setupTestContext(page, testInfo)
     locale = testContext.locale
     homePage = new HomePage(page, locale)
-    await homePage.goto(baseURL)
+    await page.waitForLoadState('networkidle')
   })
 
   test('Validate Notifications Panel Opens on Button Click', async ({
