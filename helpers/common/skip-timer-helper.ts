@@ -13,7 +13,7 @@ export async function skipTimerHelper(
 
     if (
       await startTimerModal.continueWithoutChangingButton
-        .waitFor({ state: 'attached', timeout: 5000 })
+        .waitFor({ state: 'attached', timeout: 1500 })
         .then(() => true)
         .catch(() => false)
     ) {

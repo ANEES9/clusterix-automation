@@ -14,7 +14,7 @@ export async function skipSurveyHelper(
 
     // Check if the role question is attached to the DOM
     const isRoleQuestionAttached = await surveyPage.roleQuestion
-      .waitFor({ state: 'attached', timeout: 10000 })
+      .waitFor({ state: 'attached', timeout: 1500 })
       .then(() => true)
       .catch(() => false)
 
