@@ -2,14 +2,12 @@ import { Page, Locator, expect } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
 import { getTranslations } from 'common/get-translations-helper'
 export class ProductTourPage {
-  private page: Page
   translations: Record<string, any>
 
   private titleText: Locator
   public skipTour: Locator
 
   constructor(page: Page, locale: string) {
-    this.page = page
     this.translations = getTranslations('home', locale)
 
     this.titleText = page.locator(
