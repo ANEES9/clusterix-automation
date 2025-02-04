@@ -33,23 +33,11 @@ export const testSetupConfig: TestSetupConfig = {
     skipTutorial: true,
   },
   folders: {
-    accounting: {
-      skipSurvey: true,
-      skipTimer: true,
-      skipProductTour: true,
-      skipTutorial: true,
-    },
     auth: {
       skipSurvey: false,
       skipTimer: false,
       skipProductTour: false,
       skipTutorial: false,
-    },
-    home: {
-      skipSurvey: true,
-      skipTimer: true,
-      skipProductTour: true,
-      skipTutorial: true,
     },
   },
   files: {
