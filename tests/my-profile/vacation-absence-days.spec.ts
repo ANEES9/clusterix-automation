@@ -1,38 +1,28 @@
 import { test } from '@playwright/test'
-import { skipTimerHelper } from 'common/skip-timer-helper'
-import { addCursorStyleAndScript } from 'common/cursor-helper'
 import { EmployeeManagementPage } from 'pages/hr/employee-management-page'
 import { Allure } from 'common/allure-helper'
 import { VacationAbsenceDaysPage } from 'pages/my-profile/vacation-absence-days.page'
-import { skipSurveyHelper } from 'common/skip-survey-helper'
-import { skipProductTourHelper } from 'common/skip-product-tour-helper'
+import { setupTestContext } from 'utils/test-context'
 
 let employeeId: number | null = null
 
 test.describe('Regression Test Suite', () => {
+  let vacationAbsenceDaysPage: VacationAbsenceDaysPage
+  let locale: string
   test.beforeEach(async ({ page, baseURL }, testInfo) => {
-    console.log('Base URL:', baseURL)
-    console.log(
-      'Navigating to:',
-      `${baseURL}/profile/vacation-and-absence-days`
-    )
-
-    await page.goto(`${baseURL}/profile/vacation-and-absence-days`)
-
-    await skipSurveyHelper(page, testInfo)
-    await skipProductTourHelper(page, testInfo)
-    await addCursorStyleAndScript(page)
+    await vacationAbsenceDaysPage.goto(baseURL)
+    const testContext = await setupTestContext(page, testInfo)
+    locale = testContext.locale
+    vacationAbsenceDaysPage = new VacationAbsenceDaysPage(page, locale)
     await page.waitForTimeout(4000)
-    await skipTimerHelper(page)
     await page.waitForLoadState('networkidle')
   })
 
-  test('TC01: Verify selecting available filter', async ({ page }) => {
+  test('TC01: Verify selecting available filter', async () => {
     Allure.addDescription('Verify remaining number of Leaves')
     Allure.addTag('regression') // Tag the test for categorization in reports
     Allure.addSeverity('normal') // Set severity level for the test
 
-    const vacationAbsenceDaysPage = new VacationAbsenceDaysPage(page)
     await Allure.step('Step 1: Choose all the filters', async () => {
       await vacationAbsenceDaysPage.VerifyAllStatusesFilter()
     })
@@ -43,7 +33,7 @@ test.describe('Regression Test Suite', () => {
     Allure.addTag('regression')
     Allure.addSeverity('normal')
 
-    const vacationAbsenceDaysPage = new VacationAbsenceDaysPage(page)
+    const vacationAbsenceDaysPage = new VacationAbsenceDaysPage(page, locale)
 
     await Allure.step('Step 1: Open New Request section', async () => {
       await vacationAbsenceDaysPage.openNewRequest()
@@ -61,7 +51,7 @@ test.describe('Regression Test Suite', () => {
     Allure.addTag('regression') // Tag the test for categorization in reports
     Allure.addSeverity('normal') // Set severity level for the test
 
-    const vacationAbsenceDaysPage = new VacationAbsenceDaysPage(page)
+    const vacationAbsenceDaysPage = new VacationAbsenceDaysPage(page, locale)
 
     await Allure.step('Step 1: Open New Request section', async () => {
       await vacationAbsenceDaysPage.openNewRequest()
@@ -77,14 +67,10 @@ test.describe('Regression Test Suite', () => {
     })
   })
 
-  test('TC04: Verify remaining number of Leaves in Sick Days section', async ({
-    page,
-  }) => {
+  test('TC04: Verify remaining number of Leaves in Sick Days section', async () => {
     Allure.addDescription('Verify remaining number of Leaves')
     Allure.addTag('regression') // Tag the test for categorization in reports
     Allure.addSeverity('normal') // Set severity level for the test
-
-    const vacationAbsenceDaysPage = new VacationAbsenceDaysPage(page)
 
     await Allure.step('Step 1: Open New Request section', async () => {
       await vacationAbsenceDaysPage.openNewRequest()
@@ -110,8 +96,6 @@ test.describe('Regression Test Suite', () => {
     Allure.addTag('regression') // Tag the test for categorization in reports
     Allure.addSeverity('normal') // Set severity level for the test
 
-    const vacationAbsenceDaysPage = new VacationAbsenceDaysPage(page)
-
     await Allure.step('Step 1: Open New Request section', async () => {
       await vacationAbsenceDaysPage.openNewRequest()
     })
@@ -136,7 +120,7 @@ test.describe('Regression Test Suite', () => {
     Allure.addTag('regression')
     Allure.addSeverity('critical')
 
-    const vacationAbsenceDaysPage = new VacationAbsenceDaysPage(page)
+    const vacationAbsenceDaysPage = new VacationAbsenceDaysPage(page, locale)
     const employeeManagementPage = new EmployeeManagementPage(page)
 
     await Allure.step('Step 1: Open New Request section', async () => {
@@ -205,7 +189,7 @@ test.describe('Regression Test Suite', () => {
     Allure.addTag('regression')
     Allure.addSeverity('critical')
 
-    const vacationAbsenceDaysPage = new VacationAbsenceDaysPage(page)
+    const vacationAbsenceDaysPage = new VacationAbsenceDaysPage(page, locale)
     const employeeManagementPage = new EmployeeManagementPage(page)
 
     await Allure.step('Step 1: Open New Request section', async () => {
@@ -276,7 +260,7 @@ test.describe('Regression Test Suite', () => {
     Allure.addTag('regression')
     Allure.addSeverity('critical')
 
-    const vacationAbsenceDaysPage = new VacationAbsenceDaysPage(page)
+    const vacationAbsenceDaysPage = new VacationAbsenceDaysPage(page, locale)
     const employeeManagementPage = new EmployeeManagementPage(page)
 
     await Allure.step('Step 1: Open New Request section', async () => {
@@ -336,7 +320,7 @@ test.describe('Regression Test Suite', () => {
     Allure.addTag('regression')
     Allure.addSeverity('critical')
 
-    const vacationAbsenceDaysPage = new VacationAbsenceDaysPage(page)
+    const vacationAbsenceDaysPage = new VacationAbsenceDaysPage(page, locale)
     const employeeManagementPage = new EmployeeManagementPage(page)
 
     await Allure.step('Step 1: Open New Request section', async () => {
@@ -400,7 +384,6 @@ test.describe('Regression Test Suite', () => {
     Allure.addTag('regression')
     Allure.addSeverity('critical')
 
-    const vacationAbsenceDaysPage = new VacationAbsenceDaysPage(page)
     const employeeManagementPage = new EmployeeManagementPage(page)
 
     await Allure.step('Step 1: Open New Request section', async () => {
