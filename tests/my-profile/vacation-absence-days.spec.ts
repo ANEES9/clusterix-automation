@@ -8,17 +8,19 @@ let employeeId: number | null = null
 
 test.describe('Regression Test Suite', () => {
   let vacationAbsenceDaysPage: VacationAbsenceDaysPage
+  let employeeManagementPage: EmployeeManagementPage
   let locale: string
   test.beforeEach(async ({ page, baseURL }, testInfo) => {
     await vacationAbsenceDaysPage.goto(baseURL)
     const testContext = await setupTestContext(page, testInfo)
     locale = testContext.locale
     vacationAbsenceDaysPage = new VacationAbsenceDaysPage(page, locale)
+    employeeManagementPage = new EmployeeManagementPage(page, locale)
     await page.waitForTimeout(4000)
     await page.waitForLoadState('networkidle')
   })
 
-  test('TC01: Verify selecting available filter', async () => {
+  test('Verify selecting available filter', async () => {
     Allure.addDescription('Verify remaining number of Leaves')
     Allure.addTag('regression') // Tag the test for categorization in reports
     Allure.addSeverity('normal') // Set severity level for the test
@@ -28,7 +30,7 @@ test.describe('Regression Test Suite', () => {
     })
   })
 
-  test('TC02: Verify All Available Absence Types', async ({ page }) => {
+  test('Verify All Available Absence Types', async ({ page }) => {
     Allure.addDescription('Verify all available absence types in the system')
     Allure.addTag('regression')
     Allure.addSeverity('normal')
@@ -44,7 +46,7 @@ test.describe('Regression Test Suite', () => {
     })
   })
 
-  test('TC03: Verify remaining number of Leaves in Vacation Days section', async ({
+  test('Verify remaining number of Leaves in Vacation Days section', async ({
     page,
   }) => {
     Allure.addDescription('Verify remaining number of Leaves')
@@ -67,7 +69,7 @@ test.describe('Regression Test Suite', () => {
     })
   })
 
-  test('TC04: Verify remaining number of Leaves in Sick Days section', async () => {
+  test('Verify remaining number of Leaves in Sick Days section', async () => {
     Allure.addDescription('Verify remaining number of Leaves')
     Allure.addTag('regression') // Tag the test for categorization in reports
     Allure.addSeverity('normal') // Set severity level for the test
@@ -89,9 +91,7 @@ test.describe('Regression Test Suite', () => {
     )
   })
 
-  test('TC05: Verify selected days text in the absence modal', async ({
-    page,
-  }) => {
+  test('Verify selected days text in the absence modal', async ({ page }) => {
     Allure.addDescription('Verify remaining number of Leaves')
     Allure.addTag('regression') // Tag the test for categorization in reports
     Allure.addSeverity('normal') // Set severity level for the test
@@ -115,13 +115,12 @@ test.describe('Regression Test Suite', () => {
     )
   })
 
-  test('TC06: Apply Vacation Days', async ({ page }) => {
+  test('Apply Vacation Days', async ({ page }) => {
     Allure.addDescription('Test the application of vacation days in the system')
     Allure.addTag('regression')
     Allure.addSeverity('critical')
 
-    const vacationAbsenceDaysPage = new VacationAbsenceDaysPage(page, locale)
-    const employeeManagementPage = new EmployeeManagementPage(page)
+    const employeeManagementPage = new EmployeeManagementPage(page, locale)
 
     await Allure.step('Step 1: Open New Request section', async () => {
       await vacationAbsenceDaysPage.openNewRequest()
@@ -182,15 +181,14 @@ test.describe('Regression Test Suite', () => {
     )
   })
 
-  test('TC07: Apply Half Day Vacation', async ({ page }) => {
+  test('Apply Half Day Vacation', async ({ page }) => {
     Allure.addDescription(
       'Test the application of vacation days in the system.'
     )
     Allure.addTag('regression')
     Allure.addSeverity('critical')
 
-    const vacationAbsenceDaysPage = new VacationAbsenceDaysPage(page, locale)
-    const employeeManagementPage = new EmployeeManagementPage(page)
+    const employeeManagementPage = new EmployeeManagementPage(page, locale)
 
     await Allure.step('Step 1: Open New Request section', async () => {
       await vacationAbsenceDaysPage.openNewRequest()
@@ -253,15 +251,12 @@ test.describe('Regression Test Suite', () => {
     )
   })
 
-  test('TC08: Apply Sick Day Leave', async ({ page }) => {
+  test('Apply Sick Day Leave', async ({ page }) => {
     Allure.addDescription(
       'Test the application of vacation days in the system.'
     )
     Allure.addTag('regression')
     Allure.addSeverity('critical')
-
-    const vacationAbsenceDaysPage = new VacationAbsenceDaysPage(page, locale)
-    const employeeManagementPage = new EmployeeManagementPage(page)
 
     await Allure.step('Step 1: Open New Request section', async () => {
       await vacationAbsenceDaysPage.openNewRequest()
@@ -313,15 +308,12 @@ test.describe('Regression Test Suite', () => {
     })
   })
 
-  test('TC09: Apply Home Office Days', async ({ page }) => {
+  test('Apply Home Office Days', async ({ page }) => {
     Allure.addDescription(
       'Test the application of vacation days in the system.'
     )
     Allure.addTag('regression')
     Allure.addSeverity('critical')
-
-    const vacationAbsenceDaysPage = new VacationAbsenceDaysPage(page, locale)
-    const employeeManagementPage = new EmployeeManagementPage(page)
 
     await Allure.step('Step 1: Open New Request section', async () => {
       await vacationAbsenceDaysPage.openNewRequest()
@@ -379,12 +371,10 @@ test.describe('Regression Test Suite', () => {
     )
   })
 
-  test('TC10: Apply Other Vacation Days', async ({ page }) => {
+  test('Apply Other Vacation Days', async ({ page }) => {
     Allure.addDescription('Test the application of vacation days in the system')
     Allure.addTag('regression')
     Allure.addSeverity('critical')
-
-    const employeeManagementPage = new EmployeeManagementPage(page)
 
     await Allure.step('Step 1: Open New Request section', async () => {
       await vacationAbsenceDaysPage.openNewRequest()

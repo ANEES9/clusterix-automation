@@ -16,7 +16,7 @@ test.describe('Dashboard Tab Tests', () => {
     locale = testContext.locale
     dashboardPage = new DashboardPage(page, locale)
     await dashboardPage.goto(baseURL)
-    await page.waitForLoadState('networkidle')
+    await page.waitForLoadState('domcontentloaded')
   })
 
   test('Validate Dashboard navigation from sidebar', async () => {

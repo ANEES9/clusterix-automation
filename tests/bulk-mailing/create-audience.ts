@@ -1,25 +1,18 @@
 import { test, expect } from '@playwright/test'
-import { closeProductTour } from 'common/product-tour-helper.js'
-import { skipTimerHelper } from 'common/skip-timer-helper'
-import { addCursorStyleAndScript } from '../../helpers/common/cursor-helper.js'
-import { bulkMailingPage } from 'pages/bulk-mailing/bulk-mailing-page.js'
-import { skipSurvey } from 'common/skip-survey.js'
+import { BulkMailingPage } from 'pages/bulk-mailing/bulk-mailing-page.js'
+import { setupTestContext } from 'utils/test-context'
 
-//  import { Allure } from '../../helpers/common/allure-helper.js';
-const campaignname = 'Demo Campaign'
-const subject = 'Check Bulk Mailing'
-
-let locators: bulkMailingPage
 test.describe('Verify Bulk Mailing Functionalities', () => {
+  let bulkMailingPage: BulkMailingPage
+  let locale: string
+
   test.beforeEach(async ({ page, baseURL }, testInfo) => {
-    // await Allure.step('Navigate to Base URL and Close Popups', async () => {
+    const testContext = await setupTestContext(page, testInfo)
+    locale = testContext.locale
+    bulkMailingPage = await setupTestContext(page, testInfo)
+    await bulkMailingPage.goto()
     await page.goto(baseURL!)
-    await skipSurvey(page, testInfo)
-    locators = new bulkMailingPage(page)
-    await closeProductTour(page)
     await page.waitForLoadState('networkidle')
-    await skipTimerHelper(page)
-    await addCursorStyleAndScript(page)
     await page.waitForLoadState('domcontentloaded')
   })
 

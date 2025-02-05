@@ -1,7 +1,8 @@
 import { Page, Locator } from '@playwright/test'
 import { getTranslations } from 'common/get-translations-helper'
+import { APP_URLS } from 'constants/app-urls'
 
-export class bulkMailingPage {
+export class BulkMailingPage {
   private page: Page
   private translations: Record<string, any>
 
@@ -330,5 +331,10 @@ export class bulkMailingPage {
     this.emailSelect = this.page.locator('.email-select')
     this.formTextInput = this.page.locator('.form-text-input')
     this.audienceTitle = this.page.locator('input[name="name"]')
+  }
+
+  async goto(baseURL: string | undefined) {
+    if (!baseURL) throw new Error('Base URL is not defined')
+    await this.page.goto(`${baseURL}${APP_URLS.bulkMailing.base}`)
   }
 }
