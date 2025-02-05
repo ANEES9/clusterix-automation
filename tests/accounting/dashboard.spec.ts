@@ -8,7 +8,6 @@ test.describe('Dashboard Tab Tests', () => {
   let locale: string
 
   test.beforeEach(async ({ page, baseURL }, testInfo) => {
-    Allure.addFeature(' Sidebar navigation')
     Allure.addAppOwner('Accounting')
     Allure.addSeverity('critical')
     Allure.addTag('smoke')

@@ -14,6 +14,7 @@ import { Allure } from 'common/allure-helper'
 export class DashboardPage {
   private page: Page
   private translations: Record<string, any>
+
   private bankAccountsPage: BankAccountsPage
   private paymentTransactionsPage: PaymentTransactionsPage
   private chartOfAccountsPage: ChartOfAccountsPage
