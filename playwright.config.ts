@@ -36,8 +36,8 @@ export default defineConfig({
 function generateProjects() {
   const browsers = [
     { name: 'Chromium', device: devices['Desktop Chrome'] },
-    { name: 'Firefox', device: devices['Desktop Firefox'] },
-    { name: 'WebKit', device: devices['Desktop Safari'] },
+    //{ name: 'Firefox', device: devices['Desktop Firefox'] },
+    //{ name: 'WebKit', device: devices['Desktop Safari'] },
   ]
 
   const projects: any[] = []
