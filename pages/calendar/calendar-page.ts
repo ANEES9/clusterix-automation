@@ -88,7 +88,6 @@ export class CalendarPage {
 
   async goto(baseURL: string | undefined) {
     await Allure.step('Navigate to Calendar URL', async () => {
-      //await this.page.goto(`${baseURL}${CalendarPage.URL}`)
       await this.page.goto(`${baseURL}${APP_URLS.calendar.base}`)
     })
   }

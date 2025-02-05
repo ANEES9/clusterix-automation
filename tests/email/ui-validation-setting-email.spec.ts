@@ -4,9 +4,8 @@ import * as dotenv from 'dotenv'
 import { addCursorStyleAndScript } from 'common/cursor-helper'
 import { skipSurveyHelper } from 'common/skip-survey-helper'
 import { skipProductTourHelper } from 'common/skip-product-tour-helper'
-import { closeTimerPopUp } from 'common/timer-helper'
+import { skipTimerHelper } from 'common/skip-timer-helper'
 import { EmailPage, Setting } from 'pages/email'
-
 
 const env = process.env.NODE_ENV || 'production'
 dotenv.config({ path: `.env.${env}` })
@@ -16,13 +15,13 @@ test.describe('Email Setting UI Validation', () => {
     await Allure.step(
       'Navigate to Base URL, Close Popups and navigate to Email application',
       async () => {
-        const emailPage = new EmailPage(page)
+        const emailPage = new EmailPage(page, 'en')
         await page.goto(baseURL!)
         await addCursorStyleAndScript(page)
         await skipSurveyHelper(page, testInfo)
         await skipProductTourHelper(page, testInfo)
         await page.waitForTimeout(4000)
-        await closeTimerPopUp(page)
+        await skipTimerHelper(page, testInfo)
         await page.waitForLoadState('networkidle')
 
         //Navigateion to Email Application
@@ -35,8 +34,8 @@ test.describe('Email Setting UI Validation', () => {
   })
 
   test('General Setting section UI Validation', async ({ page }) => {
-    const emailSettingPage = new Setting(page)
-    const emailPage = new EmailPage(page)
+    const emailSettingPage = new Setting(page, 'en')
+    const emailPage = new EmailPage(page, 'en')
     Allure.addSeverity('normal')
     Allure.addTag('smoke')
     Allure.addDescription(
@@ -45,7 +44,7 @@ test.describe('Email Setting UI Validation', () => {
     await Allure.step('Step 1: Verify and Click on Settings', async () => {
       await emailPage.verifySettingButton()
       await emailPage.clickOnSettings()
-      await Allure.addAttachment(
+      Allure.addAttachment(
         'Setting report',
         'Setting is visiable and able to click. Navigate to Settings page'
       )
@@ -55,7 +54,7 @@ test.describe('Email Setting UI Validation', () => {
       async () => {
         await emailSettingPage.verifyGeneralSettingButton()
         await emailSettingPage.clickGeneralSettingButton()
-        await Allure.addAttachment(
+        Allure.addAttachment(
           'General Setting report',
           'General Setting is visiable and able to click. Navigate to General Settings page'
         )
@@ -218,7 +217,7 @@ test.describe('Email Setting UI Validation', () => {
         await emailSettingPage.verifyForwardMessageShift()
         await emailSettingPage.verifySendEmailCtrlEnter()
         await emailSettingPage.verifyDeleteMessage()
-        await Allure.addAttachment(
+        Allure.addAttachment(
           'Keyboard Shortcuts section report',
           'Keyboard Shortcuts section is visiable'
         )
@@ -229,8 +228,8 @@ test.describe('Email Setting UI Validation', () => {
   test('Compose and Reply Setting section page UI Validation', async ({
     page,
   }) => {
-    const emailSettingPage = new Setting(page)
-    const emailPage = new EmailPage(page)
+    const emailSettingPage = new Setting(page, 'en')
+    const emailPage = new EmailPage(page, 'en')
     Allure.addSeverity('normal')
     Allure.addTag('smoke')
     Allure.addDescription(
@@ -310,10 +309,7 @@ test.describe('Email Setting UI Validation', () => {
         }
       )
       await emailSettingPage.verifySetYourTemplates()
-      await Allure.addAttachment(
-        'Templates Tab report',
-        'Templates Tab is visiable'
-      )
+      Allure.addAttachment('Templates Tab report', 'Templates Tab is visiable')
     })
     await Allure.step('5: Verify Delay Sending Emails', async () => {
       await emailSettingPage.verifyDelaySendingEmails()
@@ -322,8 +318,8 @@ test.describe('Email Setting UI Validation', () => {
   })
 
   test('AI Helper section UI Validation', async ({ page }) => {
-    const emailSettingPage = new Setting(page)
-    const emailPage = new EmailPage(page)
+    const emailSettingPage = new Setting(page, 'en')
+    const emailPage = new EmailPage(page, 'en')
     Allure.addSeverity('normal')
     Allure.addTag('smoke')
     Allure.addDescription(
@@ -388,8 +384,8 @@ test.describe('Email Setting UI Validation', () => {
   })
 
   test('Automation Reply section UI Validation', async ({ page }) => {
-    const emailSettingPage = new Setting(page)
-    const emailPage = new EmailPage(page)
+    const emailSettingPage = new Setting(page, 'en')
+    const emailPage = new EmailPage(page, 'en')
     Allure.addSeverity('normal')
     Allure.addTag('smoke')
     Allure.addDescription(
@@ -509,8 +505,6 @@ test.describe('Email Setting UI Validation', () => {
       )
     })
 
-    
-
     await Allure.step('Step 13: Verify Text Box', async () => {
       await emailSettingPage.verifyTextBox()
       await Allure.addAttachment('Text Box Verification', 'Text box is visible')
@@ -526,8 +520,8 @@ test.describe('Email Setting UI Validation', () => {
   })
 
   test('Automatic Action section UI Validation', async ({ page }) => {
-    const emailSettingPage = new Setting(page)
-    const emailPage = new EmailPage(page)
+    const emailSettingPage = new Setting(page, 'en')
+    const emailPage = new EmailPage(page, 'en')
     Allure.addSeverity('normal')
     Allure.addTag('smoke')
     Allure.addDescription(

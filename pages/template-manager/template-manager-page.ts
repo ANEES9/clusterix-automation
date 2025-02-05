@@ -1,7 +1,8 @@
 import { Page, Locator } from '@playwright/test'
 import { getTranslations } from 'common/get-translations-helper'
+import { APP_URLS } from 'constants/app-urls'
 
-export class templateManagerPage {
+export class TemplateManagerPage {
   private page: Page
   translations: Record<string, any>
 
@@ -71,5 +72,14 @@ export class templateManagerPage {
       '.Sidebar-module_collapseButton__1NSyf'
     )
     this.searchField = this.page.getByPlaceholder('Search by template')
+  }
+
+  /**
+   * Navigate to the invoices.
+   * @param baseURL - The base URL of the application.
+   */
+  async goto(baseURL: string | undefined) {
+    if (!baseURL) throw new Error('Base URL is not defined')
+    await this.page.goto(`${baseURL}${APP_URLS.templateManager.base}`)
   }
 }

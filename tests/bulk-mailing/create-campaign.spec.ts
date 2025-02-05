@@ -95,7 +95,7 @@ test.describe('Verify Bulk Mailing Functionalities', () => {
     }
   })
 
-  test.only('Create Audience Bulk Mailing File Upload', async ({ page }) => {
+  test('Create Audience Bulk Mailing File Upload', async ({ page }) => {
     await locators.bulkMailing.click()
     await locators.audienceButton.click()
     await locators.addNewAudience.click()

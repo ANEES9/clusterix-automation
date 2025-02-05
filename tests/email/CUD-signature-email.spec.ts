@@ -4,7 +4,7 @@ import * as dotenv from 'dotenv'
 import { addCursorStyleAndScript } from 'common/cursor-helper'
 import { skipSurveyHelper } from 'common/skip-survey-helper'
 import { skipProductTourHelper } from 'common/skip-product-tour-helper'
-import { closeTimerPopUp } from 'common/timer-helper'
+import { skipTimerHelper } from 'common/skip-timer-helper'
 import { EmailPage } from 'pages/email'
 import { generateRandomFileName } from 'common/random-data-generator'
 import { FetchRemoteData } from './helpers/email-request'
@@ -19,13 +19,13 @@ test.describe('Validation of create, update and delete opertaion signature in em
     await Allure.step(
       'Navigate to Base URL, Close Popups and navigate to Email application',
       async () => {
-        const emailPage = new EmailPage(page)
+        const emailPage = new EmailPage(page, 'en')
         await page.goto(baseURL!)
         await addCursorStyleAndScript(page)
         await skipSurveyHelper(page, testInfo)
         await skipProductTourHelper(page, testInfo)
         await page.waitForTimeout(4000)
-        await closeTimerPopUp(page)
+        await skipTimerHelper(page, testInfo)
         await page.waitForLoadState('networkidle')
 
         //Navigateion to Email Application
@@ -38,7 +38,7 @@ test.describe('Validation of create, update and delete opertaion signature in em
   })
 
   test('create a new signature', async ({ page }) => {
-    const emailPage = new EmailPage(page)
+    const emailPage = new EmailPage(page, 'en')
     Allure.addSeverity('normal')
     Allure.addTag('smoke')
     Allure.addDescription(
@@ -114,7 +114,7 @@ test.describe('Validation of create, update and delete opertaion signature in em
   })
 
   test('update a signature', async ({ page }) => {
-    const emailPage = new EmailPage(page)
+    const emailPage = new EmailPage(page, 'en')
     Allure.addSeverity('normal')
     Allure.addTag('smoke')
     Allure.addDescription(
@@ -253,7 +253,7 @@ test.describe('Validation of create, update and delete opertaion signature in em
   })
 
   test('delete a signature', async ({ page }) => {
-    const emailPage = new EmailPage(page)
+    const emailPage = new EmailPage(page, 'en')
     Allure.addSeverity('normal')
     Allure.addTag('smoke')
     Allure.addDescription(

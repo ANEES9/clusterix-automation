@@ -1,30 +1,22 @@
-import { test, expect } from '@playwright/test'
-import { skipTimerHelper } from 'common/skip-timer-helper'
-import { addCursorStyleAndScript } from '../../helpers/common/cursor-helper'
+import { test } from '@playwright/test'
 import { CalendarPage } from 'pages/calendar/calendar-page'
-import { skipSurveyHelper } from 'common/skip-survey-helper'
-import { skipProductTourHelper } from 'common/skip-product-tour-helper'
+import { setupTestContext } from 'utils/test-context'
 
 // Function to generate a dynamic event name
-function generateEventName(baseName: string): string {
-  const timestamp = new Date().getTime()
-  return `${baseName}_${timestamp}`
-}
-
 test.describe('CRUD Operations for meeting', () => {
+  let calendarPage: CalendarPage
+  let locale: string
   test.beforeEach(async ({ page, baseURL }, testInfo) => {
-    test.setTimeout(60000)
+    await calendarPage.goto(baseURL)
+    const testContext = await setupTestContext(page, testInfo)
+    locale = testContext.locale
+    calendarPage = new CalendarPage(page, locale)
     await page.goto(baseURL!)
-    await addCursorStyleAndScript(page)
-    await skipSurveyHelper(page, testInfo)
-    await skipProductTourHelper(page, testInfo)
-    await skipTimerHelper(page)
     await page.waitForLoadState('networkidle')
   })
 
   /************To Create new meeting ***********/
   test('New Event Creation', async ({ page }) => {
-    const calendarPage = new CalendarPage(page)
     const eventName = await calendarPage.generateEventName('Meeting')
     await calendarPage.navigateToCalendar()
 
