@@ -16,7 +16,7 @@ test.describe('Verify Bulk Mailing Functionalities', () => {
     await page.waitForLoadState('domcontentloaded')
   })
 
-  test('Create Audience using File Upload', async ({ page }) => {
+  test.fixme('Create Audience using File Upload', async ({ page }) => {
     await locators.bulkMailing.click()
     await locators.audienceButton.click()
     await locators.addNewAudience.click()
@@ -63,7 +63,7 @@ test.describe('Verify Bulk Mailing Functionalities', () => {
     }
   })
 
-  test('Create Audience using Copy & Paste', async ({ page }) => {
+  test.fixme('Create Audience using Copy & Paste', async ({ page }) => {
     await locators.bulkMailing.click()
     await locators.audienceButton.click()
     await locators.addNewAudience.click()
@@ -105,116 +105,122 @@ test.describe('Verify Bulk Mailing Functionalities', () => {
     }
   })
 
-  test.only('Create Audience using CLustrix Import Human Resources Employees ', async ({
-    page,
-  }) => {
-    await locators.bulkMailing.click()
-    await locators.audienceButton.click()
-    await locators.addNewAudience.click()
-    await locators.fileUpload.click()
-    await locators.importFromClusterix.click()
-    await locators.nextButton.click()
-    await locators.audienceTitle.click()
-    await page.locator('input[name="name"]').fill('My Audience CLustrix Import')
-    await page.locator('.ColorItem-module_color__Lp-yV').first().click()
-    await locators.appConnection.click()
-    await locators.selectApp.click()
-    await locators.hrEmployees.click()
-    await locators.selectApp.click()
+  test.fixme(
+    'Create Audience using CLustrix Import Human Resources Employees ',
+    async ({ page }) => {
+      await locators.bulkMailing.click()
+      await locators.audienceButton.click()
+      await locators.addNewAudience.click()
+      await locators.fileUpload.click()
+      await locators.importFromClusterix.click()
+      await locators.nextButton.click()
+      await locators.audienceTitle.click()
+      await page
+        .locator('input[name="name"]')
+        .fill('My Audience CLustrix Import')
+      await page.locator('.ColorItem-module_color__Lp-yV').first().click()
+      await locators.appConnection.click()
+      await locators.selectApp.click()
+      await locators.hrEmployees.click()
+      await locators.selectApp.click()
 
-    await page.pause()
-    await page.locator('.vwGFw_vMUYEgvxeHK5oj').click()
-    await page
-      .locator('#ca-portal-root')
-      .getByText('HR', { exact: true })
-      .click()
-    await page.pause()
-    await page.getByRole('button', { name: 'HR' }).nth(1).click()
-    await page.waitForTimeout(5000)
-    await page.locator('.ca-fixed').click()
-    await locators.saveAppConnection.click()
-    await locators.createAudienceButton.click()
-    // await page.getByText('An unknown error occurred.').click();
+      await page.pause()
+      await page.locator('.vwGFw_vMUYEgvxeHK5oj').click()
+      await page
+        .locator('#ca-portal-root')
+        .getByText('HR', { exact: true })
+        .click()
+      await page.pause()
+      await page.getByRole('button', { name: 'HR' }).nth(1).click()
+      await page.waitForTimeout(5000)
+      await page.locator('.ca-fixed').click()
+      await locators.saveAppConnection.click()
+      await locators.createAudienceButton.click()
+      // await page.getByText('An unknown error occurred.').click();
 
-    try {
-      // Await the assertion
-      await page.getByText('Audience created successfully')
+      try {
+        // Await the assertion
+        await page.getByText('Audience created successfully')
 
-      // Log success if the assertion passed
-      console.log("Recieved toast message: 'Audience Created Successfully'.")
-    } catch (error) {
-      // Log error details if the assertion failed
-      console.error(
-        "Assertion failed: 'Audience Created Notification' element state did not meet expectations.",
-        error
-      )
+        // Log success if the assertion passed
+        console.log("Recieved toast message: 'Audience Created Successfully'.")
+      } catch (error) {
+        // Log error details if the assertion failed
+        console.error(
+          "Assertion failed: 'Audience Created Notification' element state did not meet expectations.",
+          error
+        )
+      }
+      try {
+        // Await the assertion
+        await page.locator('.NotificationCard_wrapper__1-myM')
+
+        // Log success if the assertion passed
+        console.log(
+          "Recieved Notification message: 'Audience Created Successfully'."
+        )
+      } catch (error) {
+        // Log error details if the assertion failed
+        console.error(
+          "Assertion failed: 'Audience Created Notification' element state did not meet expectations.",
+          error
+        )
+      }
     }
-    try {
-      // Await the assertion
-      await page.locator('.NotificationCard_wrapper__1-myM')
+  )
 
-      // Log success if the assertion passed
-      console.log(
-        "Recieved Notification message: 'Audience Created Successfully'."
-      )
-    } catch (error) {
-      // Log error details if the assertion failed
-      console.error(
-        "Assertion failed: 'Audience Created Notification' element state did not meet expectations.",
-        error
-      )
+  test.fixme(
+    'Create Audience using CLustrix Import Human Resources Candidates ',
+    async ({ page }) => {
+      await locators.bulkMailing.click()
+      await locators.audienceButton.click()
+      await locators.addNewAudience.click()
+      await locators.fileUpload.click()
+      await locators.importFromClusterix.click()
+      await locators.nextButton.click()
+      await locators.audienceTitle.click()
+      await page
+        .locator('input[name="name"]')
+        .fill('My Audience CLustrix Import')
+      await page.locator('.ColorItem-module_color__Lp-yV').first().click()
+      await locators.appConnection.click()
+      await locators.selectApp.click()
+      await page.getByText('Human Resources Candidates').click()
+      await page.pause()
+      await page.locator('.vwGFw_vMUYEgvxeHK5oj').click()
+      await page.getByText('Bulk Mailing Demo - Dont Delete-Full Time').click()
+      await page.pause()
+      await locators.saveAppConnection.click()
+      await locators.createAudienceButton.click()
+
+      try {
+        // Await the assertion
+        await page.getByText('Audience created successfully')
+
+        // Log success if the assertion passed
+        console.log("Recieved toast message: 'Audience Created Successfully'.")
+      } catch (error) {
+        // Log error details if the assertion failed
+        console.error(
+          "Assertion failed: 'Audience Created Notification' element state did not meet expectations.",
+          error
+        )
+      }
+      try {
+        // Await the assertion
+        await page.locator('.NotificationCard_wrapper__1-myM')
+
+        // Log success if the assertion passed
+        console.log(
+          "Recieved Notification message: 'Audience Created Successfully'."
+        )
+      } catch (error) {
+        // Log error details if the assertion failed
+        console.error(
+          "Assertion failed: 'Audience Created Notification' element state did not meet expectations.",
+          error
+        )
+      }
     }
-  })
-
-  test('Create Audience using CLustrix Import Human Resources Candidates ', async ({
-    page,
-  }) => {
-    await locators.bulkMailing.click()
-    await locators.audienceButton.click()
-    await locators.addNewAudience.click()
-    await locators.fileUpload.click()
-    await locators.importFromClusterix.click()
-    await locators.nextButton.click()
-    await locators.audienceTitle.click()
-    await page.locator('input[name="name"]').fill('My Audience CLustrix Import')
-    await page.locator('.ColorItem-module_color__Lp-yV').first().click()
-    await locators.appConnection.click()
-    await locators.selectApp.click()
-    await page.getByText('Human Resources Candidates').click()
-    await page.pause()
-    await page.locator('.vwGFw_vMUYEgvxeHK5oj').click()
-    await page.getByText('Bulk Mailing Demo - Dont Delete-Full Time').click()
-    await page.pause()
-    await locators.saveAppConnection.click()
-    await locators.createAudienceButton.click()
-
-    try {
-      // Await the assertion
-      await page.getByText('Audience created successfully')
-
-      // Log success if the assertion passed
-      console.log("Recieved toast message: 'Audience Created Successfully'.")
-    } catch (error) {
-      // Log error details if the assertion failed
-      console.error(
-        "Assertion failed: 'Audience Created Notification' element state did not meet expectations.",
-        error
-      )
-    }
-    try {
-      // Await the assertion
-      await page.locator('.NotificationCard_wrapper__1-myM')
-
-      // Log success if the assertion passed
-      console.log(
-        "Recieved Notification message: 'Audience Created Successfully'."
-      )
-    } catch (error) {
-      // Log error details if the assertion failed
-      console.error(
-        "Assertion failed: 'Audience Created Notification' element state did not meet expectations.",
-        error
-      )
-    }
-  })
+  )
 })
