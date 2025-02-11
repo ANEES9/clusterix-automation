@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 //import { closeWelcomePopUp } from '../../helpers/common/welcome-popup-helper'
-import { closeTimerPopUp } from '../../helpers/common/timer-helper'
-import { addCursorStyleAndScript } from '../../helpers/common/cursor-helper'
+import { skipTimerHelper } from 'common/skip-timer-helper'
+import { addCursorStyleAndScript } from 'common/cursor-helper'
 import { faker } from '@faker-js/faker'
 import { getGenderOptions } from '../../helpers/hr-settings-helper'
 
@@ -9,12 +9,12 @@ test.describe('Search Meeting', () => {
   test.beforeEach(async ({ page, baseURL }) => {
     await page.goto(`${baseURL}/calendar`)
     //await closeWelcomePopUp(page)
-    await closeTimerPopUp(page)
+    await skipTimerHelper(page)
     await addCursorStyleAndScript(page)
     //await page.waitForLoadState('networkidle')
   })
 
-  test.only('test', async ({ page }) => {
+  test('test', async ({ page }) => {
     await page.pause()
 
     // Open the calendar

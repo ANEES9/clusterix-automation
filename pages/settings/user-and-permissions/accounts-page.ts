@@ -1,7 +1,7 @@
 import { Page, Locator } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
 import { getTranslations } from 'common/get-translations-helper'
-import { APP_URLS } from 'config/constants/app-urls'
+import { APP_URLS } from 'constants/app-urls'
 
 export class AccountsPage {
   readonly page: Page

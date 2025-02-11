@@ -11,13 +11,16 @@
     "rootDir": "./",
     "baseUrl": ".",
     "paths": {
-      "common/*": ["./helpers/common/*"],
       "config/*": ["./config/*"],
-      "helpers/*": ["./helpers/*"],
-      "utils/*": ["./utils/*"],
-      "types/*": ["./types/*"],
+      "framework/*": ["./framework/*"],
+      "api/*": ["./helpers/api/*"],
+      "common/*": ["./helpers/common/*"],
+      "ui/*": ["./helpers/ui/*"],
       "locales/*": ["./locales/*"],
-      "pages/*": ["./pages/*"]
+      "pages/*": ["./pages/*"],
+      "constants/*": ["./shared/constants/*"],
+      "types/*": ["./shared/types/*"],
+      "utils/*": ["./shared/utils/*"],
     }
   }
 }

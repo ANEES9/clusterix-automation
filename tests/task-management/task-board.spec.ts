@@ -1,7 +1,7 @@
 import { test } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
 import { ApiResponse } from 'common/api-response'
-import { closeTimerPopUp } from 'common/timer-helper'
+import { skipTimerHelper } from 'common/skip-timer-helper'
 import { TaskManagementPage } from 'pages/task-management'
 import { skipProductTourHelper } from 'common/skip-product-tour-helper'
 import { generateRandomFileName } from 'common/random-data-generator'
@@ -13,7 +13,7 @@ test.describe('Task Management Board Tests', () => {
       await page.goto(baseURL!)
       await skipSurveyHelper(page, testInfo)
       await skipProductTourHelper(page, testInfo)
-      await closeTimerPopUp(page)
+      await skipTimerHelper(page)
       await page.waitForLoadState('networkidle')
     })
   })
@@ -72,7 +72,6 @@ test.describe('Task Management Board Tests', () => {
     }
   })
 
-
   test('Pinboard update Tests', async ({ page }) => {
     const locators = new TaskManagementPage(page)
 
@@ -93,7 +92,7 @@ test.describe('Task Management Board Tests', () => {
     console.log(board_click_name)
     console.log('Randomly Generated File Name:', randomFileName)
     locators.saveXPath = randomFileName
-    locators.saveXPathPinboard=board_click_name
+    locators.saveXPathPinboard = board_click_name
     const new_name = generateRandomFileName()
     await page.waitForLoadState('networkidle')
 
@@ -125,9 +124,7 @@ test.describe('Task Management Board Tests', () => {
     await locators.navigateToFillBoard(new_name)
     await locators.renameBoardAndSubmit()
     console.log('Raname board name:', new_name)
-
   })
-
 
   test('Pinboard delete Tests', async ({ page }) => {
     const locators = new TaskManagementPage(page)
@@ -178,14 +175,5 @@ test.describe('Task Management Board Tests', () => {
     await locators.deleteBoard()
     await locators.confirmDelete()
     console.log('Board Deleted')
-
   })
-
-
-
-
-
-
-
-
 })

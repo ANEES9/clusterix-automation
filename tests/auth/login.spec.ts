@@ -1,13 +1,16 @@
 import { test } from '@playwright/test'
 import { LoginPage } from 'pages/auth/login-page'
 import { userData } from 'utils/test-data/auth/user-data'
-import { SurveyPage } from 'pages/container-app/survey-page'
+import { SurveyPage } from 'pages/home/survey-page'
+import { setupTestContext } from 'utils/test-context'
 
 test.describe('Login Page Tests', () => {
   let surveyPage: SurveyPage
   let loginPage: LoginPage
+  let locale: string
   test.beforeEach(async ({ page, baseURL }, testInfo) => {
-    const locale: string = testInfo.project.use?.locale ?? 'en'
+    const testContext = await setupTestContext(page, testInfo)
+    locale = testContext.locale
     loginPage = new LoginPage(page, locale)
     surveyPage = new SurveyPage(page, locale)
     await loginPage.goto(baseURL)
@@ -15,11 +18,10 @@ test.describe('Login Page Tests', () => {
 
   test('Should log in with valid env credentials', async () => {
     const { email, password } = userData.valid
-    await loginPage.login(email, password)
+    await loginPage.loginAndValidate(email, password, 200)
     await surveyPage.validateRoleTitleLocatorVisible()
   })
 
-  // Test invalid emails
   userData.invalid.emails.forEach((invalidEmail, index) => {
     test(`Should not log in with invalid email [${index + 1}]: ${invalidEmail}`, async () => {
       await loginPage.verifyInvalidEmailLogin(
@@ -29,7 +31,6 @@ test.describe('Login Page Tests', () => {
     })
   })
 
-  // Test invalid passwords
   userData.invalid.passwords.forEach((invalidPassword, index) => {
     test(`Should not log in with invalid password [${index + 1}]: ${invalidPassword}`, async () => {
       await loginPage.verifyInvalidPasswordLogin(

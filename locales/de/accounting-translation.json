@@ -96,6 +96,9 @@
     "account_name": "Kontoname",
     "no_transaction": "Es gibt noch keine Banktransaktionen!"
   },
+  "chartOfAccounts": {
+    "title": "Kontenplan"
+  },
   "no_bills": "Keine Rechnungen gefunden",
   "no_search_results": "Keine Suchergebnisse",
   "duration": "Dauer",

@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 import { skipProductTourHelper } from 'common/skip-product-tour-helper'
-import { closeTimerPopUp } from 'common/timer-helper'
+import { skipTimerHelper } from 'common/skip-timer-helper'
 import { addCursorStyleAndScript } from 'common/cursor-helper'
 import { skipSurveyHelper } from 'common/skip-survey-helper'
 import { faker } from '@faker-js/faker'
@@ -11,7 +11,7 @@ test.describe('User and Permissions - My Profile Tests', () => {
     await page.goto(`${baseURL}/settings/users-and-permissions`)
     await skipSurveyHelper(page, testInfo)
     await skipProductTourHelper(page, testInfo)
-    await closeTimerPopUp(page)
+    await skipTimerHelper(page)
     await addCursorStyleAndScript(page)
     await page.waitForLoadState('networkidle')
   })

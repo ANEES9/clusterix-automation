@@ -1,6 +1,6 @@
 import { Locator, Page } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
-import { APP_URLS } from 'config/constants/app-urls'
+import { APP_URLS } from 'constants/app-urls'
 import { getTranslations } from 'common/get-translations-helper'
 
 export class FilesPage {

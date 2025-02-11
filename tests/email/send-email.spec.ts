@@ -1,12 +1,12 @@
 import { test } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
-import { ApiResponse } from 'common/api-response'
 import * as dotenv from 'dotenv'
 import { addCursorStyleAndScript } from 'common/cursor-helper'
 import { skipSurveyHelper } from 'common/skip-survey-helper'
 import { skipProductTourHelper } from 'common/skip-product-tour-helper'
-import { closeTimerPopUp } from 'common/timer-helper'
+import { skipTimerHelper } from 'common/skip-timer-helper'
 import { EmailPage } from 'pages/email'
+import { FetchRemoteData } from './helpers/email-request'
 
 const env = process.env.NODE_ENV || 'production'
 dotenv.config({ path: `.env.${env}` })
@@ -16,99 +16,87 @@ const toEmailId = 'bhat@innoscripta.com'
 const testEmailSubject = 'Testing purpose email via automation'
 const testEmailBody = `Testing purpose email via automation. Sent at: ${currentDate.toString()}`
 
-let fetchRemoteIdProd: string, fetchRemoteIdTest: string
+let accountId: string | null = null
 
 test.describe('send test email', () => {
   test.beforeEach(async ({ page, baseURL }, testInfo) => {
     await Allure.step(
       'Navigate to Base URL, Close Popups and navigate to Email application',
       async () => {
-        const locators = new EmailPage(page)
+        const emailPage = new EmailPage(page)
 
         await page.goto(baseURL!)
         await addCursorStyleAndScript(page)
         await skipSurveyHelper(page, testInfo)
         await skipProductTourHelper(page, testInfo)
         await page.waitForTimeout(4000)
-        await closeTimerPopUp(page)
+        await skipTimerHelper(page)
         await page.waitForLoadState('networkidle')
 
-        const fetchAccIdProd =
-          'https://email-controller.innoscripta.com/api/account'
-        const fetchAccIdTest =
-          'https://email-controller-testing.innoscripta.com/api/account'
-
-        await page.waitForLoadState('networkidle')
-        await locators.navigateToEmail()
-        await page.waitForTimeout(5000)
-        const fetchAccId = await ApiResponse(
-          page,
-          fetchAccIdProd,
-          fetchAccIdTest
-        )
+        //Navigateion to Email Application
+        await emailPage.navigateToEmail()
+        accountId = await FetchRemoteData.fetchAccountId(page)
         await console.log(await page.title())
-        let matchingItem: any,
-          id: string | null = null
-
-        const { status: fetchAccStatus, data: fetchAccData } =
-          await fetchAccId()
-        await page.waitForTimeout(5000)
-        if (fetchAccData) {
-          matchingItem = fetchAccData?.find(
-            (item: any) => item.ee_email === process.env.CLUSTERIX_EMAIL
-          )
-          if (matchingItem) {
-            id = matchingItem.id
-            console.log('Matched ID:', id)
-          } else {
-            console.log(
-              `No matching item found for ee_email = "${process.env.CLUSTERIX_EMAIL}".`
-            )
-          }
-        } else {
-          console.log('No data received.')
-        }
-
-        // Construct URLs after processing the ID
-        fetchRemoteIdProd = `https://email-controller.innoscripta.com/api/account-data/${id}/email/drafts`
-        fetchRemoteIdTest = `https://email-controller-testing.innoscripta.com/api/account-data/${id}/email/drafts`
         await page.waitForTimeout(2000)
       }
     )
   })
 
   test('send email', async ({ page }) => {
-    const locators = new EmailPage(page)
-    await locators.clickOnNewEmail()
-    const fetchRemoteId = await ApiResponse(
-      page,
-      fetchRemoteIdProd,
-      fetchRemoteIdTest
+    const emailPage = new EmailPage(page)
+    Allure.addSeverity('critical')
+    Allure.addTag('smoke')
+    Allure.addDescription(
+      'Verifying the Send Email functionality, ensuring that all required UI elements are visible and interactive. This includes checking the email fields, recipient selection, subject input, message body, and the ability to send the email successfully.'
     )
+    await Allure.step('Step 1: Verify and Click on New Mail', async () => {
+      await emailPage.verifyNewEmail()
+      await emailPage.clickOnNewEmail()
+    })
 
-    await locators.fillAndEnterToAddress(toEmailId)
-    await locators.fillAndEnterSubject(testEmailSubject)
+    await Allure.step('Step 2: Verify and Fill To Address Field', async () => {
+      await emailPage.verifyToAddressField()
+      await emailPage.fillAndEnterToAddress(toEmailId)
+    })
+    const remoteId = await FetchRemoteData.fetchRemoteId(page, accountId)
+    await Allure.step('Step 3: Verify and Fill Subject Field', async () => {
+      await emailPage.verifySubjectField()
+      await emailPage.fillAndEnterSubject(testEmailSubject)
+    })
+
     await page.waitForTimeout(2000)
-    await locators.clickOnBodyAndFill(testEmailBody)
+    await Allure.step('Step 4: Verify and Fill Email Body', async () => {
+      await emailPage.verifyBodyofEmail()
+      await emailPage.clickOnBodyAndFill(testEmailBody)
+    })
 
-    const { status: fetchRemoteStatus, data: fetchRemoteData } = fetchRemoteId()
-    const sendURLProd =
-      fetchRemoteIdProd + '/' + fetchRemoteData.remote_id + '/submit'
-    const sendURLtest =
-      fetchRemoteIdTest + '/' + fetchRemoteData.remote_id + '/submit'
+    await Allure.step('Step 5: Verify and Click Send Button', async () => {
+      await emailPage.verifySendButton()
+      await emailPage.clickOnSend()
+    })
 
-    await locators.clickOnSend()
-    const sendURL = await ApiResponse(page, sendURLProd, sendURLtest)
-    await locators.verifyEmailSuccessfulToastMessage()
+    const emailSendStatus = await FetchRemoteData.sendEmail(
+      page,
+      accountId,
+      remoteId
+    )
+    await emailPage.verifyEmailSuccessfulToastMessage()
     await page.waitForTimeout(2000)
-
-    const { status: sendURLStatus, data: sendURLData } = sendURL()
-    if (sendURLStatus === 200) {
-      console.log('Email has been sent successfully')
-    } else {
-      console.log(
-        `Email has been not sent. API has returned status : ${sendURLStatus}.`
-      )
-    }
+    await Allure.step('Step 6: Verify Email Send Status', async () => {
+      if (emailSendStatus === 200) {
+        console.log('Email has been sent successfully')
+        await Allure.addAttachment(
+          'Email Send Status',
+          `Email has been sent successfully. Status is : ${emailSendStatus}.`
+        )
+      } else {
+        const errorMessage = `Email has not been sent. API returned status: ${emailSendStatus}.`
+        console.log(errorMessage)
+        await Allure.addAttachment(
+          'Email Send Status',
+          `Email has not been sent. API returned status: ${emailSendStatus}.`
+        )
+      }
+    })
   })
 })

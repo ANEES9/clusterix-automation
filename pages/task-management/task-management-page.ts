@@ -1,8 +1,11 @@
 import { Page, Locator } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
+import { getTranslations } from 'common/get-translations-helper'
 
 export class TaskManagementPage {
   private page: Page
+  translations: Record<string, any>
+
   private taskManagement: Locator
   private pinboardFolders: Locator
   private addFolderButton: Locator
@@ -29,8 +32,9 @@ export class TaskManagementPage {
   private taskNameInput: Locator
   private taskNameSubmit: Locator
 
-  constructor(page: Page) {
+  constructor(page: Page, locale: string) {
     this.page = page
+    this.translations = getTranslations('task-management', locale)
     this.taskManagement = page.getByRole('link', {
       name: 'Task Management Create and',
     })

@@ -1,0 +1,18 @@
+export const ALLURE_TAGS = {
+  navigation: 'Navigation',
+  search: 'Search',
+  table: 'Table',
+  forms: 'Forms',
+  modals: 'Modals',
+  buttons: 'Buttons',
+  filter: 'Filter',
+  validation: 'Validation',
+  api: 'API',
+  performance: 'Performance',
+  accessibility: 'Accessibility',
+  regression: 'Regression',
+  smoke: 'Smoke',
+  sanity: 'Sanity',
+  backend: 'Backend',
+  frontend: 'Frontend',
+}

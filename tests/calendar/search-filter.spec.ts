@@ -1,22 +1,20 @@
 import { test } from '@playwright/test'
-import { closeTimerPopUp } from '../../helpers/common/timer-helper'
-import { addCursorStyleAndScript } from '../../helpers/common/cursor-helper'
 import { CalendarPage } from 'pages/calendar/calendar-page'
-import { skipSurveyHelper } from 'common/skip-survey-helper'
-import { skipProductTourHelper } from 'common/skip-product-tour-helper'
+import { setupTestContext } from 'utils/test-context'
 
 test.describe('Search Filter', () => {
+  let calendarPage: CalendarPage
+  let locale: string
   test.beforeEach(async ({ page, baseURL }, testInfo) => {
+    await calendarPage.goto(baseURL)
+    const testContext = await setupTestContext(page, testInfo)
+    locale = testContext.locale
+    calendarPage = new CalendarPage(page, locale)
     await page.goto(baseURL!)
-    await addCursorStyleAndScript(page)
-    await skipSurveyHelper(page, testInfo)
-    await skipProductTourHelper(page, testInfo)
-    await closeTimerPopUp(page)
     await page.waitForLoadState('networkidle')
   })
 
   test('To filter by guest and filter by creator ', async ({ page }) => {
-    const calendarPage = new CalendarPage(page)
     await calendarPage.navigateToCalendar()
 
     // Wait for the page to fully load

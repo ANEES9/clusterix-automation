@@ -1,8 +1,461 @@
-{  
-  "keyword": "keyword",
+{
+  "common": {
+    "imprint": "Imprint",
+    "data_protection": "Data Protection",
+    "terms_and_conditions_short": "T&C",
+    "search_mode_title": {
+      "company": "Company",
+      "keyword": "Keyword"
+    },
     "search": "Search",
-    "initial_message_title": "There are no results yet",
-    "initial_message_description": "Enter a keyword to start the search",
-    "save_search": "Save Search",
-    "add_company": "Add Company"
+    "save_search": "Save search",
+    "contacts_one": "{{count}} Contact",
+    "contacts_other": "{{count}} Contacts",
+    "cancel": "Cancel",
+    "add": "Add",
+    "search_title": "Search Title",
+    "company_name": "Company Name",
+    "country": "Country",
+    "website": "Website"
+  },
+  "countries": {
+    "global": "Worldwide",
+    "AF": "Afghanistan",
+    "AX": "Åland Islands",
+    "AL": "Albania",
+    "DZ": "Algeria",
+    "AS": "American Samoa",
+    "AD": "Andorra",
+    "AO": "Angola",
+    "AI": "Anguilla",
+    "AQ": "Antarctica",
+    "AG": "Antigua and Barbuda",
+    "AR": "Argentina",
+    "AM": "Armenia",
+    "AW": "Aruba",
+    "AU": "Australia",
+    "AT": "Austria",
+    "AZ": "Azerbaijan",
+    "BS": "Bahamas",
+    "BH": "Bahrain",
+    "BD": "Bangladesh",
+    "BB": "Barbados",
+    "BY": "Belarus",
+    "BE": "Belgium",
+    "BZ": "Belize",
+    "BJ": "Benin",
+    "BM": "Bermuda",
+    "BT": "Bhutan",
+    "BO": "Bolivia (Plurinational State of)",
+    "BQ": "Bonaire, Sint Eustatius and Saba",
+    "BA": "Bosnia and Herzegovina",
+    "BW": "Botswana",
+    "BV": "Bouvet Island",
+    "BR": "Brazil",
+    "IO": "British Indian Ocean Territory",
+    "BN": "Brunei Darussalam",
+    "BG": "Bulgaria",
+    "BF": "Burkina Faso",
+    "BI": "Burundi",
+    "CV": "Cabo Verde",
+    "KH": "Cambodia",
+    "CM": "Cameroon",
+    "CA": "Canada",
+    "KY": "Cayman Islands",
+    "CF": "Central African Republic",
+    "TD": "Chad",
+    "CL": "Chile",
+    "CN": "China",
+    "CX": "Christmas Island",
+    "CC": "Cocos (Keeling) Islands",
+    "CO": "Colombia",
+    "KM": "Comoros",
+    "CG": "Congo",
+    "CD": "Congo (Democratic Republic of the)",
+    "CK": "Cook Islands",
+    "CR": "Costa Rica",
+    "CI": "Côte d'Ivoire",
+    "HR": "Croatia",
+    "CU": "Cuba",
+    "CW": "Curaçao",
+    "CY": "Cyprus",
+    "CZ": "Czechia",
+    "DK": "Denmark",
+    "DJ": "Djibouti",
+    "DM": "Dominica",
+    "DO": "Dominican Republic",
+    "EC": "Ecuador",
+    "EG": "Egypt",
+    "SV": "El Salvador",
+    "GQ": "Equatorial Guinea",
+    "ER": "Eritrea",
+    "EE": "Estonia",
+    "SZ": "Eswatini",
+    "ET": "Ethiopia",
+    "FK": "Falkland Islands (Malvinas)",
+    "FO": "Faroe Islands",
+    "FJ": "Fiji",
+    "FI": "Finland",
+    "FR": "France",
+    "GF": "French Guiana",
+    "PF": "French Polynesia",
+    "TF": "French Southern Territories",
+    "GA": "Gabon",
+    "GM": "Gambia",
+    "GE": "Georgia",
+    "DE": "Germany",
+    "GH": "Ghana",
+    "GI": "Gibraltar",
+    "GR": "Greece",
+    "GL": "Greenland",
+    "GD": "Grenada",
+    "GP": "Guadeloupe",
+    "GU": "Guam",
+    "GT": "Guatemala",
+    "GG": "Guernsey",
+    "GN": "Guinea",
+    "GW": "Guinea-Bissau",
+    "GY": "Guyana",
+    "HT": "Haiti",
+    "HM": "Heard Island and McDonald Islands",
+    "VA": "Holy See",
+    "HN": "Honduras",
+    "HK": "Hong Kong",
+    "HU": "Hungary",
+    "IS": "Iceland",
+    "IN": "India",
+    "ID": "Indonesia",
+    "IR": "Iran (Islamic Republic of)",
+    "IQ": "Iraq",
+    "IE": "Ireland",
+    "IM": "Isle of Man",
+    "IL": "Israel",
+    "IT": "Italy",
+    "JM": "Jamaica",
+    "JP": "Japan",
+    "JE": "Jersey",
+    "JO": "Jordan",
+    "KZ": "Kazakhstan",
+    "KE": "Kenya",
+    "KI": "Kiribati",
+    "KP": "Korea (Democratic People's Republic of)",
+    "KR": "Korea (Republic of)",
+    "KW": "Kuwait",
+    "KG": "Kyrgyzstan",
+    "LA": "Lao People's Democratic Republic",
+    "LV": "Latvia",
+    "LB": "Lebanon",
+    "LS": "Lesotho",
+    "LR": "Liberia",
+    "LY": "Libya",
+    "LI": "Liechtenstein",
+    "LT": "Lithuania",
+    "LU": "Luxembourg",
+    "MO": "Macao",
+    "MK": "North Macedonia",
+    "MG": "Madagascar",
+    "MW": "Malawi",
+    "MY": "Malaysia",
+    "MV": "Maldives",
+    "ML": "Mali",
+    "MT": "Malta",
+    "MH": "Marshall Islands",
+    "MQ": "Martinique",
+    "MR": "Mauritania",
+    "MU": "Mauritius",
+    "YT": "Mayotte",
+    "MX": "Mexico",
+    "FM": "Micronesia (Federated States of)",
+    "MD": "Moldova (Republic of)",
+    "MC": "Monaco",
+    "MN": "Mongolia",
+    "ME": "Montenegro",
+    "MS": "Montserrat",
+    "MA": "Morocco",
+    "MZ": "Mozambique",
+    "MM": "Myanmar",
+    "NA": "Namibia",
+    "NR": "Nauru",
+    "NP": "Nepal",
+    "NL": "Netherlands",
+    "NC": "New Caledonia",
+    "NZ": "New Zealand",
+    "NI": "Nicaragua",
+    "NE": "Niger",
+    "NG": "Nigeria",
+    "NU": "Niue",
+    "NF": "Norfolk Island",
+    "MP": "Northern Mariana Islands",
+    "NO": "Norway",
+    "OM": "Oman",
+    "PK": "Pakistan",
+    "PW": "Palau",
+    "PS": "Palestine, State of",
+    "PA": "Panama",
+    "PG": "Papua New Guinea",
+    "PY": "Paraguay",
+    "PE": "Peru",
+    "PH": "Philippines",
+    "PN": "Pitcairn",
+    "PL": "Poland",
+    "PT": "Portugal",
+    "PR": "Puerto Rico",
+    "QA": "Qatar",
+    "RE": "Réunion",
+    "RO": "Romania",
+    "RU": "Russian Federation",
+    "RW": "Rwanda",
+    "BL": "Saint Barthélemy",
+    "SH": "Saint Helena, Ascension and Tristan da Cunha",
+    "KN": "Saint Kitts and Nevis",
+    "LC": "Saint Lucia",
+    "MF": "Saint Martin (French part)",
+    "PM": "Saint Pierre and Miquelon",
+    "VC": "Saint Vincent and the Grenadines",
+    "WS": "Samoa",
+    "SM": "San Marino",
+    "ST": "Sao Tome and Principe",
+    "SA": "Saudi Arabia",
+    "SN": "Senegal",
+    "RS": "Serbia",
+    "SC": "Seychelles",
+    "SL": "Sierra Leone",
+    "SG": "Singapore",
+    "SX": "Sint Maarten (Dutch part)",
+    "SK": "Slovakia",
+    "SI": "Slovenia",
+    "SB": "Solomon Islands",
+    "SO": "Somalia",
+    "ZA": "South Africa",
+    "GS": "South Georgia and the South Sandwich Islands",
+    "SS": "South Sudan",
+    "ES": "Spain",
+    "LK": "Sri Lanka",
+    "SD": "Sudan",
+    "SR": "Suriname",
+    "SJ": "Svalbard and Jan Mayen",
+    "SE": "Sweden",
+    "CH": "Switzerland",
+    "SY": "Syrian Arab Republic",
+    "TW": "Taiwan, Province of China",
+    "TJ": "Tajikistan",
+    "TZ": "Tanzania, United Republic of",
+    "TH": "Thailand",
+    "TL": "Timor-Leste",
+    "TG": "Togo",
+    "TK": "Tokelau",
+    "TO": "Tonga",
+    "TT": "Trinidad and Tobago",
+    "TN": "Tunisia",
+    "TR": "Turkey",
+    "TM": "Turkmenistan",
+    "TC": "Turks and Caicos Islands",
+    "TV": "Tuvalu",
+    "UG": "Uganda",
+    "UA": "Ukraine",
+    "AE": "United Arab Emirates",
+    "GB": "United Kingdom of Great Britain and Northern Ireland",
+    "UM": "United States Minor Outlying Islands",
+    "US": "United States of America",
+    "UY": "Uruguay",
+    "UZ": "Uzbekistan",
+    "VU": "Vanuatu",
+    "VE": "Venezuela (Bolivarian Republic of)",
+    "VN": "Viet Nam",
+    "VG": "Virgin Islands (British)",
+    "VI": "Virgin Islands (U.S.)",
+    "WF": "Wallis and Futuna",
+    "EH": "Western Sahara",
+    "YE": "Yemen",
+    "ZM": "Zambia",
+    "ZW": "Zimbabwe"
+  },
+  "errors": {
+    "required": "{{field}} is required.",
+    "should_be_url": "{{field}} should be a URL.",
+    "backend_generic": "An unexpected error occurred."
+  },
+  "filters": {
+    "country_filter": {
+      "country": "Country"
+    },
+    "postal_code_filter": {
+      "zip_code": "ZIP code"
+    },
+    "keywords_filter": {
+      "with_keywords_only": "With keywords only",
+      "search_for_keywords": "Search for keywords",
+      "keywords": "Keywords"
+    },
+    "website_filter": {
+      "website": "Website",
+      "with_website_only": "With website only"
+    },
+    "number_of_employees_filter": {
+      "number_of_employees": "Number of employees"
+    },
+    "actions_filter": {
+      "title": "Actions",
+      "clear_all": "Clear All",
+      "comments": "Never commented",
+      "calls": "Never called",
+      "meetings": "Never emailed"
+    },
+    "mode_filter": {
+      "title": "Companies without campaigns",
+      "label": "Show companies without any campaigns"
+    },
+    "customers_of_process_filter": {
+      "title": "Customers of Process",
+      "placeholder": "Select a process"
+    }
+  },
+  "main": {
+    "main_page_template": {},
+    "app_sidebar": {
+      "expanded": {
+        "currently_active": {
+          "title": "Currently Active",
+          "select_product": "Select Product",
+          "select_campaign": "Select Campaign"
+        },
+        "saved_search_results": {
+          "title": "Saved Search Results",
+          "saved_label": "Saved",
+          "deleted_label": "Deleted"
+        },
+        "please": "Please select a product and campaign for more accurate data",
+        "later": "You can also do this later using the button on the left navigation bar",
+        "skip": "Skip",
+        "product": "Product",
+        "campaign": "Campaign"
+      },
+      "minimized": {
+        "select_product": "Select Product",
+        "select_campaign": "Select Campaign",
+        "saved_searches_label": "Saved",
+        "deleted_searches_label": "Deleted"
+      }
+    },
+    "app_searchbar": {
+      "search": "Search",
+      "add_company": "Add Company",
+      "save_search": "Save Search",
+      "add_to_campaign": "Add to Campaign",
+      "all_companies_added_to_campaign": "All companies were added to the campaign",
+      "error_while_adding_companies_to_campaign": "There was an error while adding the companies to the campaign",
+      "search_saved": "Search saved successfully",
+      "search_placeholder": "Search"
+    },
+    "table_cells": {
+      "children_cell": {
+        "children_one": "{{count}} Child",
+        "children_other": "{{count}} Children"
+      },
+      "add_to_campaign_cell": {
+        "in_campaign": "In campaign",
+        "add_to_campaign": "Add to campaign"
+      },
+      "comment_cell": {
+        "today": "Today",
+        "days_ago_one": "{{count}} day ago",
+        "days_ago_other": "{{count}} days ago"
+      }
+    },
+    "company_details_modal": {
+      "left_panel": {
+        "added_successfully": "Company added to the campaign successfully!",
+        "header": {
+          "add_to_campaign": "To campaign"
+        },
+        "main_information": {
+          "geo_data_from": "Geography data from"
+        }
+      },
+      "right_panel": {
+        "communication": {
+          "title": "Communication",
+          "comment_placeholder": "Text message"
+        },
+        "notes": {
+          "title": "Notes"
+        },
+        "contacts": {
+          "title": "Contacts"
+        },
+        "documents": {
+          "title": "Documents",
+          "unnamed_file": "Unnamed File",
+          "upload_files": "Upload files",
+          "folder_not_found": "The folder for this customer has not yet been created, please try again later."
+        }
+      }
+    },
+    "create_company_modal": {
+      "title": "New Company",
+      "company_created_successfully": "Company is added successfully."
+    },
+    "campaign": {
+      "company_added_to_campaign": "{{companyName}} was added to the {{campaignName}} campaign",
+      "error_while_adding_company_to_campaign": "There was an error while adding the company to the campaign"
+    },
+    "keyword_search_page": {
+      "company_profile": "Company profile",
+      "employees": "{{employeeCount}} employees",
+      "details": "Details",
+      "show_more": "Show More",
+      "show_less": "Show Less",
+      "company_image": "Company image",
+      "no_results": {
+        "title": "No results where found",
+        "description": "Try changing your search query or update your filters"
+      },
+      "empty_state": {
+        "title": "There are no results yet",
+        "description": "Enter a keyword to start the search"
+      }
+    },
+    "company_search_page": {
+      "company_added_to_campaign": "{{companyName}} was added to the campaign successfully!",
+      "no_results": {
+        "title": "No results where found",
+        "description": "Try changing your search query or update your filters"
+      }
+    },
+    "saved_searches_page": {
+      "go_to_search": "Go to search",
+      "restore": "Restore",
+      "search_title": "Search title",
+      "results_count": "Results count",
+      "country": "Country",
+      "saved_on": "Saved on",
+      "last_activity": "Last activity",
+      "saved_search_restored": "Saved search has been restored",
+      "saved_search_archived": "Saved search has been archived",
+      "empty_state": {
+        "active": {
+          "title": "There are no saved searches yet",
+          "action": "Start a search"
+        },
+        "deleted": {
+          "title": "There are no deleted searches yet",
+          "action": ""
+        }
+      },
+      "actions": {
+        "delete": {
+          "all_items": "Delete all items",
+          "multiple_items": "Delete {{count}} items",
+          "item": "Delete item"
+        },
+        "restore": {
+          "all_items": "Restore all items",
+          "multiple_items": "Restore {{count}} items",
+          "item": "Restore item"
+        }
+      }
+    }
   }
+
+
+}

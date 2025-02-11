@@ -10,6 +10,7 @@ test-results
 # Environment variable
 .env.production
 .env.testing
+.env.development
 
 # Storage state
 sessions/storageState.json

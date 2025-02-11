@@ -1,0 +1,168 @@
+{
+  "common": {
+    "confirm": "Bestätigen",
+    "cancel": "Abbrechen",
+    "save": "Speichern",
+    "value": "Bewerten",
+    "from": "Von",
+    "to": "Bis",
+    "true": "Wahr",
+    "false": "Falsch",
+    "clear": "Löschen"
+  },
+  "pages": {
+    "schemas": "Schemas"
+  },
+  "error_page": {
+    "banner_text": "Etwas ist schiefgelaufen.",
+    "title": "Seite nicht gefunden",
+    "description": "Es scheint, als hätten Sie irgendwo falsch abgebogen."
+  },
+  "schemas_page": {
+    "columns": {
+      "name": "Schema-Name",
+      "data_number": "Datenummer"
+    },
+    "data_count": "{{data}} Daten",
+    "no_data": "Keine Daten",
+    "no_schema": "Kein Schema verfügbar",
+    "delete": {
+      "title": "Alle mit diesem Schema verbundenen Daten gehen verloren!",
+      "message": "Sind Sie sicher, dass Sie fortfahren möchten?"
+    },
+    "import": "Schema importieren",
+    "new_schema": "Neues Schema",
+    "search_placeholder": "Nach Schema-Namen suchen",
+    "welcome": "Willkommen bei Byte Builder",
+    "start_building": "Beginnen Sie mit dem Aufbau Ihrer benutzerdefinierten Anwendung, indem Sie einen Ablauf erstellen",
+    "blank": "Leer",
+    "create_flow": "Fluss erstellen"
+  },
+  "schema_page": {
+    "delete": {
+      "title": "Diese Daten werden gelöscht",
+      "message": "Sind Sie sicher, dass Sie fortfahren möchten?"
+    },
+    "delete_schema": {
+      "label": "Schema löschen",
+      "title": "Alle mit diesem Schema verbundenen Daten gehen verloren!",
+      "message": "Sind Sie sicher, dass Sie fortfahren möchten?"
+    },
+    "schema_not_found": "Schema nicht gefunden",
+    "import_from_file": "Aus Datei importieren",
+    "add_data": "Neue Daten hinzufügen",
+    "export": "Exportieren",
+    "export_all": "Alle Daten exportieren",
+    "schema_actions": "Schema-Aktionen",
+    "data_actions": "Daten-Aktionen",
+    "edit_schema": "Schema bearbeiten",
+    "search_data_placeholder": "Alle Felder durchsuchen",
+    "no_data": "Keine Daten verfügbar",
+    "edit_panel": {
+      "required": "Erforderlich",
+      "add_data": "Daten hinzufügen",
+      "update_data": "Daten aktualisieren",
+      "add_new_data": "Neue Daten hinzufügen"
+    },
+    "blank_page": {
+      "welcome": "Willkommen bei Ihrem Schema",
+      "import_your_data": "Importieren Sie Ihre Daten oder fügen Sie sie manuell hinzu",
+      "manual": "Manuell",
+      "add_manually": "Daten manuell hinzufügen",
+      "import": "Importieren",
+      "import_file": "Datei importieren"
+    }
+  },
+  "redux": {
+    "error": "Fehler",
+    "codes": {
+      "400": "Schlechte Anfrage",
+      "422": "Ungültige Daten",
+      "404": "Nicht gefunden"
+    },
+    "success": {
+      "add_byte": "Daten hinzugefügt",
+      "update_byte": "Daten aktualisiert",
+      "delete_byte": "Daten gelöscht",
+      "import_bytes": "Datensatz importiert",
+      "publish_schema": "Schema veröffentlicht",
+      "delete_schema": "Schema gelöscht"
+    }
+  },
+  "sidebar": {
+    "load_more": "Mehr laden"
+  },
+  "create_schema": {
+    "delete": {
+      "title": "Sind Sie sicher, dass Sie diese Seite schließen möchten?",
+      "message": "Alle von Ihnen vorgenommenen Änderungen gehen verloren"
+    },
+    "title_placeholder": "Unbenanntes Schema",
+    "new_schema": "Neues Schema",
+    "edit_schema": "Schema bearbeiten",
+    "preview": "Vorschau",
+    "side_panel": {
+      "schema_items": "Schema-Elemente",
+      "basic_items": "Grundlegende Elemente"
+    },
+    "create_tab": {
+      "required": "Erforderlich",
+      "sort": "Sortieren",
+      "filter": "Filtern",
+      "search": "Suchen",
+      "item_properties": "Elementeigenschaften",
+      "field_name": "Feldname",
+      "cant_rename_column": "Spalten können im Bearbeitungsmodus nicht umbenannt werden",
+      "mark_required": "Als erforderlich markieren",
+      "minimum_value": "Mindestwert",
+      "maximum_value": "Höchstwert",
+      "value_explanation": "Der minimale und maximale Wert, den das Attribut haben kann",
+      "minimum_length": "Mindestlänge",
+      "maximum_length": "Maximale Länge",
+      "length_explanation": "Die minimale und maximale Länge, die das Attribut haben kann",
+      "is_sortable": "Kann dieses Element sortiert werden?",
+      "yes": "Ja",
+      "no": "Nein",
+      "is_filterable": "Kann dieses Element gefiltert werden?",
+      "is_searchable": "Kann dieses Element durchsucht werden?",
+      "filter_explanation": "Auswählen, um die Elemente für das Sortieren, Filtern oder Suchen aktiv zu machen",
+      "drag_items": "Ziehen Sie Elemente hierher, um ein Schema zu erstellen"
+    }
+  },
+  "import_schema": {
+    "leave_page": "Seite verlassen?",
+    "changes_not_saved": "Die von Ihnen vorgenommenen Änderungen werden möglicherweise nicht gespeichert",
+    "uploading_file": "Hochladen von 1 Datei",
+    "something_wrong": "Etwas ist schiefgelaufen",
+    "schema_failed": "Schemaerstellung fehlgeschlagen",
+    "close": "Schließen",
+    "cancel_upload": "Upload abbrechen",
+    "import_file": "Datei importieren: ",
+    "select_data_types": {
+      "select_header": "Kopfdatentypen auswählen",
+      "data_type_represent": "Datentypen repräsentieren den Wert, den Spalten enthalten. Wenn beispielsweise Ihre Spalte zur Erfassung der Namen Ihrer Kunden gedacht ist, sollte der Datentyp Text sein",
+      "columns_not_assigned": "Spalten nicht einem Datentyp zugeordnet",
+      "columns_assigned": "Alle Spalten sind einem Datentyp zugeordnet"
+    },
+    "is_selected_header": "Ist die ausgewählte Zeile der Kopf dieses Tabellenblatts?",
+    "select_another": "Wählen Sie eine andere Zeile aus",
+    "no_header": "Kein Kopf"
+  },
+  "validations": {
+    "is_higher": "Darf nicht höher sein als maximale Länge",
+    "is_higher_than": "Darf nicht höher sein als {{value}}",
+    "is_negative": "Darf nicht negativ sein",
+    "is_empty": "Darf nicht leer sein",
+    "not_email": "Keine E-Mail",
+    "not_color": "Ungültige Farbe",
+    "not_phone": "Keine gültige Telefonnummer",
+    "higher_length": "Textlänge sollte höher sein als {{value}} Zeichen",
+    "lower_length": "Textlänge sollte niedriger sein als {{value}} Zeichen",
+    "between_length": "Textlänge sollte zwischen {{min}} und {{max}} Zeichen liegen",
+    "not_url": "Keine gültige URL",
+    "not_ip": "Keine gültige IP-Adresse",
+    "higher_value": "Nummer sollte höher sein als {{value}}",
+    "lower_value": "Nummer sollte niedriger sein als {{value}}",
+    "between_value": "Nummer sollte zwischen {{min}} und {{max}} liegen"
+  }
+}

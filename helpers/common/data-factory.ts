@@ -1,4 +1,6 @@
 import { faker } from '@faker-js/faker'
+import { IBAN_LENGTHS } from 'config/iban-lengths'
+
 /**
  * DataFactory provides utility methods for generating random data.
  * These methods can be used in tests to create realistic mock data.
@@ -15,6 +17,7 @@ export class DataFactory {
       password: faker.internet.password(),
     }
   }
+
   /**
    * Generates a mock project object with random name and description.
    * @returns {Object} Project object with name and description
@@ -26,6 +29,7 @@ export class DataFactory {
       description: faker.lorem.sentence(),
     }
   }
+
   /**
    * Generates a random file name with a random file extension.
    * @returns {string} Random file name
@@ -34,6 +38,7 @@ export class DataFactory {
   static createFileName() {
     return faker.system.fileName()
   }
+
   /**
    * Generates a random file name with the specified length and a random file extension.
    * @param {number} length - The length of the random string (default is 10)
@@ -48,5 +53,30 @@ export class DataFactory {
       result += characters.charAt(Math.floor(Math.random() * characters.length))
     }
     return `${result}.${faker.system.commonFileExt()}` // Adds a random file extension
+  }
+
+  /**
+   * Generates a valid IBAN based on the given country code.
+   * @param {string} countryCode - The country code (e.g., "DE", "FR", "ES").
+   * @returns {string} A valid IBAN for the given country.
+   */
+  static generateIBAN(countryCode: string): string {
+    countryCode = countryCode.toUpperCase()
+
+    if (!IBAN_LENGTHS[countryCode]) {
+      throw new Error(`Unsupported country code: ${countryCode}`)
+    }
+
+    // Calculate IBAN body length (excluding country code + check digits)
+    const totalLength = IBAN_LENGTHS[countryCode]
+    const bodyLength = totalLength - countryCode.length - 2
+
+    // Generate a random IBAN body
+    const randomNumbers = faker.string.numeric(bodyLength)
+
+    // Generate a random check digit (01-99)
+    const checkDigits = String(faker.number.int({ min: 10, max: 99 }))
+
+    return `${countryCode}${checkDigits}${randomNumbers}`
   }
 }
