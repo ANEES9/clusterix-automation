@@ -1,0 +1,8 @@
+{  
+  "keyword": "keyword",
+    "search": "Search",
+    "initial_message_title": "There are no results yet",
+    "initial_message_description": "Enter a keyword to start the search",
+    "save_search": "Save Search",
+    "add_company": "Add Company"
+  }

@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test'
 import { CompanyPage } from 'pages/company-searcher/company-page'
+import { FiltersPage } from 'pages/company-searcher/company-page'
 import { closeCurrentlyActivePopup } from 'helpers/ui/company-searcher/currently-active-popup'
 import { collapseSidebar } from 'helpers/ui/company-searcher/sidebar-helper'
 import { addCursorStyleAndScript } from 'common/cursor-helper'
@@ -8,16 +9,19 @@ import { skipProductTourHelper } from 'common/skip-product-tour-helper'
 import { skipSurveyHelper } from 'common/skip-survey-helper'
 import { Allure } from 'common/allure-helper'
 
+
 test.describe('Company Searcher Smoke Test', () => {
   let companyPage: CompanyPage
+  let filtersPage: FiltersPage
+
   test.beforeEach(async ({ page, baseURL }, testInfo) => {
     await page.goto(baseURL!)
-    await skipTutorialHelper(page, testInfo)
     await skipSurveyHelper(page, testInfo)
     await skipProductTourHelper(page, testInfo)
     await page.waitForLoadState('networkidle')
     await addCursorStyleAndScript(page)
     companyPage = new CompanyPage(page)
+    filtersPage = new FiltersPage(page)
     await companyPage.companySearcherLink.click()
     await page.waitForTimeout(1000)
     await closeCurrentlyActivePopup(page)
@@ -88,6 +92,12 @@ test.describe('Company Searcher Smoke Test', () => {
   test('Verify Search, Pagination, and Data Validation with Flexible Page Check', async ({
     page,
   }) => {
+
+    Allure.addSeverity('critical')
+    Allure.addTag('search')
+    Allure.addDescription(
+      'Verify Search, Pagination, and Data Validation with Flexible Page Check'
+    )
     const pickRandomItems = <T>(array: T[], count: number): T[] =>
       array.sort(() => 0.5 - Math.random()).slice(0, count)
     const numberOfSearchTerms = 2 // Number of random search terms to test
@@ -400,4 +410,32 @@ test.describe('Company Searcher Smoke Test', () => {
       await companyPage.collapseRow(i)
     }
   })
-})
+
+
+  test('Verify all filter elements are visible', async () => {
+    Allure.addSeverity('critical')
+    Allure.addTag('filter')
+    Allure.addDescription(
+      'Test to verify that filter elements are visible and functional.'
+    )
+    await companyPage.filterButton.click();
+    await filtersPage.verifyAllFiltersVisible();
+  });
+  
+  test('Verify country selection from nested dropdown', async () => {
+    Allure.addSeverity('critical')
+    Allure.addTag('filter')
+    Allure.addDescription(
+      'Test to verify that nested dropdown is visible and functional.'  )
+    await companyPage.filterButton.click();
+    const selectedCountry = await filtersPage.selectRandomCountryFromDropdown();
+    await filtersPage.verifySelectedCountry(selectedCountry);
+    console.log(`Selected Country: ${selectedCountry}`);
+    
+  });
+
+
+  
+
+  });
+
