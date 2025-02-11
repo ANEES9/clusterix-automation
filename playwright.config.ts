@@ -23,7 +23,7 @@ export default defineConfig({
     screenshot: 'only-on-failure',
   },
   globalSetup: require.resolve('./global-setup'),
-  globalTeardown: require.resolve('./global-teardown'),
+  //globalTeardown: require.resolve('./global-teardown'),
   workers: 1,
   projects: [
     // Generate projects dynamically
