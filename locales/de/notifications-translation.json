@@ -1,0 +1,23 @@
+{
+  "notifications": "Benachrichtigungen",
+  "deliver_all_notifications": "Alle Benachrichtigungen senden",
+  "deliver_only_crtical_notifications": "Nur kritische Benachrichtigungen senden",
+  "mute_for_1_hour": "Für 1 Stunde stummschalten",
+  "mute_for_today": "Für heute stummschalten",
+  "mute_forever": "Dauerhaft stummschalten",
+  "no_notifications": "Sie haben derzeit keine Benachrichtigungen",
+  "notification_settings": "Benachrichtigungseinstellungen",
+  "grouped_view": "Gruppierte Ansicht",
+  "chronological_view": "Chronologische Ansicht",
+  "unread_notificiations": "Ungelesene Benachrichtigungen",
+  "recently_read_notifications": "Kürzlich gelesene Benachrichtigungen",
+  "notification_settings_updated": "Benachrichtigungseinstellungen aktualisiert",
+  "critical_notifications": "Kritische Benachrichtigungen",
+  "mark_all_as_read": "Alle als gelesen markieren",
+  "cancel": "Abbrechen",
+  "save": "Speichern",
+  "critical": "Kritisch",
+  "load_more": "Mehr laden",
+  "general": "Allgemein",
+  "allow_notifications": "Benachrichtigungen zulassen"
+}

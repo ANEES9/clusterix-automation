@@ -1,185 +1,156 @@
 import { test } from '@playwright/test'
-import { HomePage } from 'pages/home/container-page'
+import { HomePage } from 'pages/home/home-page'
 import { Allure } from 'common/allure-helper'
 import { APP_NAMES } from 'constants/app-names'
 import { setupTestContext } from 'utils/test-context'
 
 test.describe('Container App Sidebar Navigation Tests', () => {
-  let containerPage: HomePage
+  let homePage: HomePage
+  let locale: string
 
-  test.beforeEach(async ({ page, baseURL }, testInfo) => {
-    const { locale } = await setupTestContext(page, testInfo)
-    containerPage = new HomePage(page, locale)
-    await page.goto(baseURL!)
+  test.beforeEach(async ({ page }, testInfo) => {
+    Allure.addFeature('Sidebar navigation')
+    Allure.addAppOwner('Home')
+    Allure.addSeverity('critical')
+    Allure.addTag('smoke')
+    const testContext = await setupTestContext(page, testInfo)
+    locale = testContext.locale
+    homePage = new HomePage(page, locale)
   })
   test('Validate Home Page Navigation from Sidebar', async () => {
-    Allure.addFeature('Home Navigation')
-    Allure.addSeverity('normal')
     await Allure.step('Navigate to Home Page', async () => {
-      await containerPage.navigateToHomeFromSideBar()
+      await homePage.navigateToHomeFromSideBar()
     })
     await Allure.step('Check Current App', async () => {
-      await containerPage.validateCurrentApp('No app selected')
+      await homePage.validateNoAppSelected()
     })
   })
   test('Validate Files Navigation from Sidebar', async () => {
-    Allure.addFeature('Files Navigation')
-    Allure.addSeverity('normal')
     await Allure.step('Navigate to Home Page', async () => {
-      await containerPage.navigateToFilesFromSideBar()
+      await homePage.navigateToFilesFromSideBar()
     })
     await Allure.step('Check Current App', async () => {
-      await containerPage.validateCurrentApp(APP_NAMES.files)
+      await homePage.validateCurrentApp(APP_NAMES.files)
     })
   })
   test('Validate Office Navigation from Sidebar', async () => {
-    Allure.addFeature('Office Navigation')
-    Allure.addSeverity('normal')
     await Allure.step('Navigate to Office Page', async () => {
-      await containerPage.navigateToOfficeFromSideBar()
+      await homePage.navigateToOfficeFromSideBar()
     })
     await Allure.step('Check Current App', async () => {
-      await containerPage.validateCurrentApp(APP_NAMES.office)
+      await homePage.validateCurrentApp(APP_NAMES.office)
     })
   })
   test('Validate PDF Navigation from Sidebar', async () => {
-    Allure.addFeature('PDF Navigation')
-    Allure.addSeverity('normal')
     await Allure.step('Navigate to PDF Page', async () => {
-      await containerPage.navigateToPdfFromSideBar()
+      await homePage.navigateToPdfFromSideBar()
     })
     await Allure.step('Check Current App', async () => {
-      await containerPage.validateCurrentApp(APP_NAMES.pdf)
+      await homePage.validateCurrentApp(APP_NAMES.pdf)
     })
   })
   test('Validate Project Management Navigation from Sidebar', async () => {
-    Allure.addFeature('HR Navigation')
-    Allure.addSeverity('normal')
     await Allure.step('Navigate to HR Page', async () => {
-      await containerPage.navigateToProjectManagementFromSideBar()
+      await homePage.navigateToProjectManagementFromSideBar()
     })
     await Allure.step('Check Current App', async () => {
-      await containerPage.validateCurrentApp(APP_NAMES.projectManagement)
+      await homePage.validateCurrentApp(APP_NAMES.projectManagement)
     })
   })
   test('Validate Task Management Navigation from Sidebar', async () => {
-    Allure.addFeature('Task Management Navigation')
-    Allure.addSeverity('normal')
     await Allure.step('Navigate to Task Management Page', async () => {
-      await containerPage.navigateToTaskManagementFromSideBar()
+      await homePage.navigateToTaskManagementFromSideBar()
     })
     await Allure.step('Check Current App', async () => {
-      await containerPage.validateCurrentApp(APP_NAMES.taskManagement)
+      await homePage.validateCurrentApp(APP_NAMES.taskManagement)
     })
   })
   test('Validate Time Tracking Navigation from Sidebar', async () => {
-    Allure.addFeature('Task Management Navigation')
-    Allure.addSeverity('normal')
     await Allure.step('Navigate to Time Tracking Page', async () => {
-      await containerPage.navigateToTimeTrackingFromSideBar()
+      await homePage.navigateToTimeTrackingFromSideBar()
     })
     await Allure.step('Check Current App', async () => {
-      await containerPage.validateCurrentApp(APP_NAMES.timeTracking)
+      await homePage.validateCurrentApp(APP_NAMES.timeTracking)
     })
   })
   test('Validate Accounting Navigation from Sidebar', async () => {
-    Allure.addFeature('Accounting Navigation')
-    Allure.addSeverity('normal')
     await Allure.step('Navigate to Accounting Page', async () => {
-      await containerPage.navigateToAccountingFromSideBar()
+      await homePage.navigateToAccountingFromSideBar()
     })
     await Allure.step('Check Current App', async () => {
-      await containerPage.validateCurrentApp(APP_NAMES.accounting)
+      await homePage.validateCurrentApp(APP_NAMES.accounting)
     })
   })
   test('Validate Subsidies Navigation from Sidebar', async () => {
-    Allure.addFeature('Subsidies Navigation')
-    Allure.addSeverity('normal')
     await Allure.step('Navigate to Subsidies Page', async () => {
-      await containerPage.navigateToSubsidiesFromSideBar()
+      await homePage.navigateToSubsidiesFromSideBar()
     })
     await Allure.step('Check Current App', async () => {
-      await containerPage.validateCurrentApp(APP_NAMES.subsidies)
+      await homePage.validateCurrentApp(APP_NAMES.subsidies)
     })
   })
   test('Validate Bulk Mailing Navigation from Sidebar', async () => {
-    Allure.addFeature('Bulk Mailing Navigation')
-    Allure.addSeverity('normal')
     await Allure.step('Navigate to Bulk Mailing Page', async () => {
-      await containerPage.navigateToBulkMailingFromSideBar()
+      await homePage.navigateToBulkMailingFromSideBar()
     })
     await Allure.step('Check Current App', async () => {
-      await containerPage.validateCurrentApp(APP_NAMES.bulkMailing)
+      await homePage.validateCurrentApp(APP_NAMES.bulkMailing)
     })
   })
   test('Validate Company Searcher Navigation from Sidebar', async () => {
-    Allure.addFeature('Company Searcher Navigation')
-    Allure.addSeverity('normal')
     await Allure.step('Navigate to Company Searcher Page', async () => {
-      await containerPage.navigateToCompanySearcherFromSideBar()
+      await homePage.navigateToCompanySearcherFromSideBar()
     })
     await Allure.step('Check Current App', async () => {
-      await containerPage.validateCurrentApp(APP_NAMES.companySearcher)
+      await homePage.validateCurrentApp(APP_NAMES.companySearcher)
     })
   })
   test('Validate Customers Navigation from Sidebar', async () => {
-    Allure.addFeature('Company Searcher Navigation')
-    Allure.addSeverity('normal')
     await Allure.step('Navigate to Company Searcher Page', async () => {
-      await containerPage.navigateToCustomersFromSideBar()
+      await homePage.navigateToCustomersFromSideBar()
     })
     await Allure.step('Check Current App', async () => {
-      await containerPage.validateCurrentApp(APP_NAMES.customers)
+      await homePage.validateCurrentApp(APP_NAMES.customers)
     })
   })
   test('Validate External Forms Navigation from Sidebar', async () => {
-    Allure.addFeature('External Forms Navigation')
-    Allure.addSeverity('normal')
     await Allure.step('Navigate to External Forms Page', async () => {
-      await containerPage.navigateToExternalFormsFromSideBar()
+      await homePage.navigateToExternalFormsFromSideBar()
     })
     await Allure.step('Check Current App', async () => {
-      await containerPage.validateCurrentApp(APP_NAMES.externalForms)
+      await homePage.validateCurrentApp(APP_NAMES.externalForms)
     })
   })
   test('Validate Byte Builder Navigation from Sidebar', async () => {
-    Allure.addFeature('Byte Builder Navigation')
-    Allure.addSeverity('normal')
     await Allure.step('Navigate to Byte Builder Page', async () => {
-      await containerPage.navigateToByteBuilderFromSideBar()
+      await homePage.navigateToByteBuilderFromSideBar()
     })
     await Allure.step('Check Current App', async () => {
-      await containerPage.validateCurrentApp(APP_NAMES.byteBuilder)
+      await homePage.validateCurrentApp(APP_NAMES.byteBuilder)
     })
   })
   test('Validate Integration Navigation from Sidebar', async () => {
-    Allure.addFeature('Integration Navigation')
-    Allure.addSeverity('normal')
     await Allure.step('Navigate to Integration Page', async () => {
-      await containerPage.navigateToIntegrationFromSideBar()
+      await homePage.navigateToIntegrationFromSideBar()
     })
     await Allure.step('Check Current App', async () => {
-      await containerPage.validateCurrentApp(APP_NAMES.integration)
+      await homePage.validateCurrentApp(APP_NAMES.integration)
     })
   })
   test('Validate No Code Navigation from Sidebar', async () => {
-    Allure.addFeature('No Code Navigation')
-    Allure.addSeverity('normal')
     await Allure.step('Navigate to no code Page', async () => {
-      await containerPage.navigateToNoCodeFromSideBar()
+      await homePage.navigateToNoCodeFromSideBar()
     })
     await Allure.step('Check Current App', async () => {
-      await containerPage.validateCurrentApp(APP_NAMES.noCode)
+      await homePage.validateCurrentApp(APP_NAMES.noCode)
     })
   })
   test('Validate Template Manager Navigation from Sidebar', async () => {
-    Allure.addFeature('Template Manager Navigation')
-    Allure.addSeverity('normal')
     await Allure.step('Navigate to Template Manager Page', async () => {
-      await containerPage.navigateToTemplateManagerFromSideBar()
+      await homePage.navigateToTemplateManagerFromSideBar()
     })
     await Allure.step('Check Current App', async () => {
-      await containerPage.validateCurrentApp(APP_NAMES.templateManager)
+      await homePage.validateCurrentApp(APP_NAMES.templateManager)
     })
   })
 })

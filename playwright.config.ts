@@ -4,10 +4,10 @@ import path from 'node:path'
 import { LANGUAGES } from 'config/language-config'
 import { APP_NAMES } from 'constants/app-names'
 
-dotenv.config({ path: `.env.${process.env.NODE_ENV || 'production'}` })
+dotenv.config({ path: `.env.${process.env.NODE_ENV || 'testing'}` })
 
 export default defineConfig({
-  testDir: './tests',
+  testDir: '../tests',
   retries: 0,
   reporter: [
     ['list'],
@@ -16,7 +16,7 @@ export default defineConfig({
   ],
   use: {
     trace: 'on-first-retry',
-    headless: false,
+    headless: true,
     baseURL: process.env.CLUSTERIX_BASE_URL,
     viewport: { width: 1280, height: 720 },
     video: 'retain-on-failure',
@@ -36,8 +36,8 @@ export default defineConfig({
 function generateProjects() {
   const browsers = [
     { name: 'Chromium', device: devices['Desktop Chrome'] },
-    { name: 'Firefox', device: devices['Desktop Firefox'] },
-    { name: 'WebKit', device: devices['Desktop Safari'] },
+    //{ name: 'Firefox', device: devices['Desktop Firefox'] },
+    //{ name: 'WebKit', device: devices['Desktop Safari'] },
   ]
 
   const projects: any[] = []

@@ -14,6 +14,7 @@ export async function reportBug(
   if (!config) {
     throw new Error(`Invalid application slug: ${applicationSlug}`)
   }
+
   const formData = new FormData()
   formData.append('description', description)
   formData.append('application_id', config.application_id.toString())
@@ -23,27 +24,21 @@ export async function reportBug(
   if (screenshotBuffer) {
     formData.append('screenshot', screenshotBuffer, 'screenshot.png')
   }
+
   try {
-    const response = await axios.post(process.env.BUG_REPORT_API!, formData, {
+    await axios.post(process.env.BUG_REPORT_API!, formData, {
       headers: {
         authorization: `Bearer ${process.env.BUG_REPORT_TOKEN}`,
         ...formData.getHeaders(),
       },
     })
-    console.log(
-      `Bug report created successfully for ${applicationSlug}:`,
-      response.data
-    )
-    await formData.forEach((value, key) => {
-      console.log(`${key}: ${value}`)
-    })
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      console.error('Axios error occurred:')
-      console.error('Status Code:', error.response?.status)
-      console.error('Response Data:', error.response?.data)
+      throw new Error(
+        `Axios error occurred - Status: ${error.response?.status}, Data: ${JSON.stringify(error.response?.data)}`
+      )
     } else {
-      console.error('General error:', error)
+      throw error
     }
   }
 }

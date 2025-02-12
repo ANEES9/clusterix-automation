@@ -1,43 +1,40 @@
-import { Page } from '@playwright/test'
+import { Page, TestInfo } from '@playwright/test'
+import { StartTimerModalPage } from 'pages/time-tracking/start-timer-modal-page'
 
-export async function skipTimerHelper(page: Page) {
+export async function skipTimerHelper(
+  page: Page,
+  _testInfo: TestInfo
+): Promise<void> {
+  const locale = _testInfo.project?.use.locale || 'en'
+  const startTimerModal = new StartTimerModalPage(page, locale)
+
   try {
-    const continueWithoutTimerSelector =
-      '//div[contains(text(), "Continue without timer")]'
-    const continueWithoutChangingSelector =
-      '//div[contains(text(), "Continue without changing")]'
-    while (true) {
-      let handled = false
-      const isAccessDeniedVisible = await page
-        .locator(continueWithoutChangingSelector)
-        .isVisible()
-      if (isAccessDeniedVisible) {
-        const continueWithoutChangingButton = page.locator(
-          continueWithoutChangingSelector
-        )
-        await continueWithoutChangingButton.click()
-        console.log('Clicked "Continue without changing".')
-        handled = true
-        await page.waitForTimeout(1500)
-      }
-      const isTimerPopUpVisible = await page
-        .locator(continueWithoutTimerSelector)
-        .isVisible()
-      if (isTimerPopUpVisible) {
-        const continueWithoutTimerButton = page.locator(
-          continueWithoutTimerSelector
-        )
-        await continueWithoutTimerButton.click()
-        console.log('Clicked "Continue without timer".')
-        handled = true
-        await page.waitForTimeout(1500)
-      }
-      if (!handled) {
-        console.log('No timer-related pop-ups are visible.')
-        break
+    await page.waitForLoadState('domcontentloaded')
+
+    if (
+      await startTimerModal.continueWithoutChangingButton
+        .waitFor({ state: 'attached', timeout: 1500 })
+        .then(() => true)
+        .catch(() => false)
+    ) {
+      if (await startTimerModal.continueWithoutChangingButton.isVisible()) {
+        await startTimerModal.continueWithoutChangingButton.click()
+        await page.waitForTimeout(1000)
       }
     }
-  } catch (error) {
-    console.error('Failed to handle timer pop-ups:', error)
+
+    if (
+      await startTimerModal.continueWithoutTimerButton
+        .waitFor({ state: 'attached', timeout: 5000 })
+        .then(() => true)
+        .catch(() => false)
+    ) {
+      if (await startTimerModal.continueWithoutTimerButton.isVisible()) {
+        await startTimerModal.continueWithoutTimerButton.click()
+        await page.waitForTimeout(1000)
+      }
+    }
+  } catch {
+    // Silently handle errors without defining a variable
   }
 }

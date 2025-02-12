@@ -3,7 +3,7 @@ import { Allure } from 'common/allure-helper'
 import { schemaTestData } from 'utils/test-data/byte-builder/schema-data'
 import { getTranslations } from 'common/get-translations-helper'
 
-export class BytebuilderPage {
+export class ByteBuilderPage {
   private page: Page
   private translations: Record<string, any>
 
@@ -131,7 +131,7 @@ export class BytebuilderPage {
 
   async goto(baseURL: string | undefined) {
     await Allure.step('Navigate to Bytebuilder Schemas URL', async () => {
-      await this.page.goto(`${baseURL}${BytebuilderPage.URL}`)
+      await this.page.goto(`${baseURL}${ByteBuilderPage.URL}`)
     })
   }
 

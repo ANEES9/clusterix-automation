@@ -20,6 +20,7 @@ export class HomePage {
   private profileDropdownMenu: Locator
   private dropdownUserNameElement: Locator
   private profileDropdownSearch: Locator
+  private sidebarOpener: Locator
   private homeSidebarButton: Locator
   private filesSidebarButton: Locator
   private officeSidebarButton: Locator
@@ -41,11 +42,13 @@ export class HomePage {
 
   constructor(page: Page, locale: string) {
     this.page = page
-    this.translations = getTranslations('container', locale)
+    this.translations = getTranslations('home', locale)
     //Header items
-    this.currentAppHeader = page.locator('//p[contains(text(), "Current App")]')
+    this.currentAppHeader = page.locator(
+      `//p[contains(text(), "${this.translations.navbar.hint}")]`
+    )
     this.activeAppName = page.locator(
-      '//p[contains(text(), "Current App")]/following-sibling::p'
+      `//p[contains(text(), "${this.translations.navbar.hint}")]/following-sibling::p`
     )
     this.notificationsHeaderButton = page.getByRole('button', {
       name: 'Notifications',
@@ -79,10 +82,10 @@ export class HomePage {
     this.profileDropdownSearch = page.getByPlaceholder('Search')
 
     //Sidebar items
-    this.homeSidebarButton = page.getByRole('button', {
-      name: 'Home',
-      exact: true,
-    })
+    this.sidebarOpener = page.locator('button.container-app-sidebar-opener')
+    this.homeSidebarButton = page.locator(
+      `#container-app-sidebar button:has-text("${this.translations.sidebar.home}")`
+    )
     this.filesSidebarButton = page.locator(
       'button[group="office-tools"]:has-text("Files")'
     )
@@ -136,7 +139,6 @@ export class HomePage {
     )
   }
 
-  // Navigate to survey
   async goto(baseURL: string | undefined) {
     await Allure.step(
       'Role question should be visible when user navigate to base url',
@@ -148,6 +150,17 @@ export class HomePage {
 
   async getActiveAppText(): Promise<string> {
     return (await this.currentAppHeader.textContent())?.trim() || ''
+  }
+
+  async validateNoAppSelected() {
+    await Allure.step(
+      'should show no app selected when user does not select app',
+      async () => {
+        const activeAppText = await this.activeAppName.textContent()
+        const activeApp = activeAppText?.trim() || ''
+        expect(activeApp).toBe(this.translations.navbar.appPlaceholder)
+      }
+    )
   }
 
   async validateCurrentApp(expectedAppName: string) {
@@ -194,7 +207,7 @@ export class HomePage {
       }
     )
   }
-  async openLiveChatAndValidate(context: BrowserContext) {
+  async openLiveChatAndValidate(context: BrowserContext, locale: string) {
     await Allure.step(
       'should open live chat in a new page and validate the app when the live chat button is clicked',
       async () => {
@@ -301,6 +314,7 @@ export class HomePage {
     await Allure.step(
       'should navigate to the home page when the button is clicked from sidebar',
       async () => {
+        await this.sidebarOpener.click()
         await this.homeSidebarButton.click()
       }
     )
@@ -309,6 +323,7 @@ export class HomePage {
     await Allure.step(
       'should navigate to the files page when the button is clicked from sidebar',
       async () => {
+        await this.sidebarOpener.click()
         await this.filesSidebarButton.click()
       }
     )
@@ -317,6 +332,7 @@ export class HomePage {
     await Allure.step(
       'should navigate to the office page when the button is clicked from sidebar',
       async () => {
+        await this.sidebarOpener.click()
         await this.officeSidebarButton.click()
       }
     )
@@ -325,6 +341,7 @@ export class HomePage {
     await Allure.step(
       'should navigate to the pdf page when the button is clicked from sidebar',
       async () => {
+        await this.sidebarOpener.click()
         await this.pdfSidebarButton.click()
       }
     )
@@ -333,6 +350,7 @@ export class HomePage {
     await Allure.step(
       'should navigate to the hr page when the button is clicked from sidebar',
       async () => {
+        await this.sidebarOpener.click()
         await this.hrSidebarButton.click()
       }
     )
@@ -341,6 +359,7 @@ export class HomePage {
     await Allure.step(
       'should navigate to the project management page when the button is clicked from sidebar',
       async () => {
+        await this.sidebarOpener.click()
         await this.projectManagementSidebarButton.click()
       }
     )
@@ -349,6 +368,7 @@ export class HomePage {
     await Allure.step(
       'should navigate to the task management page when the button is clicked from sidebar',
       async () => {
+        await this.sidebarOpener.click()
         await this.taskManagementSidebarButton.click()
       }
     )
@@ -357,6 +377,7 @@ export class HomePage {
     await Allure.step(
       'should navigate to the time tracking page when the button is clicked from sidebar',
       async () => {
+        await this.sidebarOpener.click()
         await this.timeTrackingSideBarButton.click()
       }
     )
@@ -365,6 +386,7 @@ export class HomePage {
     await Allure.step(
       'should navigate to the accounting page when the button is clicked from sidebar',
       async () => {
+        await this.sidebarOpener.click()
         await this.accountingSidebarButton.click()
       }
     )
@@ -373,6 +395,7 @@ export class HomePage {
     await Allure.step(
       'should navigate to the subsidies page when the button is clicked from sidebar',
       async () => {
+        await this.sidebarOpener.click()
         await this.subsidiesSidebarButton.click()
       }
     )
@@ -381,6 +404,7 @@ export class HomePage {
     await Allure.step(
       'should navigate to the bulk mailing page when the button is clicked from sidebar',
       async () => {
+        await this.sidebarOpener.click()
         await this.bulkMailingSidebarButton.click()
       }
     )
@@ -389,6 +413,7 @@ export class HomePage {
     await Allure.step(
       'should navigate to the company searcher page when the button is clicked from sidebar',
       async () => {
+        await this.sidebarOpener.click()
         await this.companySearcherSidebarButton.click()
       }
     )
@@ -397,6 +422,7 @@ export class HomePage {
     await Allure.step(
       'should navigate to the customers page when the button is clicked from sidebar',
       async () => {
+        await this.sidebarOpener.click()
         await this.customersSidebarButton.click()
       }
     )
@@ -405,6 +431,7 @@ export class HomePage {
     await Allure.step(
       'should navigate to the external forms page when the button is clicked from sidebar',
       async () => {
+        await this.sidebarOpener.click()
         await this.externalFormsSidebarButton.click()
       }
     )
@@ -413,6 +440,7 @@ export class HomePage {
     await Allure.step(
       'should navigate to the byte builder page when the button is clicked from sidebar',
       async () => {
+        await this.sidebarOpener.click()
         await this.byteBuilderSidebarButton.click()
       }
     )
@@ -421,6 +449,7 @@ export class HomePage {
     await Allure.step(
       'should navigate to the integration page when the button is clicked from sidebar',
       async () => {
+        await this.sidebarOpener.click()
         await this.integrationSidebarButton.click()
       }
     )
@@ -429,6 +458,7 @@ export class HomePage {
     await Allure.step(
       'should navigate to the no code page when the button is clicked from sidebar',
       async () => {
+        await this.sidebarOpener.click()
         await this.noCodeSidebarButton.click()
       }
     )
@@ -437,6 +467,7 @@ export class HomePage {
     await Allure.step(
       'should navigate to the template manager page when the button is clicked from sidebar',
       async () => {
+        await this.sidebarOpener.click()
         await this.templateManagerSidebarButton.click()
       }
     )

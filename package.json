@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "test:development": "NODE_ENV=development npx playwright test",
     "test:prod": "NODE_ENV=production npx playwright test",
     "test:testing": "NODE_ENV=testing npx playwright test",
     "lint": "eslint . --ext .ts",

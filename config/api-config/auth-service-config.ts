@@ -7,4 +7,4 @@ export const authServiceConfig = {
     login: '/login',
     logout: '/logout',
   },
-} as const // Use `as const` to ensure TypeScript treats the object as a literal type
+} as const

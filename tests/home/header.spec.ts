@@ -1,32 +1,41 @@
-import { test } from '@playwright/test'
-import { HomePage } from 'pages/home/container-page'
+import { Browser, Page, test } from '@playwright/test'
+import { HomePage } from 'pages/home/home-page'
 import { Allure } from 'common/allure-helper'
 import { NotificationsPanelPage } from 'pages/notifications/notifications-panel-page'
 import { APP_NAMES } from 'constants/app-names'
 import { setupTestContext } from 'utils/test-context'
-test.describe('Container App Header Navigation Tests', () => {
-  let containerPage: HomePage
+import { BrowserContext } from 'playwright'
 
-  test.beforeEach(async ({ page, baseURL }, testInfo) => {
-    Allure.addFeature('Navigation')
+let browser: Browser
+let context: BrowserContext
+let page: Page
+let homePage: HomePage
+let locale: string
+
+test.describe('Home Header Navigation Tests', () => {
+  test.beforeAll(async ({ browser: testBrowser, baseURL }, testInfo) => {
+    browser = testBrowser
+    context = await browser.newContext()
+    page = await context.newPage()
+
+    Allure.addFeature(' Header navigation')
     Allure.addAppOwner('Home')
-    const { locale } = await setupTestContext(page, testInfo)
-    containerPage = new HomePage(page, locale)
-    await containerPage.goto(baseURL)
+    Allure.addSeverity('critical')
+    Allure.addTag('smoke')
+
+    const testContext = await setupTestContext(page, testInfo)
+    locale = testContext.locale
+    homePage = new HomePage(page, locale)
+    await homePage.goto(baseURL)
+    await page.waitForLoadState('domcontentloaded')
   })
 
   test('Validate Notifications Panel Opens on Button Click', async ({
     page,
   }) => {
-    Allure.addFeature('Notifications')
-    Allure.addSeverity('critical')
-    Allure.addTag('smoke')
-    Allure.addDescription(
-      'Validate the Notifications panel opens correctly when header button is clicked'
-    )
-    const notificationsPanelPage = new NotificationsPanelPage(page)
+    const notificationsPanelPage = new NotificationsPanelPage(page, locale)
     await Allure.step('Open Notifications Panel', async () => {
-      await containerPage.openNotificationsPanel()
+      await homePage.openNotificationsPanel()
     })
     await Allure.step('Check Navigation Panel Header', async () => {
       await notificationsPanelPage.validateNotificationsPanelHeader()
@@ -34,62 +43,47 @@ test.describe('Container App Header Navigation Tests', () => {
   })
 
   test('Validate Calendar Navigation on Button Click', async () => {
-    Allure.addFeature('Calendar')
-    Allure.addSeverity('normal')
     await Allure.step('Navigate to Calendar Page', async () => {
-      await containerPage.navigateToCalendarFromHeader()
+      await homePage.navigateToCalendarFromHeader()
     })
     await Allure.step('Check Current App', async () => {
-      await containerPage.validateCurrentApp(APP_NAMES.calendar)
+      await homePage.validateCurrentApp(APP_NAMES.calendar)
     })
   })
 
   test('Validate Time Tracking Navigation on Button Click', async () => {
-    Allure.addFeature('Time Tracking')
-    Allure.addSeverity('normal')
     await Allure.step('Navigate to Time Tracking Page', async () => {
-      await containerPage.navigateToTimeTrackingFromHeader()
+      await homePage.navigateToTimeTrackingFromHeader()
     })
     await Allure.step('Check Current App', async () => {
-      await containerPage.validateCurrentApp(APP_NAMES.timeTracking)
+      await homePage.validateCurrentApp(APP_NAMES.timeTracking)
     })
   })
 
   test('Validate Email Navigation on Button Click', async () => {
-    Allure.addFeature('Email')
-    Allure.addSeverity('normal')
     await Allure.step('Navigate to Email Page', async () => {
-      await containerPage.navigateToEmailFromHeader()
+      await homePage.navigateToEmailFromHeader()
     })
     await Allure.step('Check Current App', async () => {
-      await containerPage.validateCurrentApp(APP_NAMES.email)
+      await homePage.validateCurrentApp(APP_NAMES.email)
     })
   })
 
   test('Validate Live Chat Navigation on Button Click', async ({ context }) => {
-    Allure.addFeature('Live Chat')
-    Allure.addSeverity('minor')
-
     await Allure.step('Open Live Chat in New Tab and Validate', async () => {
-      await containerPage.openLiveChatAndValidate(context)
+      await homePage.openLiveChatAndValidate(context, locale)
     })
   })
 
   test('Validate Profile Menu Opens on Avatar Click', async () => {
-    Allure.addFeature('Profile')
-    Allure.addSeverity('trivial')
-
     await Allure.step('Open Profile Dropdown Menu', async () => {
-      await containerPage.openProfileDropdown()
+      await homePage.openProfileDropdown()
     })
   })
 
   test('Validate Profile Menu Username on Dropdown', async () => {
-    Allure.addFeature('Profile')
-    Allure.addSeverity('trivial')
-
     await Allure.step('Open Profile Dropdown Menu', async () => {
-      await containerPage.validateProfileDropdownUserName()
+      await homePage.validateProfileDropdownUserName()
     })
   })
 })

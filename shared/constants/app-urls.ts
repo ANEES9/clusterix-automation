@@ -44,7 +44,16 @@ export const APP_URLS = {
     base: '/accounting',
     payments: {
       bankAccounts: '/accounting/payments/bank-accounts',
+      paymentTransactions: '/accounting/payments/transactions',
+      chartOfAccounts: '/accounting/payments/chart-of-accounts',
     },
+    income: {
+      customers: '/accounting/income/customers',
+      invoices: '/accounting/income/invoices',
+      products: '/accounting/income/products',
+    },
+    categories: '/accounting/categories',
+    reports: '/accounting/financial-reports',
   },
   byteBuilder: {
     base: '/byte-builder',
@@ -74,7 +83,8 @@ export const APP_URLS = {
       },
       timeframes: '/project-management/projects/timeframes',
       activity: '/project-management/projects/activity',
-      resourceAllocation: '/project-management/resource-allocation/personnel-allocation',
+      resourceAllocation:
+        '/project-management/resource-allocation/personnel-allocation',
     },
   },
   taskManagement: {
@@ -125,5 +135,9 @@ export const APP_URLS = {
       campaign: (campaignId: string) => `/bulk-mailing/campaigns/${campaignId}`,
     },
     audience: '/bulk-mailing/audiences',
+  },
+  myProfile: {
+    base: 'profile',
+    vacationAndAbsenceDays: '/profile/vacation-and-absence-days',
   },
 }

@@ -14,7 +14,7 @@ test.describe('Search Meeting', () => {
     //await page.waitForLoadState('networkidle')
   })
 
-  test.only('test', async ({ page }) => {
+  test('test', async ({ page }) => {
     await page.pause()
 
     // Open the calendar

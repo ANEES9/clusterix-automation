@@ -4,9 +4,8 @@ import * as dotenv from 'dotenv'
 import { addCursorStyleAndScript } from 'common/cursor-helper'
 import { skipSurveyHelper } from 'common/skip-survey-helper'
 import { skipProductTourHelper } from 'common/skip-product-tour-helper'
-import { closeTimerPopUp } from 'common/timer-helper'
+import { skipTimerHelper } from 'common/skip-timer-helper'
 import { EmailPage, Setting } from 'pages/email'
-
 
 const env = process.env.NODE_ENV || 'production'
 dotenv.config({ path: `.env.${env}` })
@@ -24,7 +23,7 @@ test.describe('Email Setting UI Validation', () => {
         await skipSurveyHelper(page, testInfo)
         await skipProductTourHelper(page, testInfo)
         await page.waitForTimeout(4000)
-        await closeTimerPopUp(page)
+        await skipTimerHelper(page, testInfo)
         await page.waitForLoadState('networkidle')
 
         //Navigateion to Email Application
@@ -47,7 +46,7 @@ test.describe('Email Setting UI Validation', () => {
     await Allure.step('Step 1: Verify and Click on Settings', async () => {
       await emailPage.verifySettingButton()
       await emailPage.clickOnSettings()
-      await Allure.addAttachment(
+      Allure.addAttachment(
         'Setting report',
         'Setting is visiable and able to click. Navigate to Settings page'
       )
@@ -57,7 +56,7 @@ test.describe('Email Setting UI Validation', () => {
       async () => {
         await emailSettingPage.verifyGeneralSettingButton()
         await emailSettingPage.clickGeneralSettingButton()
-        await Allure.addAttachment(
+        Allure.addAttachment(
           'General Setting report',
           'General Setting is visiable and able to click. Navigate to General Settings page'
         )
@@ -220,7 +219,7 @@ test.describe('Email Setting UI Validation', () => {
         await emailSettingPage.verifyForwardMessageShift()
         await emailSettingPage.verifySendEmailCtrlEnter()
         await emailSettingPage.verifyDeleteMessage()
-        await Allure.addAttachment(
+        Allure.addAttachment(
           'Keyboard Shortcuts section report',
           'Keyboard Shortcuts section is visiable'
         )
@@ -312,10 +311,7 @@ test.describe('Email Setting UI Validation', () => {
         }
       )
       await emailSettingPage.verifySetYourTemplates()
-      await Allure.addAttachment(
-        'Templates Tab report',
-        'Templates Tab is visiable'
-      )
+      Allure.addAttachment('Templates Tab report', 'Templates Tab is visiable')
     })
     await Allure.step('5: Verify Delay Sending Emails', async () => {
       await emailSettingPage.verifyDelaySendingEmails()
@@ -510,8 +506,6 @@ test.describe('Email Setting UI Validation', () => {
         'Subject field is visible'
       )
     })
-
-    
 
     await Allure.step('Step 13: Verify Text Box', async () => {
       await emailSettingPage.verifyTextBox()

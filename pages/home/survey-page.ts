@@ -1,7 +1,7 @@
 import { Page, Locator, expect } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
 import { getTranslations } from 'common/get-translations-helper'
-import { APP_NAMES } from '../../shared/constants/app-names'
+import { APP_NAMES } from 'constants/app-names'
 
 export class SurveyPage {
   readonly page: Page
@@ -40,7 +40,7 @@ export class SurveyPage {
     this.page = page
 
     // Fetch the 'container' namespace translations based on the provided locale
-    this.translations = getTranslations('container', locale)
+    this.translations = getTranslations('home', locale)
 
     // Question locators
     this.roleQuestion = page.getByText(

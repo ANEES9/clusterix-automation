@@ -1,9 +1,12 @@
 import { Page, Locator } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
 import { APP_URLS } from 'constants/app-urls'
+import { getTranslations } from 'common/get-translations-helper'
 
 export class CalendarPage {
   private page: Page
+  private translations: Record<string, any>
+
   private closeCurrentApp: Locator
   private weekView: Locator
   private monthView: Locator
@@ -35,11 +38,13 @@ export class CalendarPage {
   private dayView: Locator
   private twoDaysView: Locator
 
-  constructor(page: Page, viewEvent?: string) {
+  constructor(page: Page, locale: string, viewEvent?: string) {
     if (viewEvent) {
       this.viewEvent = viewEvent // Only set if provided
     }
     this.page = page
+    this.translations = getTranslations('calendar', locale)
+
     this.closeCurrentApp = page.locator('.t2NoaA5h7fzt0q0GapK3')
     this.calendarApp = page.getByRole('button', { name: 'Calendar' })
     this.dayView = page.getByRole('button', { name: 'Day', exact: true })
@@ -83,7 +88,6 @@ export class CalendarPage {
 
   async goto(baseURL: string | undefined) {
     await Allure.step('Navigate to Calendar URL', async () => {
-      //await this.page.goto(`${baseURL}${CalendarPage.URL}`)
       await this.page.goto(`${baseURL}${APP_URLS.calendar.base}`)
     })
   }

@@ -4,9 +4,12 @@ import {
   confirmationDialogMessages,
   confirmationDialogTitles,
 } from 'utils/test-data/my-profile/my-profile-data'
+import { APP_URLS } from 'constants/app-urls'
+import { getTranslations } from 'common/get-translations-helper'
 
 export class VacationAbsenceDaysPage {
   private page: Page
+  translations: Record<string, any>
 
   // Locators
   private newRequestLocator: Locator
@@ -45,8 +48,9 @@ export class VacationAbsenceDaysPage {
   private selectFilterOptionsLocator: Locator
   private halfDayCheckBoxLocator: Locator
 
-  constructor(page: Page) {
+  constructor(page: Page, locale: string) {
     this.page = page
+    this.translations = getTranslations('my-profile', locale)
 
     // Initialize locators
     this.newRequestLocator = page
@@ -139,6 +143,14 @@ export class VacationAbsenceDaysPage {
     this.selectFilterOptionsLocator = this.page.locator(
       '((//div[@data-ui-element="dropdown-list"])[3])/div/div'
     )
+  }
+
+  async goto(baseURL: string | undefined) {
+    await Allure.step('should navigate to my profile', async () => {
+      await this.page.goto(
+        `${baseURL}${APP_URLS.myProfile.vacationAndAbsenceDays}`
+      )
+    })
   }
 
   async openNewRequest() {

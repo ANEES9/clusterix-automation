@@ -96,6 +96,9 @@
     "account_name": "Account Name",
     "no_transaction": "There is no bank transactions yet!"
   },
+  "chartOfAccounts": {
+    "title": "Chart Of Accounts"
+  },
   "no_bills": "No bills found",
   "no_search_results": "No search results found",
   "duration": "Duration",

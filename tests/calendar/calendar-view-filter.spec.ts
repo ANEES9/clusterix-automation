@@ -1,23 +1,19 @@
 import { test } from '@playwright/test'
-import { skipTimerHelper } from 'common/skip-timer-helper'
-import { addCursorStyleAndScript } from 'common/cursor-helper'
 import { CalendarPage } from 'pages/calendar/calendar-page'
-import { skipSurveyHelper } from 'common/skip-survey-helper'
-import { skipProductTourHelper } from 'common/skip-product-tour-helper'
+import { setupTestContext } from 'utils/test-context'
 
 test.describe('Testcases to view calendar using filters', () => {
+  let calendarPage: CalendarPage
+  let locale: string
   test.beforeEach(async ({ page, baseURL }, testInfo) => {
-    await page.goto(baseURL!)
-    await addCursorStyleAndScript(page)
-    await skipSurveyHelper(page, testInfo)
-    await skipProductTourHelper(page, testInfo)
-    await skipTimerHelper(page)
+    await calendarPage.goto(baseURL)
+    const testContext = await setupTestContext(page, testInfo)
+    locale = testContext.locale
+    calendarPage = new CalendarPage(page, locale)
     await page.waitForLoadState('networkidle')
   })
 
   test('change week view to month view', async ({ page }) => {
-    const calendarPage = new CalendarPage(page)
-
     await calendarPage.navigateToCalendar()
 
     // Wait for the page to fully load
@@ -30,8 +26,6 @@ test.describe('Testcases to view calendar using filters', () => {
   })
 
   test('change week view to year view', async ({ page }) => {
-    const calendarPage = new CalendarPage(page)
-
     await calendarPage.navigateToCalendar()
 
     // Wait for the page to fully load
@@ -44,7 +38,6 @@ test.describe('Testcases to view calendar using filters', () => {
   })
 
   test('change week view to list view', async ({ page }) => {
-    const calendarPage = new CalendarPage(page)
     await calendarPage.navigateToCalendar()
 
     // Wait for the page to fully load
@@ -57,8 +50,6 @@ test.describe('Testcases to view calendar using filters', () => {
   })
 
   test('change week view to day view', async ({ page }) => {
-    const calendarPage = new CalendarPage(page)
-
     await calendarPage.navigateToCalendar()
 
     // Wait for the page to fully load
@@ -71,8 +62,6 @@ test.describe('Testcases to view calendar using filters', () => {
   })
 
   test('change week view to 2 days view', async ({ page }) => {
-    const calendarPage = new CalendarPage(page)
-
     await calendarPage.navigateToCalendar()
 
     // Wait for the page to fully load

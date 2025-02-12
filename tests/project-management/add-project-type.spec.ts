@@ -17,7 +17,6 @@ test.describe('Clusterix Project Managament', () => {
       await page.waitForLoadState('networkidle')
     })
   })
-  test.setTimeout(150000)
   test('Add Project Type', async ({ page }) => {
     await page
       .locator('.ajRcq_m1OOoO3cbSsbzI.XSnRb6hz2HghB3Jl7GnF')
