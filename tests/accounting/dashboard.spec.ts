@@ -1,21 +1,30 @@
-import { test } from '@playwright/test'
+import { Browser, Page, test } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
 import { DashboardPage } from 'pages/accounting/dashboard-page'
 import { setupTestContext } from 'utils/test-context'
+import { BrowserContext } from 'playwright'
+
+let browser: Browser
+let context: BrowserContext
+let page: Page
+let dashboardPage: DashboardPage
+let locale: string
 
 test.describe('Dashboard Tab Tests', () => {
-  let dashboardPage: DashboardPage
-  let locale: string
+  test.beforeAll(async ({ browser: testBrowser, baseURL }, testInfo) => {
+    browser = testBrowser
+    context = await browser.newContext()
+    page = await context.newPage()
 
-  test.beforeEach(async ({ page, baseURL }, testInfo) => {
     Allure.addAppOwner('Accounting')
     Allure.addSeverity('critical')
     Allure.addTag('smoke')
+
     const testContext = await setupTestContext(page, testInfo)
     locale = testContext.locale
     dashboardPage = new DashboardPage(page, locale)
     await dashboardPage.goto(baseURL)
-    await page.waitForLoadState('domcontentloaded')
+    await page.waitForLoadState('networkidle')
   })
 
   test('Validate Dashboard navigation from sidebar', async () => {
@@ -52,5 +61,10 @@ test.describe('Dashboard Tab Tests', () => {
 
   test('Validate Reports navigation from sidebar', async () => {
     await dashboardPage.validateReportsNavigation()
+  })
+
+  test.afterAll(async () => {
+    await context.close()
+    await browser.close()
   })
 })
