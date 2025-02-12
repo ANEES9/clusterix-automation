@@ -1,23 +1,33 @@
-import { test } from '@playwright/test'
+import { Browser, Page, test } from '@playwright/test'
 import { HomePage } from 'pages/home/home-page'
 import { Allure } from 'common/allure-helper'
 import { NotificationsPanelPage } from 'pages/notifications/notifications-panel-page'
 import { APP_NAMES } from 'constants/app-names'
 import { setupTestContext } from 'utils/test-context'
-test.describe('Home Header Navigation Tests', () => {
-  let homePage: HomePage
-  let locale: string
+import { BrowserContext } from 'playwright'
 
-  test.beforeEach(async ({ page, baseURL }, testInfo) => {
+let browser: Browser
+let context: BrowserContext
+let page: Page
+let homePage: HomePage
+let locale: string
+
+test.describe('Home Header Navigation Tests', () => {
+  test.beforeAll(async ({ browser: testBrowser, baseURL }, testInfo) => {
+    browser = testBrowser
+    context = await browser.newContext()
+    page = await context.newPage()
+
     Allure.addFeature(' Header navigation')
     Allure.addAppOwner('Home')
     Allure.addSeverity('critical')
     Allure.addTag('smoke')
-    await homePage.goto(baseURL)
+
     const testContext = await setupTestContext(page, testInfo)
     locale = testContext.locale
     homePage = new HomePage(page, locale)
-    await page.waitForLoadState('networkidle')
+    await homePage.goto(baseURL)
+    await page.waitForLoadState('domcontentloaded')
   })
 
   test('Validate Notifications Panel Opens on Button Click', async ({
