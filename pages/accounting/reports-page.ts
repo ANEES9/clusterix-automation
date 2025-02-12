@@ -12,9 +12,9 @@ export class ReportsPage {
     this.page = page
     this.translations = getTranslations('accounting', locale)
 
-    this.reportsPageTitle = this.page.getByRole('heading', {
-      name: this.translations.transactions.financial_reports,
-    })
+    this.reportsPageTitle = this.page.locator(
+      `p:has-text("${this.translations.financial_reports.page_title}")`
+    )
   }
 
   /**

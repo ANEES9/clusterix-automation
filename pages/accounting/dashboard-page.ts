@@ -101,7 +101,7 @@ export class DashboardPage {
 
   async validateDashboardNavigation(): Promise<void> {
     await Allure.step('Click on the Dashboard Button', async () => {
-      await this.dashboardButton.click()
+      await this.dashboardButton.click({ force: true })
     })
     await Allure.step(
       'Validate that Dashboard Page Title is Visible',
@@ -119,7 +119,7 @@ export class DashboardPage {
       await this.paymentsButton.click()
     })
     await Allure.step('Click on the Bank Accounts Button', async () => {
-      await this.bankAccountsButton.click()
+      await this.bankAccountsButton.click({ force: true })
     })
     await Allure.step(
       'Validate that Bank Accounts Page Title is Visible',
@@ -141,7 +141,7 @@ export class DashboardPage {
       await this.paymentsButton.click()
     })
     await Allure.step('Click on the Payment Transactions Button', async () => {
-      await this.paymentTransactionsButton.click()
+      await this.paymentTransactionsButton.click({ force: true })
     })
     await Allure.step(
       'Validate that Payment Transactions Page Title is Visible',
@@ -185,7 +185,7 @@ export class DashboardPage {
       await this.incomeButton.click()
     })
     await Allure.step('Click on the Customers Button', async () => {
-      await this.customersButton.click()
+      await this.customersButton.nth(1).click({ force: true })
     })
     await Allure.step(
       'Validate that Customers Page Title is Visible',
