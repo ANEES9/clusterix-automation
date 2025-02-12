@@ -11,11 +11,13 @@ const env = process.env.NODE_ENV || 'production'
 dotenv.config({ path: `.env.${env}` })
 
 test.describe('Email Setting UI Validation', () => {
+  let emailPage: EmailPage
+  let emailSettingPage: Setting
   test.beforeEach(async ({ page, baseURL }, testInfo) => {
     await Allure.step(
       'Navigate to Base URL, Close Popups and navigate to Email application',
       async () => {
-        const emailPage = new EmailPage(page, 'en')
+        emailPage = new EmailPage(page)
         await page.goto(baseURL!)
         await addCursorStyleAndScript(page)
         await skipSurveyHelper(page, testInfo)
@@ -34,8 +36,8 @@ test.describe('Email Setting UI Validation', () => {
   })
 
   test('General Setting section UI Validation', async ({ page }) => {
-    const emailSettingPage = new Setting(page, 'en')
-    const emailPage = new EmailPage(page, 'en')
+    emailSettingPage = new Setting(page)
+    emailPage = new EmailPage(page)
     Allure.addSeverity('normal')
     Allure.addTag('smoke')
     Allure.addDescription(
@@ -228,8 +230,8 @@ test.describe('Email Setting UI Validation', () => {
   test('Compose and Reply Setting section page UI Validation', async ({
     page,
   }) => {
-    const emailSettingPage = new Setting(page, 'en')
-    const emailPage = new EmailPage(page, 'en')
+    emailSettingPage = new Setting(page)
+    emailPage = new EmailPage(page)
     Allure.addSeverity('normal')
     Allure.addTag('smoke')
     Allure.addDescription(
@@ -318,8 +320,8 @@ test.describe('Email Setting UI Validation', () => {
   })
 
   test('AI Helper section UI Validation', async ({ page }) => {
-    const emailSettingPage = new Setting(page, 'en')
-    const emailPage = new EmailPage(page, 'en')
+    emailSettingPage = new Setting(page)
+    emailPage = new EmailPage(page)
     Allure.addSeverity('normal')
     Allure.addTag('smoke')
     Allure.addDescription(
@@ -384,8 +386,8 @@ test.describe('Email Setting UI Validation', () => {
   })
 
   test('Automation Reply section UI Validation', async ({ page }) => {
-    const emailSettingPage = new Setting(page, 'en')
-    const emailPage = new EmailPage(page, 'en')
+    emailSettingPage = new Setting(page)
+    emailPage = new EmailPage(page)
     Allure.addSeverity('normal')
     Allure.addTag('smoke')
     Allure.addDescription(
@@ -520,8 +522,8 @@ test.describe('Email Setting UI Validation', () => {
   })
 
   test('Automatic Action section UI Validation', async ({ page }) => {
-    const emailSettingPage = new Setting(page, 'en')
-    const emailPage = new EmailPage(page, 'en')
+    emailSettingPage = new Setting(page)
+    emailPage = new EmailPage(page)
     Allure.addSeverity('normal')
     Allure.addTag('smoke')
     Allure.addDescription(
