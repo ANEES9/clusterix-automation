@@ -99,6 +99,11 @@ export class LoginPage {
     await this.loginButton.click()
     await this.page.waitForLoadState('networkidle')
   }
+
+  async verifyLoginPageItems() {
+    await this.emailField.isVisible()
+    await this.loginButton.isVisible()
+  }
   /**
    * Log in and validate the API response.
    * @param email - User's email address.

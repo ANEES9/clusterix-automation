@@ -8,6 +8,7 @@ export class HomePage {
   private page: Page
   translations: Record<string, any>
 
+  //Header Items
   public currentAppHeader: Locator
   public activeAppName: Locator
 
@@ -20,6 +21,9 @@ export class HomePage {
   private profileDropdownMenu: Locator
   private dropdownUserNameElement: Locator
   private profileDropdownSearch: Locator
+  private logOutButton: Locator
+
+  //Sidebar Items
   private sidebarOpener: Locator
   private homeSidebarButton: Locator
   private filesSidebarButton: Locator
@@ -80,6 +84,9 @@ export class HomePage {
     this.profileDropdownMenu = page.getByText('Product TourSettings')
     this.dropdownUserNameElement = page.locator('#ca-portal-root')
     this.profileDropdownSearch = page.getByPlaceholder('Search')
+    this.logOutButton = page.locator(
+      `span:has-text("${this.translations.navbar.useMenu.logout}")`
+    )
 
     //Sidebar items
     this.sidebarOpener = page.locator('button.container-app-sidebar-opener')
@@ -305,6 +312,16 @@ export class HomePage {
           (line) => !ignoredKeywords.includes(line) && !line.includes('@')
         )
         expect(updatedCompanyName).toEqual(companyName)
+      }
+    )
+  }
+
+  async logOutFromAccount() {
+    await Allure.step(
+      'should log out from account when the log out button clicked from user dropdown',
+      async () => {
+        await this.profileDropdownButton.click()
+        await this.logOutButton.click()
       }
     )
   }
