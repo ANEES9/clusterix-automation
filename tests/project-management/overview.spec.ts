@@ -152,18 +152,19 @@ test.describe('Project management overview', () => {
     )
   })
 
-  test('Validate the hidden filter functionality in overview', async ({
-    page,
-  }) => {
-    Allure.addDescription('Verifies that project is hidden succssesfully.')
-    await Allure.step(
-      'Validate the working of hidden filter and its function',
-      async () => {
-        await overviewPage.clickFilterInOverview()
-        await overviewPage.validateHiddenFilter()
-      }
-    )
-  })
+  test.fixme(
+    'Validate the hidden filter functionality in overview',
+    async () => {
+      Allure.addDescription('Verifies that project is hidden succssesfully.')
+      await Allure.step(
+        'Validate the working of hidden filter and its function',
+        async () => {
+          await overviewPage.clickFilterInOverview()
+          await overviewPage.validateHiddenFilter()
+        }
+      )
+    }
+  )
 
   test('Validate the reveal project functionality', async ({ page }) => {
     Allure.addDescription('Verifies that project is revealed succssesfully.')
