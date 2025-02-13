@@ -18,7 +18,7 @@ export class CompanyModal {
 
     constructor(page: Page) {
         this.page = page;
-        
+
         // Initialize locators
         this.companyModal =this.page.locator('.mnJziLomBY55AkkNgeOP');
         this.modal = this.page.locator('.CompanyDetailsWrapper-module_companyDetailsWrapper__6lUe-');
@@ -29,7 +29,7 @@ export class CompanyModal {
         this.fieldOfActivity = this.page.locator('.SectionWrapper-module_sectionWrapper__Z0Ava >> nth=1');
         this.products = this.page.locator('.Products-module_product__0bDy4');
         this.balanceSheet = this.page.locator('.BalanceSheets-module_balanceSheets__5K7O6');
-        this.closeButton = this.page.locator('css=SELECTOR_FOR_CLOSE_MODAL_BUTTON'); // Replace this with the actual selector
+        this.closeButton = this.page.locator('.Lh9S26U3vePNRhTr3fPq');
     }
 
     async openModal(index: number) {
