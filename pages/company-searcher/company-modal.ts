@@ -1,4 +1,5 @@
 import { Page, expect } from '@playwright/test';
+import { Allure } from 'common/allure-helper';
 
 export class CompanyModal {
     private readonly page: Page;
@@ -38,6 +39,7 @@ export class CompanyModal {
      
 
     async verifyModalContents() {
+        await Allure.step('Verify company modal contents', async () => {
         await expect(this.modal).toBeVisible();
         await expect(this.address).toBeVisible();
         await expect(this.website).toBeVisible();
@@ -47,6 +49,7 @@ export class CompanyModal {
         const productsCount = await this.products.count();
         expect(productsCount).toBeGreaterThan(0);
         await expect(this.balanceSheet).toBeVisible();
+        });
     }
 
     async closeModal() {
