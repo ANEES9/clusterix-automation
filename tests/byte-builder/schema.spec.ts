@@ -1,23 +1,34 @@
-import { test, TestInfo } from '@playwright/test'
+import { Browser, Page, test, TestInfo } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
 import { ByteBuilderPage } from 'pages/byte-builder/byte-builder-page'
 import { schemaTestData } from 'utils/test-data/byte-builder/schema-data'
 import { setupTestContext } from 'utils/test-context'
+import { BrowserContext } from 'playwright'
+
+let browser: Browser
+let context: BrowserContext
+let page: Page
+let byteBuilderPage: ByteBuilderPage
+let locale: string
 
 test.describe('Byte Builder > Schema Tests', () => {
-  let byteBuilderPage: ByteBuilderPage
-  let locale: string
+  test.beforeAll(
+    async ({ browser: testBrowser, baseURL }, testInfo: TestInfo) => {
+      browser = testBrowser
+      context = await browser.newContext()
+      page = await context.newPage()
 
-  test.beforeEach(async ({ page, baseURL }, testInfo: TestInfo) => {
-    Allure.addAppOwner('Byte Builder')
-    Allure.addSeverity('normal')
-    Allure.addTag('smoke')
-    const testContext = await setupTestContext(page, testInfo)
-    locale = testContext.locale
-    byteBuilderPage = new ByteBuilderPage(page, locale)
-    await byteBuilderPage.goto(baseURL)
-    await page.waitForLoadState('networkidle')
-  })
+      Allure.addAppOwner('Byte Builder')
+      Allure.addSeverity('normal')
+      Allure.addTag('smoke')
+
+      const testContext = await setupTestContext(page, testInfo)
+      locale = testContext.locale
+      byteBuilderPage = new ByteBuilderPage(page, locale)
+      await byteBuilderPage.goto(baseURL)
+      await page.waitForLoadState('networkidle')
+    }
+  )
 
   test('Verify New Schema button functionality', async () => {
     Allure.addDescription(

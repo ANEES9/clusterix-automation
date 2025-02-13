@@ -16,11 +16,12 @@ const currentDate = new Date()
 let fetchRemoteIdProd: string, fetchRemoteIdTest: string
 
 test.describe('switch between email', () => {
+  let emailPage: EmailPage
   test.beforeEach(async ({ page, baseURL }, testInfo) => {
     await Allure.step(
       'Navigate to Base URL, Close Popups and navigate to Email application',
       async () => {
-        const emailPage = new EmailPage(page)
+        emailPage = new EmailPage(page)
 
         await page.goto(baseURL!)
         await addCursorStyleAndScript(page)
@@ -83,7 +84,7 @@ test.describe('switch between email', () => {
       'Verifying the ability to switch between different email accounts. This test ensures that users can navigate between multiple email accounts, validate UI elements such as account selection, and confirm that the correct email content is displayed after switching.'
     )
 
-    const emailPage = new EmailPage(page)
+    emailPage = new EmailPage(page)
     emailPage.switchBetweenEmailLocator = 'raos@innoscripta.com'
     await page.waitForTimeout(2000)
     await Allure.step(
