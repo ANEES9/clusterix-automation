@@ -28,7 +28,7 @@ export default defineConfig({
 timeout: 60 * 1000, // Global timeout for each test (1 minute)
   globalSetup: require.resolve('./global-setup'),
   globalTeardown: require.resolve('./global-teardown'),
-  workers: 6,
+  workers: 1,
   projects: [
     // Generate projects dynamically
     ...generateProjects(),
