@@ -24,7 +24,7 @@ export default defineConfig({
   },
   globalSetup: require.resolve('./global-setup'),
   globalTeardown: require.resolve('./global-teardown'),
-  workers: 6,
+  workers: 1,
   projects: [
     // Generate projects dynamically
     ...generateProjects(),
