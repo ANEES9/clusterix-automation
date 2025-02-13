@@ -51,15 +51,7 @@
       "November",
       "Dezember"
     ],
-    "days": [
-      "Mo",
-      "Di",
-      "Mi",
-      "Do",
-      "Fr",
-      "Sa",
-      "So"
-    ],
+    "days": ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"],
     "fullDays": {
       "monday": "Montag",
       "tuesday": "Dienstag",
@@ -353,7 +345,7 @@
     "appointly_link": "Terminlink",
     "following_variables_not_filled": "Die folgenden Variablen sind nicht ausgefüllt:"
   },
-  "mailbox":{
+  "mailbox": {
     "filterModal": {
       "attachments": "Anhänge",
       "hasAttachments": "Mit Anhängen",

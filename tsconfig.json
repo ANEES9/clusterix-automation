@@ -20,7 +20,7 @@
       "pages/*": ["./pages/*"],
       "constants/*": ["./shared/constants/*"],
       "types/*": ["./shared/types/*"],
-      "utils/*": ["./shared/utils/*"],
+      "utils/*": ["./shared/utils/*"]
     }
   }
 }

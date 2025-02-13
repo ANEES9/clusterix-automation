@@ -51,24 +51,8 @@
       "November",
       "Dezember"
     ],
-    "days": [
-      "MO",
-      "DI",
-      "MI",
-      "DO",
-      "FR",
-      "SA",
-      "SO"
-    ],
-    "3LetterDays": [
-      "MON",
-      "DIE",
-      "MIT",
-      "DON",
-      "FRE",
-      "SAM",
-      "SON"
-    ],
+    "days": ["MO", "DI", "MI", "DO", "FR", "SA", "SO"],
+    "3LetterDays": ["MON", "DIE", "MIT", "DON", "FRE", "SAM", "SON"],
     "dateFormat": "TT.MM.JJJJ",
     "page": "Seite",
     "from": "von",

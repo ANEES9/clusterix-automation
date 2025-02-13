@@ -11,7 +11,7 @@ test.describe('User and Permissions - My Profile Tests', () => {
     await page.goto(`${baseURL}/settings/users-and-permissions`)
     await skipSurveyHelper(page, testInfo)
     await skipProductTourHelper(page, testInfo)
-    await skipTimerHelper(page)
+    await skipTimerHelper(page, testInfo)
     await addCursorStyleAndScript(page)
     await page.waitForLoadState('networkidle')
   })
@@ -125,7 +125,8 @@ test.describe('User and Permissions - My Profile Tests', () => {
     const [response] = await Promise.all([
       page.waitForResponse(
         (response) =>
-          response.url().includes('/auth/users') && response.status() === 200
+          response.url().includes('/login-refactor/users') &&
+          response.status() === 200
       ),
       // Click the Apply button
       page

@@ -16,7 +16,7 @@ export default defineConfig({
   ],
   use: {
     trace: 'on-first-retry',
-    headless: false,
+    headless: true,
     baseURL: process.env.CLUSTERIX_BASE_URL,
     viewport: { width: 1280, height: 720 },
     video: 'retain-on-failure',
@@ -27,8 +27,8 @@ export default defineConfig({
   },
 timeout: 60 * 1000, // Global timeout for each test (1 minute)
   globalSetup: require.resolve('./global-setup'),
-  //globalTeardown: require.resolve('./global-teardown'),
-  workers: 1,
+  globalTeardown: require.resolve('./global-teardown'),
+  workers: 6,
   projects: [
     // Generate projects dynamically
     ...generateProjects(),

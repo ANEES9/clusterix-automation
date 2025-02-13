@@ -1,5 +1,5 @@
 {
-  "common":{
+  "common": {
     "toaster": {
       "Note": "Notiz",
       "Error": "Fehler",
@@ -1064,14 +1064,14 @@
               }
             }
           },
-          "tutorial" : {
+          "tutorial": {
             "title": "Wie wählt man den Tagesbereich aus?",
             "step_one_title": "1. Klicken und ziehen",
             "step_one_description": "Klicken Sie auf den ersten Tag des Bereichs. Halten Sie die Maustaste gedrückt und ziehen Sie die Maus über den gewünschten Bereich von Tagen. Lassen Sie die Maustaste los, um die Auswahl abzuschließen.",
             "step_two_title": "2. Klicken + SHIFT + Klicken",
             "step_two_description": "Klicken Sie auf den ersten Tag, halten Sie die Umschalttaste gedrückt, und klicken Sie dann auf den letzten Tag, um den gesamten Bereich zu markieren."
           },
-          "decimal_converter" : {
+          "decimal_converter": {
             "title": "Dezimal-Konverter",
             "description": "Um Berechnungen zu erleichtern, wird die Zeit in Dezimalstunden angegeben. Um Minuten in Dezimalstunden umzurechnen, teilen Sie die Minuten einfach durch 60.",
             "converter_title": "Minuten in Dezimalzahlen umrechnen",
@@ -1088,7 +1088,6 @@
             "successfully_added": "{{absence}} Feiertag erfolgreich hinzugefügt.",
             "successfully_deleted": "{{absence}} erfolgreich gelöscht.",
             "exceeded_working_hours": "Überschreitung der Tagesarbeitszeit"
-
           },
           "change_work_items": {
             "header": "Zuweisung verwalten",
@@ -1126,7 +1125,7 @@
           "project": "Projekt",
           "academic_year": "Akademisches jahr",
           "financial_year": "Wirtschaftsjahr",
-          "toggle_label":"Geplant Gesamt",
+          "toggle_label": "Geplant Gesamt",
           "yearly_doc_downloaded_successfully": "Der Stundenzettel wurde erfolgreich heruntergeladen."
         }
       }
@@ -1974,7 +1973,7 @@
       "connected_project": "Verbundenes Projekt",
       "connected_plan_items": "Verbundene Planpositionen",
       "project_related_cost": "Projektbezogene Kosten",
-      "note":"Hinweis",
+      "note": "Hinweis",
       "add_note": "Notiz hinzufügen",
       "add_responsible": "Verantwortlich hinzufügen",
       "please_select_employee": "Bitte wählen Sie einen Mitarbeiter"

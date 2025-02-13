@@ -624,15 +624,7 @@
     "days-after-tomorrow": "days after tomorrow",
     "no-deadline": "Without Deadline"
   },
-  "days": [
-    "MO",
-    "TU",
-    "WE",
-    "TH",
-    "FR",
-    "SA",
-    "SU"
-  ],
+  "days": ["MO", "TU", "WE", "TH", "FR", "SA", "SU"],
   "months": [
     "January",
     "February",
