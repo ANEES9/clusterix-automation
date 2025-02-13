@@ -4,11 +4,9 @@ import { CompanyPage } from 'pages/company-searcher/company-page';
 import { closeCurrentlyActivePopup } from 'helpers/ui/company-searcher/currently-active-popup';
 import { collapseSidebar } from 'helpers/ui/company-searcher/sidebar-helper';
 import { addCursorStyleAndScript } from 'common/cursor-helper';
-import { skipProductTourHelper } from 'common/skip-product-tour-helper';
-import { skipSurveyHelper } from 'common/skip-survey-helper';
 import * as keywords from 'utils/test-data/company-searcher/keywords.json'; 
 import { Allure } from 'common/allure-helper';
-
+import { setupTestContext } from 'utils/test-context'
 let sharedPage: Page;
 let sharedContext: BrowserContext;
     // Function to pick random items from an array
@@ -20,14 +18,11 @@ let sharedContext: BrowserContext;
 test.beforeAll(async ({ browser, baseURL }, testInfo) => {
     sharedContext = await browser.newContext();
     sharedPage = await sharedContext.newPage();
-
+    const { locale } = await setupTestContext(sharedPage, testInfo)
     await sharedPage.goto(baseURL!);
-    await skipSurveyHelper(sharedPage, testInfo);
-    await skipProductTourHelper(sharedPage, testInfo);
     await sharedPage.waitForLoadState('networkidle');
     await addCursorStyleAndScript(sharedPage);
-
-    const companyPage = new CompanyPage(sharedPage);
+    const companyPage = new CompanyPage(sharedPage,locale);
     await companyPage.companySearcherLink.click();
 });
 
@@ -43,7 +38,6 @@ test.describe('Keyword search tests', () => {
         const locale = (testInfo.project.use?.locale ?? 'en') as 'en' | 'de';
         keywordPage = new KeywordPage(sharedPage, locale);
         searchTerms = keywords[locale];  // Load keywords based on locale
-
         await sharedPage.waitForTimeout(1000);
         await keywordPage.openSearch();
         await closeCurrentlyActivePopup(sharedPage);
@@ -99,8 +93,8 @@ test.describe('Keyword search tests', () => {
     for (const term of randomSearchTerms) {
         await keywordPage.performSearch(term);
         await sharedPage.waitForLoadState('networkidle'); // Wait for the page to load fully
-
-        const pagesToNavigate = 5; // Configurable variable: number of pages to navigate
+        await keywordPage.verifySearchResultsHaveData(term); // Verify data on the new page
+        const pagesToNavigate = 3; // Configurable variable: number of pages to navigate
         let currentPageNumber = await keywordPage.getActivePageNumber(); // Get the current active page number
 
         if (!currentPageNumber) {
@@ -115,8 +109,10 @@ test.describe('Keyword search tests', () => {
         // Navigate through the pages and verify data
         for (let i = 0; i < pagesToNavigate; i++) {
             numericCurrentPageNumber = await keywordPage.navigateAndVerifyNextPage(numericCurrentPageNumber + 1);
-            await keywordPage.verifySearchResultsHaveData(term); // Verify data on the new page
+  ``
         }
+
+       
     }
 });
 

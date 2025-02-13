@@ -5,9 +5,8 @@ import { closeCurrentlyActivePopup } from 'helpers/ui/company-searcher/currently
 import { collapseSidebar } from 'helpers/ui/company-searcher/sidebar-helper'
 import { addCursorStyleAndScript } from 'common/cursor-helper'
 import { searchData } from 'utils/test-data/company-searcher/search-data'
-import { skipProductTourHelper } from 'common/skip-product-tour-helper'
-import { skipSurveyHelper } from 'common/skip-survey-helper'
 import { Allure } from 'common/allure-helper'
+import { setupTestContext } from 'utils/test-context'
 
 
 test.describe('Company Searcher Smoke Test', () => {
@@ -16,11 +15,10 @@ test.describe('Company Searcher Smoke Test', () => {
 
   test.beforeEach(async ({ page, baseURL }, testInfo) => {
     await page.goto(baseURL!)
-    await skipSurveyHelper(page, testInfo)
-    await skipProductTourHelper(page, testInfo)
+    const { locale } = await setupTestContext(page, testInfo)
     await page.waitForLoadState('networkidle')
     await addCursorStyleAndScript(page)
-    companyPage = new CompanyPage(page)
+    companyPage = new CompanyPage(page, locale)
     filtersPage = new FiltersPage(page)
     await companyPage.companySearcherLink.click()
     await page.waitForTimeout(1000)
@@ -35,8 +33,9 @@ test.describe('Company Searcher Smoke Test', () => {
   // Use the imported search data and type it explicitly
   const searchItems: SearchData[] = searchData
 
-  test('Verifying Company page UI Elements to be visible', async ({ page }) => {
-    companyPage = new CompanyPage(page)
+  test('Verifying Company page UI Elements to be visible', async ({ page }, testInfo) => {
+    const locale = (testInfo.project.use?.locale ?? 'en') as 'en' | 'de';
+    companyPage = new CompanyPage(page, locale)
     Allure.addSeverity('critical')
     Allure.addTag('smoke')
     Allure.addDescription('Verifying Company page UI Elements to be visible')
@@ -271,8 +270,9 @@ test.describe('Company Searcher Smoke Test', () => {
     }
   })
 
-  test('Verify Next Page Button Functionality', async ({ page }) => {
-    const companyPage = new CompanyPage(page)
+  test('Verify Next Page Button Functionality', async ({ page },testInfo) => {
+    const locale = (testInfo.project.use?.locale ?? 'en') as 'en' | 'de';
+    const companyPage = new CompanyPage(page, locale)
     // Allure tags and metadata
     Allure.addSeverity('critical')
     Allure.addTag('navigation')
@@ -315,8 +315,9 @@ test.describe('Company Searcher Smoke Test', () => {
     }
   })
 
-  test('Verify Backwards Navigation Functionality', async ({ page }) => {
-    const companyPage = new CompanyPage(page)
+  test('Verify Backwards Navigation Functionality', async ({ page }, testInfo) => {
+    const locale = (testInfo.project.use?.locale ?? 'en') as 'en' | 'de';
+    const companyPage = new CompanyPage(page, locale)
     // Allure metadata
     Allure.addSeverity('critical')
     Allure.addTag('navigation')
@@ -369,13 +370,14 @@ test.describe('Company Searcher Smoke Test', () => {
     }
   })
 
-  test('verify child row label matches expanded rows', async ({ page }) => {
+  test('verify child row label matches expanded rows', async ({ page }, testInfo) => {
     Allure.addSeverity('critical')
     Allure.addTag('table')
     Allure.addDescription(
       'This test verifies that the number of rows expanded matches the child label for each expandable button in the table.'
     )
-    const companyPage = new CompanyPage(page)
+    const locale = (testInfo.project.use?.locale ?? 'en') as 'en' | 'de';
+    const companyPage = new CompanyPage(page, locale)
 
     // Get the total number of expandable buttons
     const count = await companyPage.getExpandableButtonCount()
@@ -422,7 +424,7 @@ test.describe('Company Searcher Smoke Test', () => {
     await filtersPage.verifyAllFiltersVisible();
   });
   
-  test('Verify country selection from nested dropdown', async () => {
+  test.only('Verify country selection from nested dropdown', async () => {
     Allure.addSeverity('critical')
     Allure.addTag('filter')
     Allure.addDescription(

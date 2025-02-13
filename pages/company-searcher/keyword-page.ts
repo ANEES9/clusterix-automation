@@ -16,8 +16,8 @@ export class KeywordPage {
     private filterButton;
     private saveSearchButton;
     private addCompanyButton;
-    private initialMessageTitle;
-    private initialMessageDescription;
+    private title;
+    private description;
     private selectItemsCheckbox;
     private expandButton;
     private primaryCell;
@@ -36,8 +36,8 @@ export class KeywordPage {
         this.filterButton = this.page.locator('.PartWrapper-module_partWrapper__I8EIP >> nth=1');
         this.saveSearchButton = this.page.locator('.ButtonWrapper-module_buttonWrapper__T-wbD >>nth=0');
         this.addCompanyButton = this.page.locator('.ButtonWrapper-module_buttonWrapper__T-wbD >>nth=1');
-        this.initialMessageTitle = this.page.locator('.EmptyState-module_title__-piqa');
-        this.initialMessageDescription = this.page.locator('.EmptyState-module_description__fsJOc');
+        this.title = this.page.locator('.EmptyState-module_title__-piqa');
+        this.description = this.page.locator('.EmptyState-module_description__fsJOc');
         this.selectItemsCheckbox = page.locator('button[role="checkbox"]');
         this.expandButton = page.locator('button:has(svg path[d="M6 9L4.6 7.6L2 10.2V6.9H0V13.7H6.8V11.7H3.4L6 9ZM6.9 0V2H10.2L7.6 4.6L9 6L11.6 3.4V6.7H13.6V0H6.9Z"])');
         this.primaryCell = page.locator('.cocLDVBJ_LM9BO4ywmZG');
@@ -80,12 +80,18 @@ export class KeywordPage {
 
 
       
-    async verifyInitialMessage() {
+      public async verifyInitialMessage() {
         await Allure.step('Verify the initial message displayed on search', async () => {
-            await expect(this.initialMessageTitle).toHaveText(this.translations.initial_message_title);
-            await expect(this.initialMessageDescription).toHaveText(this.translations.initial_message_description);
+            // Assuming 'this.translations' is correctly initialized and contains the expected translations
+            const expectedTitle = this.translations.main.keyword_search_page.empty_state.title;  // Ensure these keys match your translations structure
+            const expectedDescription = this.translations.main.keyword_search_page.empty_state.description;
+            await expect(this.title).toHaveText(expectedTitle);
+            await expect(this.description).toHaveText(expectedDescription);
+            console.log(`Debug: Verified the description text as '${expectedDescription}'`);
         });
     }
+    
+      
 
     async verifyElementsPresence() {
         await Allure.step('Check all key elements are present on the page', async () => {
@@ -148,7 +154,7 @@ export class KeywordPage {
     async getActivePageNumber(): Promise<string | undefined> {
         let activePageNum: string | undefined;
         await Allure.step('Get the active page number', async () => {
-            await this.page.waitForTimeout(2000);
+            await this.page.waitForTimeout(3000);
             activePageNum = (await this.activePageLocator.textContent())?.trim();
         });
         return activePageNum;

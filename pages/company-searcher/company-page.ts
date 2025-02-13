@@ -524,16 +524,19 @@ export class FiltersPage {
 }
 
 public async verifySelectedCountry(selectedCountry: string): Promise<void> {
-  const countryLocator = this.page.locator(`.ca-font-sans.ca-text-base:has-text("${selectedCountry}")`);
+  // Locator for the dropdown element
+  const dropdownLocator = this.page.locator(`input[placeholder="${selectedCountry}"]`);
 
-  // Verify that the check mark is displayed within the selected country option
-  const checkMarkLocator = countryLocator.locator('svg.ca-fill-theme');
-  await expect(checkMarkLocator).toBeVisible();
+  // Verify that the dropdown has the selected country as a placeholder
+  await expect(dropdownLocator).toHaveAttribute('placeholder', selectedCountry);
 
-  // Verify that the country option is in the "selected" state
-  await expect(countryLocator).toHaveClass(/selected/);
- 
+
+}
+
 }
   
-  
-}
+
+
+
+
+

@@ -4,11 +4,10 @@ import { CompanyPage } from 'pages/company-searcher/company-page';
 import { closeCurrentlyActivePopup } from 'helpers/ui/company-searcher/currently-active-popup';
 import { collapseSidebar } from 'helpers/ui/company-searcher/sidebar-helper';
 import { addCursorStyleAndScript } from 'common/cursor-helper';
-import { skipProductTourHelper } from 'common/skip-product-tour-helper';
-import { skipSurveyHelper } from 'common/skip-survey-helper';
 import * as keywords from 'utils/test-data/company-searcher/keywords.json'; 
 import { Allure } from 'common/allure-helper';
 import { CompanyModal } from 'pages/company-searcher/company-modal';
+import { setupTestContext } from 'utils/test-context'
 
 let sharedPage: Page;
 let sharedContext: BrowserContext;
@@ -18,13 +17,12 @@ let sharedContext: BrowserContext;
 test.beforeAll(async ({ browser, baseURL }, testInfo) => {
     sharedContext = await browser.newContext();
     sharedPage = await sharedContext.newPage();
-
+    const { locale } = await setupTestContext(sharedPage, testInfo)
     await sharedPage.goto(baseURL!);
-    await skipSurveyHelper(sharedPage, testInfo);
-    await skipProductTourHelper(sharedPage, testInfo);
     await sharedPage.waitForLoadState('networkidle');
     await addCursorStyleAndScript(sharedPage);
-    const companyPage = new CompanyPage(sharedPage);
+
+    const companyPage = new CompanyPage(sharedPage, locale);
     await companyPage.companySearcherLink.click();
    
 });
