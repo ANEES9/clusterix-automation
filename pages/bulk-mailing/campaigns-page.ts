@@ -18,7 +18,7 @@ export class CampaignsPage {
   }
 
   /**
-   * Navigate to the invoices.
+   * Navigate to the campaigns.
    * @param baseURL - The base URL of the application.
    */
   async goto(baseURL: string | undefined) {

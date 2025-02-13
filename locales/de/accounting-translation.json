@@ -44,7 +44,7 @@
   "income_contracts": "Einkommen Verträge",
   "transactions_balance": "Transaktionen & Bilanz",
   "expenses": "Ausgaben",
-  "payment_transactions": "Zahlungstransaktionen",
+  "payment_transactions": "Transaktionen",
   "payment_analysis": "Zahlungsanalyse",
   "payments": "Zahlungen",
   "chart_of_accounts": "Kontenplan",
@@ -91,7 +91,7 @@
     "cannot_renew_bank_account": "Ihr Konto ist derzeit aktiv. Verlängerungen können erst bearbeitet werden, wenn Ihr Konto abgelaufen ist."
   },
   "transactions": {
-    "title": "Zahlungstransaktionen",
+    "title": "Transaktionen",
     "connected_to": "Verbunden mit",
     "account_name": "Kontoname",
     "no_transaction": "Es gibt noch keine Banktransaktionen!"

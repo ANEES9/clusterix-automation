@@ -7,7 +7,6 @@ import { ChartOfAccountsPage } from 'pages/accounting/chart-of-accounts-page'
 import { CustomersPage } from 'pages/accounting/customers-page'
 import { InvoicesPage } from 'pages/accounting/invoices-page'
 import { ProductsPage } from 'pages/accounting/products-page'
-import { CategoriesPage } from 'pages/accounting/categories-page'
 import { ReportsPage } from 'pages/accounting/reports-page'
 import { Allure } from 'common/allure-helper'
 
@@ -21,7 +20,6 @@ export class DashboardPage {
   private customersPage: CustomersPage
   private invoicesPage: InvoicesPage
   private productsPage: ProductsPage
-  private categoriesPage: CategoriesPage
   private reportsPage: ReportsPage
 
   //Sidebar Items
@@ -34,7 +32,6 @@ export class DashboardPage {
   private customersButton: Locator
   private invoicesButton: Locator
   private productsButton: Locator
-  private categoriesButton: Locator
   private reportsButton: Locator
 
   //Dashboard Page Items
@@ -50,7 +47,6 @@ export class DashboardPage {
     this.customersPage = new CustomersPage(page, locale)
     this.invoicesPage = new InvoicesPage(page, locale)
     this.productsPage = new ProductsPage(page, locale)
-    this.categoriesPage = new CategoriesPage(page, locale)
     this.reportsPage = new ReportsPage(page, locale)
 
     //Sidebar Locators
@@ -80,9 +76,6 @@ export class DashboardPage {
     })
     this.productsButton = this.page.getByRole('button', {
       name: this.translations.products,
-    })
-    this.categoriesButton = this.page.getByRole('button', {
-      name: this.translations.categories,
     })
     this.reportsButton = this.page.getByRole('button', {
       name: this.translations.reports,
@@ -234,23 +227,6 @@ export class DashboardPage {
     )
     await Allure.step('Validate that URL is correct', async () => {
       await expect(this.page).toHaveURL(APP_URLS.accounting.income.products)
-    })
-  }
-
-  async validateCategoriesNavigation(): Promise<void> {
-    await Allure.step('Click on the Categories Button', async () => {
-      await this.categoriesButton.click()
-    })
-    await Allure.step(
-      'Validate that Categories Page Title is Visible',
-      async () => {
-        const getCategoriesPageTitle =
-          this.categoriesPage.getCategoriesPageTitle()
-        await expect(getCategoriesPageTitle).toBeVisible()
-      }
-    )
-    await Allure.step('Validate that URL is correct', async () => {
-      await expect(this.page).toHaveURL(APP_URLS.accounting.categories)
     })
   }
 
