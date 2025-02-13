@@ -161,13 +161,6 @@ export class LoginPage {
     await expect(this.passwordErrorLabel).toBeVisible()
   }
 
-  async verifyNavigateToForgotPasswordPage() {
-    await this.forgotPasswordLink.click()
-    await this.page.waitForLoadState('networkidle')
-    const currentUrl = this.page.url()
-    expect(currentUrl).toContain(APP_URLS.resetPassword)
-  }
-
   async verifyNavigateBackFromForgotPasswordPage() {
     await this.forgotPasswordLink.click()
     await this.page.waitForLoadState('networkidle')

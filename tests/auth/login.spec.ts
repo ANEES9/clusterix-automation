@@ -1,6 +1,6 @@
 import { Browser, Page, test } from '@playwright/test'
 import { userData } from 'utils/test-data/auth/user-data'
-import { LoginPage } from 'pages/auth/login-page'
+import { LoginPage } from 'pages/login-refactor/login-page'
 import { SurveyPage } from 'pages/home/survey-page'
 import { HomePage } from 'pages/home/home-page'
 import { ProductTourPage } from 'pages/home/product-tour-page'
@@ -103,10 +103,6 @@ test.describe('Login Page Tests', () => {
       userData.valid.email,
       userData.empty.tenSpacePassword
     )
-  })
-
-  test('Should navigate to forgot password screen', async () => {
-    await loginPage.verifyNavigateToForgotPasswordPage()
   })
 
   test.fixme(

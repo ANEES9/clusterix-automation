@@ -1,4 +1,4 @@
-import { Page, Locator, expect } from '@playwright/test'
+import { Page, Locator, expect, TestInfo } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
 import { getTranslations } from 'common/get-translations-helper'
 
@@ -38,7 +38,7 @@ export class EmailPage {
   private switchBackToEmail!: Locator
   static readonly URL = '/email'
 
-  constructor(page: Page, locale: string) {
+  constructor(page: Page, locale: TestInfo) {
     this.page = page
     this.translations = getTranslations('email', locale)
     this.currentApp = page.locator('p.m5ZbRpDkQfW8BXDqdzmY')

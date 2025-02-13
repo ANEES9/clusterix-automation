@@ -410,7 +410,7 @@
     "user_changed_property": "<Name>{{name}}</Name> changed <Property>{{property}}</Property> to <Value>{{value}}</Value>",
     "user_changed_status": "<Name>{{name}}</Name> changed status from <ValueFrom>{{valueFrom}}</ValueFrom> to <ValueTo>{{valueTo}}</ValueTo>"
   },
-  "main":{
+  "main": {
     "language": "en-GB",
     "h": "h",
     "M": "M",
@@ -1055,14 +1055,14 @@
               }
             }
           },
-          "tutorial" : {
+          "tutorial": {
             "title": "How to select the day range?",
             "step_one_title": "1. Click and Drag",
             "step_one_description": "Click on the first day in the range. While holding the mouse button, drag across the desired range of days. Release the mouse button to complete the selection.",
             "step_two_title": "2. Click + SHIFT + Click",
             "step_two_description": "Click on the first day, hold down the Shift key, and then click on the last day to highlight the entire range."
           },
-          "decimal_converter" : {
+          "decimal_converter": {
             "title": "Decimal Converter",
             "description": "Time is recorded in decimal hours to make calculations easier. To convert minutes to decimal hours, simply divide the minutes by 60.",
             "converter_title": "Convert Minutes to Decimals",
@@ -1116,7 +1116,7 @@
           "project": "Project",
           "academic_year": "Academic year",
           "financial_year": "Financial year",
-          "toggle_label":"Geplant Total",
+          "toggle_label": "Geplant Total",
           "yearly_doc_downloaded_successfully": "The timesheet was successfully downloaded."
         }
       }
@@ -1914,7 +1914,7 @@
       "connected_project": "Connected Project",
       "connected_plan_items": "Connected Plan Items",
       "project_related_cost": "Project related cost",
-      "note":"Note",
+      "note": "Note",
       "add_note": "Add note",
       "add_responsible": "Add responsible",
       "please_select_employee": "Please select employee"
