@@ -1,22 +1,25 @@
 import { test, expect } from '@playwright/test'
 import { CompanyPage } from 'pages/company-searcher/company-page'
+import { FiltersPage } from 'pages/company-searcher/company-page'
 import { closeCurrentlyActivePopup } from 'helpers/ui/company-searcher/currently-active-popup'
 import { collapseSidebar } from 'helpers/ui/company-searcher/sidebar-helper'
 import { addCursorStyleAndScript } from 'common/cursor-helper'
 import { searchData } from 'utils/test-data/company-searcher/search-data'
-import { skipProductTourHelper } from 'common/skip-product-tour-helper'
-import { skipSurveyHelper } from 'common/skip-survey-helper'
 import { Allure } from 'common/allure-helper'
+import { setupTestContext } from 'utils/test-context'
+
 
 test.describe('Company Searcher Smoke Test', () => {
   let companyPage: CompanyPage
+  let filtersPage: FiltersPage
+
   test.beforeEach(async ({ page, baseURL }, testInfo) => {
     await page.goto(baseURL!)
-    await skipSurveyHelper(page, testInfo)
-    await skipProductTourHelper(page, testInfo)
+    const { locale } = await setupTestContext(page, testInfo)
     await page.waitForLoadState('networkidle')
     await addCursorStyleAndScript(page)
-    companyPage = new CompanyPage(page)
+    companyPage = new CompanyPage(page, locale)
+    filtersPage = new FiltersPage(page)
     await companyPage.companySearcherLink.click()
     await page.waitForTimeout(1000)
     await closeCurrentlyActivePopup(page)
@@ -30,8 +33,9 @@ test.describe('Company Searcher Smoke Test', () => {
   // Use the imported search data and type it explicitly
   const searchItems: SearchData[] = searchData
 
-  test('Verifying Company page UI Elements to be visible', async ({ page }) => {
-    companyPage = new CompanyPage(page)
+  test('Verifying Company page UI Elements to be visible', async ({ page }, testInfo) => {
+    const locale = (testInfo.project.use?.locale ?? 'en') as 'en' | 'de';
+    companyPage = new CompanyPage(page, locale)
     Allure.addSeverity('critical')
     Allure.addTag('smoke')
     Allure.addDescription('Verifying Company page UI Elements to be visible')
@@ -87,6 +91,12 @@ test.describe('Company Searcher Smoke Test', () => {
   test('Verify Search, Pagination, and Data Validation with Flexible Page Check', async ({
     page,
   }) => {
+
+    Allure.addSeverity('critical')
+    Allure.addTag('search')
+    Allure.addDescription(
+      'Verify Search, Pagination, and Data Validation with Flexible Page Check'
+    )
     const pickRandomItems = <T>(array: T[], count: number): T[] =>
       array.sort(() => 0.5 - Math.random()).slice(0, count)
     const numberOfSearchTerms = 2 // Number of random search terms to test
@@ -260,8 +270,9 @@ test.describe('Company Searcher Smoke Test', () => {
     }
   })
 
-  test('Verify Next Page Button Functionality', async ({ page }) => {
-    const companyPage = new CompanyPage(page)
+  test('Verify Next Page Button Functionality', async ({ page },testInfo) => {
+    const locale = (testInfo.project.use?.locale ?? 'en') as 'en' | 'de';
+    const companyPage = new CompanyPage(page, locale)
     // Allure tags and metadata
     Allure.addSeverity('critical')
     Allure.addTag('navigation')
@@ -304,8 +315,9 @@ test.describe('Company Searcher Smoke Test', () => {
     }
   })
 
-  test('Verify Backwards Navigation Functionality', async ({ page }) => {
-    const companyPage = new CompanyPage(page)
+  test('Verify Backwards Navigation Functionality', async ({ page }, testInfo) => {
+    const locale = (testInfo.project.use?.locale ?? 'en') as 'en' | 'de';
+    const companyPage = new CompanyPage(page, locale)
     // Allure metadata
     Allure.addSeverity('critical')
     Allure.addTag('navigation')
@@ -358,13 +370,14 @@ test.describe('Company Searcher Smoke Test', () => {
     }
   })
 
-  test('verify child row label matches expanded rows', async ({ page }) => {
+  test('verify child row label matches expanded rows', async ({ page }, testInfo) => {
     Allure.addSeverity('critical')
     Allure.addTag('table')
     Allure.addDescription(
       'This test verifies that the number of rows expanded matches the child label for each expandable button in the table.'
     )
-    const companyPage = new CompanyPage(page)
+    const locale = (testInfo.project.use?.locale ?? 'en') as 'en' | 'de';
+    const companyPage = new CompanyPage(page, locale)
 
     // Get the total number of expandable buttons
     const count = await companyPage.getExpandableButtonCount()
@@ -399,4 +412,32 @@ test.describe('Company Searcher Smoke Test', () => {
       await companyPage.collapseRow(i)
     }
   })
-})
+
+
+  test('Verify all filter elements are visible', async () => {
+    Allure.addSeverity('critical')
+    Allure.addTag('filter')
+    Allure.addDescription(
+      'Test to verify that filter elements are visible and functional.'
+    )
+    await companyPage.filterButton.click();
+    await filtersPage.verifyAllFiltersVisible();
+  });
+  
+  test.only('Verify country selection from nested dropdown', async () => {
+    Allure.addSeverity('critical')
+    Allure.addTag('filter')
+    Allure.addDescription(
+      'Test to verify that nested dropdown is visible and functional.'  )
+    await companyPage.filterButton.click();
+    const selectedCountry = await filtersPage.selectRandomCountryFromDropdown();
+    await filtersPage.verifySelectedCountry(selectedCountry);
+    console.log(`Selected Country: ${selectedCountry}`);
+    
+  });
+
+
+  
+
+  });
+
