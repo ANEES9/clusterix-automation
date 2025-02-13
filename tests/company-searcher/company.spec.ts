@@ -8,7 +8,6 @@ import { searchData } from 'utils/test-data/company-searcher/search-data'
 import { Allure } from 'common/allure-helper'
 import { setupTestContext } from 'utils/test-context'
 
-
 test.describe('Company Searcher Smoke Test', () => {
   let companyPage: CompanyPage
   let filtersPage: FiltersPage
@@ -33,8 +32,10 @@ test.describe('Company Searcher Smoke Test', () => {
   // Use the imported search data and type it explicitly
   const searchItems: SearchData[] = searchData
 
-  test('Verifying Company page UI Elements to be visible', async ({ page }, testInfo) => {
-    const locale = (testInfo.project.use?.locale ?? 'en') as 'en' | 'de';
+  test('Verifying Company page UI Elements to be visible', async ({
+    page,
+  }, testInfo) => {
+    const locale = (testInfo.project.use?.locale ?? 'en') as 'en' | 'de'
     companyPage = new CompanyPage(page, locale)
     Allure.addSeverity('critical')
     Allure.addTag('smoke')
@@ -91,7 +92,6 @@ test.describe('Company Searcher Smoke Test', () => {
   test('Verify Search, Pagination, and Data Validation with Flexible Page Check', async ({
     page,
   }) => {
-
     Allure.addSeverity('critical')
     Allure.addTag('search')
     Allure.addDescription(
@@ -270,8 +270,8 @@ test.describe('Company Searcher Smoke Test', () => {
     }
   })
 
-  test('Verify Next Page Button Functionality', async ({ page },testInfo) => {
-    const locale = (testInfo.project.use?.locale ?? 'en') as 'en' | 'de';
+  test('Verify Next Page Button Functionality', async ({ page }, testInfo) => {
+    const locale = (testInfo.project.use?.locale ?? 'en') as 'en' | 'de'
     const companyPage = new CompanyPage(page, locale)
     // Allure tags and metadata
     Allure.addSeverity('critical')
@@ -315,8 +315,10 @@ test.describe('Company Searcher Smoke Test', () => {
     }
   })
 
-  test('Verify Backwards Navigation Functionality', async ({ page }, testInfo) => {
-    const locale = (testInfo.project.use?.locale ?? 'en') as 'en' | 'de';
+  test('Verify Backwards Navigation Functionality', async ({
+    page,
+  }, testInfo) => {
+    const locale = (testInfo.project.use?.locale ?? 'en') as 'en' | 'de'
     const companyPage = new CompanyPage(page, locale)
     // Allure metadata
     Allure.addSeverity('critical')
@@ -370,13 +372,15 @@ test.describe('Company Searcher Smoke Test', () => {
     }
   })
 
-  test('verify child row label matches expanded rows', async ({ page }, testInfo) => {
+  test('verify child row label matches expanded rows', async ({
+    page,
+  }, testInfo) => {
     Allure.addSeverity('critical')
     Allure.addTag('table')
     Allure.addDescription(
       'This test verifies that the number of rows expanded matches the child label for each expandable button in the table.'
     )
-    const locale = (testInfo.project.use?.locale ?? 'en') as 'en' | 'de';
+    const locale = (testInfo.project.use?.locale ?? 'en') as 'en' | 'de'
     const companyPage = new CompanyPage(page, locale)
 
     // Get the total number of expandable buttons
@@ -413,31 +417,25 @@ test.describe('Company Searcher Smoke Test', () => {
     }
   })
 
-
   test('Verify all filter elements are visible', async () => {
     Allure.addSeverity('critical')
     Allure.addTag('filter')
     Allure.addDescription(
       'Test to verify that filter elements are visible and functional.'
     )
-    await companyPage.filterButton.click();
-    await filtersPage.verifyAllFiltersVisible();
-  });
-  
+    await companyPage.filterButton.click()
+    await filtersPage.verifyAllFiltersVisible()
+  })
+
   test.only('Verify country selection from nested dropdown', async () => {
     Allure.addSeverity('critical')
     Allure.addTag('filter')
     Allure.addDescription(
-      'Test to verify that nested dropdown is visible and functional.'  )
-    await companyPage.filterButton.click();
-    const selectedCountry = await filtersPage.selectRandomCountryFromDropdown();
-    await filtersPage.verifySelectedCountry(selectedCountry);
-    console.log(`Selected Country: ${selectedCountry}`);
-    
-  });
-
-
-  
-
-  });
-
+      'Test to verify that nested dropdown is visible and functional.'
+    )
+    await companyPage.filterButton.click()
+    const selectedCountry = await filtersPage.selectRandomCountryFromDropdown()
+    await filtersPage.verifySelectedCountry(selectedCountry)
+    console.log(`Selected Country: ${selectedCountry}`)
+  })
+})

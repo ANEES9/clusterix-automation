@@ -50,18 +50,28 @@ export class CompanyPage {
     this.page = page
     this.translations = getTranslations('company-searcher', locale)
 
-     // Initialize Navigation Bar Locators
-   // Initialize Navigation Bar Locators
-   this.companySearcherLink = page.locator('.c23hNRvdqiyaVUBzNggU>>nth=11');
-   this.topNavBar = page.locator('section[data-testid="app-searchbar"]');
-   this.searchInput = page.locator('input[name="query"]');
-   this.filterButton = page.locator('.PartWrapper-module_partWrapper__I8EIP').nth(1);
-   this.searchButton = page.locator('.PartWrapper-module_partWrapper__I8EIP').nth(2);
-   this.tableItemsLabel = page.locator('.PartWrapper-module_partWrapper__I8EIP.ItemCountLabel-module_itemCountLabel__h2sTJ');
-   this.saveSearchButton = page.locator('button[aria-label="Save search"]');
-   this.addCompanyButton = page.locator('button:has(svg path[d="M8 0C7.6 0 6.9 0 6 0V6H0V8H6V14H8V8H14V6H8V0Z"])');
-   this.selectItemsCheckbox = page.locator('button[role="checkbox"]');
-   this.additionalButton = page.locator('button:has(svg path[d="M6 9L4.6 7.6L2 10.2V6.9H0V13.7H6.8V11.7H3.4L6 9ZM6.9 0V2H10.2L7.6 4.6L9 6L11.6 3.4V6.7H13.6V0H6.9Z"])');
+    // Initialize Navigation Bar Locators
+    // Initialize Navigation Bar Locators
+    this.companySearcherLink = page.locator('.c23hNRvdqiyaVUBzNggU>>nth=11')
+    this.topNavBar = page.locator('section[data-testid="app-searchbar"]')
+    this.searchInput = page.locator('input[name="query"]')
+    this.filterButton = page
+      .locator('.PartWrapper-module_partWrapper__I8EIP')
+      .nth(1)
+    this.searchButton = page
+      .locator('.PartWrapper-module_partWrapper__I8EIP')
+      .nth(2)
+    this.tableItemsLabel = page.locator(
+      '.PartWrapper-module_partWrapper__I8EIP.ItemCountLabel-module_itemCountLabel__h2sTJ'
+    )
+    this.saveSearchButton = page.locator('button[aria-label="Save search"]')
+    this.addCompanyButton = page.locator(
+      'button:has(svg path[d="M8 0C7.6 0 6.9 0 6 0V6H0V8H6V14H8V8H14V6H8V0Z"])'
+    )
+    this.selectItemsCheckbox = page.locator('button[role="checkbox"]')
+    this.additionalButton = page.locator(
+      'button:has(svg path[d="M6 9L4.6 7.6L2 10.2V6.9H0V13.7H6.8V11.7H3.4L6 9ZM6.9 0V2H10.2L7.6 4.6L9 6L11.6 3.4V6.7H13.6V0H6.9Z"])'
+    )
 
     // Initialize Table Locators
     this.primaryCell = page.locator('.SmartTable-module_primaryCell__YnG6n')
@@ -367,110 +377,121 @@ export class CompanyPage {
   }
 }
 
-
-
-
 //***************************************Filter Components*******************************************************************************
 
 export class FiltersPage {
-  private page: Page;
+  private page: Page
 
-  public countryFilter: Locator;
-  public keywordsFilter: Locator;
-  public websiteFilter: Locator;
-  public numberOfEmployeesFilter: Locator;
-  public actionsFilter: Locator;
-  public companiesWithoutCampaignsFilter: Locator;
-  public customersOfProcessFilter: Locator;
-  public clearAllFiltersButton: Locator;
-  public applyFilterButton: Locator;
-  public nestedcountryDropdown: Locator;
+  public countryFilter: Locator
+  public keywordsFilter: Locator
+  public websiteFilter: Locator
+  public numberOfEmployeesFilter: Locator
+  public actionsFilter: Locator
+  public companiesWithoutCampaignsFilter: Locator
+  public customersOfProcessFilter: Locator
+  public clearAllFiltersButton: Locator
+  public applyFilterButton: Locator
+  public nestedcountryDropdown: Locator
 
   constructor(page: Page) {
-    this.page = page;
+    this.page = page
 
     // Initialize locators
-    this.countryFilter = this.page.locator('div[aria-label="Country"]');
-    this.keywordsFilter = this.page.locator('div[aria-label="Keywords"]');
-    this.websiteFilter = this.page.locator('div[aria-label="Website"]');
-    this.numberOfEmployeesFilter = this.page.locator('div[aria-label="Number of employees"]');
-    this.actionsFilter = this.page.locator('div[aria-label="Actions"]');
-    this.companiesWithoutCampaignsFilter = this.page.locator('div[aria-label="Companies without campaigns"]');
-    this.customersOfProcessFilter = this.page.locator('div[aria-label="Customers of Process"]');
-    this.clearAllFiltersButton = this.page.locator('div[role="button"]:has-text("Clear all filters")');
-    this.applyFilterButton = this.page.locator('button:has-text("Apply")');
-    this.nestedcountryDropdown = this.page.locator('div[aria-label="Country dropdown"]');
+    this.countryFilter = this.page.locator('div[aria-label="Country"]')
+    this.keywordsFilter = this.page.locator('div[aria-label="Keywords"]')
+    this.websiteFilter = this.page.locator('div[aria-label="Website"]')
+    this.numberOfEmployeesFilter = this.page.locator(
+      'div[aria-label="Number of employees"]'
+    )
+    this.actionsFilter = this.page.locator('div[aria-label="Actions"]')
+    this.companiesWithoutCampaignsFilter = this.page.locator(
+      'div[aria-label="Companies without campaigns"]'
+    )
+    this.customersOfProcessFilter = this.page.locator(
+      'div[aria-label="Customers of Process"]'
+    )
+    this.clearAllFiltersButton = this.page.locator(
+      'div[role="button"]:has-text("Clear all filters")'
+    )
+    this.applyFilterButton = this.page.locator('button:has-text("Apply")')
+    this.nestedcountryDropdown = this.page.locator(
+      'div[aria-label="Country dropdown"]'
+    )
   }
 
   // Apply Country Filter
   public async applyCountryFilter(country: string) {
-    await this.countryFilter.click();
-    await this.page.locator(`div[data-ui-element="dropdown-list"] >> text=${country}`).click();
-    await this.applyFilterButton.click();
+    await this.countryFilter.click()
+    await this.page
+      .locator(`div[data-ui-element="dropdown-list"] >> text=${country}`)
+      .click()
+    await this.applyFilterButton.click()
   }
 
   // Apply Keywords Filter
   public async applyKeywordsFilter(keyword: string) {
-    await this.keywordsFilter.click();
-    const keywordInput = this.page.locator('input[placeholder="Search for keywords"]');
-    await keywordInput.fill(keyword);
-    await this.applyFilterButton.click();
+    await this.keywordsFilter.click()
+    const keywordInput = this.page.locator(
+      'input[placeholder="Search for keywords"]'
+    )
+    await keywordInput.fill(keyword)
+    await this.applyFilterButton.click()
   }
 
   // Apply Website Filter
   public async applyWebsiteFilter() {
-    await this.websiteFilter.click();
-    await this.applyFilterButton.click();
+    await this.websiteFilter.click()
+    await this.applyFilterButton.click()
   }
 
   // Apply Number of Employees Filter
   public async applyNumberOfEmployeesFilter(range: string) {
-    await this.numberOfEmployeesFilter.click();
-    await this.page.locator(`text=${range}`).click();
-    await this.applyFilterButton.click();
+    await this.numberOfEmployeesFilter.click()
+    await this.page.locator(`text=${range}`).click()
+    await this.applyFilterButton.click()
   }
 
   // Apply Actions Filter
   public async applyActionsFilter(action: string) {
-    await this.actionsFilter.click();
-    await this.page.locator(`text=${action}`).click();
-    await this.applyFilterButton.click();
+    await this.actionsFilter.click()
+    await this.page.locator(`text=${action}`).click()
+    await this.applyFilterButton.click()
   }
 
   // Apply Companies Without Campaigns Filter
   public async applyCompaniesWithoutCampaignsFilter() {
-    await this.companiesWithoutCampaignsFilter.click();
-    await this.applyFilterButton.click();
+    await this.companiesWithoutCampaignsFilter.click()
+    await this.applyFilterButton.click()
   }
 
   // Apply Customers of Process Filter
   public async applyCustomersOfProcessFilter() {
-    await this.customersOfProcessFilter.click();
-    await this.applyFilterButton.click();
+    await this.customersOfProcessFilter.click()
+    await this.applyFilterButton.click()
   }
 
   // Apply Additional Filters (Handles all available filters)
   public async applyAdditionalFilters() {
-    await this.applyCountryFilter('France');
-    await this.applyKeywordsFilter('Automation');
-    await this.applyWebsiteFilter();
-    await this.applyNumberOfEmployeesFilter('50-200');
-    await this.applyActionsFilter('Active');
-    await this.applyCompaniesWithoutCampaignsFilter();
-    await this.applyCustomersOfProcessFilter();
+    await this.applyCountryFilter('France')
+    await this.applyKeywordsFilter('Automation')
+    await this.applyWebsiteFilter()
+    await this.applyNumberOfEmployeesFilter('50-200')
+    await this.applyActionsFilter('Active')
+    await this.applyCompaniesWithoutCampaignsFilter()
+    await this.applyCustomersOfProcessFilter()
   }
 
   // Clear All Filters
   public async clearAllFilters() {
-    await this.clearAllFiltersButton.click();
+    await this.clearAllFiltersButton.click()
   }
 
   // Verify Filters Reset
   public async verifyFiltersReset() {
-    await this.page.waitForTimeout(1000); // Adjust this timeout as per application response time
-    const filtersApplied = await this.page.locator('.applied-filter').count();
+    await this.page.waitForTimeout(1000) // Adjust this timeout as per application response time
+    const filtersApplied = await this.page.locator('.applied-filter').count()
     if (filtersApplied > 0) {
-      throw new Error('Filters were not cleared properly.');
+      throw new Error('Filters were not cleared properly.')
     }
   }
 
@@ -484,59 +505,59 @@ export class FiltersPage {
       this.actionsFilter,
       this.companiesWithoutCampaignsFilter,
       this.customersOfProcessFilter,
-    ];
+    ]
     for (const filter of filters) {
-      await expect(filter).toBeVisible();
+      await expect(filter).toBeVisible()
     }
   }
   public async openCountryDropdown(): Promise<void> {
-    await this.nestedcountryDropdown.click(); // Click to open the dropdown
+    await this.nestedcountryDropdown.click() // Click to open the dropdown
   }
-
-
 
   public async selectRandomCountryFromDropdown(): Promise<string> {
     // Open the country dropdown
-    await this.openCountryDropdown();
+    await this.openCountryDropdown()
 
     // Wait for the dropdown options to appear
-    const dropdownVisible = this.page.locator('.ljYmaf0oxECrqq3P3FPK.ca-max-h-64.ca-overflow-auto.ca-inno-scroll.ca-py-aqua');
-    await expect(dropdownVisible).toBeVisible();
+    const dropdownVisible = this.page.locator(
+      '.ljYmaf0oxECrqq3P3FPK.ca-max-h-64.ca-overflow-auto.ca-inno-scroll.ca-py-aqua'
+    )
+    await expect(dropdownVisible).toBeVisible()
 
     // Get all visible country options
-    const countryOptions = await dropdownVisible.locator('.ca-font-sans.ca-text-base').allTextContents();
+    const countryOptions = await dropdownVisible
+      .locator('.ca-font-sans.ca-text-base')
+      .allTextContents()
 
     // Ensure there are options to select
     if (countryOptions.length === 0) {
-        throw new Error('No country options available in the dropdown.');
+      throw new Error('No country options available in the dropdown.')
     }
 
     // Randomly pick a country from the options
-    const randomIndex = Math.floor(Math.random() * countryOptions.length);
-    const selectedCountry = countryOptions[randomIndex];
+    const randomIndex = Math.floor(Math.random() * countryOptions.length)
+    const selectedCountry = countryOptions[randomIndex]
 
     // Click the randomly selected country
-    const countryLocator = dropdownVisible.locator(`.ca-font-sans.ca-text-base:has-text("${selectedCountry}")`);
-    await countryLocator.scrollIntoViewIfNeeded();
-    await countryLocator.click();
+    const countryLocator = dropdownVisible.locator(
+      `.ca-font-sans.ca-text-base:has-text("${selectedCountry}")`
+    )
+    await countryLocator.scrollIntoViewIfNeeded()
+    await countryLocator.click()
     // Return the selected country for verification or logging
-    return selectedCountry;
+    return selectedCountry
+  }
+
+  public async verifySelectedCountry(selectedCountry: string): Promise<void> {
+    // Locator for the dropdown element
+    const dropdownLocator = this.page.locator(
+      `input[placeholder="${selectedCountry}"]`
+    )
+
+    // Verify that the dropdown has the selected country as a placeholder
+    await expect(dropdownLocator).toHaveAttribute(
+      'placeholder',
+      selectedCountry
+    )
+  }
 }
-
-public async verifySelectedCountry(selectedCountry: string): Promise<void> {
-  // Locator for the dropdown element
-  const dropdownLocator = this.page.locator(`input[placeholder="${selectedCountry}"]`);
-
-  // Verify that the dropdown has the selected country as a placeholder
-  await expect(dropdownLocator).toHaveAttribute('placeholder', selectedCountry);
-
-
-}
-
-}
-  
-
-
-
-
-
