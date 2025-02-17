@@ -2,6 +2,11 @@ import { allure } from 'allure-playwright'
 import { Page } from '@playwright/test'
 import { APP_OWNERS, DEFAULT_OWNER, DEFAULT_TEAM } from 'constants/app-owners'
 import { ALLURE_TAGS } from 'constants/allure-tags'
+import { ALLURE_FEATURES } from 'constants/allure-features'
+import {
+  SEVERITY_LEVELS,
+  SeverityLevel,
+} from 'constants/allure-severity-levels'
 
 export class Allure {
   /**
@@ -39,10 +44,18 @@ export class Allure {
 
   /**
    * Groups tests under a feature.
-   * @param feature - Feature name.
+   * The feature must exist in ALLURE_FEATURES.
+   * @param featureKey - Feature key from ALLURE_FEATURES.
    */
-  static addFeature(feature: string) {
-    allure.feature(feature)
+  static addFeature(featureKey: keyof typeof ALLURE_FEATURES) {
+    const feature = ALLURE_FEATURES[featureKey]
+    if (feature) {
+      allure.feature(feature)
+    } else {
+      throw new Error(
+        `Invalid feature key: "${featureKey}". Please use a valid key from ALLURE_FEATURES.`
+      )
+    }
   }
 
   /**
@@ -55,12 +68,15 @@ export class Allure {
 
   /**
    * Adds a severity level to the test.
-   * @param level - Severity level (e.g., 'blocker', 'critical', 'normal', 'minor', 'trivial').
+   * @param level - Severity level from SEVERITY_LEVELS.
    */
-  static addSeverity(
-    level: 'blocker' | 'critical' | 'normal' | 'minor' | 'trivial'
-  ) {
-    allure.severity(level)
+  static addSeverity(level: SeverityLevel) {
+    if (!SEVERITY_LEVELS[level]) {
+      throw new Error(
+        `Invalid severity level: "${level}". Please use a valid level from SEVERITY_LEVELS.`
+      )
+    }
+    allure.severity(SEVERITY_LEVELS[level])
   }
 
   /**
