@@ -11,7 +11,7 @@ let page: Page
 let byteBuilderPage: ByteBuilderPage
 let locale: string
 
-test.describe('Byte Builder > Schema Tests', () => {
+test.describe.parallel('Byte Builder > Schema Tests', () => {
   test.beforeAll(
     async ({ browser: testBrowser, baseURL }, testInfo: TestInfo) => {
       browser = testBrowser

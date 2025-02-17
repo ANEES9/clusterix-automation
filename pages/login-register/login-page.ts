@@ -27,7 +27,7 @@ export class LoginPage {
 
   constructor(page: Page, locale: string) {
     this.page = page
-    this.translations = getTranslations('login', locale)
+    this.translations = getTranslations('login-register', locale)
 
     this.emailField = this.page.getByPlaceholder(this.translations.login.email)
     this.passwordField = this.page.getByPlaceholder(

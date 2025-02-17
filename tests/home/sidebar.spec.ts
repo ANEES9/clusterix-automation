@@ -1,21 +1,32 @@
-import { test } from '@playwright/test'
+import { Browser, Page, test } from '@playwright/test'
 import { HomePage } from 'pages/home/home-page'
 import { Allure } from 'common/allure-helper'
 import { APP_NAMES } from 'constants/app-names'
 import { setupTestContext } from 'utils/test-context'
+import { BrowserContext } from 'playwright'
 
-test.describe('Container App Sidebar Navigation Tests', () => {
-  let homePage: HomePage
-  let locale: string
+let browser: Browser
+let context: BrowserContext
+let page: Page
+let homePage: HomePage
+let locale: string
 
-  test.beforeEach(async ({ page }, testInfo) => {
-    Allure.addFeature('Sidebar navigation')
+test.describe.parallel('Container App Sidebar Navigation Tests', () => {
+  test.beforeAll(async ({ browser: testBrowser, baseURL }, testInfo) => {
+    browser = testBrowser
+    context = await browser.newContext()
+    page = await context.newPage()
+
+    Allure.addFeature(' Sidebar navigation')
     Allure.addAppOwner('Home')
     Allure.addSeverity('critical')
     Allure.addTag('smoke')
+
     const testContext = await setupTestContext(page, testInfo)
     locale = testContext.locale
     homePage = new HomePage(page, locale)
+    await homePage.goto(baseURL)
+    await page.waitForLoadState('domcontentloaded')
   })
   test('Validate Home Page Navigation from Sidebar', async () => {
     await Allure.step('Navigate to Home Page', async () => {

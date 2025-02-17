@@ -184,11 +184,13 @@ export class DashboardPage {
       'Validate that Customers Page Title is Visible',
       async () => {
         const customersPageTitle = this.customersPage.getCustomersPageTitle()
-        await expect(customersPageTitle).toBeVisible()
+        await expect.soft(customersPageTitle).toBeVisible()
       }
     )
     await Allure.step('Validate that URL is correct', async () => {
-      await expect(this.page).toHaveURL(APP_URLS.accounting.income.customers)
+      await expect
+        .soft(this.page)
+        .toHaveURL(APP_URLS.accounting.income.customers)
     })
   }
 

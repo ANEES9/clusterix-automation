@@ -10,7 +10,7 @@ let page: Page
 let dashboardPage: DashboardPage
 let locale: string
 
-test.describe('Dashboard Tab Tests', () => {
+test.describe.parallel('Dashboard Tab Tests', () => {
   test.beforeAll(async ({ browser: testBrowser, baseURL }, testInfo) => {
     browser = testBrowser
     context = await browser.newContext()
@@ -57,10 +57,5 @@ test.describe('Dashboard Tab Tests', () => {
 
   test('Validate Dashboard navigation from sidebar', async () => {
     await dashboardPage.validateDashboardNavigation()
-  })
-
-  test.afterAll(async () => {
-    await context.close()
-    await browser.close()
   })
 })

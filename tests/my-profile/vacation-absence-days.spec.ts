@@ -1,29 +1,35 @@
-import { test } from '@playwright/test'
+import { Browser, Page, test } from '@playwright/test'
 import { EmployeeManagementPage } from 'pages/hr/employee-management-page'
 import { Allure } from 'common/allure-helper'
 import { VacationAbsenceDaysPage } from 'pages/my-profile/vacation-absence-days.page'
 import { setupTestContext } from 'utils/test-context'
+import { BrowserContext } from 'playwright'
 
 let employeeId: number | null = null
+let browser: Browser
+let context: BrowserContext
+let page: Page
+let vacationAbsenceDaysPage: VacationAbsenceDaysPage
+let employeeManagementPage: EmployeeManagementPage
+let locale: string
 
-test.describe('Regression Test Suite', () => {
-  let vacationAbsenceDaysPage: VacationAbsenceDaysPage
-  let employeeManagementPage: EmployeeManagementPage
-  let locale: string
-  test.beforeEach(async ({ page, baseURL }, testInfo) => {
-    await vacationAbsenceDaysPage.goto(baseURL)
+test.describe.parallel('Regression Test Suite', () => {
+  test.beforeAll(async ({ browser: testBrowser, baseURL }, testInfo) => {
+    browser = testBrowser
+    context = await browser.newContext()
+    page = await context.newPage()
     const testContext = await setupTestContext(page, testInfo)
     locale = testContext.locale
     vacationAbsenceDaysPage = new VacationAbsenceDaysPage(page, locale)
     employeeManagementPage = new EmployeeManagementPage(page, locale)
-    await page.waitForTimeout(4000)
+    await vacationAbsenceDaysPage.goto(baseURL)
     await page.waitForLoadState('networkidle')
   })
 
   test('Verify selecting available filter', async () => {
     Allure.addDescription('Verify remaining number of Leaves')
-    Allure.addTag('regression') // Tag the test for categorization in reports
-    Allure.addSeverity('normal') // Set severity level for the test
+    Allure.addTag('regression')
+    Allure.addSeverity('normal')
 
     await Allure.step('Step 1: Choose all the filters', async () => {
       await vacationAbsenceDaysPage.VerifyAllStatusesFilter()

@@ -1,5 +1,6 @@
 export const APP_NAMES = {
-  auth: 'Auth',
+  landing: 'Landing',
+  loginRegister: 'Login Register',
   home: 'Home',
   notifications: 'Notifications',
   calendar: 'Calendar',
