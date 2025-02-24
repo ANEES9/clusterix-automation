@@ -10,6 +10,9 @@ export class LandingPage {
 
   private registerPage: RegisterPage
 
+  //Header Items
+  public headerLogiButton: Locator
+
   public mainTitle: Locator
   public mainDescription: Locator
   public startFreeButton: Locator
@@ -52,6 +55,11 @@ export class LandingPage {
 
     this.registerPage = new RegisterPage(page, locale)
 
+    //Header Locators
+    this.headerLogiButton = page.locator(
+      `span:has-text("${this.translations.Main.login}")`
+    )
+    //Page Content Items
     this.mainTitle = page.locator(
       `span:has-text("${this.translations.Main.hero_title}")`
     )
@@ -147,7 +155,7 @@ export class LandingPage {
       `div:has-text("${this.translations.AppMenu.app_calendar_desc}")`
     )
     this.emailButton = page.locator(
-      `button:has-text("${this.translations.AppMenu.app_email}")`
+      `button:has-text("${this.translations.AppMenu.app_email.trim()}")`
     )
     this.emailTitle = this.page.locator(
       `div:has-text("${this.translations.AppMenu.app_email}")`
@@ -369,15 +377,17 @@ export class LandingPage {
         await expect(this.ourAppsTitle.nth(5)).toBeVisible()
       }
     )
-    await Allure.step('Click on the Calendar Button', async () => {
-      await this.emailButton.click()
+    await Allure.step('Click on the Email Button', async () => {
+      const buttonText = await this.emailButton.nth(1).textContent()
+      await this.emailButton.nth(1).click({ force: true })
     })
 
-    await Allure.step('Validate Calendar title and description', async () => {
+    await Allure.step('Validate Email title and description', async () => {
       await expect(this.emailTitle.nth(8)).toBeVisible()
       await expect(this.emailDescription.nth(7)).toBeVisible()
     })
   }
+
   async validateAppNavigation(expectedAppURL: string, nthIndex: number) {
     let newPage: Page
 
@@ -393,8 +403,6 @@ export class LandingPage {
 
     await Allure.step(`Validate app page URL: ${expectedAppURL}`, async () => {
       const actualURL = newPage.url()
-      console.log(`🔍 Actual URL: ${actualURL}`) // Debugging için konsola yazdıralım
-      console.log(`✅ Expected URL: ${expectedAppURL}`)
       expect(actualURL.includes(expectedAppURL)).toBeTruthy()
     })
 

@@ -24,10 +24,15 @@ export class ProductTourPage {
 
   async skipProductTour() {
     await Allure.step(
-      'should skip product tour when click skip tour',
+      'Ensure Skip Tour button is visible and enabled',
       async () => {
-        await this.skipTour.click({ force: true })
+        await this.skipTour.waitFor({ state: 'visible' })
+        await this.skipTour.waitFor({ state: 'attached' })
       }
     )
+
+    await Allure.step('Click Skip Tour button', async () => {
+      await this.skipTour.click()
+    })
   }
 }

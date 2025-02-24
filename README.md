@@ -154,13 +154,13 @@ npm run test:testing
 **MacOS:**
 
 ```bash
-NODE_ENV=production npx playwright test tests/login.spec.ts
+NODE_ENV=production npx playwright test tests/login-register.spec.ts
 ```
 
 **Windows:**
 
 ```powershell
-$env:NODE_ENV="production"; npx playwright test tests/login.spec.ts
+$env:NODE_ENV="production"; npx playwright test tests/login-register.spec.ts
 ```
 
 ---

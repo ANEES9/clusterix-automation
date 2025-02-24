@@ -1,0 +1,672 @@
+{
+  "user_permission": {
+    "cannot_read_workflows": "Der Benutzer verfügt nicht über die Zugriffsrechte zum <strong>Anzeigen von Workflows</strong>."
+  },
+  "workflows_introduction": {
+    "title": "Über No-Code",
+    "description": "No-Code ermöglicht es Ihnen, die einzelnen Schritte Ihrer Prozesse und die damit verbundenen Daten auf einfache und benutzerfreundliche Weise zu verwalten und quantitativ zu analysieren.",
+    "new": "Neuer No-Code",
+    "step1": {
+      "title": "Definieren Sie die Datenstruktur",
+      "description": "Welche Daten möchten Sie während dieses Prozesses erfassen und verwalten?"
+    },
+    "step2": {
+      "title": "Definieren Sie den Prozess",
+      "description": "Was sind die einzelnen Schritte Ihres Prozesses und wie sind sie miteinander verbunden?"
+    },
+    "step3": {
+      "title": "Berechtigungen",
+      "description": "Welche Rollen im Unternehmen können die Daten in den Prozessen sehen oder bearbeiten?"
+    }
+  },
+  "workflow_apps": {
+    "1": {
+      "label": "Kunden",
+      "entry": "Produkte",
+      "description": ""
+    },
+    "2": {
+      "label": "Personalabteilung",
+      "entry": "Offene Positionen",
+      "description": ""
+    },
+    "3": {
+      "label": "Projektmanagement",
+      "entry": "Projekttypen",
+      "description": ""
+    },
+    "4": {
+      "label": "Bytebuilder",
+      "entry": "Bytes",
+      "description": ""
+    },
+    "5": {
+      "label": "Interne Kunden",
+      "entry": "Kunden",
+      "description": ""
+    }
+  },
+  "sidebar": {
+    "overview": "No-Code Übersicht",
+    "workflows-apps": "No-Code Apps",
+    "basic-data": "Grunddaten"
+  },
+  "untitled_workflow": "Unbenannter No-Code",
+  "untitled_input": "Unbenannte Eingabe",
+  "tabs": {
+    "app-connection": "App-Verbindung",
+    "workflow-type": "No-Code-Typ",
+    "global-data": "Globale Daten",
+    "editor": "Editor",
+    "integrations": "Integrationen",
+    "permissions": "Berechtigungen",
+    "help": "Hilfe",
+    "add_items": "Elemente hinzufügen",
+    "data_rules": "Datenregeln",
+    "add_nodes": "Knoten hinzufügen",
+    "workflow_created": "erfolgreich erstellt",
+    "workflow_updated": "erfolgreich aktualisiert"
+  },
+  "new_workflow": "Neuer No-Code",
+  "next": "Weiter",
+  "back": "Zurück",
+  "create": "Erstellen",
+  "cancel": "Abbrechen",
+  "close": "Schließen",
+  "save": "Speichern",
+  "remove": "Entfernen",
+  "duplicate": "Duplizieren",
+  "duplicate_confirmation": "Sind Sie sicher, dass Sie dieses Element duplizieren möchten?",
+  "general": "Allgemein",
+  "restrictions": "Einschränkungen",
+  "options": "Optionen",
+  "untitled_option": "Unbenannte Option",
+  "title": "Titel",
+  "unarchive": "Aus Archiv holen",
+  "description": "Beschreibung",
+  "enter_title": "Titel eingeben",
+  "enter_description": "Beschreibung eingeben",
+  "title_is_required": "Titel ist erforderlich",
+  "title_length_validation": "Der Titel darf nicht länger als 100 Zeichen sein",
+  "app_connection": {
+    "title": "Bitte wählen Sie, für welche App der No-Code ist"
+  },
+  "workflow_type": {
+    "title": "Bitte wählen Sie einen Typ",
+    "new_workflow": "Neuer No-Code",
+    "import_bytebuilder_data": "Bytebuilder-Daten importieren",
+    "open_configurator": "Den No-Code zum Bearbeiten öffnen",
+    "default": "Standard",
+    "invoice_reminders": "Rechnungserinnerung",
+    "dropdown_heading": "Typ",
+    "private": "Privat",
+    "global": "Global"
+  },
+  "go_to_page": "Zur Seite gehen",
+  "results_per_page": "Ergebnisse pro Seite",
+  "workflow_title": "Titel",
+  "workflow_description": "Beschreibung",
+  "type": "Typ",
+  "process": "Prozess",
+  "data_points": "Datenpunkte",
+  "created_by": "Erstellt von",
+  "created_at": "Erstellt am",
+  "steps_countable_one": "{{count}} Schritt",
+  "steps_countable_other": "{{count}} Schritte",
+  "private": "Privat",
+  "global": "Global",
+  "no_workflows_hint": "Sie haben noch kein Element erstellt.\n Erstellen Sie jetzt Ihren ersten 'No-Code' und legen Sie direkt los.",
+  "no_workflows_search": "Keine Elemente entsprechen den gefundenen Filtern.",
+  "create_first_workflow": "Erstellen Sie den ersten 'No-Code'",
+  "gates": {
+    "new_workflow": "Aktion verweigert: Sie haben keine Berechtigung, Elemente zu erstellen!",
+    "configure_workflow": "Aktion verweigert: Sie haben keine Berechtigung, Elemente zu konfigurieren!",
+    "delete_workflow": "Aktion verweigert: Sie haben keine Berechtigung, Elemente zu löschen!"
+  },
+  "close_and_delete": "Löschen",
+  "delete_confirmation": "Sind Sie sicher, dass Sie dieses Element löschen möchten?",
+  "archive_workflow": {
+    "heading_one": "This 'No-Code' is linked with an application.",
+    "heading_other": "This 'No-Code' is linked with {{count}} applications.",
+    "description_one": "This workflow is linked to {{count}} active application. You can archive this workflow instead of deleting it to maintain project integrity.",
+    "description_other": "This workflow is linked to {{count}} active applications. You can archive this workflow instead of deleting it to maintain project integrity."
+  },
+  "delete_workflow": {
+    "heading_one": "Dieser 'No-Code' ist mit einer Anwendung verknüpft.",
+    "heading_other": "Dieser 'No-Code' ist mit {{count}} Anwendungen verknüpft.",
+    "description_one": "Dieser Workflow ist mit {{count}} aktiver Anwendung verknüpft. Sind Sie sicher, dass Sie diesen Workflow endgültig löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden und könnte Datenintegritätsprobleme verursachen.",
+    "description_other": "Dieser Workflow ist mit {{count}} aktiven Anwendungen verknüpft. Sind Sie sicher, dass Sie diesen Workflow endgültig löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden und könnte Datenintegritätsprobleme verursachen"
+  },
+  "delete_workflow_node": {
+    "heading": "Sind Sie sicher, dass Sie den Knoten '{{node}}' und alle seine Daten löschen möchten?",
+    "node_entries": "Knoteneinträge",
+    "migration_hint": "Wählen Sie einen Zielknoten aus und klicken Sie auf \"Migrieren\", wenn Sie alle Einträge zu einem anderen Knoten verschieben möchten.",
+    "migrate": "Migrieren",
+    "entries_migrated_successfully": "Alle Einträge wurden erfolgreich migriert",
+    "error_migrating_entries": "Beim Migrieren der Knoteneinträge ist ein Fehler aufgetreten"
+  },
+  "process_flow_help": {
+    "title": "Was ist Prozessfluss?",
+    "description": "Ein Prozessfluss stellt die einzelnen Schritte Ihres Prozesses und deren Verbindungen dar. Es ist eine visuelle Darstellung der Abfolge von Aktionen oder Aufgaben, die Teil eines bestimmten Prozesses sind. Durch das Abbilden dieser Schritte können Sie klar erkennen, wie jeder Teil des Prozesses zum nächsten führt, Abhängigkeiten identifizieren und das gesamte 'No-Code' verstehen.",
+    "requirements": "Was sind Anforderungen?",
+    "requirements_description": "Anforderungen beziehen sich auf die Daten, die eingegeben oder verfügbar sein müssen, um einen Eintrag zum nächsten Schritt im Prozess zu bewegen. Es sind wesentliche Bedingungen oder Informationen, die in jeder Phase benötigt werden, um fortzufahren. Dies kann spezifische Eingaben von Benutzern, die Genehmigung eines Managers, den Abschluss einer vorherigen Aufgabe oder andere erforderliche Datenpunkte umfassen. Sicherzustellen, dass diese Anforderungen erfüllt sind, ist entscheidend für den reibungslosen Ablauf des Prozesses von einem Schritt zum nächsten.",
+    "node_types": "Was sind die Knotentypen?",
+    "node_types_labels": {
+      "purpose": "Zweck: ",
+      "usage": "Verwendung: "
+    },
+    "node_types_description": [
+      {
+        "title": "Startknoten",
+        "purpose": "Der Einstiegspunkt des Workflows, der den Beginn des Prozesses markiert.",
+        "usage": "Jeder Workflow muss genau einen Startknoten haben."
+      },
+      {
+        "title": "Standardknoten",
+        "purpose": "Stellt die Standardschritte innerhalb des Workflows dar.",
+        "usage": "Ermöglicht Verbindungen sowohl von der linken als auch von der rechten Seite, um die Hauptstruktur des Workflows aufzubauen."
+      },
+      {
+        "title": "Endknoten",
+        "purpose": "Bedeutet das Ende eines Prozessablaufs und markiert den Abschluss einer Verzweigung oder des gesamten Arbeitsablaufs.",
+        "usage": "Mehrere Terminalknoten können verwendet werden, um verschiedene Endpunkte darzustellen."
+      },
+      {
+        "title": "Archivknoten",
+        "purpose": "Wird verwendet, um Daten zu einem bestimmten Zeitpunkt zu speichern oder zu speichern, ohne weiter fortzufahren.",
+        "usage": "Archivknoten erlauben keine eingehenden Verbindungen von der linken Seite und werden typischerweise für Archivierungszwecke verwendet."
+      },
+      {
+        "title": "Knotengruppe",
+        "purpose": "Wird verwendet, um Knoten zusammenzufassen.",
+        "usage": "Knotengruppen ermöglichen es Ihnen, Knoten zusammenzufassen."
+      }
+    ]
+  },
+  "global_data_help": {
+    "title": "Was sind die gesammelten Daten",
+    "description": "Während des Prozesses Ihres 'No-Code' möchten Sie in der Regel Daten über das Unternehmen, den Bewerber, das Projekt oder was auch immer Ihr Thema ist, erfassen. <br><br>Hier erstellen Sie ein Formular, das <strong>alle Daten</strong> enthält, die Sie <strong>bis zum Ende Ihres 'No-Code'</strong> erfassen möchten. Wir bieten viele verschiedene Arten von Feldern sowie Layout- und Strukturierungsoptionen an, damit Sie Ihre Daten so intuitiv strukturieren können, wie Sie möchten."
+  },
+  "global_data": {
+    "add_item": {
+      "label": "Bezeichnung",
+      "enter_label": "Bezeichnung eingeben",
+      "placeholder_text": "Platzhaltertext",
+      "enter_placeholder": "Platzhalter eingeben",
+      "min_character": "Min. Zeichen",
+      "max_character": "Max. Zeichen",
+      "enter_number": "Nummer eingeben",
+      "letters": "Buchstaben",
+      "numbers": "Zahlen",
+      "special_characters": "Sonderzeichen",
+      "enter_option": "Option eingeben",
+      "add_another_option": "Weitere Option hinzufügen",
+      "single_choice": "Einzelauswahl",
+      "multi_choice": "Mehrfachauswahl",
+      "date_format": "Datumsformat",
+      "tags_options": "Tag-Optionen",
+      "currency": "Währung",
+      "any_amount": "Beliebiger Betrag",
+      "show_progress_bar": "Fortschrittsbalken anzeigen",
+      "checklist_items": "Checklisten-Elemente",
+      "item_list": "Elementliste",
+      "add_checklist_item": "Checklisten-Element hinzufügen",
+      "add_item": "Element hinzufügen",
+      "style": "Stil",
+      "radio_button": "Optionsfeld",
+      "information_box": "Informationsfeld",
+      "compact_palette": "Kompakte Palette",
+      "expanded_palette": "Erweiterte Palette",
+      "file": "Datei",
+      "file_types": "Dateitypen",
+      "enter_extension": "Geben Sie die Dateierweiterung ein und drücken Sie die Eingabetaste, um sie hinzuzufügen",
+      "max_files": "Max. Dateien",
+      "max_file_size": "Max. Dateigröße"
+    },
+    "allow_multiple_entries": "Aktivieren Sie diese Option, um Benutzern zu ermöglichen, mehrere Instanzen dieses Abschnitts im Projekt hinzuzufügen.",
+    "drag_items_to_section_text": "Ziehen Sie Elemente, um Felder in diesen Abschnitt einzufügen",
+    "click_to_edit": "Klicken Sie, um den Bearbeitungsmodus zu aktivieren",
+    "drag_item_hint": "Ziehen Sie ein Element hierher",
+    "required_field": "Pflichtfeld",
+    "page_delete_confirm": "Sind Sie sicher, dass Sie die gesamte Seite '{{page}}' löschen möchten?",
+    "page_delete_confirm_desc": "Diese Aktion entfernt alle zugehörigen Daten und kann nicht rückgängig gemacht werden.",
+    "section_delete_confirm": "Sind Sie sicher, dass Sie '{{section}}' löschen wollen?",
+    "section_delete_confirm_desc": "Diese Aktion löscht alle zugehörigen Daten und kann nicht rückgängig gemacht werden.",
+    "create_section_notification": "Neuer Abschnitt hinzugefügt.",
+    "duplicate_section_notification": "Abschnitt dupliziert.",
+    "delete_section_notification": "Abschnitt gelöscht."
+  },
+  "integrations": {
+    "project_planning": "Projektplan + Aufgabenmanagement",
+    "project_planning_desc": "Verknüpfen Sie dieses Projekt automatisch mit unserem kombinierten Projekt- und Aufgabenmanagement. Ein erstellter Arbeitsplan wird automatisch übertragen, und das Aufgabenmanagement ermöglicht eine detaillierte Analyse von Aufwand und Fortschritt. Dies ermöglicht Ihnen eine effiziente Planung und erfolgreiche Umsetzung Ihrer Projekte.",
+    "cost_planning": "Kostenplanung",
+    "cost_planning_desc": "Wenn Sie neben den Personalkosten auch andere Kostenarten wie Auftragnehmer oder andere Rechnungen für das Projekt planen oder erfassen möchten, hilft Ihnen unser Kostenplanungstool dabei.",
+    "task_management": "Aufgabenmanagement",
+    "task_management_desc": "Verknüpfen Sie das Projekt automatisch mit unserem Aufgabenmanagement. Jeder erstellte Arbeitsplan wird automatisch dort übertragen. Das Aufgabenmanagement ermöglicht eine detaillierte Analyse von Aufwand und Fortschritt.",
+    "cluster_space": "Cluster Space",
+    "cluster_space_desc": "Verknüpfen Sie das Projekt automatisch mit unserem Cluster Space. Jeder erstellte Arbeitsplan wird automatisch übertragen. Cluster Space hilft Ihnen, Ihre Ordner und Dateien zu organisieren.",
+    "work-plan-only": "Nur Arbeitsplan",
+    "work-plan-and-employee-planning": "Arbeitsplan und Personalplanung",
+    "personal-costs": "Personalkosten",
+    "contractor-costs": "Kosten für Auftragnehmer",
+    "other-costs": "Sonstige Kosten",
+    "pm_disabled_text": "Diese Integration wird derzeit von einem aktiven Projekttyp verwendet und kann nicht deaktiviert werden"
+  },
+  "integrations_help": {
+    "title": "Was sind die gesammelten Daten",
+    "description": "Während des Prozesses Ihres 'No-Code' möchten Sie in der Regel Daten über das Unternehmen, den Bewerber, das Projekt oder was auch immer Ihr Thema ist, erfassen.<br/><br/>Hier erstellen Sie ein Formular, das <strong>alle Daten</strong> enthält, die Sie <strong>bis zum Ende Ihres 'No-Code'</strong> erfassen möchten. Wir bieten viele verschiedene Arten von Feldern sowie Layout- und Strukturierungsoptionen an, damit Sie Ihre Daten so intuitiv strukturieren können, wie Sie möchten."
+  },
+  "permissions": {
+    "user_roles": "Benutzerrolle",
+    "search_role": "Rolle suchen",
+    "steps": "Schritte",
+    "data": "Daten",
+    "see": "Ansehen",
+    "move_to": "Wechseln zu",
+    "edit": "Bearbeiten",
+    "has_access": "Hat Zugriff",
+    "no_access": "Kein Zugriff",
+    "all": "Alle",
+    "single_steps":"Einzelne Schritte",
+    "grouped_steps": "Gruppierte Schritte"
+  },
+  "permissions_help": {
+    "title": "Was sind Berechtigungen",
+    "description": "Berechtigungen ermöglichen es Ihnen zu steuern, wer welche Daten und Funktionen sieht und wer sie bearbeiten kann.<br><br>So können Sie sicherstellen, dass sensible Daten nur von der richtigen Person eingesehen oder bearbeitet werden können und dass niemand an Daten herumfummelt, für die er nicht verantwortlich ist."
+  },
+  "summary": {
+    "to_edit_step": "Zum Bearbeiten des Schritts gehen",
+    "requirements": "Anforderungen",
+    "no_description": "Keine Beschreibung",
+    "no_requirements": "Keine Anforderungen",
+    "possible_outcomes": "Mögliche Ergebnisse",
+    "no_possible_outcomes": "Keine möglichen Ergebnisse",
+    "progress_to_the": "Fortschritt zu",
+    "or_move_to": "oder weiter zu",
+    "workflow_description": "Workflowbeschreibung",
+    "click_to_add_your_description": "Klicken Sie, um Ihre Beschreibung hinzuzufügen",
+    "or_let_AI_generate_it_for_you": "oder lassen Sie AI es für Sie generieren!",
+    "workflow_summary": "Workflowzusammenfassung",
+    "empty_workflow_summary_text": "Fügen Sie Schritte hinzu, um eine Zusammenfassung zu erstellen"
+  },
+  "all_items": "Alle Elemente",
+  "field": "Feld",
+  "action": "Aktion",
+  "search_items": "Elemente suchen",
+  "form_input_type": {
+    "text": {
+      "label": "Text",
+      "description": ""
+    },
+    "choice": {
+      "label": "Einzelauswahl",
+      "description": ""
+    },
+    "date": {
+      "label": "Datum",
+      "description": ""
+    },
+    "time": {
+      "label": "Zeit",
+      "description": ""
+    },
+    "file": {
+      "label": "Datei-Upload",
+      "description": ""
+    },
+    "number": {
+      "label": "Nummer",
+      "description": ""
+    },
+    "price": {
+      "label": "Geld",
+      "description": ""
+    },
+    "textarea": {
+      "label": "Langtext",
+      "description": ""
+    },
+    "dropdown": {
+      "label": "Dropdown",
+      "description": ""
+    },
+    "color": {
+      "label": "Farbe",
+      "description": ""
+    },
+    "tag": {
+      "label": "Tag",
+      "description": ""
+    },
+    "checklist": {
+      "label": "Checkliste",
+      "description": ""
+    },
+    "multi_choice": {
+      "label": "Mehrfachauswahl",
+      "description": ""
+    },
+    "picture": {
+      "label": "Bild",
+      "description": ""
+    },
+    "responsible": {
+      "label": "Verantwortliche",
+      "description": ""
+    }
+  },
+  "no_data": {
+    "page_not_found": "Hoppla! Sie müssen diese Seite versehentlich erreicht haben.",
+    "go_to_home_page": "Zurück zur Startseite",
+    "global_data": "<strong>Kein Feld ausgewählt</strong><br><br>"
+  },
+  "empty_data_rules": {
+    "label": "Noch keine Regeln festgelegt",
+    "description": "Verwalten Sie das Verhalten der Datenstruktur genauer, indem Sie die erforderlichen Regeln hinzufügen."
+  },
+  "data_rules_page": {
+    "title": "Datenregeln",
+    "empty_data_rules": {
+      "label": "Noch keine Regeln festgelegt",
+      "description": "Verwalten Sie das Verhalten der Datenstruktur genauer, indem Sie die erforderlichen Regeln hinzufügen."
+    },
+    "set_new_rule": "Neue Regel festlegen"
+  },
+  "action_types": {
+    "hide": "Feld ausblenden",
+    "show": "Feld anzeigen",
+    "color": "Im Kanban hervorheben"
+  },
+  "condition_hint": "Fügen Sie Bedingungen hinzu, die erfüllt sein müssen",
+  "action_hint": "Fügen Sie Aktionen hinzu, die ausgeführt werden sollen",
+  "untitled_data_rule": "unbenannte Regel",
+  "new_page": "Neue Seite",
+  "page": "Seite",
+  "new_section": "Neuer Abschnitt",
+  "section": "Abschnitt",
+  "page_management": "Seitenverwaltung",
+  "untitled_page": "Unbenannte Seite",
+  "untitled_section": "Unbenannter Abschnitt",
+  "new": "Neu",
+  "nodes": "Knoten",
+  "node_details": "Knotendetails",
+  "node_type": {
+    "-1": {
+      "label": "Startknoten"
+    },
+    "0": {
+      "label": "Standardknoten"
+    },
+    "1": {
+      "label": "Archivknoten"
+    },
+    "2": {
+      "label": "Terminalknoten"
+    },
+    "3": {
+      "label": "Verknüpfter Workflow"
+    },
+    "4": {
+      "label": "Knotengruppe"
+    }
+  },
+  "node_component_type": {
+    "data_connection": {
+      "label": "Datenverbindung"
+    },
+    "requirement": {
+      "label": "Anforderung"
+    },
+    "automation": {
+      "label": "Automatisierung"
+    },
+    "details": {
+      "label": "Details zum Knoten"
+    },
+    "linked_workflow": {
+      "label": "Verknüpfter Workflow"
+    }
+  },
+  "editor_node": {
+    "empty_items": "Knotendetails hierher ziehen und ablegen"
+  },
+  "group_node": {
+    "untitled_group": "Unbenannter Gruppenknoten",
+    "remove_group_node": "Gruppenknoten entfernen"
+  },
+  "invalid_workflow": "Das Element ist entweder ungültig oder wurde gelöscht",
+  "unnamed_node": "Unbenannter Knoten",
+  "delete": "Löschen",
+  "ungroup": "Gruppierung aufheben",
+  "archive": "Archivieren",
+  "data_connection_page": {
+    "title": "Liste der globalen Daten",
+    "global_data": "Globalen Daten",
+    "data_lock_hint": "Daten in den nächsten Schritten sperren",
+    "description": "Blenden Sie die globalen Daten für diesen Schritt ein oder aus, oder deaktivieren Sie sie, um eine Bearbeitung zu verhindern."
+  },
+  "requirement_page": {
+    "title": "Anforderungen",
+    "description": "Geben Sie die Bedingungen an, die erfüllt sein müssen, damit ein Kunde in diese Phase versetzt werden kann.",
+    "add_new": "Neue Anforderung",
+    "no_requirements": "Keine Anforderungen",
+    "cannot_delete_requirement": "Diese Anforderung ist mit einer Automatisierung verknüpft und kann nicht gelöscht/bearbeitet werden.",
+    "suppress_requirements": "Rückwärtsanforderungen überspringen",
+    "requirement_checking": "Anforderungen prüfen",
+    "suppress_requirements_desc": "Aktivieren Sie diese Option, um die Überprüfung der Anforderungen beim Rückwärtsverschieben einer Entität zu überspringen.",
+    "create_requirement": "Anforderungen erstellen",
+    "edit_requirement": "Anforderungen bearbeiten",
+    "enable_automatic_shift": "Automatisches Schalten einschalten",
+    "confirm_deletion": "Löschung bestätigen",
+    "confirm_deletion_message": "Möchten Sie diese Anforderung wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden, es sei denn, Sie verlassen die Seite, ohne zu speichern.",
+    "delete": "Löschen",
+    "cancel": "Abbrechen",
+    "selected_nodes_hint": "Wählen Sie Knoten für die Anforderungsprüfung aus",
+    "requirement_control": {
+      "heading": "Anforderungssteuerung",
+      "all": "Anforderungen für alle Knotenbewegungen prüfen",
+      "none": "Anforderungsprüfung deaktivieren",
+      "backward_nodes_only": "Nur für rückwärts Bewegungen prüfen",
+      "forward_nodes_only": "Nur für vorwärts Bewegungen prüfen",
+      "selected_nodes": "Nur für ausgewählte Knoten prüfen"
+    }
+  },
+  "node_details_page": {
+    "description_of_step": "Beschreibung dieses Schrittes",
+    "requirements_to_be_met": "zu erfüllende Anforderungen",
+    "possible_outcomes": "Mögliche Ergebnisse",
+    "time_sheet_and_lock_employee": "Zeiterfassung & Mitarbeiter sperren",
+    "enable_time_sheet": "Zeiterfassung aktivieren",
+    "lock_employee": "Mitarbeiterzuordnung und Personalplanung sperren",
+    "no_requirements": "Keine Anforderungen",
+    "no_outcomes": "Keine Ergebnisse",
+    "no_automation": "Keine Automatisierung",
+    "advance_to_the": "Vorrücken zum ",
+    "automation_count": "{{count}} Automatisierung",
+    "archived": "Archiviert"
+  },
+  "node_linked_workflow_page": {
+    "title": "Verknüpfter Workflow",
+    "search": "Suchen",
+    "workflow_select": {
+      "label": "Workflow auswählen",
+      "tooltip": "Entitäten in Terminal- oder Archivknoten werden in den ausgewählten Workflow verschoben, wenn die Anforderungen erfüllt sind."
+    },
+    "workflow_node_select": {
+      "label": "Workflow-Knoten auswählen (optional)",
+      "tooltip": "Der Knoten, zu dem die Entitäten verschoben werden.",
+      "empty": "Startknoten"
+    },
+    "list_heading": "Globale Datenübertragung",
+    "allow_skipping": "Überspringbar",
+    "allow_skipping_hint": "Aktivieren Sie diese Option, um das Überspringen von Aktionen im verknüpften Workflow zu ermöglichen.",
+    "list_heading_desc": "Wählen Sie die globalen Daten aus dem Quell-Workflow aus, die in diesen verknüpften Workflow übertragen werden sollen."
+  },
+  "actions": "Aktionen",
+  "please_select": "Bitte auswählen",
+  "untitled_requirement": "Unbenannte Anforderung",
+  "requirement_type": "Anforderungstyp",
+  "operator": "Operator",
+  "rule": "Regel",
+  "required": "Erforderlich",
+  "prohibited": "Verboten",
+  "operators": {
+    "set": "Ausgefüllt",
+    "unset": "Nicht ausgefüllt",
+    "=": "Gleich",
+    "!=": "Ungleich",
+    ">": "Größer als",
+    "<": "Kleiner als",
+    ">=": "Größer oder gleich",
+    "<=": "Kleiner oder gleich",
+    "contains": "Enthält",
+    "does_not_contain": "Enthält nicht",
+    "in": "In",
+    "not_in": "Nicht in",
+    "nin": "Nicht in",
+    "on_date": "Am Datum",
+    "before_date": "Vor Datum",
+    "after_date": "Nach Datum",
+    "on_time": "On Time",
+    "before_time": "Before Time",
+    "after_time": "After Time",
+    "min_length": "Minimale Länge",
+    "max_length": "Maximale Länge",
+    "min_duration": "Minimale Dauer",
+    "regex": "Regex"
+  },
+  "cannot_delete_pm_workflow": "Dieser 'No-Code' ist mit aktiven Projekttypen verknüpft und kann nicht gelöscht werden",
+  "automation_page": {
+    "title": "Automatisierungen",
+    "add_new": "Neue Automatisierung festlegen",
+    "create_new_rule": "Neue Regel erstellen",
+    "automation_requirement": "{{node}} Automation requirement",
+    "no_automation": {
+      "title": "Noch keine Automatisierung festgelegt",
+      "description": "Fügen Sie Automatisierungen hinzu, damit dieser Schritt als abgeschlossen betrachtet wird."
+    },
+    "description": "Definieren Sie automatisierte Aktionen, die spezifische Aufgaben, Benachrichtigungen oder Updates auslösen, um den Workflowprozess zu vereinfachen.",
+    "create_a_rule": "Automatisierung erstellen",
+    "edit_a_rule": "Automatisierung bearbeiten",
+    "trigger": "Trigger",
+    "actions": "Aktionen",
+    "create_rule": "Automatisierung erstellen",
+    "edit_rule": "Automatisierung bearbeiten",
+    "cancel": "Abbrechen",
+    "then": "Dann",
+    "add_another_action": "Noch eine Aktion hinzufügen",
+    "single_task": "Einfache Aufgabe",
+    "task_from_template": "Aufgabe aus Template",
+    "with_title": "Mit Titel",
+    "in_pinboard": "In Pinboard",
+    "add_responsible": "Verantwortliche hinzufügen",
+    "deadline": "Frist",
+    "priority": "Priorität",
+    "description_label": "Beschreibung",
+    "task_template": "Aufgaben-Template",
+    "email_template": "E-Mail-Vorlage",
+    "recipient": "Empfänger",
+    "users": "Benutzer",
+    "notification_title": "Titel der Benachrichtigung",
+    "notification_content": "Inhalt der Benachrichtigung",
+    "roles": "Rollen",
+    "embed_placeholders_to_title": "Platzhalter in Titel einbetten",
+    "embed_placeholders_to_content": "Platzhalter in Inhalt einbetten",
+    "send_notification": "Benachrichtigung senden",
+    "with_title_and_text": "mit titel und text",
+    "send_to": "senden an",
+    "title_of_the_notification": "Titel der Benachrichtigung",
+    "text_description_of_the_notification": "Inhalt der Benachrichtigung",
+    "select_recipients": "Empfänger auswählen",
+    "form": "Bilden",
+    "receiver": "Empfänger",
+    "select_receiver": "Empfänger auswählen",
+    "then_send_form": "Dann senden Sie das Formular ab",
+    "then_create_meeting": "Dann Meeting erstellen",
+    "add_meeting": "Meeting hinzufügen",
+    "meeting": "Meeting",
+    "notification_automation": {
+      "roles": "Rollen",
+      "users": "Benutzer"
+    },
+    "add_responsible_type": "Verantwortliche hinzufügen",
+    "add_assignee": "Zuweisung hinzufügen",
+    "assignee": "Zuweisung",
+    "responsible_type": "Verantwortliche",
+    "then_generate_document": "Anschließend Dokument erstellen",
+    "generate_document": "Dokument generieren",
+    "document": "Dokument"
+  },
+  "outcome_page": {
+    "delete_confirmation": "Sind Sie sicher, dass Sie dieses Ergebnis löschen möchten?",
+    "cancel": "Abbrechen",
+    "delete": "Löschen"
+  },
+  "untitled_automation": "Unbenannte Automatisierung",
+  "automation": "Automatisierung",
+  "customer_contract": "Kundenvertrag",
+  "search": "Suchen",
+  "close_confirmation": {
+    "title": "Sind Sie sicher, dass Sie diese Seite schließen möchten?",
+    "description": "Alle nicht gespeicherten Änderungen gehen verloren",
+    "close": "Seite schließen",
+    "stay": "Auf Seite bleiben"
+  },
+  "click_for_actions": "Klicken Sie für weitere Aktionen",
+  "search_for_workflows": "Workflows suchen",
+  "archived_workflows": "Archiviert",
+  "no_archived_workflows_hint": "Keine archivierten Workflows.",
+  "unarchive_confirmation": "Der Workflow wird aus dem Archiv geholt.",
+  "are_you_sure": "Sind Sie sicher?",
+  "chatbot_tab": {
+    "clusterix_ai": "Clusterix AI",
+    "workflow_steps": "Arbeitsschritte",
+    "hint": "Nutzen Sie AI, um Datenfelder, Schritte und Anforderungen für Ihren Workflow schnell einzurichten.",
+    "message_1": "\uD83D\uDC4B Hallo! <br><br> Ich bin hier, um Ihnen zu helfen. Wie kann ich Ihnen heute helfen? Wählen Sie eine Option, oder lassen Sie mich wissen, wie ich Ihnen helfen kann!",
+    "options": {
+      "generate_workflow": "Einen Workflow generieren",
+      "create_workflow": "Workflow erstellen",
+      "create_workflow_confirmation": "Dadurch wird die vorherige Konfiguration des Arbeitsablaufs außer Kraft gesetzt, falls vorhanden."
+    }
+  },
+  "chatbox": {
+    "write_comment": "Einen Kommentar schreiben",
+    "send": "Senden"
+  },
+  "languages": {
+    "en": {
+      "label": "Englisch",
+      "value": "en"
+    },
+    "de": {
+      "label": "Deutsch",
+      "value": "de"
+    }
+  },
+  "initial_translation_modal": {
+    "translate": "Übersetzen",
+    "start_translating": "Mit der Übersetzung beginnen",
+    "header_hint": "Wählen Sie eine oder mehrere Sprachen aus, um globale Datenfelder und Knoten mit KI zu übersetzen",
+    "languages": "Sprachen",
+    "footer_hint": "Dieser Vorgang kann eine Weile dauern, aber Sie können die App in der Zwischenzeit weiter verwenden. Wir benachrichtigen Sie, sobald die Übersetzung abgeschlossen ist.",
+    "notify_on_translations_completed": "Benachrichtigen, wenn die Übersetzung fertig ist"
+  },
+  "workflow_translation_editor_modal": {
+    "translation_editor": "Übersetzungseditor",
+    "add_language": "Sprache hinzufügen"
+  },
+  "translation_completed": "Übersetzungen sind bereit für '{{workflowName}}'",
+  "translating_workflow": "Übersetze '{{workflowName}}'",
+  "translating": "Translating",
+  "description_of": "Beschreibung von {{nodeName}}",
+  "translate": "Übersetzen",
+  "select_date": "Bitte wählen Sie ein Datum",
+  "confirm": "Bestätigen",
+  "skip": "Überspringen",
+  "workflow_created": "Workflow erstellt",
+  "details": "Details",
+  "data_connection": "Verbindungen",
+  "requirements": "Anforderungen",
+  "linked_workflow": "Verknüpfter Workflow",
+  "automations": "Automatisierungen"
+}

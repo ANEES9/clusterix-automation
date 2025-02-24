@@ -2,6 +2,7 @@ import { LandingPage } from 'pages/landing/landing-page'
 import { Browser, Page, test } from '@playwright/test'
 import { BrowserContext } from 'playwright'
 import { setupTestContext } from 'utils/test-context'
+import { Allure } from 'common/allure-helper'
 
 let browser: Browser
 let context: BrowserContext
@@ -14,6 +15,11 @@ test.describe.parallel('Landing Page Tests', () => {
     browser = testBrowser
     context = await browser.newContext()
     page = await context.newPage()
+
+    Allure.addFeature('NAVIGATION')
+    Allure.addAppOwner('Landing')
+    Allure.addSeverity('critical')
+    Allure.addTag('smoke')
 
     const testContext = await setupTestContext(page, testInfo)
     locale = testContext.locale

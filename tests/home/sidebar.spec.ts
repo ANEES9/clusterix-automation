@@ -17,7 +17,7 @@ test.describe.parallel('Container App Sidebar Navigation Tests', () => {
     context = await browser.newContext()
     page = await context.newPage()
 
-    Allure.addFeature(' Sidebar navigation')
+    Allure.addFeature('SIDEBAR')
     Allure.addAppOwner('Home')
     Allure.addSeverity('critical')
     Allure.addTag('smoke')

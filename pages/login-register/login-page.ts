@@ -4,6 +4,7 @@ import { LANGUAGES } from 'config/language-config'
 import { getTranslations } from 'common/get-translations-helper'
 import { getEndpoint } from 'helpers/api/get-endpoint-helper'
 import { UIResponseValidator } from 'common/ui-response-validator'
+import { ResetPasswordPage } from 'pages/login-register/reset-password-page'
 
 export class LoginPage {
   private page: Page
@@ -24,6 +25,8 @@ export class LoginPage {
   private rememberMeCheckbox: Locator
   private backFromForgotPasswordLink: Locator
   private loginFromRegisterLink: Locator
+
+  public resetPasswordPage: ResetPasswordPage
 
   constructor(page: Page, locale: string) {
     this.page = page
@@ -57,9 +60,7 @@ export class LoginPage {
     this.rememberMeCheckbox = this.page.getByLabel(
       this.translations.login.remember
     )
-    this.backFromForgotPasswordLink = this.page.getByRole('button', {
-      name: this.translations.recovery.backToLogin,
-    })
+
     this.loginFromRegisterLink = this.page.getByRole('button', {
       name: this.translations.registerContainer.fromFooter2,
     })
@@ -104,6 +105,7 @@ export class LoginPage {
     await this.emailField.isVisible()
     await this.loginButton.isVisible()
   }
+
   /**
    * Log in and validate the API response.
    * @param email - User's email address.
@@ -161,14 +163,13 @@ export class LoginPage {
     await expect(this.passwordErrorLabel).toBeVisible()
   }
 
-  async verifyNavigateBackFromForgotPasswordPage() {
+  async navigateToPasswordResetPage() {
     await this.forgotPasswordLink.click()
     await this.page.waitForLoadState('networkidle')
-    await this.backFromForgotPasswordLink.click()
-    await this.page.waitForLoadState('networkidle')
     const currentUrl = this.page.url()
-    expect(currentUrl).toContain(APP_URLS.login)
+    expect(currentUrl).toContain(APP_URLS.resetPassword)
   }
+
   async verifyNavigateToRegisterPage() {
     await this.registerLink.click()
     await this.page.waitForLoadState('networkidle')

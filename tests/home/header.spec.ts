@@ -19,7 +19,7 @@ test.describe.parallel('Home Header Navigation Tests', () => {
     context = await browser.newContext()
     page = await context.newPage()
 
-    Allure.addFeature(' Header navigation')
+    Allure.addFeature('HEADER')
     Allure.addAppOwner('Home')
     Allure.addSeverity('critical')
     Allure.addTag('smoke')
