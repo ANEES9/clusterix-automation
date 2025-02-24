@@ -107,7 +107,7 @@ test('Verify Next Page Button Functionality', async () => {
   Allure.addSeverity('critical');
   Allure.addTag('navigation');
   Allure.addDescription('Test to verify that clicking the Next button navigates to the next page.');
-  Allure.addFeature('Pagination');
+  Allure.addFeature('NAVIGATION');
   const pagesToNavigate = 2; // Set the number of pages to navigate through
   await companyPage.navigateAndVerifyNextPage(pagesToNavigate);
 });
