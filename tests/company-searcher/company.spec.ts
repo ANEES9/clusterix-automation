@@ -24,7 +24,7 @@ test.setTimeout(60000);
 });
 
 
-test.describe('Company Page Test Suite', () => {
+test.describe.parallel('Company Page Test Suite', () => {
   test.describe.configure({ timeout: 60000 });
   let companyPage: CompanyPage;
   let searchTerms: string[];

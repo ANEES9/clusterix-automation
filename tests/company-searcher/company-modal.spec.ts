@@ -28,7 +28,7 @@ test.afterAll(async () => {
     await sharedContext.close();
 });
 
-test.describe('company modal tests', () => {
+test.describe.parallel('company modal tests', () => {
     let modal: companyModal;
     let commModal: communicationModal;
     let names: string[];
