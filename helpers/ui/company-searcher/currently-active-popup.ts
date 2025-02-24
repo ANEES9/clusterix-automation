@@ -1,4 +1,5 @@
 import { Page } from '@playwright/test'
+import { error } from 'console'
 
 /**
  * Closes the "Currently Active" pop-up in the Company Searcher page.
@@ -8,7 +9,7 @@ export async function closeCurrentlyActivePopup(page: Page) {
   try {
     // Selector for the close button or pop-up element
     await page.waitForSelector('.styles-module_headerCloseButton__x2ELS', {
-      timeout: 10000,
+      timeout: 3000,
     })
     const popupCloseButton = page.locator(
       '.styles-module_headerCloseButton__x2ELS'
@@ -18,11 +19,11 @@ export async function closeCurrentlyActivePopup(page: Page) {
 
     if (popupVisible) {
       await popupCloseButton.click()
-      console.log('Currently Active pop-up closed successfully.')
+    
     } else {
-      console.log('Currently Active pop-up is not visible.')
+ console.error('Close button is not visible.')
     }
   } catch (error) {
-    console.error('Error closing the Currently Active pop-up:', error)
+    console.error('Error closing the pop-up:', error)
   }
 }

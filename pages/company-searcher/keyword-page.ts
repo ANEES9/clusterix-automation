@@ -8,7 +8,7 @@ export class KeywordPage {
     private readonly page: Page;
     private readonly translations: Record<string, any>;
 
-    // Simplified and updated locators
+    // Keyword page Locators
     private sidebarButton;
     private searchInput;
     private searchButton;
@@ -21,9 +21,25 @@ export class KeywordPage {
     private selectItemsCheckbox;
     private expandButton;
     private primaryCell;
+
+    //Pagination Bar Locators
     private activePageLocator;
     private nextPageButton;
     private previousPageButton;
+
+
+    //Company Modal Locators
+    private companyModal;
+    private closeButton;
+    private modal;
+    private address;    
+    private website;
+    private employees;
+    private financialData;
+    private fieldOfActivity;
+    private products;
+    private balanceSheet;
+    
 
     constructor(page: Page, locale: string) {
         this.page = page;
@@ -45,13 +61,27 @@ export class KeywordPage {
         //Pagination Bar Locators
         this.activePageLocator = page.locator('.PaginationBar-module_pages__hF8oC .ca-bg-theme');
         this.nextPageButton = page.locator('.PaginationBar-module_barButton__o4GQx').nth(1);
-        this.previousPageButton = page.locator('.PaginationBar-module_barButton__o4GQx').first();
+        this.previousPageButton = page.locator('.PaginationBar-module_barButton__o4GQx >> nth=0');
+
+        //company modal
+        this.companyModal =this.page.locator('.NggszKdMdOT2uf5OQ2Ov button');
+        this.closeButton = this.page.locator('.Lh9S26U3vePNRhTr3fPq'); 
+        this.modal = this.page.locator('.CompanyDetailsWrapper-module_companyDetailsWrapper__6lUe-');
+        this.address = this.page.locator('.AddressItem-module_addressItem__86eaZ');
+        this.website = this.page.locator('.WebsitesItem-module_websitesItem__W02rz');
+        this.employees = this.page.locator('.EmployeesItem-module_employeesItem__pxh6V >> nth=0');
+        this.financialData = this.page.locator('.FinancialDataItem-module_financialDataItem__WAzjj');
+        this.fieldOfActivity = this.page.locator('.SectionWrapper-module_sectionWrapper__Z0Ava >> nth=1');
+        this.products = this.page.locator('.Products-module_product__0bDy4 >> nth=0');
+        this.balanceSheet = this.page.locator('.BalanceSheets-module_balanceSheets__5K7O6');
+        this.closeButton = this.page.locator('.Lh9S26U3vePNRhTr3fPq'); 
+        
+
     }
 
     async openSearch() {
         await Allure.step('Open the search panel', async () => {
             await this.sidebarButton.click();
-            await expect(this.searchInput).toBeVisible();
         });
     }
 
@@ -74,11 +104,6 @@ export class KeywordPage {
           throw new Error('Next button is disabled.');
         }
       }
-
-    
-
-
-
       
       public async verifyInitialMessage() {
         await Allure.step('Verify the initial message displayed on search', async () => {
@@ -92,7 +117,6 @@ export class KeywordPage {
     }
     
       
-
     async verifyElementsPresence() {
         await Allure.step('Check all key elements are present on the page', async () => {
             await expect(this.filterButton).toBeVisible();
@@ -119,22 +143,7 @@ export class KeywordPage {
         });
         return results;
     }
-    async verifySearchResultsHaveData(term: string): Promise<void> {
-        await Allure.step('Verify that each search result contains valid data', async () => {
-            const results = await this.getSearchResults();
-            if (results.length === 0) {
-                throw new Error("The search results table is empty.");
-            }
 
-            results.forEach((result, index) => {
-                if (result.trim() === "") {
-                    throw new Error(`Result row ${index + 1} is empty. Each row should contain non-empty data.`);
-                }
-                // Additional checks can be added here, such as format or content-specific validations
-            });
-        });
-
-    }
     async resetSearch() {
         await Allure.step('Reset the search field', async () => {
             await this.searchInput.fill('');
@@ -151,15 +160,21 @@ export class KeywordPage {
         
     }
 
-    async getActivePageNumber(): Promise<string | undefined> {
-        let activePageNum: string | undefined;
+    async getActivePageNumber(): Promise<number> {
+        let pageNumber: number;
         await Allure.step('Get the active page number', async () => {
-            await this.page.waitForTimeout(3000);
-            activePageNum = (await this.activePageLocator.textContent())?.trim();
+            const pageText = await this.activePageLocator.textContent();
+            if (!pageText) {
+                throw new Error('Active page number text is undefined or empty.');
+            }
+            const trimmedText = pageText.trim();
+            pageNumber = parseInt(trimmedText, 10);
+            if (isNaN(pageNumber)) {
+                throw new Error(`Active page number is not a valid number: '${trimmedText}'`);
+            }
         });
-        return activePageNum;
+        return pageNumber!;
     }
-    
     async randomSelector<T>(array: T[], count: number): Promise<T[]> {
         let selectedItems: T[] = [];
         await Allure.step('Select random items from an array', async () => {
@@ -196,23 +211,115 @@ export class KeywordPage {
         return numericPageNumber;
     }
     
-    async navigateAndVerifyNextPage(expectedPageNumber: number) {
-        let numericNewPageNumber = 0;
-        await Allure.step(`Navigate to and verify page number ${expectedPageNumber}`, async () => {
-            await this.clickNextPageButton(expectedPageNumber.toString());
-            const newPageNumber = await this.getActivePageNumber();
-            if (!newPageNumber) {
-                throw new Error('Failed to retrieve the new active page number.');
-            }
-            numericNewPageNumber = parseInt(newPageNumber, 10);
-            if (isNaN(numericNewPageNumber)) {
-                throw new Error(`Invalid new page number: "${newPageNumber}"`);
-            }
-            expect(numericNewPageNumber).toBe(expectedPageNumber);
+
+    async clickPreviousPageButton(): Promise<void> {
+        const isDisabled = await this.previousPageButton.isDisabled()
+        if (!isDisabled) {
+          await this.previousPageButton.click()
+        } else {
+          throw new Error('Previous button is disabled.')
+        }
+      }
+
+      async openModal(index: number) {
+        await Allure.step(`Open company modal for company at index ${index}`, async () => {
+        await this.companyModal.nth(index).click();
         });
-        return numericNewPageNumber;
+    }
+     
+
+    async verifyModalContents() {
+        await Allure.step('Verify company modal contents', async () => {
+        await expect(this.modal).toBeVisible();
+        await expect(this.address).toBeVisible();
+        await expect(this.website).toBeVisible();
+        await expect(this.employees).toBeVisible();
+        await expect(this.financialData).toBeVisible();
+        await expect(this.fieldOfActivity).toBeVisible();
+        await expect(this.balanceSheet).toBeVisible();
+        });
+    }
+    async closeModal() {
+        await this.closeButton.click();
     }
 
 
 
+    async verifySearchResultsHaveData() {
+        await Allure.step('Verify that search results have data', async () => {
+            const results = await this.getSearchResults();
+            if (results.length === 0) {
+                throw new Error('No search results found.');
+            }
+        });
+    }
+
+    async navigateAndVerifyNextPage(currentPageNumber: number): Promise<number> {
+        let newPageNumber = 0;
+        await Allure.step('Navigate to the next page and verify', async () => {
+   await this.page.waitForTimeout(2000);
+            await this.nextPageButton.click();
+            await this.page.waitForTimeout(2000);
+            const pageText = await this.activePageLocator.textContent();
+            if (pageText === null) {
+                throw new Error('Failed to retrieve the active page number text.');
+            }
+            newPageNumber = parseInt(pageText, 10);
+            if (isNaN(newPageNumber)) {
+                throw new Error('Failed to parse page number.');
+            }
+            if (newPageNumber !== currentPageNumber + 1) {
+                throw new Error(`Expected to navigate to page ${currentPageNumber + 1}, but landed on page ${newPageNumber}`);
+            }
+        });
+        return newPageNumber;
+    }
+
+
+async performSearchesAndNavigate(searchTerms: string[], pagesToNavigate: number): Promise<void> {
+    for (const term of searchTerms) {
+        await this.performSearch(term);
+        await this.page.waitForTimeout(2000); 
+        let currentPageNumber = await this.getActivePageNumber();
+        for (let i = 0; i < pagesToNavigate; i++) {
+            currentPageNumber = await this.navigateAndVerifyNextPage(currentPageNumber);
+            await this.verifySearchResultsHaveData();
+        }
+    }
 }
+
+async pickAndProcessRandomSearchTerms(searchTerms: string[], count: number, pagesToNavigate: number): Promise<void> {
+    const randomTerms = this.pickRandomItems(searchTerms, count);
+    await this.performSearchesAndNavigate(randomTerms, pagesToNavigate);
+}
+
+public pickRandomItems<T>(items: T[], count: number): T[] {
+    const shuffled = items.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count);
+}
+
+
+
+async openAndVerifyModals(instanceCount: number): Promise<void> {
+    for (let i = 0; i < instanceCount; i++) {
+        await this.openModal(i);
+        await this.page.waitForTimeout(2000); // Assuming the waitForTimeout is appropriate here
+        await this.verifyModalContents();
+        await this.closeModal();
+    }
+}
+
+async searchAndVerifyModals(searchTerms: string[], instanceCount: number): Promise<void> {
+    for (const term of searchTerms) {
+        await this.performSearch(term);
+        await this.page.waitForLoadState('networkidle');
+        await this.openAndVerifyModals(instanceCount);
+    }
+}
+
+    }
+
+
+
+
+

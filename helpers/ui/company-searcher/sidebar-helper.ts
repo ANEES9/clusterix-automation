@@ -13,9 +13,9 @@ export async function collapseSidebar(page: Page) {
 
     if (buttonVisible) {
       await collapseButton.click()
-      console.log('Sidebar collapsed successfully.')
+    
     } else {
-      console.log('Collapse button is not visible.')
+      console.error('Collapse button is not visible.')
     }
   } catch (error) {
     console.error('Error collapsing the sidebar:', error)
