@@ -15,17 +15,13 @@ export default defineConfig({
     ['allure-playwright', { outputFolder: 'results' }],
   ],
   use: {
-    trace: 'on-first-retry',
+    trace: 'retain-on-failure',
     headless: true,
     baseURL: process.env.CLUSTERIX_BASE_URL,
     viewport: { width: 1280, height: 720 },
     video: 'retain-on-failure',
     screenshot: 'only-on-failure',
   },
-  expect: {
-    timeout: 60 * 1000, // Timeout for expect assertions (1 minute)
-  },
-timeout: 60 * 1000, // Global timeout for each test (1 minute)
   globalSetup: require.resolve('./global-setup'),
   globalTeardown: require.resolve('./global-teardown'),
   workers: 1,
@@ -35,17 +31,15 @@ timeout: 60 * 1000, // Global timeout for each test (1 minute)
   ],
   testMatch: ['**/*.spec.ts'],
 })
-
 // Function to generate projects dynamically
 function generateProjects() {
   const browsers = [
     { name: 'Chromium', device: devices['Desktop Chrome'] },
-    //{ name: 'Firefox', device: devices['Desktop Firefox'] },
-    //{ name: 'WebKit', device: devices['Desktop Safari'] },
+    { name: 'Firefox', device: devices['Desktop Firefox'] },
+    { name: 'WebKit', device: devices['Desktop Safari'] },
   ]
 
   const projects: any[] = []
-
   LANGUAGES.forEach((locale) => {
     Object.keys(APP_NAMES).forEach((appKey) => {
       const testDir = `./tests/${toKebabCase(appKey as keyof typeof APP_NAMES)}`
@@ -58,7 +52,7 @@ function generateProjects() {
             ...device,
             locale,
             storageState:
-              appKey === 'auth'
+              appKey === 'loginRegister' || appKey === 'landing'
                 ? undefined
                 : path.join(process.cwd(), 'sessions', sessionFile),
           },
@@ -67,7 +61,6 @@ function generateProjects() {
       })
     })
   })
-
   return projects
 }
 

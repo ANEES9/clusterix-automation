@@ -12,9 +12,9 @@ export class InvoicesPage {
     this.page = page
     this.translations = getTranslations('accounting', locale)
 
-    this.invoicesPageTitle = this.page.getByRole('heading', {
-      name: this.translations.fulfillment.title,
-    })
+    this.invoicesPageTitle = this.page
+      .getByText(this.translations.fulfillment.title)
+      .first()
   }
 
   /**

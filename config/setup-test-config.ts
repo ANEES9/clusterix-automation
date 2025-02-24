@@ -33,7 +33,13 @@ export const testSetupConfig: TestSetupConfig = {
     skipTutorial: true,
   },
   folders: {
-    auth: {
+    landing: {
+      skipSurvey: false,
+      skipTimer: false,
+      skipProductTour: false,
+      skipTutorial: false,
+    },
+    'login-register': {
       skipSurvey: false,
       skipTimer: false,
       skipProductTour: false,

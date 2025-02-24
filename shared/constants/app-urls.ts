@@ -1,8 +1,37 @@
+import * as dotenv from 'dotenv'
+
+dotenv.config()
+
+const getBaseDomain = () => {
+  if (process.env.BASE_URL) {
+    return process.env.BASE_URL.includes('testing')
+      ? 'testing.clusterix.io'
+      : 'clusterix.io'
+  }
+  if (typeof window !== 'undefined') {
+    return window.location.hostname.includes('testing')
+      ? 'testing.clusterix.io'
+      : 'clusterix.io'
+  }
+  return 'clusterix.io'
+}
+
+export const BASE_DOMAIN = getBaseDomain()
+
 export const APP_URLS = {
   login: '/login',
   register: '/register',
   resetPassword: '/reset-password',
   sso: '/sso',
+  landing: {
+    freddyAppointly: '/frederik-erber-termin-mit-frederik-erber',
+    hrApp: `https://hr-${BASE_DOMAIN}/`,
+    emailApp: `https://email-${BASE_DOMAIN}/`,
+    calendarApp: `https://calendar-${BASE_DOMAIN}/`,
+    liveChatApp: `https://livechat-${BASE_DOMAIN}/`,
+    timeTrackingApp: `https://time-tracking-${BASE_DOMAIN}/`,
+    documentsApp: `https://documents-${BASE_DOMAIN}/`,
+  },
   settings: {
     base: '/settings',
     usersAndPermissions: {

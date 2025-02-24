@@ -1,13 +1,21 @@
-import { test } from '@playwright/test'
+import { Browser, Page, test } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
 import { DashboardPage } from 'pages/bulk-mailing/dashboard-page'
 import { setupTestContext } from 'utils/test-context'
+import { BrowserContext } from 'playwright'
 
-test.describe('Dashboard Tab Tests', () => {
-  let dashboardPage: DashboardPage
-  let locale: string
+let browser: Browser
+let context: BrowserContext
+let page: Page
+let dashboardPage: DashboardPage
+let locale: string
 
-  test.beforeEach(async ({ page, baseURL }, testInfo) => {
+test.describe.parallel('Dashboard Tab Tests', () => {
+  test.beforeAll(async ({ browser: testBrowser, baseURL }, testInfo) => {
+    browser = testBrowser
+    context = await browser.newContext()
+    page = await context.newPage()
+
     Allure.addAppOwner('Bulk Mailing')
     Allure.addSeverity('critical')
     Allure.addTag('smoke')

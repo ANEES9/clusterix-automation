@@ -12,8 +12,8 @@ export class CustomersPage {
     this.page = page
     this.translations = getTranslations('accounting', locale)
 
-    this.customersPageTitle = this.page.getByRole('heading', {
-      name: this.translations.transactions.customers,
+    this.customersPageTitle = page.getByRole('heading', {
+      name: 'Customers',
     })
   }
 

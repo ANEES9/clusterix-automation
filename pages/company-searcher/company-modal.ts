@@ -1,25 +1,20 @@
+import { Page, expect } from '@playwright/test'
+import { Allure } from 'common/allure-helper'
 
-import { Locator, Page, expect } from '@playwright/test';
-import { allure } from 'allure-playwright';
-import { Allure } from 'common/allure-helper';
-import { faker } from '@faker-js/faker';
+export class CompanyModal {
+  private readonly page: Page
 
-
-
-export class companyModal {
-    private readonly page: Page;
-
-    // Locators
-    private modal;
-    private address;
-    private website;
-    private employees;
-    private financialData;
-    private fieldOfActivity;
-    private products;
-    private balanceSheet;
-    private closeButton;
-    private companyModal;
+  // Locators
+  private modal
+  private address
+  private website
+  private employees
+  private financialData
+  private fieldOfActivity
+  private products
+  private balanceSheet
+  private closeButton
+  private companyModal
 
     constructor(page: Page, locale: string) {
         this.page = page;
@@ -44,36 +39,27 @@ export class companyModal {
     }
      
 
-    async verifyModalContents() {
-        await Allure.step('Verify company modal contents', async () => {
-        await expect(this.modal).toBeVisible();
-        await expect(this.address).toBeVisible();
-        await expect(this.website).toBeVisible();
-        await expect(this.employees).toBeVisible();
-        await expect(this.financialData).toBeVisible();
-        await expect(this.fieldOfActivity).toBeVisible();
-        const productsCount = await this.products.count();
-        expect(productsCount).toBeGreaterThan(0);
-        await expect(this.balanceSheet).toBeVisible();
-        });
-    }
+  async openModal(index: number) {
+    await this.companyModal.nth(index).click()
+  }
 
-    async closeModal() {
-        await Allure.step('Close company modal', async () => {
-        await this.closeButton.click();
+  async verifyModalContents() {
+    await Allure.step('Verify company modal contents', async () => {
+      await expect(this.modal).toBeVisible()
+      await expect(this.address).toBeVisible()
+      await expect(this.website).toBeVisible()
+      await expect(this.employees).toBeVisible()
+      await expect(this.financialData).toBeVisible()
+      await expect(this.fieldOfActivity).toBeVisible()
+      const productsCount = await this.products.count()
+      expect(productsCount).toBeGreaterThan(0)
+      await expect(this.balanceSheet).toBeVisible()
     })
-    }
+  }
 
-    async manageModal(instance: number) {
-        for (let i = 0; i < instance; i++) {
-            await this.openModal(i);
-            await this.page.waitForTimeout(2000);
-            await this.verifyModalContents();
-            await this.closeModal();
-        }
-    }
-
-
+  async closeModal() {
+    await this.closeButton.click()
+  }
 }
 export class communicationModal {
     private readonly page: Page;

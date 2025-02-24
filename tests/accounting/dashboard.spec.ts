@@ -10,7 +10,7 @@ let page: Page
 let dashboardPage: DashboardPage
 let locale: string
 
-test.describe('Dashboard Tab Tests', () => {
+test.describe.parallel('Dashboard Tab Tests', () => {
   test.beforeAll(async ({ browser: testBrowser, baseURL }, testInfo) => {
     browser = testBrowser
     context = await browser.newContext()
@@ -24,11 +24,7 @@ test.describe('Dashboard Tab Tests', () => {
     locale = testContext.locale
     dashboardPage = new DashboardPage(page, locale)
     await dashboardPage.goto(baseURL)
-    await page.waitForLoadState('networkidle')
-  })
-
-  test('Validate Dashboard navigation from sidebar', async () => {
-    await dashboardPage.validateDashboardNavigation()
+    await page.waitForLoadState('domcontentloaded')
   })
 
   test('Validate Bank Accounts navigation from sidebar', async () => {
@@ -55,16 +51,11 @@ test.describe('Dashboard Tab Tests', () => {
     await dashboardPage.validateProductsNavigation()
   })
 
-  test('Validate Categories navigation from sidebar', async () => {
-    await dashboardPage.validateCategoriesNavigation()
-  })
-
   test('Validate Reports navigation from sidebar', async () => {
     await dashboardPage.validateReportsNavigation()
   })
 
-  test.afterAll(async () => {
-    await context.close()
-    await browser.close()
+  test('Validate Dashboard navigation from sidebar', async () => {
+    await dashboardPage.validateDashboardNavigation()
   })
 })

@@ -58,7 +58,7 @@ export class DashboardPage {
   }
 
   /**
-   * Navigate to the login page.
+   * Navigate to the dashboard page.
    * @param baseURL - The base URL of the application.
    */
   async goto(baseURL: string | undefined) {

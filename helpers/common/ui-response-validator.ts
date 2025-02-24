@@ -24,13 +24,10 @@ export class UIResponseValidator {
     if (!(await button.isEnabled())) {
       throw new Error('Button is not enabled')
     }
-
-    console.log(`Clicking button and waiting for response: ${responseUrl}`)
     const [response] = await Promise.all([
-      page.waitForResponse(
-        (res) => res.url().includes(responseUrl),
-        { timeout: 60000 } // Increased timeout
-      ),
+      page.waitForResponse((res) => res.url().includes(responseUrl), {
+        timeout: 60000,
+      }),
       button.click(),
     ])
 

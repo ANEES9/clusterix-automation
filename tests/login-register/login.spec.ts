@@ -1,6 +1,6 @@
 import { Browser, Page, test } from '@playwright/test'
 import { userData } from 'utils/test-data/auth/user-data'
-import { LoginPage } from 'pages/login-refactor/login-page'
+import { LoginPage } from 'pages/login-register/login-page'
 import { SurveyPage } from 'pages/home/survey-page'
 import { HomePage } from 'pages/home/home-page'
 import { ProductTourPage } from 'pages/home/product-tour-page'
@@ -16,7 +16,7 @@ let homePage: HomePage
 let productTourPage: ProductTourPage
 let locale: string
 
-test.describe('Login Page Tests', () => {
+test.describe.parallel('Login Page Tests', () => {
   test.beforeAll(async ({ browser: testBrowser, baseURL }, testInfo) => {
     browser = testBrowser
     context = await browser.newContext()

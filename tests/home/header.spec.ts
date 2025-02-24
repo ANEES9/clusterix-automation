@@ -10,9 +10,10 @@ let browser: Browser
 let context: BrowserContext
 let page: Page
 let homePage: HomePage
+let notificationsPanelPage: NotificationsPanelPage
 let locale: string
 
-test.describe('Home Header Navigation Tests', () => {
+test.describe.parallel('Home Header Navigation Tests', () => {
   test.beforeAll(async ({ browser: testBrowser, baseURL }, testInfo) => {
     browser = testBrowser
     context = await browser.newContext()
@@ -26,14 +27,12 @@ test.describe('Home Header Navigation Tests', () => {
     const testContext = await setupTestContext(page, testInfo)
     locale = testContext.locale
     homePage = new HomePage(page, locale)
+    notificationsPanelPage = new NotificationsPanelPage(page, locale)
     await homePage.goto(baseURL)
     await page.waitForLoadState('domcontentloaded')
   })
 
-  test('Validate Notifications Panel Opens on Button Click', async ({
-    page,
-  }) => {
-    const notificationsPanelPage = new NotificationsPanelPage(page, locale)
+  test('Validate Notifications Panel Opens on Button Click', async () => {
     await Allure.step('Open Notifications Panel', async () => {
       await homePage.openNotificationsPanel()
     })
@@ -69,7 +68,7 @@ test.describe('Home Header Navigation Tests', () => {
     })
   })
 
-  test('Validate Live Chat Navigation on Button Click', async ({ context }) => {
+  test('Validate Live Chat Navigation on Button Click', async () => {
     await Allure.step('Open Live Chat in New Tab and Validate', async () => {
       await homePage.openLiveChatAndValidate(context, locale)
     })

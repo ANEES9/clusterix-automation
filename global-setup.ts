@@ -1,7 +1,7 @@
 import { chromium } from '@playwright/test'
 import * as fs from 'fs'
 import dotenv from 'dotenv'
-import { LoginPage } from 'pages/login-refactor/login-page'
+import { LoginPage } from 'pages/login-register/login-page'
 import { LANGUAGES, getSessionFilePath } from 'config/language-config'
 
 dotenv.config({ path: `.env.${process.env.NODE_ENV || 'testing'}` })

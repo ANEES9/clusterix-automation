@@ -44,7 +44,7 @@
   "income_contracts": "Income Contracts",
   "transactions_balance": "Transactions & Balance",
   "expenses": "Expenses",
-  "payment_transactions": "Payment Transactions",
+  "payment_transactions": "Transactions",
   "payment_analysis": "Payment Analysis",
   "payments": "Payments",
   "chart_of_accounts": "Chart of accounts",
@@ -91,7 +91,7 @@
     "cannot_renew_bank_account": "Your account is currently active. Renewals can only be processed once your account has expired."
   },
   "transactions": {
-    "title": "Bank Transactions",
+    "title": "Transactions",
     "connected_to": "Connected to",
     "account_name": "Account Name",
     "no_transaction": "There is no bank transactions yet!"
