@@ -148,9 +148,48 @@ export const APP_URLS = {
     details: (id: string) => `/company-search/details/${id}`, // dynamic route
   },
   noCode: {
-    base: '/no-code/container-app/overview',
-    editor: '/no-code/container-app/editor',
-    templates: '/no-code/container-app/templates',
+    base: '/workflows',
+    overview: {
+      base: '/workflows/dashboard/overview',
+      newWorkflow: {
+        base: '/workflows/dashboard/overview/new',
+        appConnection: '/workflows/dashboard/overview/new/app-connection',
+        workflowType: '/workflows/dashboard/overview/new/workflow-type',
+      },
+    },
+    accountingBills: {
+      base: '/workflows/workflows-apps/4',
+      newWorkflow: {
+        base: '/workflows/workflows-apps/1/new/',
+        appConnection: '/workflows/workflows-apps/1/new/app-connection',
+        workflowType: '/workflows/workflows-apps/1/new/workflow-type',
+      },
+      configure: {
+        base: '/workflows/workflows-apps/1/configure/',
+        summary: (workflowId: string) =>
+          `/workflows/workflows-apps/1/configure/${workflowId}/summary`,
+        globalData: (workflowId: string) =>
+          `/workflows/workflows-apps/1/configure/${workflowId}/global-data`,
+        editor: (workflowId: string) =>
+          `/workflows/workflows-apps/1/configure/${workflowId}/editor`,
+        integrations: (workflowId: string) =>
+          `/workflows/workflows-apps/1/configure/${workflowId}/integrations`,
+        permissions: (workflowId: string) =>
+          `/workflows/workflows-apps/1/configure/${workflowId}/permissions`,
+      },
+    },
+    accountingInvoices: {
+      base: '/workflows/workflows-apps/5',
+    },
+    customers: {
+      base: '/workflows/workflows-apps/1',
+    },
+    humanResources: {
+      base: '/workflows/workflows-apps/2',
+    },
+    projectManagement: {
+      base: '/workflows/workflows-apps/3',
+    },
   },
   templateManager: {
     base: '/template-manager',

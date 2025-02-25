@@ -1,7 +1,7 @@
 export const APP_OWNERS: Record<string, { name: string; email: string }> = {
   Home: { name: 'Büşra', email: 'b.ozturk@innoscripta.com' },
   Landing: { name: 'Büşra', email: 'b.ozturk@innoscripta.com' },
-  Auth: { name: 'Sagar', email: 'acharya@innoscripta.com' },
+  Login: { name: 'Büşra', email: 'b.ozturk@innoscripta.com' },
   Settings: { name: 'Büşra', email: 'b.ozturk@innoscripta.com' },
 }
 

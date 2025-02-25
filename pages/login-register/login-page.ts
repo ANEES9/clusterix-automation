@@ -22,6 +22,7 @@ export class LoginPage {
   private microsoftLink: Locator
   private appleLink: Locator
   private ssoLink: Locator
+  private orherLoginOptionsLink: Locator
   private rememberMeCheckbox: Locator
   private backFromForgotPasswordLink: Locator
   private loginFromRegisterLink: Locator
@@ -57,6 +58,9 @@ export class LoginPage {
     this.microsoftLink = this.page.getByRole('button', { name: 'Microsoft' })
     this.appleLink = this.page.getByRole('button', { name: 'Apple' })
     this.ssoLink = this.page.getByRole('button', { name: 'SSO' })
+    this.ssoLink = this.page.getByRole('button', {
+      name: this.translations.sso.footer2,
+    })
     this.rememberMeCheckbox = this.page.getByLabel(
       this.translations.login.remember
     )
@@ -178,8 +182,6 @@ export class LoginPage {
   }
 
   async verifyNavigateBackFromRegisterPage() {
-    await this.registerLink.click()
-    await this.page.waitForLoadState('networkidle')
     await this.loginFromRegisterLink.click()
     await this.page.waitForLoadState('networkidle')
     const currentUrl = this.page.url()
@@ -191,6 +193,7 @@ export class LoginPage {
     await this.page.waitForLoadState('networkidle')
     const currentUrl = this.page.url()
     expect(currentUrl).toContain('accounts.google.com')
+    this.page.goBack()
   }
 
   async verifyNavigateToMicrosoftPage() {
@@ -198,6 +201,7 @@ export class LoginPage {
     await this.page.waitForLoadState('networkidle')
     const currentUrl = this.page.url()
     expect(currentUrl).toContain('login.microsoftonline.com')
+    this.page.goBack()
   }
 
   async verifyNavigateToApplePage() {
@@ -205,6 +209,7 @@ export class LoginPage {
     await this.page.waitForLoadState('networkidle')
     const currentUrl = this.page.url()
     expect(currentUrl).toContain('appleid.apple.com')
+    this.page.goBack()
   }
 
   async verifyNavigateToSSOPage() {
@@ -212,6 +217,7 @@ export class LoginPage {
     await this.page.waitForLoadState('networkidle')
     const currentUrl = this.page.url()
     expect(currentUrl).toContain(APP_URLS.sso)
+    await this.orherLoginOptionsLink.click()
   }
 
   async verifyRememberMeClickable() {
