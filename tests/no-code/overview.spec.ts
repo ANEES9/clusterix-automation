@@ -67,17 +67,6 @@ test.describe.parallel('Overview Tab Tests', () => {
         }
       })
       await newNoCodeModalPage.validateModalOpened()
-      const buttons = await page.locator('button._button_84fzv_1').all()
-
-      await page.evaluate(() => {
-        const button = document.querySelectorAll(
-          'button._button_84fzv_1'
-        )[1] as HTMLButtonElement
-        if (button) {
-          button.removeAttribute('disabled')
-        }
-      })
-      await buttons[1].click()
     })
   })
 })
