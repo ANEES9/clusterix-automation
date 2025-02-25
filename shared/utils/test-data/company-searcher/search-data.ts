@@ -31,7 +31,6 @@ export const searchData = [
   },
   {
     searchTerm: 'Henkel',
-
   },
   {
     searchTerm: 'Bayer',
@@ -45,7 +44,7 @@ export const searchData = [
   {
     searchTerm: 'Lufthansa',
   },
- 
+
   {
     searchTerm: 'RWE',
   },
@@ -59,7 +58,7 @@ export const searchData = [
     searchTerm: 'Thyssenkrupp',
   },
   {
-    searchTerm: 'Deutsche Post'
+    searchTerm: 'Deutsche Post',
   },
   {
     searchTerm: 'TUI',
@@ -68,24 +67,21 @@ export const searchData = [
     searchTerm: 'Zalando',
   },
   {
-    searchTerm: 'Hugo Boss'
+    searchTerm: 'Hugo Boss',
   },
   {
-    searchTerm: 'Beiersdorf'
+    searchTerm: 'Beiersdorf',
   },
   {
-    searchTerm: 'Infineon'
-
+    searchTerm: 'Infineon',
   },
   {
-    searchTerm: 'Evonik'
-   
+    searchTerm: 'Evonik',
   },
   {
-    searchTerm: 'Deutsche Telekom'
-    
+    searchTerm: 'Deutsche Telekom',
   },
   {
-    searchTerm: 'Knorr-Bremse'
-  }
+    searchTerm: 'Knorr-Bremse',
+  },
 ]

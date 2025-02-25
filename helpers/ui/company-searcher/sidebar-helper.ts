@@ -13,7 +13,6 @@ export async function collapseSidebar(page: Page) {
 
     if (buttonVisible) {
       await collapseButton.click()
-    
     } else {
       console.error('Collapse button is not visible.')
     }

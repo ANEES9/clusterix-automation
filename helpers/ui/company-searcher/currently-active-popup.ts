@@ -19,9 +19,8 @@ export async function closeCurrentlyActivePopup(page: Page) {
 
     if (popupVisible) {
       await popupCloseButton.click()
-    
     } else {
- console.error('Close button is not visible.')
+      console.error('Close button is not visible.')
     }
   } catch (error) {
     console.error('Error closing the pop-up:', error)
