@@ -1,4 +1,4 @@
-import { Browser, expect, Page, test } from '@playwright/test'
+import { Browser, Page, test } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
 import { OverviewPage } from 'pages/no-code/overview-page'
 import { setupTestContext } from 'utils/test-context'
@@ -52,6 +52,8 @@ test.describe.parallel('Overview Tab Tests', () => {
       await overviewPage.validateStep3Description()
     })
   })
+
+  //todo: fix z-index issue
   test('Check if the New No Code Button works', async () => {
     Allure.step('Click on the "New No Code" button', async () => {
       await overviewPage.clickOnTheNewNoCodeButton()
