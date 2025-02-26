@@ -44,6 +44,9 @@ export class HomePage {
   private noCodeSidebarButton: Locator
   private templateManagerSidebarButton: Locator
 
+  //Dashboard Items
+  private filesDashboardElement: Locator
+
   constructor(page: Page, locale: string) {
     this.page = page
     this.translations = getTranslations('home', locale)
@@ -111,9 +114,9 @@ export class HomePage {
     this.taskManagementSidebarButton = page.locator(
       'button[group="workforce-management"]:has-text("Task Management")'
     )
-    this.timeTrackingSideBarButton = page
-      .locator('#home-sidebar')
-      .getByRole('button', { name: 'Time Tracking', exact: true })
+    this.timeTrackingSideBarButton = page.locator(
+      'button[group="workforce-management"]:has-text("Time Tracking")'
+    )
     this.accountingSidebarButton = page.locator(
       'button[group="cash-management"]:has-text("Accounting")'
     )
@@ -144,6 +147,9 @@ export class HomePage {
     this.templateManagerSidebarButton = page.locator(
       'button[group="configurator"]:has-text("Template Manager")'
     )
+
+    //Dashboard Locators
+    this.filesDashboardElement = page.locator("//div[text()='Files']")
   }
 
   async goto(baseURL: string | undefined) {
@@ -181,7 +187,7 @@ export class HomePage {
     )
   }
 
-  // Actions for header
+  // Actions for Header
   async openNotificationsPanel() {
     await Allure.step(
       'should open the notifications panel when the Notifications button is clicked',
@@ -225,6 +231,7 @@ export class HomePage {
         await newPage.waitForLoadState()
         const liveChatContainer = new HomePage(newPage, locale)
         await liveChatContainer.validateCurrentApp(APP_NAMES.liveChat)
+        await newPage.close()
       }
     )
   }
@@ -239,7 +246,6 @@ export class HomePage {
       }
     )
   }
-
   async validateProfileDropdownUserName() {
     await Allure.step(
       'should validate the username in the profile dropdown when the profile button is clicked',
@@ -262,7 +268,6 @@ export class HomePage {
       }
     )
   }
-
   async selectCompanyFromDropdown() {
     await Allure.step(
       'should select a company from the profile dropdown when the profile button is clicked',
@@ -315,7 +320,6 @@ export class HomePage {
       }
     )
   }
-
   async logOutFromAccount() {
     await Allure.step(
       'should log out from account when the log out button clicked from user dropdown',
@@ -326,7 +330,7 @@ export class HomePage {
     )
   }
 
-  // Actions for sidebar
+  // Actions for Sidebar
   async navigateToHomeFromSideBar() {
     await Allure.step(
       'should navigate to the home page when the button is clicked from sidebar',
@@ -341,7 +345,7 @@ export class HomePage {
       'should navigate to the files page when the button is clicked from sidebar',
       async () => {
         await this.sidebarOpener.click()
-        await this.filesSidebarButton.click()
+        await this.filesSidebarButton.first().click()
       }
     )
   }
@@ -489,4 +493,6 @@ export class HomePage {
       }
     )
   }
+
+  //Actions for Dashboard
 }

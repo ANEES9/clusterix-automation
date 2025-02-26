@@ -1,6 +1,7 @@
 import { Browser, Page, test } from '@playwright/test'
 import { HomePage } from 'pages/home/home-page'
 import { Allure } from 'common/allure-helper'
+import { NotificationsPanelPage } from 'pages/notifications/notifications-panel-page'
 import { APP_NAMES } from 'constants/app-names'
 import { setupTestContext } from 'utils/test-context'
 import { BrowserContext } from 'playwright'
@@ -9,15 +10,15 @@ let browser: Browser
 let context: BrowserContext
 let page: Page
 let homePage: HomePage
+let notificationsPanelPage: NotificationsPanelPage
 let locale: string
 
-test.describe.parallel('Container App Sidebar Navigation Tests', () => {
+test.describe.parallel('Home Page Tests', () => {
   test.beforeAll(async ({ browser: testBrowser, baseURL }, testInfo) => {
     browser = testBrowser
     context = await browser.newContext()
     page = await context.newPage()
 
-    Allure.addFeature('SIDEBAR')
     Allure.addAppOwner('Home')
     Allure.addSeverity('critical')
     Allure.addTag('smoke')
@@ -25,10 +26,58 @@ test.describe.parallel('Container App Sidebar Navigation Tests', () => {
     const testContext = await setupTestContext(page, testInfo)
     locale = testContext.locale
     homePage = new HomePage(page, locale)
+    notificationsPanelPage = new NotificationsPanelPage(page, locale)
     await homePage.goto(baseURL)
     await page.waitForLoadState('domcontentloaded')
   })
+
+  //Header Navigation Tests
+  test('Validate Notifications Panel Opens on Button Click', async () => {
+    Allure.addFeature('HEADER')
+    await Allure.step('Open Notifications Panel', async () => {
+      await homePage.openNotificationsPanel()
+    })
+    await Allure.step('Check Navigation Panel Header', async () => {
+      await notificationsPanelPage.validateNotificationsPanelHeader()
+    })
+  })
+  test('Validate Calendar Navigation on Button Click', async () => {
+    Allure.addFeature('HEADER')
+    await Allure.step('Navigate to Calendar Page', async () => {
+      await homePage.navigateToCalendarFromHeader()
+    })
+    await Allure.step('Check Current App', async () => {
+      await homePage.validateCurrentApp(APP_NAMES.calendar)
+    })
+  })
+  test('Validate Time Tracking Navigation on Button Click', async () => {
+    Allure.addFeature('HEADER')
+    await Allure.step('Navigate to Time Tracking Page', async () => {
+      await homePage.navigateToTimeTrackingFromHeader()
+    })
+    await Allure.step('Check Current App', async () => {
+      await homePage.validateCurrentApp(APP_NAMES.timeTracking)
+    })
+  })
+  test('Validate Email Navigation on Button Click', async () => {
+    Allure.addFeature('HEADER')
+    await Allure.step('Navigate to Email Page', async () => {
+      await homePage.navigateToEmailFromHeader()
+    })
+    await Allure.step('Check Current App', async () => {
+      await homePage.validateCurrentApp(APP_NAMES.email)
+    })
+  })
+  test('Validate Live Chat Navigation on Button Click', async () => {
+    Allure.addFeature('HEADER')
+    await Allure.step('Open Live Chat in New Tab and Validate', async () => {
+      await homePage.openLiveChatAndValidate(context, locale)
+    })
+  })
+
+  //Sidebar Navigation Tests
   test('Validate Home Page Navigation from Sidebar', async () => {
+    Allure.addFeature('SIDEBAR')
     await Allure.step('Navigate to Home Page', async () => {
       await homePage.navigateToHomeFromSideBar()
     })
@@ -37,6 +86,7 @@ test.describe.parallel('Container App Sidebar Navigation Tests', () => {
     })
   })
   test('Validate Files Navigation from Sidebar', async () => {
+    Allure.addFeature('SIDEBAR')
     await Allure.step('Navigate to Home Page', async () => {
       await homePage.navigateToFilesFromSideBar()
     })
@@ -45,6 +95,7 @@ test.describe.parallel('Container App Sidebar Navigation Tests', () => {
     })
   })
   test('Validate Office Navigation from Sidebar', async () => {
+    Allure.addFeature('SIDEBAR')
     await Allure.step('Navigate to Office Page', async () => {
       await homePage.navigateToOfficeFromSideBar()
     })
@@ -53,6 +104,7 @@ test.describe.parallel('Container App Sidebar Navigation Tests', () => {
     })
   })
   test('Validate PDF Navigation from Sidebar', async () => {
+    Allure.addFeature('SIDEBAR')
     await Allure.step('Navigate to PDF Page', async () => {
       await homePage.navigateToPdfFromSideBar()
     })
@@ -61,6 +113,7 @@ test.describe.parallel('Container App Sidebar Navigation Tests', () => {
     })
   })
   test('Validate Project Management Navigation from Sidebar', async () => {
+    Allure.addFeature('SIDEBAR')
     await Allure.step('Navigate to HR Page', async () => {
       await homePage.navigateToProjectManagementFromSideBar()
     })
@@ -69,6 +122,7 @@ test.describe.parallel('Container App Sidebar Navigation Tests', () => {
     })
   })
   test('Validate Task Management Navigation from Sidebar', async () => {
+    Allure.addFeature('SIDEBAR')
     await Allure.step('Navigate to Task Management Page', async () => {
       await homePage.navigateToTaskManagementFromSideBar()
     })
@@ -77,6 +131,7 @@ test.describe.parallel('Container App Sidebar Navigation Tests', () => {
     })
   })
   test('Validate Time Tracking Navigation from Sidebar', async () => {
+    Allure.addFeature('SIDEBAR')
     await Allure.step('Navigate to Time Tracking Page', async () => {
       await homePage.navigateToTimeTrackingFromSideBar()
     })
@@ -85,6 +140,7 @@ test.describe.parallel('Container App Sidebar Navigation Tests', () => {
     })
   })
   test('Validate Accounting Navigation from Sidebar', async () => {
+    Allure.addFeature('SIDEBAR')
     await Allure.step('Navigate to Accounting Page', async () => {
       await homePage.navigateToAccountingFromSideBar()
     })
@@ -93,6 +149,7 @@ test.describe.parallel('Container App Sidebar Navigation Tests', () => {
     })
   })
   test('Validate Subsidies Navigation from Sidebar', async () => {
+    Allure.addFeature('SIDEBAR')
     await Allure.step('Navigate to Subsidies Page', async () => {
       await homePage.navigateToSubsidiesFromSideBar()
     })
@@ -101,6 +158,7 @@ test.describe.parallel('Container App Sidebar Navigation Tests', () => {
     })
   })
   test('Validate Bulk Mailing Navigation from Sidebar', async () => {
+    Allure.addFeature('SIDEBAR')
     await Allure.step('Navigate to Bulk Mailing Page', async () => {
       await homePage.navigateToBulkMailingFromSideBar()
     })
@@ -109,6 +167,7 @@ test.describe.parallel('Container App Sidebar Navigation Tests', () => {
     })
   })
   test('Validate Company Searcher Navigation from Sidebar', async () => {
+    Allure.addFeature('SIDEBAR')
     await Allure.step('Navigate to Company Searcher Page', async () => {
       await homePage.navigateToCompanySearcherFromSideBar()
     })
@@ -117,6 +176,7 @@ test.describe.parallel('Container App Sidebar Navigation Tests', () => {
     })
   })
   test('Validate Customers Navigation from Sidebar', async () => {
+    Allure.addFeature('SIDEBAR')
     await Allure.step('Navigate to Company Searcher Page', async () => {
       await homePage.navigateToCustomersFromSideBar()
     })
@@ -125,6 +185,7 @@ test.describe.parallel('Container App Sidebar Navigation Tests', () => {
     })
   })
   test('Validate External Forms Navigation from Sidebar', async () => {
+    Allure.addFeature('SIDEBAR')
     await Allure.step('Navigate to External Forms Page', async () => {
       await homePage.navigateToExternalFormsFromSideBar()
     })
@@ -133,6 +194,7 @@ test.describe.parallel('Container App Sidebar Navigation Tests', () => {
     })
   })
   test('Validate Byte Builder Navigation from Sidebar', async () => {
+    Allure.addFeature('SIDEBAR')
     await Allure.step('Navigate to Byte Builder Page', async () => {
       await homePage.navigateToByteBuilderFromSideBar()
     })
@@ -141,6 +203,7 @@ test.describe.parallel('Container App Sidebar Navigation Tests', () => {
     })
   })
   test('Validate Integration Navigation from Sidebar', async () => {
+    Allure.addFeature('SIDEBAR')
     await Allure.step('Navigate to Integration Page', async () => {
       await homePage.navigateToIntegrationFromSideBar()
     })
@@ -149,6 +212,7 @@ test.describe.parallel('Container App Sidebar Navigation Tests', () => {
     })
   })
   test('Validate No Code Navigation from Sidebar', async () => {
+    Allure.addFeature('SIDEBAR')
     await Allure.step('Navigate to no code Page', async () => {
       await homePage.navigateToNoCodeFromSideBar()
     })
@@ -157,6 +221,7 @@ test.describe.parallel('Container App Sidebar Navigation Tests', () => {
     })
   })
   test('Validate Template Manager Navigation from Sidebar', async () => {
+    Allure.addFeature('SIDEBAR')
     await Allure.step('Navigate to Template Manager Page', async () => {
       await homePage.navigateToTemplateManagerFromSideBar()
     })
