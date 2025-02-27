@@ -1,5 +1,5 @@
 import { Browser, Page, test } from '@playwright/test'
-import { userData } from 'utils/test-data/auth/user-data'
+import { userData } from 'utils/test-data/login-register/user-data'
 import { LoginPage } from 'pages/login-register/login-page'
 import { SurveyPage } from 'pages/home/survey-page'
 import { HomePage } from 'pages/home/home-page'
@@ -48,14 +48,12 @@ test.describe.parallel('Login Page Tests', () => {
     await productTourPage.skipProductTour()
     await homePage.validateNoAppSelected()
   })
-
   test('Should log out when click on the log out button', async () => {
     Allure.addFeature('LOGOUT')
     await homePage.logOutFromAccount()
     await landingPage.validateContentHeaderText()
     await landingPage.headerLogiButton.nth(0).click()
   })
-
   userData.invalid.emails.forEach((invalidEmail, index) => {
     test(`Should not log in with invalid email [${index + 1}]: ${invalidEmail}`, async () => {
       Allure.addFeature('LOGIN')
@@ -65,7 +63,6 @@ test.describe.parallel('Login Page Tests', () => {
       )
     })
   })
-
   userData.invalid.passwords.forEach((invalidPassword, index) => {
     test(`Should not log in with invalid password [${index + 1}]: ${invalidPassword}`, async () => {
       Allure.addFeature('LOGIN')
@@ -75,7 +72,6 @@ test.describe.parallel('Login Page Tests', () => {
       )
     })
   })
-
   test('Should not log in with empty email', async () => {
     Allure.addFeature('LOGIN')
     await loginPage.verifyEmptyEmailLogin(
@@ -83,7 +79,6 @@ test.describe.parallel('Login Page Tests', () => {
       userData.valid.password
     )
   })
-
   test('Should not log in with empty password', async () => {
     Allure.addFeature('LOGIN')
     await loginPage.verifyEmptyPasswordLogin(
@@ -91,7 +86,6 @@ test.describe.parallel('Login Page Tests', () => {
       userData.empty.emptyPassword
     )
   })
-
   test('Should not log in with only one space email', async () => {
     Allure.addFeature('LOGIN')
     await loginPage.verifyEmptyEmailLogin(
@@ -99,7 +93,6 @@ test.describe.parallel('Login Page Tests', () => {
       userData.valid.password
     )
   })
-
   test('Should not log in with only one space password', async () => {
     Allure.addFeature('LOGIN')
     await loginPage.verifyEmptyPasswordLogin(
@@ -107,50 +100,40 @@ test.describe.parallel('Login Page Tests', () => {
       userData.empty.oneSpacePassword
     )
   })
-
   test('Should not log in with only ten space email', async () => {
     await loginPage.verifyEmptyEmailLogin(
       userData.empty.tenSpaceEmail,
       userData.valid.password
     )
   })
-
   test('Should not log in with only ten space password', async () => {
     await loginPage.verifyEmptyPasswordLogin(
       userData.valid.email,
       userData.empty.tenSpacePassword
     )
   })
-
   test('Should navigate to "Forgot Password" and back to "Login"', async () => {
     await loginPage.navigateToPasswordResetPage()
     await resetPasswordPage.backToLogin()
   })
-
   test('Should navigate to Register screen', async () => {
     await loginPage.verifyNavigateToRegisterPage()
   })
-
   test('Should navigate from Register screen to Login screen', async () => {
     await loginPage.verifyNavigateBackFromRegisterPage()
   })
-
   test('Should navigate to Google account screen', async () => {
     await loginPage.verifyNavigateToGooglePage()
   })
-
   test('Should navigate to Microsoft account screen', async () => {
     await loginPage.verifyNavigateToMicrosoftPage()
   })
-
   test('Should navigate to Apple account screen', async () => {
     await loginPage.verifyNavigateToApplePage()
   })
-
   test('Should navigate to SSO screen', async () => {
     await loginPage.verifyNavigateToSSOPage()
   })
-
   test('Should be able to check Remember me checkbox', async () => {
     await loginPage.verifyRememberMeClickable()
   })

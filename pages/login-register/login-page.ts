@@ -4,7 +4,6 @@ import { LANGUAGES } from 'config/language-config'
 import { getTranslations } from 'common/get-translations-helper'
 import { getEndpoint } from 'helpers/api/get-endpoint-helper'
 import { UIResponseValidator } from 'common/ui-response-validator'
-import { ResetPasswordPage } from 'pages/login-register/reset-password-page'
 
 export class LoginPage {
   private page: Page
@@ -22,13 +21,9 @@ export class LoginPage {
   private microsoftLink: Locator
   private appleLink: Locator
   private ssoLink: Locator
-  private orherLoginOptionsLink: Locator
+  private otherLoginOptionsLink: Locator
   private rememberMeCheckbox: Locator
-  private backFromForgotPasswordLink: Locator
   private loginFromRegisterLink: Locator
-
-  public resetPasswordPage: ResetPasswordPage
-
   constructor(page: Page, locale: string) {
     this.page = page
     this.translations = getTranslations('login-register', locale)
@@ -58,15 +53,15 @@ export class LoginPage {
     this.microsoftLink = this.page.getByRole('button', { name: 'Microsoft' })
     this.appleLink = this.page.getByRole('button', { name: 'Apple' })
     this.ssoLink = this.page.getByRole('button', { name: 'SSO' })
-    this.ssoLink = this.page.getByRole('button', {
-      name: this.translations.sso.footer2,
-    })
     this.rememberMeCheckbox = this.page.getByLabel(
       this.translations.login.remember
     )
 
     this.loginFromRegisterLink = this.page.getByRole('button', {
-      name: this.translations.registerContainer.fromFooter2,
+      name: this.translations.registerContainer.formFooter2,
+    })
+    this.otherLoginOptionsLink = this.page.getByRole('button', {
+      name: this.translations.sso.footer2,
     })
   }
 
@@ -190,7 +185,7 @@ export class LoginPage {
 
   async verifyNavigateToGooglePage() {
     await this.googleLink.click()
-    await this.page.waitForLoadState('networkidle')
+    await this.page.waitForURL(/accounts\.google\.com/)
     const currentUrl = this.page.url()
     expect(currentUrl).toContain('accounts.google.com')
     this.page.goBack()
@@ -214,10 +209,13 @@ export class LoginPage {
 
   async verifyNavigateToSSOPage() {
     await this.ssoLink.click()
-    await this.page.waitForLoadState('networkidle')
+    await this.page.waitForURL(APP_URLS.sso)
     const currentUrl = this.page.url()
     expect(currentUrl).toContain(APP_URLS.sso)
-    await this.orherLoginOptionsLink.click()
+    await this.otherLoginOptionsLink.click()
+    await this.page.waitForLoadState('domcontentloaded')
+    const backToLoginUrl = this.page.url()
+    expect(backToLoginUrl).toContain(APP_URLS.login)
   }
 
   async verifyRememberMeClickable() {

@@ -45,10 +45,16 @@ export const testSetupConfig: TestSetupConfig = {
       skipProductTour: false,
       skipTutorial: false,
     },
+    home: {
+      skipSurvey: true, // Default for all tests in home/
+      skipTimer: false,
+      skipProductTour: false,
+      skipTutorial: false,
+    },
   },
   files: {
-    'home/survey.spec.ts': {
-      skipSurvey: false,
+    'tests/home/survey.spec.ts': {
+      skipSurvey: false, // Explicitly override for this file
       skipTimer: false,
       skipProductTour: false,
       skipTutorial: false,
