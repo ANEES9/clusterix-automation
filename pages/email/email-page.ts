@@ -1,6 +1,7 @@
 import { Page, Locator, expect, TestInfo } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
 import { getTranslations } from 'common/get-translations-helper'
+import { APP_URLS } from 'constants/app-urls'
 
 export class EmailPage {
   private page: Page
@@ -37,7 +38,6 @@ export class EmailPage {
   private emailNameDropdown: Locator
   private switchBetweenEmail!: Locator
   private switchBackToEmail!: Locator
-  static readonly URL = '/email'
 
   private inboxFolder: Locator
   private sentItemsFolder: Locator
@@ -78,7 +78,9 @@ export class EmailPage {
     this.saveSignature = page.getByText('Save')
     this.topReplyEmail = page.locator('#thread-action-bar').getByText('Reply')
     this.confirmPopup = page.getByRole('button', { name: 'Confirm' })
-    this.createFolder = page.getByRole('button', { name: this.translations.mailbox.controls.create_new_folder })
+    this.createFolder = page.getByRole('button', {
+      name: this.translations.mailbox.controls.create_new_folder,
+    })
     this.folderName = page.getByPlaceholder('Enter a name for the folder')
     this.saveFolder = page.getByText('Create folder')
     this.folderSuccessfulToastMessage = page.getByText(
@@ -94,14 +96,22 @@ export class EmailPage {
     this.sentItemsFolder = page.getByText(
       this.translations.main.folders.sent_items
     )
-    this.junkEmailFolder = page.getByText(this.translations.main.folders.junk_email)
-    this.archiveFolder  = page.getByText(this.translations.main.folders.archive)
-    this.deletedItemsFolder = page.getByText(this.translations.main.folders.deleted_items)
+    this.junkEmailFolder = page.getByText(
+      this.translations.main.folders.junk_email
+    )
+    this.archiveFolder = page.getByText(this.translations.main.folders.archive)
+    this.deletedItemsFolder = page.getByText(
+      this.translations.main.folders.deleted_items
+    )
     this.draftsFolder = page.getByText(this.translations.main.folders.drafts)
-    this.secheduledEmailsFolder = page.getByText(this.translations.main.folders.scheduled).first()
+    this.secheduledEmailsFolder = page
+      .getByText(this.translations.main.folders.scheduled)
+      .first()
 
     this.closeEditor = page.getByTestId('innomail-close-editor')
-    this.createFolderConfirmation = page.getByText(this.translations.main.newFolder)
+    this.createFolderConfirmation = page.getByText(
+      this.translations.main.newFolder
+    )
     this.cancelFolderModal = page.getByText(this.translations.common.cancel)
   }
 
@@ -134,24 +144,16 @@ export class EmailPage {
   }
 
   async goTo(baseURL: string | undefined) {
-    await Allure.step('navigate to email url', async () => {
-      await this.page.goto(`${baseURL}${EmailPage.URL}`)
+    await Allure.step('navigate to Email URL', async () => {
+      await this.page.goto(`${baseURL}${APP_URLS.email.base}`)
     })
   }
 
   async validateCurrentApp() {
-    await expect(this.page).toHaveURL(new RegExp(`${EmailPage.URL}$`))
+    await expect(this.page).toHaveURL(new RegExp(`${APP_URLS.email.base}$`))
     await expect(this.currentApp).toContainText('Email')
   }
 
-  async navigateToEmail() {
-    await Allure.step(
-      'should navigate to email when email button is clicked',
-      async () => {
-        await this.email.click()
-      }
-    )
-  }
   async verifyNewEmail() {
     await Allure.step('Verify New Email button is visible', async () => {
       await expect(this.newEmail).toBeVisible()
@@ -212,12 +214,6 @@ export class EmailPage {
       await this.page.waitForTimeout(5000)
       await this.emailBody.fill(body)
       await this.page.waitForTimeout(5000)
-    })
-  }
-
-  async goto(baseURL: string | undefined) {
-    await Allure.step('Navigate to Email URL', async () => {
-      await this.page.goto(`${baseURL}${EmailPage.URL}`)
     })
   }
 
@@ -449,15 +445,12 @@ export class EmailPage {
     await Allure.step('Verify Create Folder Modal is visible', async () => {
       await expect(this.createFolderConfirmation).toBeVisible
       let folderModal = this.createFolderConfirmation.textContent()
-      if (
-        folderModal === this.translations.mailbox.controls.newFolder
-      ) {
+      if (folderModal === this.translations.mailbox.controls.newFolder) {
         await Allure.addAttachment(
           'Folder Modal name should be matching',
           `${folderModal} : Folder Modal name is matching as expected`
         )
-      }
-      else {
+      } else {
         await Allure.addAttachment(
           'Folder Modal name should be matching',
           `${folderModal} : Folder Modal name is not matching as expected`
@@ -595,23 +588,26 @@ export class EmailPage {
   }
 
   async clickSentItemsFolder() {
-    await Allure.step('Click on Sent Items Folder and able to navigate to Sent Items folder', async () => {
-      await this.sentItemsFolder.click()
-      let folderName = await this.page
-        .locator('.messages-list__box-title')
-        .textContent()
-      if (folderName === this.translations.main.folders.sent_items) {
-        await Allure.addAttachment(
-          'Folder name should be matching',
-          `${folderName} : Folder name is matching as expected`
-        )
-      } else {
-        await Allure.addAttachment(
-          'Folder name should be matching',
-          `${folderName} : Folder name is not matching as expected`
-        )
+    await Allure.step(
+      'Click on Sent Items Folder and able to navigate to Sent Items folder',
+      async () => {
+        await this.sentItemsFolder.click()
+        let folderName = await this.page
+          .locator('.messages-list__box-title')
+          .textContent()
+        if (folderName === this.translations.main.folders.sent_items) {
+          await Allure.addAttachment(
+            'Folder name should be matching',
+            `${folderName} : Folder name is matching as expected`
+          )
+        } else {
+          await Allure.addAttachment(
+            'Folder name should be matching',
+            `${folderName} : Folder name is not matching as expected`
+          )
+        }
       }
-    })
+    )
   }
 
   async verifyJunkEmailFolder() {
@@ -621,23 +617,26 @@ export class EmailPage {
   }
 
   async clickJunkEmailFolder() {
-    await Allure.step('Click on Junk Email Folder and able to navigate to Junk Email folder', async () => {
-      await this.junkEmailFolder.click()
-      let folderName = await this.page
-        .locator('.messages-list__box-title')
-        .textContent()
-      if (folderName === this.translations.main.folders.junk_email) {
-        await Allure.addAttachment(
-          'Folder name should be matching',
-          `${folderName} : Folder name is matching as expected`
-        )
-      } else {
-        await Allure.addAttachment(
-          'Folder name should be matching',
-          `${folderName} : Folder name is not matching as expected`
-        )
+    await Allure.step(
+      'Click on Junk Email Folder and able to navigate to Junk Email folder',
+      async () => {
+        await this.junkEmailFolder.click()
+        let folderName = await this.page
+          .locator('.messages-list__box-title')
+          .textContent()
+        if (folderName === this.translations.main.folders.junk_email) {
+          await Allure.addAttachment(
+            'Folder name should be matching',
+            `${folderName} : Folder name is matching as expected`
+          )
+        } else {
+          await Allure.addAttachment(
+            'Folder name should be matching',
+            `${folderName} : Folder name is not matching as expected`
+          )
+        }
       }
-    })
+    )
   }
 
   async verifyArchiveFolder() {
@@ -647,23 +646,26 @@ export class EmailPage {
   }
 
   async clickArchiveFolder() {
-    await Allure.step('Click on Archive Folder and able to navigate to Archive folder', async () => {
-      await this.archiveFolder.click()
-      let folderName = await this.page
-        .locator('.messages-list__box-title')
-        .textContent()
-      if (folderName === this.translations.main.folders.archive) {
-        await Allure.addAttachment(
-          'Folder name should be matching',
-          `${folderName} : Folder name is matching as expected`
-        )
-      } else {
-        await Allure.addAttachment(
-          'Folder name should be matching',
-          `${folderName} : Folder name is not matching as expected`
-        )
+    await Allure.step(
+      'Click on Archive Folder and able to navigate to Archive folder',
+      async () => {
+        await this.archiveFolder.click()
+        let folderName = await this.page
+          .locator('.messages-list__box-title')
+          .textContent()
+        if (folderName === this.translations.main.folders.archive) {
+          await Allure.addAttachment(
+            'Folder name should be matching',
+            `${folderName} : Folder name is matching as expected`
+          )
+        } else {
+          await Allure.addAttachment(
+            'Folder name should be matching',
+            `${folderName} : Folder name is not matching as expected`
+          )
+        }
       }
-    })
+    )
   }
 
   async verifyDeletedItemsFolder() {
@@ -673,23 +675,26 @@ export class EmailPage {
   }
 
   async clickDeletedItemsFolder() {
-    await Allure.step('Click on Deleted Items Folder and able to navigate to Deleted Items folder', async () => {
-      await this.deletedItemsFolder.click()
-      let folderName = await this.page
-        .locator('.messages-list__box-title')
-        .textContent()
-      if (folderName === this.translations.main.folders.deleted_items) {
-        await Allure.addAttachment(
-          'Folder name should be matching',
-          `${folderName} : Folder name is matching as expected`
-        )
-      } else {
-        await Allure.addAttachment(
-          'Folder name should be matching',
-          `${folderName} : Folder name is not matching as expected`
-        )
+    await Allure.step(
+      'Click on Deleted Items Folder and able to navigate to Deleted Items folder',
+      async () => {
+        await this.deletedItemsFolder.click()
+        let folderName = await this.page
+          .locator('.messages-list__box-title')
+          .textContent()
+        if (folderName === this.translations.main.folders.deleted_items) {
+          await Allure.addAttachment(
+            'Folder name should be matching',
+            `${folderName} : Folder name is matching as expected`
+          )
+        } else {
+          await Allure.addAttachment(
+            'Folder name should be matching',
+            `${folderName} : Folder name is not matching as expected`
+          )
+        }
       }
-    })
+    )
   }
 
   async verifyDraftsFolder() {
@@ -699,23 +704,26 @@ export class EmailPage {
   }
 
   async clickDraftsFolder() {
-    await Allure.step('Click on Drafts Folder and able to navigate to Drafts folder', async () => {
-      await this.draftsFolder.click()
-      let folderName = await this.page
-        .locator('.messages-list__box-title')
-        .textContent()
-      if (folderName === this.translations.main.folders.drafts) {
-        await Allure.addAttachment(
-          'Folder name should be matching',
-          `${folderName} : Folder name is matching as expected`
-        )
-      } else {
-        await Allure.addAttachment(
-          'Folder name should be matching',
-          `${folderName} : Folder name is not matching as expected`
-        )
+    await Allure.step(
+      'Click on Drafts Folder and able to navigate to Drafts folder',
+      async () => {
+        await this.draftsFolder.click()
+        let folderName = await this.page
+          .locator('.messages-list__box-title')
+          .textContent()
+        if (folderName === this.translations.main.folders.drafts) {
+          await Allure.addAttachment(
+            'Folder name should be matching',
+            `${folderName} : Folder name is matching as expected`
+          )
+        } else {
+          await Allure.addAttachment(
+            'Folder name should be matching',
+            `${folderName} : Folder name is not matching as expected`
+          )
+        }
       }
-    })
+    )
   }
 
   async verifyScheduledEmailsFolder() {
@@ -725,26 +733,25 @@ export class EmailPage {
   }
 
   async clickScheduledEmailsFolder() {
-    await Allure.step('Click on Scheduled Emails Folder and able to navigate to Scheduled Emails folder', async () => {
-      await this.secheduledEmailsFolder.click()
-      let folderName = await this.page
-        .locator('.messages-list__box-title')
-        .textContent()
-      if (folderName === this.translations.main.folders.scheduled) {
-        await Allure.addAttachment(
-          'Folder name should be matching',
-          `${folderName} : Folder name is matching as expected`
-        )
-      } else {
-        await Allure.addAttachment(
-          'Folder name should be matching',
-          `${folderName} : Folder name is not matching as expected`
-        )
+    await Allure.step(
+      'Click on Scheduled Emails Folder and able to navigate to Scheduled Emails folder',
+      async () => {
+        await this.secheduledEmailsFolder.click()
+        let folderName = await this.page
+          .locator('.messages-list__box-title')
+          .textContent()
+        if (folderName === this.translations.main.folders.scheduled) {
+          await Allure.addAttachment(
+            'Folder name should be matching',
+            `${folderName} : Folder name is matching as expected`
+          )
+        } else {
+          await Allure.addAttachment(
+            'Folder name should be matching',
+            `${folderName} : Folder name is not matching as expected`
+          )
+        }
       }
-    })
+    )
   }
-
-
-
-
 }

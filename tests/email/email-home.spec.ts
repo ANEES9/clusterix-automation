@@ -21,7 +21,7 @@ test.describe.parallel('Dashboard Tab Tests', () => {
     const testContext = await setupTestContext(page, testInfo)
     locale = testContext.locale
     emailPage = new EmailPage(page, locale)
-    await emailPage.goto(baseURL)
+    await emailPage.goTo(baseURL)
   })
 
   test('Validate Email Home Page Dashboard is accessible', async () => {
