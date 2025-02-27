@@ -488,12 +488,13 @@
       }
     },
     "folders": {
-      "inbox": "Inbox",
-      "sent": "Sent",
-      "spam": "Spam",
+      "inbox": "INBOX",
+      "sent_items": "Sent Items",
+      "junk_email": "Junk Email",
       "archive": "Archive",
-      "deleted": "Deleted",
-      "drafts": "Drafts"
+      "deleted_items": "Deleted Items",
+      "drafts": "Drafts",
+      "scheduled": "Scheduled"
     },
     "newFolder": "Add New folder",
     "createFolder": "Create folder",
