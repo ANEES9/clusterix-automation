@@ -15,7 +15,7 @@ test.describe.parallel('Dashboard Tab Tests', () => {
     browser = testBrowser
     context = await browser.newContext()
     page = await context.newPage()
-    Allure.addAppOwner('Bulk Mailing')
+    Allure.addAppOwner('Clusterix Email Application')
     Allure.addSeverity('critical')
     Allure.addTag('smoke')
     const testContext = await setupTestContext(page, testInfo)
