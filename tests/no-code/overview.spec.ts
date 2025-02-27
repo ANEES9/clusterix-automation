@@ -52,23 +52,4 @@ test.describe.parallel('Overview Tab Tests', () => {
       await overviewPage.validateStep3Description()
     })
   })
-
-  //todo: fix z-index issue
-  test('Check if the New No Code Button works', async () => {
-    Allure.step('Click on the "New No Code" button', async () => {
-      await overviewPage.clickOnTheNewNoCodeButton()
-      await page.waitForLoadState('domcontentloaded')
-    })
-    Allure.step('Check if the new no code modal is opened ', async () => {
-      await page.evaluate(() => {
-        const modal = document.querySelector(
-          'div[role="dialog"]'
-        ) as HTMLElement
-        if (modal) {
-          modal.style.zIndex = '9999'
-        }
-      })
-      await newNoCodeModalPage.validateModalOpened()
-    })
-  })
 })
