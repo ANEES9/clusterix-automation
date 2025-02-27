@@ -14,7 +14,7 @@ export async function skipProductTourHelper(
 
     // Check if the Skip Tour button is attached to the DOM
     const isSkipTourAttached = await productTourPage.skipTour
-      .waitFor({ state: 'attached', timeout: 1500 })
+      .waitFor({ state: 'attached', timeout: 1000 })
       .then(() => true)
       .catch(() => false)
 
