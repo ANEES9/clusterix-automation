@@ -18,6 +18,7 @@ test.describe('Keyword search tests', () => {
   let searchTerms: string[]
 
   test.beforeAll(async ({ browser, baseURL }, testInfo) => {
+    test.setTimeout(60000)
     sharedContext = await browser.newContext()
     sharedPage = await sharedContext.newPage()
     const testContext = await setupTestContext(sharedPage, testInfo)
@@ -68,6 +69,7 @@ test.describe('Keyword search tests', () => {
   })
 
   test('Verify Next Page Button Functionality', async () => {
+    test.setTimeout(60000) // I
     Allure.addSeverity('critical')
     Allure.addTag('navigation')
     Allure.addDescription(

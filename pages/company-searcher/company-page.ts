@@ -1,4 +1,3 @@
-import { al } from '@faker-js/faker/dist/airline-BnpeTvY9'
 import { Page, Locator, expect } from '@playwright/test'
 import { all } from 'axios'
 import { Allure } from 'common/allure-helper'
@@ -520,7 +519,6 @@ export class CompanyPage {
       const hasNextPage = await this.moveToNextPage()
       if (!hasNextPage) break // Exit if no more pages to navigate
     }
-
     await this.reloadAndResetSearch()
   }
 
@@ -552,6 +550,8 @@ export class CompanyPage {
       visitedPages.add(activePageNumber || '')
       pagesChecked++
     }
+
+    await this.reloadAndResetSearch()
   }
   async performSearchAndNavigatePages(
     searchTerm: string,
@@ -654,6 +654,7 @@ export class CompanyPage {
       }
       currentPageNumber = newPageNumber // Update for the next iteration
     }
+    await this.reloadAndResetSearch()
   }
   async verifyExpandedRowsMatchLabels(count: number): Promise<void> {
     for (let i = 0; i < count; i++) {

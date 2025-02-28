@@ -144,9 +144,8 @@ export class KeywordPage {
     await Allure.step(
       'Verify the initial message displayed on search',
       async () => {
-        // Assuming 'this.translations' is correctly initialized and contains the expected translations
         const expectedTitle =
-          this.translations.main.keyword_search_page.empty_state.title // Ensure these keys match your translations structure
+          this.translations.main.keyword_search_page.empty_state.title
         const expectedDescription =
           this.translations.main.keyword_search_page.empty_state.description
         await expect(this.title).toHaveText(expectedTitle)

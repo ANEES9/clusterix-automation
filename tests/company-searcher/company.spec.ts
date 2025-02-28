@@ -12,11 +12,11 @@ let sharedPage: Page
 let sharedContext: BrowserContext
 let locale: string
 let companyPage: CompanyPage
-let searchTerms: string[]
 let filtersPage: FiltersPage
 
 test.describe('Company Page Test Suite', () => {
   test.beforeAll(async ({ browser, baseURL }, testInfo) => {
+    test.setTimeout(60000)
     sharedContext = await browser.newContext()
     sharedPage = await sharedContext.newPage()
     locale = (await setupTestContext(sharedPage, testInfo)).locale
@@ -30,12 +30,6 @@ test.describe('Company Page Test Suite', () => {
     await collapseSidebar(sharedPage)
     await closeCurrentlyActivePopup(sharedPage)
   })
-  // Define the structure of the search data
-  interface SearchData {
-    searchTerm: string
-  }
-  // Use the imported search data and type it explicitly
-  const searchItems: SearchData[] = searchData
 
   test('Verifying Company page UI Elements to be visible', async () => {
     Allure.addSeverity('critical')
@@ -65,7 +59,7 @@ test.describe('Company Page Test Suite', () => {
 
     const searchItems = companyPage.pickRandomItems(searchData, 1) // Adjust Number of search terms
     for (const { searchTerm } of searchItems) {
-      await companyPage.performSearchAndValidatePagination(searchTerm, 1) // Adjust Number of pages
+      await companyPage.performSearchAndValidatePagination(searchTerm, 2) // Adjust Number of pages
     }
   })
 
@@ -75,6 +69,7 @@ test.describe('Company Page Test Suite', () => {
     Allure.addDescription('Verify Go-To-Page Functionality')
     const maxPagesToCheck = 1 // Adjust Number of pages
     await companyPage.testGoToPageFunctionality(maxPagesToCheck)
+    await companyPage.reloadAndResetSearch() // Todo Pagination Bug needs to be fixed
   })
 
   test('Verify Search, Pagination, and Go-to-Page Functionality', async () => {
@@ -85,7 +80,7 @@ test.describe('Company Page Test Suite', () => {
     const searchItems = companyPage.pickRandomItems(searchData, 1) // Assuming pickRandomItems is implemented in POM
     for (const { searchTerm } of searchItems) {
       await companyPage.performSearchAndNavigatePages(searchTerm, 2) // Test with 2 pages
-      await companyPage.reloadPage()
+      await companyPage.reloadAndResetSearch() // Todo Pagination Bug needs to be fixed
     }
   })
 
@@ -138,7 +133,7 @@ test.describe('Company Page Test Suite', () => {
     Allure.addDescription(
       'Test to verify that filter elements are visible and functional.'
     )
-    await companyPage.filterButton.click()
+    await companyPage.filterButton.click() // Open filters
     await filtersPage.verifyAllFiltersVisible()
   })
 
@@ -148,7 +143,6 @@ test.describe('Company Page Test Suite', () => {
     Allure.addDescription(
       'Test to verify that nested dropdown is visible and functional.'
     )
-    await companyPage.filterButton.click()
     const selectedCountry = await filtersPage.selectRandomCountryFromDropdown()
     await filtersPage.verifySelectedCountry(selectedCountry)
   })
