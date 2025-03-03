@@ -12,7 +12,7 @@ export async function skipTutorialHelper(
     // Check if the tutorial modal is visible
     await tutorialPage.getStartedButton.waitFor({
       state: 'visible',
-      timeout: 1500,
+      timeout: 1000,
     })
 
     const isModalVisible = await tutorialPage.modalTitle.isVisible()

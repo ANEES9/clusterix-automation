@@ -399,7 +399,7 @@
         "developer_designer": "Developer / Designer",
         "hr": "Human Resources",
         "sales_marketing": "Sales / Marketing",
-        "other": "Other <lighter>(please specify)</lighter>",
+        "other": "Other",
         "other_placeholder": "Please specify"
       }
     },

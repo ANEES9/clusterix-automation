@@ -7,27 +7,29 @@ import { skipTimerHelper } from 'common/skip-timer-helper'
 import { testSetupConfig, TestSetupConfig } from 'config/setup-test-config'
 
 /**
- * Retrieves the correct configuration value based on hierarchy (File > Folder > Global).
+ * Retrieves the appropriate configuration value based on the hierarchy (File > Folder > Global).
  * Uses TypeScript-safe indexing.
+ *
+ * @param key - The configuration key to check (e.g., skipSurvey, skipTimer, etc.).
+ * @param testFile - The test file name (e.g., "home/survey.spec.ts").
+ * @param testFolder - The folder containing the test file (e.g., "home").
  */
 function getConfigValue(
   key: keyof TestSetupConfig['global'],
   testFile: string,
   testFolder: string
 ): boolean {
+  const matchedFile = Object.keys(testSetupConfig.files).find((file) =>
+    testFile.endsWith(file)
+  )
+
   return (
-    testSetupConfig.files[testFile]?.[key] ??
+    (matchedFile ? testSetupConfig.files[matchedFile]?.[key] : undefined) ??
     testSetupConfig.folders[testFolder]?.[key] ??
     testSetupConfig.global[key]
   )
 }
 
-/**
- * Applies test setup configurations dynamically.
- * @param page - Playwright page instance.
- * @param testInfo - Test metadata.
- * @param targetPath - Optional specific path from APP_URLS.
- */
 export async function setupTestContext(
   page: Page,
   testInfo: TestInfo,
@@ -70,7 +72,8 @@ export async function setupTestContext(
     ]
 
     for (const { key, action } of setupActions) {
-      if (getConfigValue(key, testFile, testFolder)) {
+      const configValue = getConfigValue(key, testFile, testFolder)
+      if (configValue) {
         await Allure.step(`Skipping: ${key.replace('skip', '')}`, async () => {
           await action(page, testInfo)
         })

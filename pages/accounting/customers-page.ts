@@ -12,9 +12,11 @@ export class CustomersPage {
     this.page = page
     this.translations = getTranslations('accounting', locale)
 
-    this.customersPageTitle = page.getByRole('heading', {
-      name: 'Customers',
-    })
+    this.customersPageTitle = page
+      .locator('div', {
+        hasText: this.translations.customers,
+      })
+      .first()
   }
 
   /**

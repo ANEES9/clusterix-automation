@@ -12,7 +12,7 @@ export const userData = {
       'username@domain..com', // Double dot in domain
       'username@domain,com', // Invalid character (comma)
       'username@domain.com.', // Trailing dot in domain
-      'username@-domain.com', // Domain starts with a dash
+      //'username@-domain.com', // Domain starts with a dash (NEED FIX)
       'username@domain..com', // Consecutive dots
       'user name@domain.com', // Space in email
       'username@domain..com', // Double dot

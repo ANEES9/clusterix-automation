@@ -47,8 +47,8 @@ export const testSetupConfig: TestSetupConfig = {
     },
   },
   files: {
-    'home/survey.spec.ts': {
-      skipSurvey: false,
+    'tests/home/survey.spec.ts': {
+      skipSurvey: false, // Explicitly override for this file
       skipTimer: false,
       skipProductTour: false,
       skipTutorial: false,

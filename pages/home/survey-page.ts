@@ -70,11 +70,11 @@ export class SurveyPage {
       ),
     }
     this.otherInput = page.locator(
-      `input[placeholder="${this.translations.user_survey.role_page.other_placeholder}"]`
+      `input[placeholder="${this.translations.user_survey.role_page.roles.other_placeholder}"]`
     )
     // App interest question locators
     this.appQuestion = page.getByText(
-      `^${this.translations.user_survey.apps_page.title}$`
+      `${this.translations.user_survey.apps_page.title}`
     )
     this.appOptions = {
       calendar: page.locator(`span:has-text("${APP_NAMES.calendar}")`),
@@ -93,7 +93,7 @@ export class SurveyPage {
     }
 
     this.otherToolsQuestion = page.getByText(
-      `^${this.translations.user_survey.other_tools_page.title}$`
+      `${this.translations.user_survey.other_tools_page.title}`
     )
     this.otherToolsInput = page.getByPlaceholder(
       this.translations.user_survey.other_tools_page.placeholder
@@ -128,27 +128,30 @@ export class SurveyPage {
     })
   }
 
-  // Select role with assertion
-  async selectRole(role: keyof typeof this.roleOptions) {
-    await Allure.step(
-      `Should be selected role: ${role} when user click on the role option`,
-      async () => {
-        await expect(this.roleOptions[role]).toBeVisible()
-        await this.roleOptions[role].click()
-      }
-    )
-  }
+  // Select role with assertion and validation
+  async selectRole(
+    role: keyof typeof this.roleOptions,
+    otherInputValue?: string
+  ) {
+    await Allure.step(`Selecting the role: ${role}`, async () => {
+      const roleButton = this.roleOptions[role]
 
-  async isRoleSelected(role: keyof typeof this.roleOptions): Promise<boolean> {
-    const roleButton = this.roleOptions[role]
-    return (await roleButton.getAttribute('aria-checked')) === 'true'
-  }
+      // Ensure the button is visible before interaction
+      await expect(roleButton).toBeVisible()
 
-  async assertRoleSelected(role: keyof typeof this.roleOptions) {
-    await Allure.step(`Assert that role ${role} is selected`, async () => {
-      const isSelected = await this.isRoleSelected(role)
-      if (!isSelected) {
-        throw new Error(`Role ${role} is not selected`)
+      // If selecting "Other", handle input field
+      if (role === 'otherOption' && otherInputValue) {
+        const inputField = this.otherInput
+        await roleButton.click()
+        await expect(inputField).toBeVisible()
+        await inputField.fill(otherInputValue)
+        await expect(inputField).toHaveValue(otherInputValue)
+      } else {
+        // For other roles, just click and verify the button selection
+        const buttonLocator = roleButton.locator('..') // Get parent button
+        const initialClass = (await buttonLocator.getAttribute('class')) ?? ''
+        await roleButton.click()
+        await expect(buttonLocator).not.toHaveAttribute('class', initialClass)
       }
     })
   }
@@ -175,17 +178,34 @@ export class SurveyPage {
     )
   }
 
-  // Select apps with assertions
+  async validateAppInterestsTitleVisible() {
+    await Allure.step(`Should check if the title is visible`, async () => {
+      await expect(this.appQuestion).toBeVisible()
+    })
+  }
+
+  // Select apps with assertion and validation
   async selectApps(apps: Array<keyof typeof this.appOptions>) {
-    await Allure.step(
-      `Should be selected apps: ${apps.join(', ')} when user click app options`,
-      async () => {
-        for (const app of apps) {
-          await expect(this.appOptions[app]).toBeVisible()
-          await this.appOptions[app].click()
-        }
+    await Allure.step(`Selecting apps: ${apps.join(', ')}`, async () => {
+      for (const app of apps) {
+        const appButton = this.appOptions[app]
+        // Ensure the app button is visible before interaction
+        await expect(appButton).toBeVisible()
+        // Get the parent button that actually changes class on selection
+        const buttonLocator = appButton.locator('..')
+        const initialClass = (await buttonLocator.getAttribute('class')) ?? ''
+        // Click the app button
+        await appButton.click()
+        // Verify that the button's class has changed (indicating selection)
+        await expect(buttonLocator).not.toHaveAttribute('class', initialClass)
       }
-    )
+    })
+  }
+
+  async validateOtherToolsTitleVisible() {
+    await Allure.step(`Should check if the title is visible`, async () => {
+      await expect(this.otherToolsQuestion).toBeVisible()
+    })
   }
 
   // Fill other tools input
