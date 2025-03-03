@@ -16,7 +16,7 @@ export default defineConfig({
   ],
   use: {
     trace: 'retain-on-failure',
-    headless: false,
+    headless: true,
     baseURL: process.env.CLUSTERIX_BASE_URL,
     viewport: { width: 1280, height: 720 },
     video: 'retain-on-failure',
