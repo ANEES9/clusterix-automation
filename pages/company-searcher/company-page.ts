@@ -2,6 +2,8 @@ import { Page, Locator, expect } from '@playwright/test'
 import { all } from 'axios'
 import { Allure } from 'common/allure-helper'
 import { getTranslations } from 'common/get-translations-helper'
+import { time } from 'node:console'
+import { TIMEOUT } from 'node:dns'
 import { closeCurrentlyActivePopup } from 'ui/company-searcher/currently-active-popup'
 import { collapseSidebar } from 'ui/company-searcher/sidebar-helper'
 
@@ -255,7 +257,9 @@ export class CompanyPage {
 
   async getPaginationNumbers(): Promise<string[]> {
     await Allure.step('Get pagination numbers', async () => {
-      await this.paginationElements.nth(0).waitFor({ state: 'visible' })
+      await this.paginationElements
+        .nth(0)
+        .waitFor({ state: 'visible', timeout: 4000 })
     })
     return await this.paginationElements.allTextContents()
   }
@@ -426,7 +430,7 @@ export class CompanyPage {
     await Allure.step('Move to next page', async () => {})
     const nextPageButton = this.nextPageButton
     await nextPageButton.click()
-    await this.page.waitForLoadState('networkidle')
+    await this.primaryCell.first().waitFor({ state: 'visible', timeout: 4000 })
     return true
   }
 
@@ -550,8 +554,6 @@ export class CompanyPage {
       visitedPages.add(activePageNumber || '')
       pagesChecked++
     }
-
-    await this.reloadAndResetSearch()
   }
   async performSearchAndNavigatePages(
     searchTerm: string,
@@ -578,6 +580,8 @@ export class CompanyPage {
       visitedPages.add(activePageNumber)
       pagesChecked++
     }
+
+    await this.reloadAndResetSearch()
   }
   async verifyPageButtonDisabledForSelectedPages(): Promise<void> {
     await this.page.waitForTimeout(2000) // Ensure the page is fully loaded
@@ -654,7 +658,6 @@ export class CompanyPage {
       }
       currentPageNumber = newPageNumber // Update for the next iteration
     }
-    await this.reloadAndResetSearch()
   }
   async verifyExpandedRowsMatchLabels(count: number): Promise<void> {
     for (let i = 0; i < count; i++) {

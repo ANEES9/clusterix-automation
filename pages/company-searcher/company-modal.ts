@@ -356,7 +356,6 @@ export class communicationModal {
           `Expected comment to contain text: '${expectedText}', but found: '${comment}'`
         )
       }
-  
     })
   }
   async closesidepanel() {
