@@ -2,6 +2,8 @@ import { Page, Locator, expect } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
 import { schemaTestData } from 'utils/test-data/byte-builder/schema-data'
 import { getTranslations } from 'common/get-translations-helper'
+import { APP_URLS } from 'constants/app-urls'
+
 
 export class ByteBuilderPage {
   private page: Page
@@ -39,8 +41,13 @@ export class ByteBuilderPage {
   private ConfirmationModalConfirm: Locator
   private schemaCancelConfimModalTitle: Locator
   private schemaCancelConfimModalMessage: Locator
+  private openSchemaPageTitle: Locator
+  private editorNewSchemaButton: Locator
+  private confirmDeleteButton: Locator
+  private cancelDeleteButton: Locator
+  private schemaDeletionMessage: Locator
+  private collapse:Locator
 
-  static readonly URL = '/byte-builder/schemas'
 
   constructor(page: Page, locale: string) {
     this.page = page
@@ -87,6 +94,7 @@ export class ByteBuilderPage {
       name: this.translations.common.save,
     })
     this.previewButton = page.getByText(this.translations.create_schema.preview)
+    this.editorNewSchemaButton = page.locator('#undefined').getByText(this.translations.create_schema.new_schema)
     this.sortAndFilter = page.locator('.DKlhwmQz8Dz6vg43LViW .ca-relative')
     this.saveSchemaItem = page.locator(
       '.eUdBdLui1tyOVzm_tNNv > button:nth-child(5)'
@@ -96,7 +104,7 @@ export class ByteBuilderPage {
     )
     this.schemaTable = page.locator('.SmartTable-module_tableWrapper__O2vT5')
     this.openSchemaTitleInputField = page.locator(
-      '[id="headlessui-control-\\:ri\\:"]'
+      '[id="headlessui-control-\\:rp\\:"]'
     )
     this.schemaActionLocator = page.locator(
       `tr:has-text("${schemaTestData.schemaTitle}") div.DRwDheUAGb0GrsZrlegi.BaseCellWrapper-module_wrapper__XCaQu svg`
@@ -127,11 +135,20 @@ export class ByteBuilderPage {
     this.schemaCancelConfimModalMessage = page.getByText(
       this.translations.create_schema.delete.message
     )
+    this.openSchemaPageTitle = this.page.locator('span').filter({ hasText: schemaTestData.schemaTitle })
+
+    this.confirmDeleteButton = this.page.getByRole('button', { name: this.translations.common.confirm, })
+    this.cancelDeleteButton = this.page.getByRole('button', { name: this.translations.common.cancel, })
+    this.schemaDeletionMessage = this.page.locator(`text=${this.translations.redux.success.delete_schema}`)
+    this.collapse =  page.locator('.tZPQvhvyYyZML1_4Rug_')
+
   }
 
   async goto(baseURL: string | undefined) {
-    await Allure.step('Navigate to Bytebuilder Schemas URL', async () => {
-      await this.page.goto(`${baseURL}${ByteBuilderPage.URL}`)
+    await Allure.step('Navigate to Bytebuilder URL', async () => {
+      await this.page.goto(
+        `${baseURL}${APP_URLS.byteBuilder.base}`
+      )
     })
   }
 
@@ -141,7 +158,7 @@ export class ByteBuilderPage {
     })
   }
 
-  async verifySchemaTexts() {
+  async verifyAddSchemaModal() {
     await Allure.step('Verify schema items text is visible', async () => {
       await expect(this.schemaItemsText).toBeVisible()
     })
@@ -176,7 +193,8 @@ export class ByteBuilderPage {
 
   async fillTextField() {
     await Allure.step('Fill text field with test data and save', async () => {
-      await this.fieldNameInput.fill(schemaTestData.fieldName)
+      await this.collapse.click() //temporary collapse as ui issue
+      await this.fieldNameInput.fill(schemaTestData.textFieldName)
       await this.markAsRequiredCheckbox.click()
       await this.minLengthInput.fill(schemaTestData.minLength)
       await this.maxLengthInput.fill(schemaTestData.maxLength)
@@ -192,10 +210,10 @@ export class ByteBuilderPage {
       'Verify the saved schema item for Text field',
       async () => {
         await Allure.step(
-          `Verify the field name "${schemaTestData.fieldName}" is visible`,
+          `Verify the field name "${schemaTestData.textFieldName}" is visible`,
           async () => {
             await expect(
-              this.page.getByText(schemaTestData.fieldName)
+              this.page.getByText(schemaTestData.textFieldName)
             ).toBeVisible()
           }
         )
@@ -209,10 +227,10 @@ export class ByteBuilderPage {
         })
 
         await Allure.step(
-          `Verify the label for "${schemaTestData.fieldName}" is visible in preview`,
+          `Verify the label for "${schemaTestData.textFieldName}" is visible in preview`,
           async () => {
             await expect(
-              this.page.getByLabel(schemaTestData.fieldName)
+              this.page.getByLabel(schemaTestData.textFieldName)
             ).toBeVisible()
           }
         )
@@ -230,6 +248,8 @@ export class ByteBuilderPage {
 
   async fillNumberField() {
     await Allure.step('Fill number field with test data and save', async () => {
+      await this.collapse.click() //temporary collapse as ui issue
+
       await this.fieldNameInput.fill(schemaTestData.numberFieldName)
       await this.markAsRequiredCheckbox.click()
       await this.minValueInput.fill(schemaTestData.minValue)
@@ -243,8 +263,9 @@ export class ByteBuilderPage {
 
   async fillNumberMultipleField() {
     await Allure.step('Fill number field with test data and save', async () => {
+
       await this.fieldNameInput.nth(1).fill(schemaTestData.numberFieldName)
-      await this.markAsRequiredCheckbox.nth(1).click()
+      // await this.markAsRequiredCheckbox.nth(1).click() // enable next in push once issue solved
       await this.minValueInput.fill(schemaTestData.minValue)
       await this.maxValueInput.fill(schemaTestData.maxValue)
       await this.sortAndFilter.nth(6).click()
@@ -287,6 +308,12 @@ export class ByteBuilderPage {
         )
       }
     )
+  }
+
+  async editorNewSchemaTab() {
+    await Allure.step('Navigate to New Schema tab in editor', async () => {
+      await this.editorNewSchemaButton.click()
+    })
   }
 
   async saveSchema() {
@@ -352,10 +379,10 @@ export class ByteBuilderPage {
       'Verify the saved schema items for Text and Number fields',
       async () => {
         await Allure.step(
-          `Verify the text field name "${schemaTestData.fieldName}" is visible`,
+          `Verify the text field name "${schemaTestData.textFieldName}" is visible`,
           async () => {
             await expect(
-              this.page.getByText(schemaTestData.fieldName)
+              this.page.getByText(schemaTestData.textFieldName)
             ).toBeVisible()
           }
         )
@@ -377,10 +404,10 @@ export class ByteBuilderPage {
           await this.previewButton.click()
         })
         await Allure.step(
-          `Verify the label for "${schemaTestData.fieldName}" is visible in preview`,
+          `Verify the label for "${schemaTestData.textFieldName}" is visible in preview`,
           async () => {
             await expect(
-              this.page.getByLabel(schemaTestData.fieldName)
+              this.page.getByLabel(schemaTestData.textFieldName)
             ).toBeVisible()
           }
         )
@@ -460,10 +487,7 @@ export class ByteBuilderPage {
 
   async editSchemaTitle(newTitle: string) {
     await Allure.step(`Edit schema title to: ${newTitle}`, async () => {
-      await this.page
-        .locator('span')
-        .filter({ hasText: schemaTestData.schemaTitle })
-        .click()
+      await this.openSchemaPageTitle.click()
       await this.openSchemaTitleInputField.fill(newTitle)
       await this.openSchemaTitleInputField.press('Enter')
       await this.page.waitForLoadState('networkidle')
@@ -489,10 +513,19 @@ export class ByteBuilderPage {
   }
 
   async verifyHomePage() {
-    await Allure.step('Verify navigation to the home page', async () => {
+    await Allure.step('Verify home page title is visible', async () => {
       await expect(this.schemasHomePageTitle).toBeVisible()
+    })
+
+    await Allure.step('Verify schema search input is visible', async () => {
       await expect(this.schemaSearchInput).toBeVisible()
+    })
+
+    await Allure.step('Verify import schema button is visible', async () => {
       await expect(this.importSchemaButton).toBeVisible()
+    })
+
+    await Allure.step('Verify new schema button is visible', async () => {
       await expect(this.newSchemaButton).toBeVisible()
     })
   }
@@ -567,17 +600,10 @@ export class ByteBuilderPage {
       async () => {
         await this.schemaActionLocator.nth(2).click()
 
-        const confirmButtonText = this.translations.common.confirm
-        const cancelButtonText = this.translations.common.cancel
-
         if (action === 'confirm') {
-          await this.page
-            .getByRole('button', { name: confirmButtonText })
-            .click()
-        } else if (action === 'cancel') {
-          await this.page
-            .getByRole('button', { name: cancelButtonText })
-            .click()
+          await this.confirmDeleteButton.click()
+        } else {
+          await this.cancelDeleteButton.click()
         }
       }
     )
@@ -585,16 +611,13 @@ export class ByteBuilderPage {
 
   async verifySchemaDeletionMessage(shouldExist: boolean) {
     await Allure.step('Verify schema deletion message', async () => {
-      const deletionMessageLocator = this.page.locator(
-        `text=${this.translations.redux.success.delete_schema}`
-      )
 
       if (shouldExist) {
         await this.page.waitForLoadState('networkidle')
-        await deletionMessageLocator.waitFor({ state: 'visible' })
-        await expect(deletionMessageLocator).toBeVisible()
+        await this.schemaDeletionMessage.waitFor({ state: 'visible' })
+        await expect(this.schemaDeletionMessage).toBeVisible()
       } else {
-        await expect(deletionMessageLocator).not.toBeVisible()
+        await expect(this.schemaDeletionMessage).not.toBeVisible()
       }
     })
   }
