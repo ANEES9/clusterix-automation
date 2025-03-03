@@ -68,7 +68,7 @@ test.describe('Keyword search tests', () => {
   })
 
   test('Verify Next Page Button Functionality', async () => {
-    test.setTimeout(60000) // I
+    test.setTimeout(60000) // TODO PERFORMANCE ISSUE
     Allure.addSeverity('critical')
     Allure.addTag('navigation')
     Allure.addDescription(

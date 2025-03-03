@@ -1,9 +1,6 @@
 import { Page, Locator, expect } from '@playwright/test'
-import { all } from 'axios'
 import { Allure } from 'common/allure-helper'
 import { getTranslations } from 'common/get-translations-helper'
-import { time } from 'node:console'
-import { TIMEOUT } from 'node:dns'
 import { closeCurrentlyActivePopup } from 'ui/company-searcher/currently-active-popup'
 import { collapseSidebar } from 'ui/company-searcher/sidebar-helper'
 
