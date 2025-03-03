@@ -378,10 +378,14 @@
           "comment_placeholder": "Textnachricht"
         },
         "notes": {
-          "title": "Notizen"
+          "title": "Notizen",
+          "New_note": "Neue Notiz",
+          "Note_title": "Notiztitel",
+          "Save_and_close": "schließen"
         },
         "contacts": {
-          "title": "Kontakte"
+          "title": "Kontakte",
+          "Add_new_contact": "Neuen Kontakt hinzufügen"
         },
         "documents": {
           "title": "Dokumente",

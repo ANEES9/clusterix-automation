@@ -9,7 +9,7 @@ export async function closeCurrentlyActivePopup(page: Page) {
   try {
     // Selector for the close button or pop-up element
     await page.waitForSelector('.styles-module_headerCloseButton__x2ELS', {
-      timeout: 3000,
+      timeout: 5000,
     })
     const popupCloseButton = page.locator(
       '.styles-module_headerCloseButton__x2ELS'

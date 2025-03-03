@@ -378,10 +378,14 @@
           "comment_placeholder": "Text message"
         },
         "notes": {
-          "title": "Notes"
+          "title": "Notes",
+          "New_note": "New note",
+          "Note_title": "Note title",
+          "Save_and_close": "Save and close"
         },
         "contacts": {
-          "title": "Contacts"
+          "title": "Contacts",
+          "Add_new_contact": "Add new contact"
         },
         "documents": {
           "title": "Documents",
