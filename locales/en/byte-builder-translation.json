@@ -164,5 +164,11 @@
     "higher_value": "Number should be higher than {{value}}",
     "lower_value": "Number should be lower than {{value}}",
     "between_value": "Number should be between {{min}} and {{max}}"
+  },
+  "additional": {
+    "select_all": "Select all",
+    "selected": "Selected",
+    "export_selected": "Export selected",
+    "delete_selected": "Delete selected"
   }
 }
