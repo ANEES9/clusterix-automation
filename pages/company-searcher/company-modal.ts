@@ -356,8 +356,7 @@ export class communicationModal {
           `Expected comment to contain text: '${expectedText}', but found: '${comment}'`
         )
       }
-      console.log(`Comment: ${comment}`)
-      console.log(`Comment contains expected text: '${expectedText}'`)
+  
     })
   }
   async closesidepanel() {

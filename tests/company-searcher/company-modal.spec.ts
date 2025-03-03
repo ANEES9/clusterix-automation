@@ -19,7 +19,6 @@ test.describe('company modal tests', () => {
   let commModal: communicationModal
   let names: string[]
   test.beforeAll(async ({ browser, baseURL }, testInfo) => {
-    test.setTimeout(90000) // Increase the timeout to allow for multiple modals to be opened
     sharedContext = await browser.newContext()
     sharedPage = await sharedContext.newPage()
     await sharedPage.goto(baseURL!)
@@ -69,6 +68,7 @@ test.describe('company modal tests', () => {
     Allure.addDescription('')
     // Navigate to the specific page where the communication tab is located
     await modal.openModal(0)
+    await commModal.closesidepanel()
     await commModal.verifyclosePanel()
     await modal.closeModal()
   })

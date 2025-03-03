@@ -16,7 +16,6 @@ let filtersPage: FiltersPage
 
 test.describe('Company Page Test Suite', () => {
   test.beforeAll(async ({ browser, baseURL }, testInfo) => {
-    test.setTimeout(60000)
     sharedContext = await browser.newContext()
     sharedPage = await sharedContext.newPage()
     locale = (await setupTestContext(sharedPage, testInfo)).locale
