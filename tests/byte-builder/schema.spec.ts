@@ -5,7 +5,6 @@ import { schemaTestData } from 'utils/test-data/byte-builder/schema-data'
 import { setupTestContext } from 'utils/test-context'
 import { BrowserContext } from 'playwright'
 
-
 let byteBuilderPage: ByteBuilderPage
 let locale: string
 let browser: Browser
@@ -27,11 +26,11 @@ test.describe.parallel('Byte Builder > Schema Tests', () => {
     locale = testContext.locale
     byteBuilderPage = new ByteBuilderPage(page, locale)
     await byteBuilderPage.goto(baseURL)
-    await page.waitForLoadState('networkidle') 
+    await page.waitForLoadState('networkidle')
   })
 
-  test.afterEach(async ({baseURL}) => {
-      await byteBuilderPage.goto(baseURL)
+  test.afterEach(async ({ baseURL }) => {
+    await byteBuilderPage.goto(baseURL)
   })
 
   test('Verify Byte Builder Schema page', async () => {
@@ -245,7 +244,7 @@ test.describe.parallel('Byte Builder > Schema Tests', () => {
   })
 
   test('Verify schema home button functionality', async () => {
-     Allure.addDescription(
+    Allure.addDescription(
       'This test opens a schema, clicks the schema button, and verifies navigation to the main schema page.'
     )
     Allure.addSeverity('normal')

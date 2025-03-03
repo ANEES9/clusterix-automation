@@ -267,7 +267,7 @@
     "has_access": "Hat Zugriff",
     "no_access": "Kein Zugriff",
     "all": "Alle",
-    "single_steps":"Einzelne Schritte",
+    "single_steps": "Einzelne Schritte",
     "grouped_steps": "Gruppierte Schritte"
   },
   "permissions_help": {

@@ -4,7 +4,6 @@ import { schemaTestData } from 'utils/test-data/byte-builder/schema-data'
 import { getTranslations } from 'common/get-translations-helper'
 import { APP_URLS } from 'constants/app-urls'
 
-
 export class ByteBuilderPage {
   private page: Page
   private translations: Record<string, any>
@@ -46,8 +45,7 @@ export class ByteBuilderPage {
   private confirmDeleteButton: Locator
   private cancelDeleteButton: Locator
   private schemaDeletionMessage: Locator
-  private collapse:Locator
-
+  private collapse: Locator
 
   constructor(page: Page, locale: string) {
     this.page = page
@@ -94,7 +92,9 @@ export class ByteBuilderPage {
       name: this.translations.common.save,
     })
     this.previewButton = page.getByText(this.translations.create_schema.preview)
-    this.editorNewSchemaButton = page.locator('#undefined').getByText(this.translations.create_schema.new_schema)
+    this.editorNewSchemaButton = page
+      .locator('#undefined')
+      .getByText(this.translations.create_schema.new_schema)
     this.sortAndFilter = page.locator('.DKlhwmQz8Dz6vg43LViW .ca-relative')
     this.saveSchemaItem = page.locator(
       '.eUdBdLui1tyOVzm_tNNv > button:nth-child(5)'
@@ -135,20 +135,25 @@ export class ByteBuilderPage {
     this.schemaCancelConfimModalMessage = page.getByText(
       this.translations.create_schema.delete.message
     )
-    this.openSchemaPageTitle = this.page.locator('span').filter({ hasText: schemaTestData.schemaTitle })
+    this.openSchemaPageTitle = this.page
+      .locator('span')
+      .filter({ hasText: schemaTestData.schemaTitle })
 
-    this.confirmDeleteButton = this.page.getByRole('button', { name: this.translations.common.confirm, })
-    this.cancelDeleteButton = this.page.getByRole('button', { name: this.translations.common.cancel, })
-    this.schemaDeletionMessage = this.page.locator(`text=${this.translations.redux.success.delete_schema}`)
-    this.collapse =  page.locator('.tZPQvhvyYyZML1_4Rug_')
-
+    this.confirmDeleteButton = this.page.getByRole('button', {
+      name: this.translations.common.confirm,
+    })
+    this.cancelDeleteButton = this.page.getByRole('button', {
+      name: this.translations.common.cancel,
+    })
+    this.schemaDeletionMessage = this.page.locator(
+      `text=${this.translations.redux.success.delete_schema}`
+    )
+    this.collapse = page.locator('.tZPQvhvyYyZML1_4Rug_')
   }
 
   async goto(baseURL: string | undefined) {
     await Allure.step('Navigate to Bytebuilder URL', async () => {
-      await this.page.goto(
-        `${baseURL}${APP_URLS.byteBuilder.base}`
-      )
+      await this.page.goto(`${baseURL}${APP_URLS.byteBuilder.base}`)
     })
   }
 
@@ -263,7 +268,6 @@ export class ByteBuilderPage {
 
   async fillNumberMultipleField() {
     await Allure.step('Fill number field with test data and save', async () => {
-
       await this.fieldNameInput.nth(1).fill(schemaTestData.numberFieldName)
       // await this.markAsRequiredCheckbox.nth(1).click() // enable next in push once issue solved
       await this.minValueInput.fill(schemaTestData.minValue)
@@ -611,7 +615,6 @@ export class ByteBuilderPage {
 
   async verifySchemaDeletionMessage(shouldExist: boolean) {
     await Allure.step('Verify schema deletion message', async () => {
-
       if (shouldExist) {
         await this.page.waitForLoadState('networkidle')
         await this.schemaDeletionMessage.waitFor({ state: 'visible' })

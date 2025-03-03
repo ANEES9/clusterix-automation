@@ -1849,7 +1849,6 @@
     "timeframe_required": "Erforderlicher Zeitrahmen",
     "no_employees_assigned": "Dem Projekt sind keine Mitarbeiter zugeordnet",
     "no_employees_found": "Keine Mitarbeiter gefunden",
-    
 
     "dependencies": "Abhängigkeiten",
     "waiting_on": "Wartet auf",

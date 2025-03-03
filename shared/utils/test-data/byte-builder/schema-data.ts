@@ -8,5 +8,5 @@ export const schemaTestData = {
   numberFieldName: 'Age',
   minValue: '18',
   maxValue: '80',
-  schemaTitleForBytesTest: "Dxt Automated test for Bytes"
+  schemaTitleForBytesTest: 'Dxt Automated test for Bytes',
 }

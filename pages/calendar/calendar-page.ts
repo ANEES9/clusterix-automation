@@ -4,7 +4,6 @@ import { APP_URLS } from '../../shared/constants/app-urls'
 import { calendarTestData } from 'utils/test-data/calendar/calendar-data'
 import { getTranslations } from '../../helpers/common/get-translations-helper'
 
-
 export class CalendarPage {
   private page: Page
   private translations: Record<string, any>
@@ -61,9 +60,9 @@ export class CalendarPage {
   private changeTimeZone: Locator
   private timeZoneOption: Locator
   private selectedParticipantName: string | undefined
- // static readonly URL = '/calendar'
- // static readonly meetingLinkOther = 'https://meet.google.com/abc-123-def'
- // static readonly offlineMeetingLocationDefined = 'FUTRUE GmbH, Am Haag 14, 82166 Gräfelfing'
+  // static readonly URL = '/calendar'
+  // static readonly meetingLinkOther = 'https://meet.google.com/abc-123-def'
+  // static readonly offlineMeetingLocationDefined = 'FUTRUE GmbH, Am Haag 14, 82166 Gräfelfing'
   constructor(page: Page, locale: string, viewEvent?: string) {
     if (viewEvent) {
       this.viewEvent = viewEvent
@@ -71,98 +70,150 @@ export class CalendarPage {
     this.page = page
     this.translations = getTranslations('calendar', locale)
     this.closeCurrentApp = page.locator('.t2NoaA5h7fzt0q0GapK3')
-    this.timeZone = page.locator("[class*='CustomLabeledSingleSelectTimeZone'] >> text=Asia/Calcutta")
-    this.changeTimeZone = page.locator('#ca-portal-root').getByRole('textbox', { name: this.translations["Search"] })
-    this.timeZoneOption = page.locator("text=Europe/Berlin");
+    this.timeZone = page.locator(
+      "[class*='CustomLabeledSingleSelectTimeZone'] >> text=Asia/Calcutta"
+    )
+    this.changeTimeZone = page
+      .locator('#ca-portal-root')
+      .getByRole('textbox', { name: this.translations['Search'] })
+    this.timeZoneOption = page.locator('text=Europe/Berlin')
     this.calendarApp = page.getByRole('button', { name: 'Calendar' }).first()
     this.previousMonth = page.locator('a').filter({ hasText: '' })
     this.nextMonth = page.locator('a').filter({ hasText: '' })
-    this.dayView = page.getByRole('button', { name: this.translations["Day"], exact: true })
-    this.twoDaysView = page.getByRole('button', { name: this.translations["2 Days"] })
-    this.weekView = page.getByRole('button', { name: this.translations["Week"] })
-    this.monthView = page.getByRole('button', { name: this.translations["Month"] })
-    this.yearView = page.getByRole('button', { name: this.translations["Year"] })
-    this.listView = page.getByRole('button', { name: this.translations["List"] })
+    this.dayView = page.getByRole('button', {
+      name: this.translations['Day'],
+      exact: true,
+    })
+    this.twoDaysView = page.getByRole('button', {
+      name: this.translations['2 Days'],
+    })
+    this.weekView = page.getByRole('button', {
+      name: this.translations['Week'],
+    })
+    this.monthView = page.getByRole('button', {
+      name: this.translations['Month'],
+    })
+    this.yearView = page.getByRole('button', {
+      name: this.translations['Year'],
+    })
+    this.listView = page.getByRole('button', {
+      name: this.translations['List'],
+    })
     this.collapseButton = page.locator('._collapseButton_16zcl_522')
-    this.searchInput = page.locator(`input[class*="_field__input_1mnea_"][placeholder="${this.translations["Search"]}"]`);
-    this.addEvent = page.getByRole('button', { name: this.translations["Add Event"] })
+    this.searchInput = page.locator(
+      `input[class*="_field__input_1mnea_"][placeholder="${this.translations['Search']}"]`
+    )
+    this.addEvent = page.getByRole('button', {
+      name: this.translations['Add Event'],
+    })
     this.discardEvent = page.getByText(this.translations['Discard Event'])
     this.editor = page.getByRole('button', { name: 'Editor' })
-    this.eventName = page.getByPlaceholder(this.translations["Untitled Event"])
-    this.participants = page.getByText(this.translations["Participant(s)"])
-    this.searchContactEmail = page.getByPlaceholder(this.translations["Search contact, email or employee"])
+    this.eventName = page.getByPlaceholder(this.translations['Untitled Event'])
+    this.participants = page.getByText(this.translations['Participant(s)'])
+    this.searchContactEmail = page.getByPlaceholder(
+      this.translations['Search contact, email or employee']
+    )
     this.chooseParticipant = page
       .locator('div.participants-dropdown-dropdown-internal > div > div')
       .getByRole('checkbox', {})
       .nth(7)
-    this.saveParticipant = page.getByRole('button', { name: this.translations["Save"] })
-    this.createEvent = page.getByText(this.translations["Create Event"])
-    this.closeEventCreated = page.getByRole('button', { name: this.translations["Close"] })
+    this.saveParticipant = page.getByRole('button', {
+      name: this.translations['Save'],
+    })
+    this.createEvent = page.getByText(this.translations['Create Event'])
+    this.closeEventCreated = page.getByRole('button', {
+      name: this.translations['Close'],
+    })
     this.foldOut = page.getByText('').nth(1)
-    this.deleteEvent = page.getByText(this.translations["Delete"]).first()
-    this.deleteButton = page.getByRole('button', { name: this.translations["Delete"] })
+    this.deleteEvent = page.getByText(this.translations['Delete']).first()
+    this.deleteButton = page.getByRole('button', {
+      name: this.translations['Delete'],
+    })
     this.chooseFirstParticipant = page
       .locator('div.participants-dropdown-dropdown-internal > div > div')
       .getByRole('checkbox', {})
       .first()
-    this.saveEvent = page.getByText(this.translations["Save changes"])
+    this.saveEvent = page.getByText(this.translations['Save changes'])
     this.filterLocator = page.locator('.FiltersGroups_filtersLabel__PHj7j')
-    this.filterByCreator = page.getByText(this.translations["Filter by creator"])
-    this.startTypingTextInCreator = page.getByRole('textbox', { name: this.translations["Please start typing"] })
+    this.filterByCreator = page.getByText(
+      this.translations['Filter by creator']
+    )
+    this.startTypingTextInCreator = page.getByRole('textbox', {
+      name: this.translations['Please start typing'],
+    })
     this.filterByCreatorMe = page.getByText('Me', { exact: true }).first()
 
-    this.filterByGuest = page.getByText(this.translations["Filter by guest"])
+    this.filterByGuest = page.getByText(this.translations['Filter by guest'])
     this.startTypingTextInGuest = page
-      .getByPlaceholder(this.translations["Please start typing"])
+      .getByPlaceholder(this.translations['Please start typing'])
       .nth(2)
     this.filterByGuestMe = page.getByText('Me', { exact: true }).nth(1)
     this.filterByUsernameCreator = page.getByText('Clarissa Rosario').nth(2)
-    this.filterByUsernameGuest = page.locator('div:nth-child(2) > .FiltersGroups_personItemClass__7ZjYC > .ca-flex').first()
-    this.timeSection = page.locator('.SectionWrapper_eventViewSection__aUiS\\+').first()
-    this.meetingSection = page.locator('.SectionWrapper_eventViewSection__aUiS\\+').filter({
-      hasText: this.translations["Meeting link"]
-    }).first();
-    this.clearAllFilters = page.locator('.FiltersGroups_clearFilterButton__k6qN9')
-    this.meetingType = page.getByPlaceholder(this.translations["Select Meeting Type"])
-    this.offlineMeeting = page.getByText(this.translations["Offline Meeting"])
-    this.onlineMeetingZoom = page.getByText(this.translations["Online Meeting - Zoom"])
-    this.onlineMeetingTeams = page.getByText(this.translations["Online Meeting - Teams"])
-    this.onlineMeetingOthers = page.getByText(this.translations["Online Meeting - Other"])
-    this.meetingLink = page.getByPlaceholder(this.translations["Please add an event link"])
-    this.offlineMeetingLocation = page.getByPlaceholder(this.translations["Location of offline meeting"])
-    this.cancelDeleteEvent = page.getByRole('button', { name: this.translations["Cancel"] })
-    this.closeAddEvent = page.locator('#rounded-modal-event-form').getByRole('button').first()
+    this.filterByUsernameGuest = page
+      .locator(
+        'div:nth-child(2) > .FiltersGroups_personItemClass__7ZjYC > .ca-flex'
+      )
+      .first()
+    this.timeSection = page
+      .locator('.SectionWrapper_eventViewSection__aUiS\\+')
+      .first()
+    this.meetingSection = page
+      .locator('.SectionWrapper_eventViewSection__aUiS\\+')
+      .filter({
+        hasText: this.translations['Meeting link'],
+      })
+      .first()
+    this.clearAllFilters = page.locator(
+      '.FiltersGroups_clearFilterButton__k6qN9'
+    )
+    this.meetingType = page.getByPlaceholder(
+      this.translations['Select Meeting Type']
+    )
+    this.offlineMeeting = page.getByText(this.translations['Offline Meeting'])
+    this.onlineMeetingZoom = page.getByText(
+      this.translations['Online Meeting - Zoom']
+    )
+    this.onlineMeetingTeams = page.getByText(
+      this.translations['Online Meeting - Teams']
+    )
+    this.onlineMeetingOthers = page.getByText(
+      this.translations['Online Meeting - Other']
+    )
+    this.meetingLink = page.getByPlaceholder(
+      this.translations['Please add an event link']
+    )
+    this.offlineMeetingLocation = page.getByPlaceholder(
+      this.translations['Location of offline meeting']
+    )
+    this.cancelDeleteEvent = page.getByRole('button', {
+      name: this.translations['Cancel'],
+    })
+    this.closeAddEvent = page
+      .locator('#rounded-modal-event-form')
+      .getByRole('button')
+      .first()
   }
   async navigateToMeetingSection() {
-    await Allure.step(
-      'should navigate to the meeting section',
-      async () => {
-        await expect(this.meetingSection).toBeVisible()
-        await expect(this.meetingSection).toBeEnabled()
-        await this.meetingSection.click()
-      }
-    )
+    await Allure.step('should navigate to the meeting section', async () => {
+      await expect(this.meetingSection).toBeVisible()
+      await expect(this.meetingSection).toBeEnabled()
+      await this.meetingSection.click()
+    })
   }
 
   async selectMeeting() {
-    await Allure.step(
-      'should click on select meeting',
-      async () => {
-        await expect(this.meetingType).toBeVisible()
-        await expect(this.meetingType).toBeEnabled()
-        await this.meetingType.click()
-      }
-    )
+    await Allure.step('should click on select meeting', async () => {
+      await expect(this.meetingType).toBeVisible()
+      await expect(this.meetingType).toBeEnabled()
+      await this.meetingType.click()
+    })
   }
   async clickOnTimeZone() {
-    await Allure.step(
-      'should click on timezone field',
-      async () => {
-        await expect(this.timeZone).toBeVisible()
-        await expect(this.timeZone).toBeEnabled()
-        await this.timeZone.click()
-      }
-    )
+    await Allure.step('should click on timezone field', async () => {
+      await expect(this.timeZone).toBeVisible()
+      await expect(this.timeZone).toBeEnabled()
+      await this.timeZone.click()
+    })
   }
   async selectTimeZone() {
     await Allure.step(
@@ -171,10 +222,9 @@ export class CalendarPage {
         await expect(this.changeTimeZone).toBeVisible()
         await expect(this.changeTimeZone).toBeEnabled()
         await this.changeTimeZone.fill(`${calendarTestData.timeZone}`)
-        await this.timeZoneOption.waitFor({ state: 'visible', timeout: 10000 });
-        await expect(this.timeZoneOption).toBeVisible();
-        await this.timeZoneOption.click();
-
+        await this.timeZoneOption.waitFor({ state: 'visible', timeout: 10000 })
+        await expect(this.timeZoneOption).toBeVisible()
+        await this.timeZoneOption.click()
       }
     )
   }
@@ -205,8 +255,9 @@ export class CalendarPage {
         await expect(this.offlineMeetingLocation).toBeVisible()
         await expect(this.offlineMeetingLocation).toBeEnabled()
         await this.offlineMeetingLocation.click()
-        await this.offlineMeetingLocation.fill(calendarTestData.offlineMeetingLocationDefined)
-
+        await this.offlineMeetingLocation.fill(
+          calendarTestData.offlineMeetingLocationDefined
+        )
       }
     )
   }
@@ -261,17 +312,13 @@ export class CalendarPage {
     )
   }
   async addEventLink() {
-    await Allure.step(
-      'should click on please add event link',
-      async () => {
-        await expect(this.meetingLink).toBeVisible()
-        await expect(this.meetingLink).toBeEnabled()
-        await this.meetingLink.click()
-        //await this.meetingLink.fill(CalendarPage.meetingLinkOther)
-        await this.meetingLink.fill(calendarTestData.meetingLinkOther)
-
-      }
-    )
+    await Allure.step('should click on please add event link', async () => {
+      await expect(this.meetingLink).toBeVisible()
+      await expect(this.meetingLink).toBeEnabled()
+      await this.meetingLink.click()
+      //await this.meetingLink.fill(CalendarPage.meetingLinkOther)
+      await this.meetingLink.fill(calendarTestData.meetingLinkOther)
+    })
   }
 
   async verifySelectedParticipant() {
@@ -281,12 +328,13 @@ export class CalendarPage {
         if (!this.selectedParticipantName) {
           throw new Error('No participant was selected for verification.')
         }
-        const savedParticipant = this.page.locator(`text="${this.selectedParticipantName}"`)
-        await expect(savedParticipant).toBeVisible();
+        const savedParticipant = this.page.locator(
+          `text="${this.selectedParticipantName}"`
+        )
+        await expect(savedParticipant).toBeVisible()
       }
-    );
+    )
   }
-
 
   async goto(baseURL: string | undefined) {
     await Allure.step('Navigate to Calendar URL', async () => {
@@ -331,7 +379,6 @@ export class CalendarPage {
         await expect(this.filterByGuest).toBeEnabled()
         await this.filterByGuest.click()
         await expect(this.clearAllFilters).toBeVisible()
-
       }
     )
   }
@@ -343,30 +390,42 @@ export class CalendarPage {
     })
   }
   async selectUsernameForFilterCreator() {
-    await Allure.step('should add a user name to start filtering the events', async () => {
-      await expect(this.startTypingTextInCreator).toBeVisible({ timeout: 80000 })
-      await expect(this.startTypingTextInCreator).toBeEnabled()
-      await this.startTypingTextInCreator.fill(calendarTestData.userName)
-      await this.filterByUsernameCreator.waitFor({ state: 'visible' })
-      await this.filterByUsernameCreator.scrollIntoViewIfNeeded()
-      await this.filterByUsernameCreator.click()
-    })
+    await Allure.step(
+      'should add a user name to start filtering the events',
+      async () => {
+        await expect(this.startTypingTextInCreator).toBeVisible({
+          timeout: 80000,
+        })
+        await expect(this.startTypingTextInCreator).toBeEnabled()
+        await this.startTypingTextInCreator.fill(calendarTestData.userName)
+        await this.filterByUsernameCreator.waitFor({ state: 'visible' })
+        await this.filterByUsernameCreator.scrollIntoViewIfNeeded()
+        await this.filterByUsernameCreator.click()
+      }
+    )
   }
   async selectUsernameForFilterGuest() {
-    await Allure.step('should add a user name for guest filter to start filtering the events', async () => {
-      await expect(this.startTypingTextInGuest).toBeVisible({ timeout: 80000 })
-      await expect(this.startTypingTextInGuest).toBeEnabled()
-      await this.startTypingTextInGuest.fill(calendarTestData.userName)
-      await this.filterByUsernameGuest.waitFor({ state: 'visible' })
-      await this.filterByUsernameGuest.scrollIntoViewIfNeeded();
-      await this.filterByUsernameGuest.click()
-    })
+    await Allure.step(
+      'should add a user name for guest filter to start filtering the events',
+      async () => {
+        await expect(this.startTypingTextInGuest).toBeVisible({
+          timeout: 80000,
+        })
+        await expect(this.startTypingTextInGuest).toBeEnabled()
+        await this.startTypingTextInGuest.fill(calendarTestData.userName)
+        await this.filterByUsernameGuest.waitFor({ state: 'visible' })
+        await this.filterByUsernameGuest.scrollIntoViewIfNeeded()
+        await this.filterByUsernameGuest.click()
+      }
+    )
   }
   async clickOnStartTypingInFilterCreator() {
     await Allure.step(
       'should click on start typing here textfield of filter by creator',
       async () => {
-        await expect(this.startTypingTextInCreator).toBeVisible({ timeout: 80000 })
+        await expect(this.startTypingTextInCreator).toBeVisible({
+          timeout: 80000,
+        })
 
         await expect(this.startTypingTextInCreator).toBeEnabled()
         await this.startTypingTextInCreator.click()
@@ -381,7 +440,6 @@ export class CalendarPage {
         await expect(this.filterByCreator).toBeEnabled()
         await this.filterByCreator.click()
         await expect(this.clearAllFilters).toBeVisible()
-
       }
     )
   }
@@ -410,49 +468,52 @@ export class CalendarPage {
     )
   }
 
-
   async clickOnDeleteButton(eventName: string) {
     await Allure.step('should click on delete button ', async () => {
-
-      await expect(this.deleteButton).toBeVisible({ timeout: 5000 });
-      await expect(this.deleteButton).toBeEnabled();
-      const confirmationModal = this.page.locator('.delete-modal_deleteModalContent__Nsg5Z');
+      await expect(this.deleteButton).toBeVisible({ timeout: 5000 })
+      await expect(this.deleteButton).toBeEnabled()
+      const confirmationModal = this.page.locator(
+        '.delete-modal_deleteModalContent__Nsg5Z'
+      )
       if (await confirmationModal.isVisible()) {
-        await expect(confirmationModal).toBeVisible();
-        await expect(this.deleteButton).toBeVisible();
-        await this.deleteButton.click();
+        await expect(confirmationModal).toBeVisible()
+        await expect(this.deleteButton).toBeVisible()
+        await this.deleteButton.click()
       }
-      const eventLocator = this.page.locator('.calendar-event-details-chip-title-name').filter({
-        hasText: eventName,
-      });
-      await expect(eventLocator).toHaveCount(0, { timeout: 5000 });
-
+      const eventLocator = this.page
+        .locator('.calendar-event-details-chip-title-name')
+        .filter({
+          hasText: eventName,
+        })
+      await expect(eventLocator).toHaveCount(0, { timeout: 5000 })
     })
   }
 
   async clickOnCancelButton(eventName: string) {
     await Allure.step('should click on cancel button ', async () => {
-
-      await expect(this.cancelDeleteEvent).toBeVisible({ timeout: 5000 });
-      await expect(this.cancelDeleteEvent).toBeEnabled();
-      const confirmationModal = this.page.locator('.delete-modal_deleteModalContent__Nsg5Z')
+      await expect(this.cancelDeleteEvent).toBeVisible({ timeout: 5000 })
+      await expect(this.cancelDeleteEvent).toBeEnabled()
+      const confirmationModal = this.page.locator(
+        '.delete-modal_deleteModalContent__Nsg5Z'
+      )
       if (await confirmationModal.isVisible()) {
-        await expect(confirmationModal).toBeVisible();
-        await expect(this.cancelDeleteEvent).toBeVisible();
-        await this.cancelDeleteEvent.click();
+        await expect(confirmationModal).toBeVisible()
+        await expect(this.cancelDeleteEvent).toBeVisible()
+        await this.cancelDeleteEvent.click()
       }
-      const eventLocator = this.page.locator('.calendar-event-details-chip-title-name').filter({
-        hasText: eventName,
-      });
-      await expect(eventLocator).toHaveCount(1, { timeout: 5000 });
-
+      const eventLocator = this.page
+        .locator('.calendar-event-details-chip-title-name')
+        .filter({
+          hasText: eventName,
+        })
+      await expect(eventLocator).toHaveCount(1, { timeout: 5000 })
     })
   }
 
   async clickOnDeleteEvent() {
     await Allure.step('should click on delete button ', async () => {
-      await expect(this.deleteEvent).toBeVisible({ timeout: 5000 });
-      await expect(this.deleteEvent).toBeEnabled();
+      await expect(this.deleteEvent).toBeVisible({ timeout: 5000 })
+      await expect(this.deleteEvent).toBeEnabled()
       await this.deleteEvent.click()
     })
   }
@@ -463,9 +524,9 @@ export class CalendarPage {
         .locator('.calendar-event-details-chip-title-name', {
           hasText: viewEvent,
         })
-        .nth(0);
-      await eventLocator.waitFor({ state: "visible", timeout: 5000 });
-      await eventLocator.click();
+        .nth(0)
+      await eventLocator.waitFor({ state: 'visible', timeout: 5000 })
+      await eventLocator.click()
     } catch (error) {
       throw new Error('Event not found')
     }
@@ -522,18 +583,19 @@ export class CalendarPage {
   }
 
   async verifyAddEventModalVisibility() {
-    await expect(this.isAddEventModalVisible()).toBeTruthy();
+    await expect(this.isAddEventModalVisible()).toBeTruthy()
   }
   async verifyMeetingVisibility(meetingName: string) {
-    const meetingResult = this.page.locator(`text=${meetingName}`).first();
-    await expect(meetingResult).toBeVisible();
+    const meetingResult = this.page.locator(`text=${meetingName}`).first()
+    await expect(meetingResult).toBeVisible()
   }
 
   async isAddEventModalVisible(): Promise<boolean> {
     Allure.addDescription('to verify if the add event modal is visible')
-    const modalSelector = 'div[class*="EventFormModalContent_modalContentComponent__+gKuJ new_appointment_model event-form_scroll__SlOJA"]';
-    const modal = await this.page.locator(modalSelector);
-    return await modal.isVisible();
+    const modalSelector =
+      'div[class*="EventFormModalContent_modalContentComponent__+gKuJ new_appointment_model event-form_scroll__SlOJA"]'
+    const modal = await this.page.locator(modalSelector)
+    return await modal.isVisible()
   }
 
   async verifyAddEventModal() {
@@ -572,8 +634,8 @@ export class CalendarPage {
   }
 
   async generateEventName(baseName: string): Promise<string> {
-    const timestamp = new Date().getTime();
-    return `${baseName}_${timestamp}`;
+    const timestamp = new Date().getTime()
+    return `${baseName}_${timestamp}`
   }
 
   async clickOnAddEvent() {
@@ -588,7 +650,6 @@ export class CalendarPage {
     await Allure.step('verify add event button is visible', async () => {
       await expect(this.addEvent).toBeVisible()
     })
-
   }
   async navigateToCollapseButton() {
     await Allure.step(
@@ -608,18 +669,19 @@ export class CalendarPage {
   }
   async verifyNavigateToCollapseButton() {
     await Allure.step('verify collapsebutton is visible', async () => {
-
-      await this.page.waitForSelector('._collapseButton_16zcl_522', { state: 'visible', timeout: 10000 });
-      await expect(this.collapseButton).toBeVisible();
+      await this.page.waitForSelector('._collapseButton_16zcl_522', {
+        state: 'visible',
+        timeout: 10000,
+      })
+      await expect(this.collapseButton).toBeVisible()
     })
-
   }
   async navigateToCalendar() {
     await Allure.step(
       'should navigate to calendar application when calendar icon is clicked',
       async () => {
         await this.calendarApp.click()
-        await this.page.waitForLoadState('networkidle');
+        await this.page.waitForLoadState('networkidle')
       }
     )
   }

@@ -339,7 +339,6 @@
       "employee_have_tracked_time": "Employee have tracked time",
       "country_name_algeria": "Algeria"
     }
-  
   },
   "eventCard": {
     "user_left_the_organization": "A user who left the organization",
@@ -1791,7 +1790,6 @@
     "timeframe_required": "Timeframe required",
     "no_employees_assigned": "No employees assigned to the project",
     "no_employees_found": "No employees found",
-    
 
     "dependencies": "Dependencies",
     "waiting_on": "Waiting on",
