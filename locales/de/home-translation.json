@@ -407,7 +407,7 @@
         "developer_designer": "Entwickler / Designer",
         "hr": "Personalabteilung",
         "sales_marketing": "Vertrieb / Marketing",
-        "other": "Andere <lighter>(bitte angeben)</lighter>",
+        "other": "Andere",
         "other_placeholder": "Bitte angeben"
       }
     },
