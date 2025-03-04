@@ -18,7 +18,6 @@ test.describe.parallel('calendar test suite', () => {
     browser = testBrowser
     context = await browser.newContext()
     page = await context.newPage()
-    test.setTimeout(60000)
     Allure.addAppOwner('Calendar')
     Allure.addSeverity('normal')
     Allure.addTag('smoke')

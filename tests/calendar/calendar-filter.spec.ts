@@ -14,13 +14,12 @@ let browser: Browser
 let context: BrowserContext
 let page: Page
 let eventName: string
-let shouldNavigateBack = false
+const shouldNavigateBack = false
 test.describe('testcases to view calendar using filters', () => {
   test.beforeAll(async ({ browser: testBrowser, baseURL }, testInfo) => {
     browser = testBrowser
     context = await browser.newContext()
     page = await context.newPage()
-    test.setTimeout(60000)
     Allure.addAppOwner('Calendar')
     Allure.addSeverity('normal')
     Allure.addTag('smoke')
