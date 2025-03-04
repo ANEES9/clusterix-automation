@@ -30,31 +30,24 @@ test.describe.parallel('Dashboard Tab Tests', () => {
   test('Validate Bank Accounts navigation from sidebar', async () => {
     await dashboardPage.validateBankAccountNavigation()
   })
-
   test('Validate Payment Transactions navigation from sidebar', async () => {
     await dashboardPage.validatePaymentTransactionsNavigation()
   })
-
   test('Validate Chart Of Accounts navigation from sidebar', async () => {
     await dashboardPage.validateChartOfAccountsNavigation()
   })
-
   test('Validate Customers navigation from sidebar', async () => {
     await dashboardPage.validateCustomersNavigation()
   })
-
   test('Validate Invoices navigation from sidebar', async () => {
     await dashboardPage.validateInvoicesNavigation()
   })
-
   test('Validate Products navigation from sidebar', async () => {
     await dashboardPage.validateProductsNavigation()
   })
-
   test('Validate Reports navigation from sidebar', async () => {
     await dashboardPage.validateReportsNavigation()
   })
-
   test('Validate Dashboard navigation from sidebar', async () => {
     await dashboardPage.validateDashboardNavigation()
   })

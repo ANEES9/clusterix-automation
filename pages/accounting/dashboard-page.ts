@@ -57,7 +57,7 @@ export class DashboardPage {
       name: this.translations.payments,
     })
     this.bankAccountsButton = this.page.getByRole('button', {
-      name: this.translations.bank_account,
+      name: this.translations.bank_accounts.title,
     })
     this.paymentTransactionsButton = this.page.getByRole('button', {
       name: this.translations.payment_transactions,
@@ -106,7 +106,6 @@ export class DashboardPage {
       await expect(this.page).toHaveURL(APP_URLS.accounting.base)
     })
   }
-
   async validateBankAccountNavigation(): Promise<void> {
     await Allure.step('Click on the Payments Button', async () => {
       await this.paymentsButton.click()
@@ -128,7 +127,6 @@ export class DashboardPage {
       )
     })
   }
-
   async validatePaymentTransactionsNavigation(): Promise<void> {
     await Allure.step('Click on the Payments Button', async () => {
       await this.paymentsButton.click()
@@ -150,7 +148,6 @@ export class DashboardPage {
       )
     })
   }
-
   async validateChartOfAccountsNavigation(): Promise<void> {
     await Allure.step('Click on the Payments Button', async () => {
       await this.paymentsButton.click()
@@ -172,7 +169,6 @@ export class DashboardPage {
       )
     })
   }
-
   async validateCustomersNavigation(): Promise<void> {
     await Allure.step('Click on the Income Button', async () => {
       await this.incomeButton.click()
@@ -193,7 +189,6 @@ export class DashboardPage {
         .toHaveURL(APP_URLS.accounting.income.customers)
     })
   }
-
   async validateInvoicesNavigation(): Promise<void> {
     await Allure.step('Click on the Income Button', async () => {
       await this.incomeButton.click()
@@ -212,7 +207,6 @@ export class DashboardPage {
       await expect(this.page).toHaveURL(APP_URLS.accounting.income.invoices)
     })
   }
-
   async validateProductsNavigation(): Promise<void> {
     await Allure.step('Click on the Income Button', async () => {
       await this.incomeButton.click()
@@ -231,7 +225,6 @@ export class DashboardPage {
       await expect(this.page).toHaveURL(APP_URLS.accounting.income.products)
     })
   }
-
   async validateReportsNavigation(): Promise<void> {
     await Allure.step('Click on the Reports Button', async () => {
       await this.reportsButton.click()
