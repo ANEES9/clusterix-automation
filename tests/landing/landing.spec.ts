@@ -71,7 +71,7 @@ test.describe.parallel('Landing Page Tests', () => {
     await landingPage.validateCalendarAppContent()
     //await landingPage.validateAppNavigation(APP_URLS.landing.calendarApp, 4)
   })
-  test('should visible email app context when user scroll down and click on the button', async () => {
+  test.only('should visible email app context when user scroll down and click on the button', async () => {
     await landingPage.validateEmailAppContent()
     //await landingPage.validateAppNavigation(APP_URLS.landing.emailApp, 5)
   })
