@@ -336,7 +336,8 @@
       "employee_contract_outside_project_timeframe": "Employee contract dates are outside the project time frame",
       "rnd_role_required": "R&D Role Required",
       "only_rnd_employees_can_be_allocated": "Only R&D employees can be allocated to R&D projects.",
-      "employee_have_tracked_time": "Employee have tracked time"
+      "employee_have_tracked_time": "Employee have tracked time",
+      "country_name_algeria": "Algeria"
     }
   },
   "eventCard": {
@@ -1315,6 +1316,7 @@
     "Total Project Cost": "Total Project Cost",
     "Subsidized": "Subsidized",
     "Missed Funds": "Missed Funds",
+    "assign_employees_in": "Assign employees in Employee Allocation Page",
     "For a detailed breakdown and instructions on how to increase your funding rate, visit Subsidies App.": "For a detailed breakdown and instructions on how to increase your funding rate, visit Subsidies App.",
     "BSFZ Application Preparation": "BSFZ Application Preparation",
     "Sorted by the expected submission date, the data to be filled in for all SFF projects is displayed here.": "Sorted by the expected submission date, the data to be filled in for all SFF projects is displayed here.",
@@ -1788,7 +1790,6 @@
     "timeframe_required": "Timeframe required",
     "no_employees_assigned": "No employees assigned to the project",
     "no_employees_found": "No employees found",
-    "assign_employees_in": "Assign employees in Employee Allocation Page",
 
     "dependencies": "Dependencies",
     "waiting_on": "Waiting on",
@@ -1831,6 +1832,7 @@
       "selectWorkflow": "Select a workflow for the project type",
       "category": "Category",
       "newWorkflow": "New workflow",
+      "searchResponsibles": "Search responsible",
       "projectTypeSettings": "Project type settings",
       "markAsRnDProjectLabel": "Mark as R&D project",
       "rndProjectInfo": "Only employees designated as R&D in the HR app will be able to participate in this project.",

@@ -304,7 +304,7 @@ export class LandingPage {
       }
     )
     await Allure.step('Click on the Time Tracking Button', async () => {
-      await this.timeTrackingButton.nth(1).click()
+      await this.timeTrackingButton.last().click()
     })
 
     await Allure.step(
@@ -378,8 +378,7 @@ export class LandingPage {
       }
     )
     await Allure.step('Click on the Email Button', async () => {
-      const buttonText = await this.emailButton.nth(1).textContent()
-      await this.emailButton.nth(1).click({ force: true })
+      await this.emailButton.last().click({ force: true })
     })
 
     await Allure.step('Validate Email title and description', async () => {

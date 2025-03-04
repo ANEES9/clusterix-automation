@@ -30,43 +30,39 @@ export class ProjectTypesPage {
   private saveProjectType: Locator
   private deleteIcon: Locator
   private deleteButton: Locator
+  private projectTypeDeleteModal: Locator
   private projectTypeTitle
+  private updatedProjectTitle: Locator
+  private searchByProjectFilter: Locator
 
   constructor(page: Page, locale: string) {
     this.page = page
     this.translations = getTranslations('pm', locale)
 
-    // this.newProjectTypeButton = page.getByRole('button', {
-    //   name: this.translations.projectTypes.newProjectType,
-    // })
-    // this.titleInput = page.getByPlaceholder(
-    //   this.translations.projectTypes.typeModal.titlePlaceholder
-    // )
-
-    // this.descriptionInput = page.getByPlaceholder(
-    //   this.translations.projectTypes.typeModal.descriptionPlaceholder
-    // )
-    // this.selectWorkflowDropdown = page.getByPlaceholder(
-    //   this.translations.projectTypes.typeModal.category
-    // )
     this.newProjectTypeButton = page.getByRole('button', {
-      name: 'New project type',
+      name: this.translations.projectTypes.newProjectType,
     })
     this.projectTypeModal = page.locator('#project-type-modal-content')
-    this.titleInput = page.getByPlaceholder('Title of the project type')
+    this.titleInput = page.getByPlaceholder(
+      this.translations.projectTypes.typeModal.titlePlaceholder
+    )
     this.colorList = page.locator('span[class*="ColorItem-module_color"]')
-    this.descriptionInput = page.getByPlaceholder('Description of the project')
-    this.workFlowCategory = page.getByPlaceholder('Category')
+    this.descriptionInput = page.getByPlaceholder(
+      this.translations.projectTypes.typeModal.descriptionPlaceholder
+    )
+    this.workFlowCategory = page.getByPlaceholder(
+      this.translations.projectTypes.typeModal.category
+    )
     this.workFlowDropdown = page.locator('.ca-max-h-64')
     this.selectWorkflowDropdown = page.getByRole('button', {
       name: 'Agile Flow',
     })
-    this.manageParticipantsButton = page.locator(
-      'button:has-text("Manage participants")'
-    )
+    this.manageParticipantsButton = page.getByRole('button', {
+      name: this.translations.projectTypes.typeModal.manageParticipants,
+    })
     this.manageParticipantsModal = page.locator('.YorUFdmGYZRv4Eqdz23e')
-    this.searchParticipantsInput = page.locator(
-      'input[placeholder="Search responsible"]'
+    this.searchParticipantsInput = page.getByPlaceholder(
+      this.translations.projectTypes.typeModal.searchResponsibles
     )
     this.selectParticipant = page
       .locator('#responsibles-input')
@@ -76,8 +72,12 @@ export class ProjectTypesPage {
       .getByRole('button')
       .first()
     this.toggleButton = page.locator('.m4k0JlnIppWFWs69kSNm ._toggle_1x4ea_13')
-    this.createButton = page.locator('text=Create Project Type')
-    this.projectTypeHeader = page.getByRole('button', { name: 'Project types' })
+    this.createButton = page.getByText(
+      this.translations.projectTypes.typeModal.save
+    )
+    this.projectTypeHeader = page.getByRole('button', {
+      name: this.translations.main['project-types'],
+    })
     this.projectTypeEditButton = page
       .locator(
         'td:nth-child(8) > .SmartTable-module_cellContentWrapper__ppYvz > .SmartTable-module_cellContent__fmjZa > .ca-gap-yellow'
@@ -87,13 +87,24 @@ export class ProjectTypesPage {
     this.removeParticipants = page
       .locator('div.Pyc7cP_yKF9ypAX1_LCX svg')
       .nth(1)
-    this.saveProjectType = page.locator('text=Save')
+    this.saveProjectType = page.getByText(
+      this.translations.projectTypes.typeModal.saveEdit
+    )
     this.deleteIcon = page
       .locator('div.ca-flex svg[viewBox="0 0 14 14"]')
       .nth(3)
-    this.deleteButton = page.locator('button:has-text("Delete Project type")')
+    this.deleteButton = page.getByRole('button', {
+      name: this.translations.projectTypes.deleteProjectTypeNoProjects,
+    })
+    this.projectTypeDeleteModal = page.getByText(
+      this.translations.projectTypes.deletePromptHintNoProjects
+    )
     this.projectTypeTitle = page.locator(
       `span:has-text("${projectTypeTestData[0].title}")`
+    )
+    this.updatedProjectTitle = page.locator('span.uisooTxhcQnmoLTBzPiP').first()
+    this.searchByProjectFilter = page.getByPlaceholder(
+      this.translations.projectTypes.search
     )
   }
 
@@ -193,7 +204,6 @@ export class ProjectTypesPage {
     await Allure.step(
       'Click on manage participants button and add participants',
       async () => {
-        //participants: string
         await this.manageParticipantsButton.click()
         expect(await this.manageParticipantsModal.isVisible()).toBeTruthy()
         await this.searchParticipantsInput.fill(
@@ -215,9 +225,9 @@ export class ProjectTypesPage {
 
         if (!isChecked) {
           await this.toggleButton.click()
-          console.log('Toggle button has been clicked to enable.')
+          //console.log('Toggle button has been clicked to enable.')
         } else {
-          console.log('Toggle button is already enabled.')
+          //console.log('Toggle button is already enabled.')
         }
       }
     )
@@ -242,7 +252,7 @@ export class ProjectTypesPage {
     )
     await Allure.step('New project type creation step', async () => {
       console.log(
-        `New Project Type: ${projectTypeTestData} is created successfully`
+        `New Project Type: ${projectTypeTestData[0].title} is created successfully`
       )
     })
   }
@@ -302,7 +312,11 @@ export class ProjectTypesPage {
       'Click delete icon on project type page to delete the project',
       async () => {
         await this.deleteIcon.click()
-        await this.deleteButton.click()
+        await expect(this.projectTypeDeleteModal).toBeVisible()
+        await this.deleteButton.click({ force: true })
+        await this.page.waitForLoadState('networkidle')
+        await this.page.waitForLoadState('domcontentloaded')
+        await this.page.waitForTimeout(2000)
       }
     )
   }
@@ -311,14 +325,37 @@ export class ProjectTypesPage {
     await Allure.step(
       'Validate that selected project type is deleted successfully',
       async () => {
-        const updatedProjectTitle = this.page
-          .locator(`span:has-text("${projectTypeTestData[1].title}")`)
-          .count()
-        expect(updatedProjectTitle).toBe(0)
+        await expect(
+          this.updatedProjectTitle.locator(
+            `:has-text("${projectTypeTestData[1].title}")`
+          )
+        ).toHaveCount(0)
       }
     )
   }
-}
-function validateProjectType() {
-  throw new Error('Function not implemented.')
+
+  async validatingSearchForProjectTypeFilter() {
+    await Allure.step(
+      'Validating the search for contractor filter in contractor allocation',
+      async () => {
+        await this.searchByProjectFilter.click()
+        await this.searchByProjectFilter.fill(projectTypeTestData[1].title)
+
+        const projectTypeLocator = this.page.locator(
+          'SmartTable-module_tableWrapper__O2vT5'
+        )
+        const count = await projectTypeLocator.count()
+        await Allure.step(
+          `Total Visible Project Type: ${count}`,
+          async () => {}
+        )
+        for (let i = 0; i < count; i++) {
+          const name = await projectTypeLocator.nth(i).innerText()
+          await Allure.step(`Contractor Name: ${name}`, async () => {
+            expect(name.toLowerCase()).toContain(projectTypeTestData[1].title)
+          })
+        }
+      }
+    )
+  }
 }

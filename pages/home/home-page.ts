@@ -30,6 +30,7 @@ export class HomePage {
   private officeSidebarButton: Locator
   private pdfSidebarButton: Locator
   private hrSidebarButton: Locator
+  private inventorySidebarButton: Locator
   private projectManagementSidebarButton: Locator
   private taskManagementSidebarButton: Locator
   private timeTrackingSideBarButton: Locator
@@ -44,8 +45,35 @@ export class HomePage {
   private noCodeSidebarButton: Locator
   private templateManagerSidebarButton: Locator
 
-  //Dashboard Items
-  private filesDashboardElement: Locator
+  //Dashboard Files Items
+  private filesDashboardContainer: Locator
+  private filesDashboardDescription: Locator
+  private filesDashboardIntroduction1Title: Locator
+  private filesDashboardIntroduction1Description: Locator
+  private filesDashboardIntroduction2Title: Locator
+  private filesDashboardIntroduction2Description: Locator
+  private filesDashboardIntroduction3Title: Locator
+  private filesDashboardIntroduction3Description: Locator
+
+  //Dashboard PDF Items
+  private pdfDashboardContainer: Locator
+  private pdfDashboardDescription: Locator
+  private pdfDashboardIntroduction1Title: Locator
+  private pdfDashboardIntroduction1Description: Locator
+  private pdfDashboardIntroduction2Title: Locator
+  private pdfDashboardIntroduction2Description: Locator
+  private pdfDashboardIntroduction3Title: Locator
+  private pdfDashboardIntroduction3Description: Locator
+
+  //Dashboard Office Items
+  private officeDashboardContainer: Locator
+  private officeDashboardDescription: Locator
+  private officeDashboardIntroduction1Title: Locator
+  private officeDashboardIntroduction1Description: Locator
+  private officeDashboardIntroduction2Title: Locator
+  private officeDashboardIntroduction2Description: Locator
+  private officeDashboardIntroduction3Title: Locator
+  private officeDashboardIntroduction3Description: Locator
 
   constructor(page: Page, locale: string) {
     this.page = page
@@ -108,6 +136,9 @@ export class HomePage {
     this.hrSidebarButton = page.locator(
       'button[group="workforce-management"]:has-text("HR")'
     )
+    this.inventorySidebarButton = page.locator(
+      'button[group="workforce-management"]:has-text("Inventory")'
+    )
     this.projectManagementSidebarButton = page.locator(
       'button[group="workforce-management"]:has-text("Project Management")'
     )
@@ -148,8 +179,77 @@ export class HomePage {
       'button[group="configurator"]:has-text("Template Manager")'
     )
 
-    //Dashboard Locators
-    this.filesDashboardElement = page.locator("//div[text()='Files']")
+    //Dashboard Files Locators
+    this.filesDashboardContainer = page.locator("//a[@href='/cluster-space']")
+    this.filesDashboardDescription = page.locator(
+      `//div[text()='${this.translations.appsList.documents.description}']`
+    )
+    this.filesDashboardIntroduction1Title = page.locator(
+      `strong:has-text("${this.translations.appsList.documents.introduction['1'].title}")`
+    )
+    this.filesDashboardIntroduction1Description = page.locator(
+      `p:has-text("${this.translations.appsList.documents.introduction['1'].description}")`
+    )
+    this.filesDashboardIntroduction2Title = page.locator(
+      `strong:has-text("${this.translations.appsList.documents.introduction['2'].title}")`
+    )
+    this.filesDashboardIntroduction2Description = page.locator(
+      `p:has-text("${this.translations.appsList.documents.introduction['2'].description}")`
+    )
+    this.filesDashboardIntroduction3Title = page.locator(
+      `strong:has-text("${this.translations.appsList.documents.introduction['3'].title}")`
+    )
+    this.filesDashboardIntroduction3Description = page.locator(
+      `p:has-text("${this.translations.appsList.documents.introduction['3'].description}")`
+    )
+
+    //Dashboard PDF Locators
+    this.pdfDashboardContainer = page.locator("//a[@href='/cluster-pdf']")
+    this.pdfDashboardDescription = page.locator(
+      `//div[text()='${this.translations.appsList.clusterPdf.description}']`
+    )
+    this.pdfDashboardIntroduction1Title = page.locator(
+      `strong:has-text("${this.translations.appsList.clusterPdf.introduction['1'].title}")`
+    )
+    this.pdfDashboardIntroduction1Description = page.locator(
+      `p:has-text("${this.translations.appsList.clusterPdf.introduction['1'].description}")`
+    )
+    this.pdfDashboardIntroduction2Title = page.locator(
+      `strong:has-text("${this.translations.appsList.clusterPdf.introduction['2'].title}")`
+    )
+    this.pdfDashboardIntroduction2Description = page.locator(
+      `p:has-text("${this.translations.appsList.clusterPdf.introduction['2'].description}")`
+    )
+    this.pdfDashboardIntroduction3Title = page.locator(
+      `strong:has-text("${this.translations.appsList.clusterPdf.introduction['3'].title}")`
+    )
+    this.pdfDashboardIntroduction3Description = page.locator(
+      `p:has-text("${this.translations.appsList.clusterPdf.introduction['3'].description}")`
+    )
+
+    //Dashboard Office Locators
+    this.officeDashboardContainer = page.locator("//a[@href='/cluster-office']")
+    this.officeDashboardDescription = page.locator(
+      `//div[text()='${this.translations.appsList.clusterOffice.description}']`
+    )
+    this.officeDashboardIntroduction1Title = page.locator(
+      `strong:has-text("${this.translations.appsList.clusterOffice.introduction['1'].title}")`
+    )
+    this.officeDashboardIntroduction1Description = page.locator(
+      `p:has-text("${this.translations.appsList.clusterOffice.introduction['1'].description}")`
+    )
+    this.officeDashboardIntroduction2Title = page.locator(
+      `strong:has-text("${this.translations.appsList.clusterOffice.introduction['2'].title}")`
+    )
+    this.officeDashboardIntroduction2Description = page.locator(
+      `p:has-text("${this.translations.appsList.clusterOffice.introduction['2'].description}")`
+    )
+    this.officeDashboardIntroduction3Title = page.locator(
+      `strong:has-text("${this.translations.appsList.clusterOffice.introduction['3'].title}")`
+    )
+    this.officeDashboardIntroduction3Description = page.locator(
+      `p:has-text("${this.translations.appsList.clusterOffice.introduction['3'].description}")`
+    )
   }
 
   async goto(baseURL: string | undefined) {
@@ -376,6 +476,15 @@ export class HomePage {
       }
     )
   }
+  async navigateToInventoryFromSideBar() {
+    await Allure.step(
+      'should navigate to the inventory page when the button is clicked from sidebar',
+      async () => {
+        await this.sidebarOpener.click()
+        await this.inventorySidebarButton.click()
+      }
+    )
+  }
   async navigateToProjectManagementFromSideBar() {
     await Allure.step(
       'should navigate to the project management page when the button is clicked from sidebar',
@@ -495,4 +604,97 @@ export class HomePage {
   }
 
   //Actions for Dashboard
+  async validateFilesSection() {
+    await Allure.step('Hover over "Files" element', async () => {
+      await this.filesDashboardContainer.hover()
+    })
+    await Allure.step(
+      'Validate that Files description is visible',
+      async () => {
+        await expect(this.filesDashboardDescription.first()).toBeVisible()
+      }
+    )
+    await Allure.step(
+      'Validate Introduction 1: Title and Description',
+      async () => {
+        await expect(this.filesDashboardIntroduction1Title).toBeVisible()
+        await expect(this.filesDashboardIntroduction1Description).toBeVisible()
+      }
+    )
+    await Allure.step(
+      'Validate Introduction 2: Title and Description',
+      async () => {
+        await expect(this.filesDashboardIntroduction2Title).toBeVisible()
+        await expect(this.filesDashboardIntroduction2Description).toBeVisible()
+      }
+    )
+    await Allure.step(
+      'Validate Introduction 3: Title and Description',
+      async () => {
+        await expect(this.filesDashboardIntroduction3Title).toBeVisible()
+        await expect(this.filesDashboardIntroduction3Description).toBeVisible()
+      }
+    )
+  }
+  async validatePdfSection() {
+    await Allure.step('Hover over "PDF" element', async () => {
+      await this.pdfDashboardContainer.hover()
+    })
+    await Allure.step('Validate that PDF description is visible', async () => {
+      await expect(this.pdfDashboardDescription.first()).toBeVisible()
+    })
+    await Allure.step(
+      'Validate Introduction 1: Title and Description',
+      async () => {
+        await expect(this.pdfDashboardIntroduction1Title).toBeVisible()
+        await expect(this.pdfDashboardIntroduction1Description).toBeVisible()
+      }
+    )
+    await Allure.step(
+      'Validate Introduction 2: Title and Description',
+      async () => {
+        await expect(this.pdfDashboardIntroduction2Title).toBeVisible()
+        await expect(this.pdfDashboardIntroduction2Description).toBeVisible()
+      }
+    )
+    await Allure.step(
+      'Validate Introduction 3: Title and Description',
+      async () => {
+        await expect(this.pdfDashboardIntroduction3Title).toBeVisible()
+        await expect(this.pdfDashboardIntroduction3Description).toBeVisible()
+      }
+    )
+  }
+  async validateOfficeSection() {
+    await Allure.step('Hover over "Office" element', async () => {
+      await this.officeDashboardContainer.hover()
+    })
+    await Allure.step(
+      'Validate that Office description is visible',
+      async () => {
+        await expect(this.officeDashboardDescription.first()).toBeVisible()
+      }
+    )
+    await Allure.step(
+      'Validate Introduction 1: Title and Description',
+      async () => {
+        await expect(this.officeDashboardIntroduction1Title).toBeVisible()
+        await expect(this.officeDashboardIntroduction1Description).toBeVisible()
+      }
+    )
+    await Allure.step(
+      'Validate Introduction 2: Title and Description',
+      async () => {
+        await expect(this.officeDashboardIntroduction2Title).toBeVisible()
+        await expect(this.officeDashboardIntroduction2Description).toBeVisible()
+      }
+    )
+    await Allure.step(
+      'Validate Introduction 3: Title and Description',
+      async () => {
+        await expect(this.officeDashboardIntroduction3Title).toBeVisible()
+        await expect(this.officeDashboardIntroduction3Description).toBeVisible()
+      }
+    )
+  }
 }

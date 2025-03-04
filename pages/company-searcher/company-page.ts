@@ -8,6 +8,8 @@ export class CompanyPage {
   private page: Page
   private translations: Record<string, any>
 
+  public currentlyActiveSkipButton: Locator
+
   // Navigation Bar Locators
   public companySearcherLink: Locator
   public topNavBar: Locator
@@ -52,7 +54,10 @@ export class CompanyPage {
     this.page = page
     this.translations = getTranslations('company-searcher', locale)
 
-    // Initialize Navigation Bar Locators
+    this.currentlyActiveSkipButton = page.locator(
+      `button:has-text("${this.translations.main.app_sidebar.expanded.skip}")`
+    )
+
     // Initialize Navigation Bar Locators
     this.companySearcherLink = page.locator('.c23hNRvdqiyaVUBzNggU>>nth=11')
     this.topNavBar = page.locator('section[data-testid="app-searchbar"]')
@@ -136,6 +141,10 @@ export class CompanyPage {
   async naviagtetoCompanySearcher() {
     this.companySearcherLink.click()
     await this.primaryCell.first().waitFor({ state: 'visible' })
+  }
+
+  async skipCurrentlyActiveModal() {
+    await this.currentlyActiveSkipButton.click()
   }
 
   async searchCompany(query: string) {

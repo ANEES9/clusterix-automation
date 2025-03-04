@@ -21,7 +21,7 @@
       "constants/*": ["./shared/constants/*"],
       "types/*": ["./shared/types/*"],
       "utils/*": ["./shared/utils/*"]
-    },
+    }
   },
   "include": ["@types/**/*.d.ts", "src", "tests", "helpers"]
 }

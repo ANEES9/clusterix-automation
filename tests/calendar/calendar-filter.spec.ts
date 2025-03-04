@@ -1,5 +1,3 @@
-
-
 import { test, Browser, Page, TestInfo } from '@playwright/test'
 import { addCursorStyleAndScript } from '../../helpers/common/cursor-helper'
 import { CalendarPage } from 'pages/calendar/calendar-page'
@@ -15,14 +13,13 @@ let locale: string
 let browser: Browser
 let context: BrowserContext
 let page: Page
-let eventName: string;
-let shouldNavigateBack = false
+let eventName: string
+const shouldNavigateBack = false
 test.describe('testcases to view calendar using filters', () => {
   test.beforeAll(async ({ browser: testBrowser, baseURL }, testInfo) => {
     browser = testBrowser
     context = await browser.newContext()
     page = await context.newPage()
-    test.setTimeout(60000)
     Allure.addAppOwner('Calendar')
     Allure.addSeverity('normal')
     Allure.addTag('smoke')
@@ -33,7 +30,6 @@ test.describe('testcases to view calendar using filters', () => {
     await page.waitForLoadState('networkidle')
   })
   test('change week view to month view', async () => {
-
     Allure.addDescription('change week view to month view')
     Allure.addTag('smoke')
     Allure.addSeverity('critical')
@@ -50,7 +46,6 @@ test.describe('testcases to view calendar using filters', () => {
   })
 
   test('change week view to list view', async () => {
-
     Allure.addDescription('change week view to list view')
     Allure.addTag('smoke')
     Allure.addSeverity('critical')
@@ -59,7 +54,6 @@ test.describe('testcases to view calendar using filters', () => {
   })
 
   test('change week view to day view', async () => {
-
     Allure.addDescription('change week view to day view')
     Allure.addTag('smoke')
     Allure.addSeverity('critical')
@@ -68,7 +62,6 @@ test.describe('testcases to view calendar using filters', () => {
   })
 
   test('change week view to 2 days view', async () => {
-
     Allure.addDescription('change week view to 2days view')
     Allure.addTag('smoke')
     Allure.addSeverity('critical')
@@ -76,26 +69,27 @@ test.describe('testcases to view calendar using filters', () => {
     await calendarPage.navigateToTwoDaysView()
   })
   test('to view the calendar event of the previous month', async () => {
-
-    Allure.addDescription('to click on the < icon to view the events of the previous month')
+    Allure.addDescription(
+      'to click on the < icon to view the events of the previous month'
+    )
     Allure.addTag('smoke')
     Allure.addSeverity('critical')
-       await calendarPage.navigateToCollapseButton()
+    await calendarPage.navigateToCollapseButton()
     await calendarPage.selectPreviousMonth()
-
   })
   test('to view the calendar event of the upcoming month', async () => {
-
-    Allure.addDescription('to click on the > icon to view the events of the upcoming month')
+    Allure.addDescription(
+      'to click on the > icon to view the events of the upcoming month'
+    )
     Allure.addTag('smoke')
     Allure.addSeverity('critical')
     await calendarPage.selectNextMonth()
-
   })
 
   test('to change the timezone', async () => {
-
-    Allure.addDescription('to check if the user is able to change the timezone to a different timezone')
+    Allure.addDescription(
+      'to check if the user is able to change the timezone to a different timezone'
+    )
     Allure.addTag('smoke')
     Allure.addSeverity('critical')
     await calendarPage.clickOnTimeZone()

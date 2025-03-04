@@ -338,7 +338,8 @@
       "employee_contract_outside_project_timeframe": "Vertragsdaten des Mitarbeiters liegen außerhalb des Projektzeitrahmens",
       "rnd_role_required": "F&E-Rolle erforderlich",
       "only_rnd_employees_can_be_allocated": "Nur F&E-Beschäftigte können für F&E-Projekte eingesetzt werden.",
-      "employee_have_tracked_time": "Der Mitarbeiter hat die Zeit erfasst"
+      "employee_have_tracked_time": "Der Mitarbeiter hat die Zeit erfasst",
+      "country_name_algeria": "Algerien"
     }
   },
   "eventCards": {
@@ -1369,6 +1370,7 @@
     "Timesheet Activity": "Pflege Stundenlisten",
     "Compliance Alerts": "Compliance-Warnungen",
     "Subsidies App": "Subsidies App",
+    "assign_employees_in": "Weisen Sie Mitarbeiter auf der Seite „Mitarbeiterzuordnung“ zu",
     "To Subsidies App": "Zur Subsidies App",
     "Change project status to “Abgelehnt”": "Projektstatus ändern in “Abgelehnt”",
     "Change project status to “Laufend”": "Projektstatus ändern in “Laufend”",
@@ -1847,7 +1849,6 @@
     "timeframe_required": "Erforderlicher Zeitrahmen",
     "no_employees_assigned": "Dem Projekt sind keine Mitarbeiter zugeordnet",
     "no_employees_found": "Keine Mitarbeiter gefunden",
-    "assign_employees_in": "Weisen Sie Mitarbeiter auf der Seite „Mitarbeiterzuordnung“ zu",
 
     "dependencies": "Abhängigkeiten",
     "waiting_on": "Wartet auf",
@@ -1890,6 +1891,7 @@
       "selectWorkflow": "Wählen Sie einen Workflow für den Projekttyp",
       "category": "Kategorie",
       "newWorkflow": "Neuer Workflow",
+      "searchResponsibles": "Bitte wählen Sie einen Benutzer aus",
       "projectTypeSettings": "Projekttyp-Einstellungen",
       "markAsRnDProjectLabel": "Als F&E-Projekt kennzeichnen",
       "rndProjectInfo": "Nur Mitarbeiter, die im HR-App als F&E gekennzeichnet sind, können an diesem Projekt teilnehmen.",

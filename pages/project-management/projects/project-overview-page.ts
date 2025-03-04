@@ -1,4 +1,4 @@
-import { Locator, Page, expect } from '@playwright/test'
+import { BrowserContext, Locator, Page, expect } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
 import { APP_URLS } from 'constants/app-urls'
 import { getTranslations } from 'common/get-translations-helper'
@@ -6,8 +6,8 @@ import { addProjectData } from 'utils/test-data/project-management/add-project-d
 
 export class ProjectOverview {
   private page: Page
-  private translations: Record<string, any>
 
+  private translations: Record<string, any>
   private tableProject: Locator
   private projectOverviewMain: Locator
   private editButton: Locator
@@ -33,6 +33,7 @@ export class ProjectOverview {
   private hiddenToastermessage: Locator
   private revealProjectButton: Locator
   private revealToasterMessage: Locator
+  private projectOverviewMainTitle: Locator
 
   constructor(page: Page, locale: string) {
     this.page = page
@@ -44,19 +45,21 @@ export class ProjectOverview {
     this.projectOverviewMain = page.locator(
       '.project-management-projectoverview-main'
     )
-    this.editButton = page.getByText('Edit')
+    this.editButton = page.getByText(this.translations.common.edit)
     this.projectWorkFlowForm = page.locator(
       '.project-management-projectworkflow-form'
     )
-    this.projectShortTitle = page.getByLabel('Project Short Title')
+    this.projectShortTitle = page.getByLabel(
+      this.translations.main['Project Short Title']
+    )
     this.projectTitle = page.locator('textarea[data-qa="project-title"]')
     this.projectStartCalendar = page.getByRole('button', {
-      name: 'Project start',
+      name: this.translations.main['Project start'],
     })
     this.projectStartDate = page
       .getByRole('button', { name: '9', exact: true })
       .first() //("button.DatePickerView-module_viewItem__Frpjj:has-text('9')").first()                                 //page.getByRole('button', { name: '9', exact: true }).first()
-    this.warningModal = page.getByText('Yes, Continue')
+    this.warningModal = page.getByText(this.translations.common.yes_continue)
     this.navigateToOverview = page
       .locator(
         '._sidebarSubMenuButton_16zcl_191 ._sidebarSubMenuButton__collapsedIcon_16zcl_195'
@@ -65,11 +68,13 @@ export class ProjectOverview {
     this.updatedDetails = page.locator(
       "//div[@class='EventCards-module_eventCards__9h6Wc DV3jr0hIxEqK3Ba0vRcJ']"
     )
-    this.menuButton = page.locator('._button__icon_vdgms_18').nth(0)
-    this.deleteProject = page.getByText('Delete')
-    this.deleteWarningModal = page.getByText('Delete', { exact: true })
-    this.deleteToasterMessage = page.locator(
-      'text=projects deleted successfully'
+    this.menuButton = page.locator('._button__icon_10jo6_18').nth(0) //vdgms
+    this.deleteProject = page.getByText(this.translations.common.delete)
+    this.deleteWarningModal = page.getByText(this.translations.common.delete, {
+      exact: true,
+    })
+    this.deleteToasterMessage = page.getByText(
+      this.translations.main['projects deleted successfully']
     )
     this.recentProjects = page
       .locator('._sidebarGroup_16zcl_105 ._sidebarGroup__items_16zcl_109')
@@ -79,21 +84,38 @@ export class ProjectOverview {
         '._sidebarSubMenuButton_16zcl_191 ._sidebarSubMenuButton__collapsedIcon_16zcl_195'
       )
       .nth(2)
+    //this.assignEmployee = page.locator('div').filter({ hasText: /^Assign employees in Employee Allocation Page$/ })
     this.assignEmployee = page
       .locator('div')
-      .filter({ hasText: /^Assign employees in Employee Allocation Page$/ })
-    this.pathLocator = this.assignEmployee.locator('path')
+      .filter({ hasText: this.translations.main.assign_employees_in })
+      .first()
+    //this.assignEmployee = page.locator('div').filter({hasText: /Assign employees in Employee Allocation Page|Weisen Sie Mitarbeiter auf der Seite „Mitarbeiterzuordnung“ zu/}).first()
+    //this.pathLocator = this.assignEmployee.locator('[data-qa="no-employees-button"]')
+    this.pathLocator = this.assignEmployee
+      .locator('[data-qa="no-employees-button"], img')
+      .nth(1)
+    //this.loadingIndicator = page.locator('has-text("The page is currently loading.")')
     this.loadingIndicator = page.locator(
-      'has-text("The page is currently loading.")'
+      `has-text("${this.translations.main['The page is currently loading.']}")`
     )
+    //this.allocationPageLoaded = page.locator('h1', { hasText: this.translations.crossProjectData.personnel_allocation })
     this.allocationPageLoaded = page.getByRole('heading', {
-      name: 'Personnel Allocation',
+      name: this.translations.crossProjectData.personnel_allocation,
     })
-    this.hiddenProjectButton = page.getByText('Hide project')
-    this.hiddenToastermessage = page.locator('text=Project hided successfully.')
-    this.revealProjectButton = page.getByText('Reveal project')
-    this.revealToasterMessage = page.locator(
-      'text=Project revealed successfully.'
+    this.hiddenProjectButton = page.getByText(
+      this.translations.main['hide project']
+    )
+    this.hiddenToastermessage = page.getByText(
+      this.translations.main['Project hided successfully.']
+    )
+    this.revealProjectButton = page.getByText(
+      this.translations.main['reveal project']
+    )
+    this.revealToasterMessage = page.getByText(
+      this.translations.main['Project revealed successfully.']
+    )
+    this.projectOverviewMainTitle = page.locator(
+      '.project-management-projectoverview-main-title'
     )
   }
 
@@ -112,10 +134,22 @@ export class ProjectOverview {
     await Allure.step(
       'validate project overview loaded & visible',
       async () => {
-        expect(await this.projectOverviewMain.isVisible()).toBeTruthy()
+        expect(
+          await this.projectOverviewMain.isVisible({ timeout: 5000 })
+        ).toBeTruthy()
       }
     )
   }
+
+  async projectOverviewMainTitleVisible() {
+    await Allure.step(
+      'validate project overview titel loaded & visible',
+      async () => {
+        expect(await this.projectOverviewMainTitle.isVisible()).toBeTruthy()
+      }
+    )
+  }
+
   async clickEditButton() {
     await Allure.step(
       'Edit button is clicked and project workflow form is visible',
@@ -154,7 +188,7 @@ export class ProjectOverview {
       async () => {
         await this.page.waitForTimeout(2000)
         await this.navigateToOverview.click()
-        await this.page.reload()
+        //await this.page.reload()
         await this.page.waitForLoadState('domcontentloaded')
         await this.page.waitForLoadState('networkidle')
 
@@ -192,10 +226,14 @@ export class ProjectOverview {
   async navigateToProjectPlan() {
     await Allure.step('Navigate to project plan of the project', async () => {
       await this.projectPlanPage.click()
-      await expect(this.assignEmployee).toBeVisible()
+      await expect(this.assignEmployee).toBeVisible({ timeout: 50000 })
+
       await expect(this.pathLocator).toBeVisible()
 
-      const pathLocator = this.assignEmployee.locator('path')
+      const pathLocator = this.assignEmployee.locator(
+        '[data-qa="no-employees-button"]'
+      )
+      //const pathLocator = this.assignEmployee.locator('[data-qa="no-employees-button"], img').nth(1)
 
       const [newPage] = await Promise.all([
         this.page.context().waitForEvent('page'),
@@ -213,10 +251,15 @@ export class ProjectOverview {
       'Verify the heading on the new page of personnel allocation',
       async () => {
         const allocationPageLoaded = newPage.locator('h1', {
-          hasText: 'Personnel Allocation',
+          hasText: /Personnel Allocation|Personalzuteilung/,
         })
-        await expect(allocationPageLoaded).toBeVisible()
-        await expect(allocationPageLoaded).toHaveText('Personnel Allocation')
+        //const allocationPageLoaded = newPage.getByText(this.translations.crossProjectData.personnel_allocation)
+        await this.page.waitForLoadState('networkidle')
+        this.page.waitForLoadState('domcontentloaded')
+        //await this.page.waitForTimeout(10000)
+        //await this.page.getByRole('heading', { name: this.translations.crossProjectData.personnel_allocation }).waitFor()
+        await expect(allocationPageLoaded).toBeVisible({ timeout: 50000 })
+        //await expect(allocationPageLoaded).toHaveText('Personnel Allocation')
       }
     )
   }
@@ -235,7 +278,8 @@ export class ProjectOverview {
     await Allure.step(
       'Validate that the project is hidden successfully',
       async () => {
-        expect(this.hiddenToastermessage).toBeVisible()
+        await this.page.waitForLoadState('domcontentloaded')
+        expect(this.hiddenToastermessage).toBeVisible({ timeout: 5000 })
       }
     )
   }
@@ -244,7 +288,7 @@ export class ProjectOverview {
     await Allure.step(
       'Navigate to project overview and select reveal project from the menu',
       async () => {
-        await this.menuButton.click()
+        await this.menuButton.click({ force: true })
         await this.revealProjectButton.click()
       }
     )

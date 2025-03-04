@@ -23,4 +23,5 @@ export const APP_NAMES = {
   externalForms: 'External Forms',
   byteBuilder: 'Byte Builder',
   integration: 'Integration',
+  inventory: 'Inventory',
 } as const

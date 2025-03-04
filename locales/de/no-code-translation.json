@@ -36,12 +36,12 @@
       "description": ""
     },
     "4": {
-      "label": "Bytebuilder",
+      "label": "Kundenrechnungen",
       "entry": "Bytes",
       "description": ""
     },
     "5": {
-      "label": "Interne Kunden",
+      "label": "Kostenrechnungen",
       "entry": "Kunden",
       "description": ""
     }
@@ -267,7 +267,7 @@
     "has_access": "Hat Zugriff",
     "no_access": "Kein Zugriff",
     "all": "Alle",
-    "single_steps":"Einzelne Schritte",
+    "single_steps": "Einzelne Schritte",
     "grouped_steps": "Gruppierte Schritte"
   },
   "permissions_help": {

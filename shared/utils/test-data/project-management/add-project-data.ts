@@ -14,6 +14,7 @@ export const addProjectData = {
     'This is the new project for automation test scripts playwright',
   projctStartDate: '01.01.2025',
   projectEndDate: '31.01.2025',
+
   // invalidSearchTitle: "Non ExistentSchema",
   // minLength: "2",
   // maxLength: "15",
