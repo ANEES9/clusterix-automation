@@ -9,7 +9,8 @@
       "myOrganization": "Meine Organisation",
       "settings": "Einstellungen",
       "logout": "Ausloggen",
-      "search": "Suche"
+      "search": "Suche",
+      "playTutorial": "Tutorial abspielen"
     },
     "searchInput": {
       "noSuggestions": "Keine Vorschläge verfügbar"
@@ -59,16 +60,16 @@
       "description": "Erstellen Sie mittels unserer Low-Code Plattform eigene Workflows in unseren Apps.",
       "introduction": {
         "1": {
-          "title": "Maßgeschneiderte Workflows für optimierte Prozesssteuerung",
-          "description": "Gestalten und steuern Sie Workflows, die exakt auf Ihre Anforderungen abgestimmt sind. Definieren Sie Schritte, setzen Sie Datenparameter fest, etablieren Sie Regeln und skizzieren Sie wichtige Kriterien, um Ihre Prozesse zu optimieren und effizienter zu gestalten."
+          "title": "Erstellen und verwalten",
+          "description": "Workflows, die auf Ihre spezifischen Anforderungen zugeschnitten sind. Definieren Sie die Schritte, legen Sie Datenparameter fest, erstellen Sie Regeln und skizzieren Sie wesentliche Kriterien, um Ihre Prozesse zu optimieren und zu rationalisieren."
         },
         "2": {
-          "title": "Workflow-Management",
-          "description": "Passen Sie die Workflows an, indem Sie sie nahtlos mit den gewünschten Apps und Kampagnen integrieren, um sicherzustellen, dass sie optimal in Ihre Arbeitsabläufe eingebettet sind."
+          "title": "Bestimmen, wo sie verwendet werden",
+          "description": "und verknüpfen Sie diese Workflows mit den gewünschten Apps und Kampagnen für eine nahtlose Integration."
         },
         "3": {
-          "title": "Zugriffsverwaltung",
-          "description": "Legen Sie fest, ob Inhalte privat genutzt oder innerhalb des Unternehmens geteilt werden sollen, um kontrollierte Interaktionen und die Sicherheit der Daten zu gewährleisten."
+          "title": "Zugänglichkeit definieren",
+          "description": "als entweder privat für die individuelle Nutzung oder global für den organisationsweiten Zugriff, um eine kontrollierte Interaktion sicherzustellen und die Datensicherheit zu gewährleisten."
         }
       }
     },
@@ -76,16 +77,16 @@
       "description": "Gewinnen Sie neue Mitarbeiter und verwalten Sie Mitarbeiterdaten",
       "introduction": {
         "1": {
-          "title": "Mitarbeitergewinnung",
-          "description": "Erstellen Sie Ihren eigenen Recruiting-Workflow und verwalten Sie alle wichtigen Daten potenzieller Kandidaten teamübergreifend im System. Bestimmen Sie Verantwortlichkeiten und steuern Sie die gesamte interne Kommunikation."
+          "title": "Neueinstellungen rekrutieren und verwalten",
+          "description": "durch das Erstellen neuer Stellenausschreibungen und das Zuweisen von HR-Personal, um diese mithilfe unseres internen Bewerbersuchtools zu besetzen. Erfolgreiche Bewerber in Mitarbeiter umwandeln."
         },
         "2": {
-          "title": "Mitarbeiterverwaltung",
-          "description": "Verwalten Sie die persönlichen Informationen jedes Mitarbeiters, einschließlich Kontaktdaten, Gehaltsentwicklung und Leistungsbewertung."
+          "title": "Verwalten Sie Ihre Mitarbeiter",
+          "description": "Verwalten Sie die persönlichen Informationen Ihrer Mitarbeiter, verfolgen Sie Abwesenheitstage, sammeln Sie Feedback und bearbeiten Sie alle Arten von Zahlungen."
         },
         "3": {
-          "title": "Recruiting Analyse im Überblick",
-          "description": "Verfolgen Sie die Einstellungsmetriken präzise mit unserem integrierten Analysetool, das wertvolle Einblicke in die Leistung der Rekrutierung liefert und Ihnen hilft, Ihre Strategien optimal anzupassen."
+          "title": "Behalten Sie die Einstellungsmesswerte im Blick",
+          "description": "mit unserem integrierten Analysetool, das Einblicke in die Rekrutierungsleistung bietet, um Ihre Strategien zu optimieren."
         }
       },
       "tourDescription_organization": "Neue Mitarbeiter rekrutieren und verwalten, Abwesenheitstage automatisieren und verfolgen, Einstellungsmetriken mit unserem integrierten Analysetool überwachen.",
@@ -99,16 +100,16 @@
       "description": "Alle Dokumente mit einfacher Einbindung in HR und CRM",
       "introduction": {
         "1": {
-          "title": "Optimale Dateiverwaltung für höhere Produktivität",
-          "description": "Erstellen, bearbeiten und formatieren Sie Dateien individuell nach Ihren persönlichen und beruflichen Bedürfnissen, um die Produktivität und Zusammenarbeit in Ihrer Organisation zu verbessern."
+          "title": "Dateien erstellen, bearbeiten und formatieren",
+          "description": "zugeschnitten auf persönliche und berufliche Anforderungen, steigert die Produktivität und Zusammenarbeit in Ihrer Organisation."
         },
         "2": {
-          "title": "Effizientes Dokumenten-Sharing für bessere Kommunikation",
-          "description": "Verbessern Sie die Zusammenarbeit und Kommunikation zwischen Teams durch das Teilen von Dokumenten innerhalb Ihrer Organisation oder mit externen Benutzern."
+          "title": "Dokumente teilen",
+          "description": "innerhalb Ihrer Organisation oder mit externen Nutzern, um die Zusammenarbeit und Kommunikation zwischen verschiedenen Teams zu verbessern."
         },
         "3": {
-          "title": "Übergreifender Dateizugriff über alle Apps",
-          "description": "Greifen Sie einfach auf Dateien aus allen Apps zu! Diese Funktion ermöglicht es Ihnen, Dokumente bestimmten Apps zuzuweisen, um direkt darauf zuzugreifen, und umgekehrt. Dadurch wird eine nahtlose Integration und ein müheloser Zugang gewährleistet."
+          "title": "Zugriff auf Dateien aus allen Apps",
+          "description": "da das Clusterix-System Dokumente automatisch in einem strukturierten Format organisiert. Diese Struktur ermöglicht es Ihnen, Dokumente bestimmten Apps direkt zuzuweisen und umgekehrt, wodurch eine nahtlose Integration und mühelose Abrufbarkeit gewährleistet wird."
         }
       },
       "tourDescription_personal": "Dateien erstellen, bearbeiten und formatieren, Dokumente mit externen Nutzern teilen, Dateizugriff von allen Apps mit automatisch strukturiertem Format",
@@ -117,12 +118,43 @@
       "tags_organization": ["Organisation", "Verbindung", "Dateispeicherung"]
     },
     "accounting": {
-      "description": "Kontenübersicht, Rechnungen erstellen, Mahnwesen, Vertragsmanagement für Ausgaben und Einnahmen, Cash Management"
+      "description": "Kontenübersicht, Rechnungen erstellen, Mahnwesen, Vertragsmanagement für Ausgaben und Einnahmen, Cash Management",
+      "introduction": {
+        "1": {
+          "title": "Finanzmanagement",
+          "description": "Verfolgen Sie mühelos Einkommen, Ausgaben und Transaktionen mit einem zentralisierten Dashboard. Automatisieren Sie die Erstellung von Rechnungen, die Verfolgung von Zahlungen und den Abgleich, um genaue Finanzaufzeichnungen mühelos zu führen."
+        },
+        "2": {
+          "title": "Intelligente Einblicke & Berichte",
+          "description": "Erhalten Sie in Echtzeit Einblicke in Ihre Geschäftsfinanzen mit KI-gestützten Analysen, anpassbaren Berichten und Gewinn- & Verlustrechnungen. Bleiben Sie mit klaren Finanztrends und vorausschauenden Analysen für bessere Entscheidungen informiert."
+        },
+        "3": {
+          "title": "Integration & Compliance",
+          "description": "Verbinden Sie sich mühelos mit Banksystemen, Steuerbehörden und Compliance-Vorschriften. Gewährleisten Sie reibungslose Finanzabläufe mit integrierter Automatisierung für Rechnungsstellung, Steuerberechnungen und Dokumentenmanagement."
+        }
+      }
     },
     "clusterCells": {
       "description": "Verwalten von Tabellenkalkulationen mit Clusterzellen",
       "guestViewOptions": {
         "invitationText": "Sie sind eingeladen, an dieser Datei in Clusterix Clustercells mitzuarbeiten!"
+      }
+    },
+    "clusterCloud": {
+      "description": "Cluster Cloud ist eine Sammlung von Softwarekomponenten, die gemeinsame Dienste für Cloud-Infrastrukturen bereitstellen.",
+      "introduction": {
+        "1": {
+          "title": "Nahtlose Cloud-Verwaltung",
+          "description": "Verwalten Sie Speicher, virtuelle Maschinen und Datenbanken mühelos über eine zentrale Schnittstelle."
+        },
+        "2": {
+          "title": "Optimierte Kostenverfolgung",
+          "description": "Überwachen und kontrollieren Sie Cloud-Ausgaben mit detaillierten Kostenanalysen und Berichten."
+        },
+        "3": {
+          "title": "Skalierbare & sichere Infrastruktur",
+          "description": "Passen Sie Ihre Cloud-Umgebung an und skalieren Sie sie, während Sie hohe Sicherheit und Zuverlässigkeit gewährleisten."
+        }
       }
     },
     "clusterDoc": {
@@ -149,22 +181,57 @@
       ]
     },
     "clusterOffice": {
-      "description": "Erstellen, Bearbeiten und Verwalten aller Arten von Office-Dokumenten"
+      "description": "Erstellen, Bearbeiten und Verwalten aller Arten von Office-Dokumenten",
+      "introduction": {
+        "1": {
+          "title": "Leistungsstarke Werkzeuge für jeden Bedarf",
+          "description": "Enthält Dokumente für die Textbearbeitung, Cells für Tabellenkalkulationen, Presentation für Folien und Flow für Diagramme und Workflow-Planung."
+        },
+        "2": {
+          "title": "Nahtlose Zusammenarbeit",
+          "description": "Bearbeiten, teilen und in Echtzeit zusammenarbeiten, um effizientes Teamwork und Dokumentenmanagement zu gewährleisten."
+        },
+        "3": {
+          "title": "Alle Dokumente sicher speichern",
+          "description": "in unserer cloudbasierten Dokumentenverwaltungs-App, um jederzeit und überall einfachen Zugriff zu gewährleisten."
+        }
+      }
+    },
+    "clusterFiles": {
+      "description": "Alle Dokumente mit einfacher Einbindung in HR und CRM",
+      "introduction": {
+        "1": {
+          "title": "Dateien erstellen, bearbeiten und formatieren",
+          "description": "zugeschnitten auf persönliche und berufliche Anforderungen, steigert die Produktivität und Zusammenarbeit in Ihrer Organisation."
+        },
+        "2": {
+          "title": "Dokumente teilen",
+          "description": "innerhalb Ihrer Organisation oder mit externen Nutzern, um die Zusammenarbeit und Kommunikation zwischen verschiedenen Teams zu verbessern."
+        },
+        "3": {
+          "title": "Zugriff auf Dateien aus allen Apps",
+          "description": "da das Clusterix-System Dokumente automatisch in einem strukturierten Format organisiert. Diese Struktur ermöglicht es Ihnen, Dokumente bestimmten Apps direkt zuzuweisen und umgekehrt, wodurch eine nahtlose Integration und mühelose Abrufbarkeit gewährleistet wird."
+        }
+      },
+      "tourDescription_personal": "Dateien erstellen, bearbeiten und formatieren, Dokumente mit externen Nutzern teilen, Dateizugriff von allen Apps mit automatisch strukturiertem Format",
+      "tourDescription_organization": "Dateien erstellen, bearbeiten und formatieren, Dokumente innerhalb Ihrer Organisation oder mit externen Nutzern teilen, Dateizugriff von allen Apps",
+      "tags_personal": ["Organisation", "Verbindung", "Dateispeicherung"],
+      "tags_organization": ["Organisation", "Verbindung", "Dateispeicherung"]
     },
     "companySearch": {
       "description": "Finden Sie die perfekten Zulieferer, Kunden & Partner",
       "introduction": {
         "1": {
-          "title": "KI-gestützte Lead Recherche",
-          "description": "Durch den Einsatz von KI und NLP analysieren wir Unternehmensdaten und extrahieren entscheidende Kriterien, damit Sie die idealen Kunden finden."
+          "title": "Intelligente Suche",
+          "description": "Wir nutzen KI und NLP, um Unternehmensaktivitäten zu analysieren, zentrale Erkenntnisse zu extrahieren und Ihre Produkte effizient mit idealen Kunden zu verknüpfen."
         },
         "2": {
-          "title": "Effizientes Datenmanagement",
-          "description": "Verbinden Sie erstellte Kampagnen in der Vertriebs-App mit der Suchfunktion, um direkt auf vertriebsbezogene Daten zuzugreifen und somit Ihren Workflow sowie die interne Kommunikation zu optimieren."
+          "title": "Mit Kampagnen verbinden",
+          "description": "in der Vertriebs-App und direkt auf vertriebsbezogene Daten über die Such-App zugreifen, um Ihren Arbeitsablauf und die Datenabfrage zu optimieren."
         },
         "3": {
-          "title": "Aktivitäts- und Kommunikationsmanagement",
-          "description": "Bleiben Sie organisiert und informiert mit unserem integrierten Aktivitätsbereich. Er führt alle Aktivitäten und Kommunikationsdaten jedes Unternehmens zusammen und stellt sie übersichtlich an einem zentralen Ort zur Verfügung."
+          "title": "Organisiert & informiert bleiben",
+          "description": "mit unserem integrierten Aktivitätsbereich, der alle Aktivitäten und die gesamte Kommunikation für jedes Unternehmen zusammenführt und bequem an einem Ort zugänglich macht."
         }
       }
     },
@@ -172,16 +239,16 @@
       "description": "Ein leistungsstarkes Zeiterfassungssystem. Weisen Sie Zeiten Aufgaben zu und gewinnen Sie einen Überblick für welche Aktivitäten Zeit aufgewendet wird.",
       "introduction": {
         "1": {
-          "title": "Individuelle Zeiterfassung mit detaillierter Aktivitätsdokumentation",
-          "description": "Erfassen Sie Ihre Arbeitszeit individuell: Pausieren und starten Sie manuell oder unterteilen Sie in Abschnitte. Dokumentieren Sie detailliert Ihre Aktivitäten oder Ereignisse mit Notizen und Beschreibungen."
+          "title": "Verfolge deine Zeit",
+          "description": "und überprüfe leicht deinen Fortschritt. Stoppe und starte neu oder teile deine Zeit auf, um detaillierte Informationen zu deinen Ereignissen einzugeben."
         },
         "2": {
-          "title": "Gezielte Zeitzuordnung zu Arbeitsaktivitäten",
-          "description": "Ordnen Sie Ihre Arbeitsstunden gezielt einzelnen Ereignissen, Meetings oder Aufgaben zu."
+          "title": "Weise deine Arbeitsstunden zu",
+          "description": "bestimmten Ereignissen, Meetings oder Aufgaben mit unserem Zeiterfassungstool zu."
         },
         "3": {
-          "title": "Leistungsüberwachung und Analysetools",
-          "description": "Verwenden Sie unser Analysetool, um einen Überblick über alle Aktivitäten und statistischen Daten zu erhalten. Dies hilft Ihnen, die Produktivität zu bewerten und die Effizienz zu steigern."
+          "title": "Überwache alle Aktivitäten und Statistiken",
+          "description": "mit unserem Analysetool, um Einblicke in deine Produktivität zu gewinnen und die Effizienz zu steigern."
         }
       },
       "tourDescription_personal": "Verfolgen Sie Ihre Zeit und überprüfen Sie einfach Ihren Fortschritt, ordnen Sie Aufgaben, Ereignisse oder Besprechungen Ihrem Timer zu, sehen Sie Ihre Statistiken",
@@ -214,16 +281,16 @@
       "description": "Erstellen und konfigurieren Sie Aufgaben frei. Behalten Sie die Übersicht mit angepinnten Boards und Ihren spezifischen Aufgaben",
       "introduction": {
         "1": {
-          "title": "Einfache Aufgabenverwaltung",
-          "description": "Erstellen Sie ihre eignen Pinnwänden und verwalten Sie diese mit einer einfachen Drag-and-Drop Funktion."
+          "title": "Verwalte alle deine Aufgaben",
+          "description": "als Notizen auf den Pinnwänden des Aufgabenmanagements und ziehe sie per Drag & Drop, um sie in Kategorien zu organisieren"
         },
         "2": {
-          "title": "Individuelle Anpassung der Aufgaben",
-          "description": "Gestalten Sie Ihre Aufgaben nach Ihren individuellen Bedürfnissen, indem Sie Elemente wie die Zuweisung von Verantwortlichen, die Erstellung von Checklisten, das Hinzufügen von Unteraufgaben und vieles mehr integrieren."
+          "title": "Passe deine Aufgaben an",
+          "description": "und füge die Dinge hinzu, die du benötigst, sei es Verantwortliche, Checklisten, Unteraufgaben oder etwas anderes"
         },
         "3": {
-          "title": "Optimale Projektübersicht und transparente Teamkommunikation",
-          "description": "Behalten Sie den Überblick über alle relevanten Projektinformationen und steigern Sie die Effizienz der Zusammenarbeit durch die transparente Kommunikation innerhalb des Teams."
+          "title": "Behalte den Überblick und bleibe verbunden",
+          "description": "mit unserem integrierten Aktivitätsbereich, der alle Aktivitäten und Kommunikationen innerhalb deiner Aufgabe für deine Übersicht sammelt"
         }
       },
       "tourDescription_personal": "Erstellen und verwalten Sie alle Ihre Aufgaben, ordnen Sie sie durch einfaches Ziehen und Ablegen in Kategorien, passen Sie Aufgaben an Ihre Bedürfnisse an",
@@ -246,16 +313,16 @@
       "description": "Optimieren Sie alle Interaktionen mit Ihren Kunden",
       "introduction": {
         "1": {
-          "title": "Leadgenerierung und Kommunikation",
-          "description": "Finden Sie potenzielle Kunden und kommunizieren Sie direkt mit ihnen über unser integriertes Suchsystem und unsere Kommunikationsfunktionen."
+          "title": "Finden & verbinden",
+          "description": "mit potenziellen Leads über unser integriertes Suchsystem und unsere Kommunikationsfunktionen."
         },
         "2": {
-          "title": "Optimiertes Lead-Management",
-          "description": "Optimieren Sie die Organisation und Verwaltung Ihrer Leads durch eine klare Strukturierung von Produkten und Kampagnen. Setzen Sie auf einen flexiblen Follow-up-Prozess, um das Engagement zu fördern und die Verkaufschancen zu maximieren."
+          "title": "Leads organisieren & verwalten",
+          "description": "effektiv mit einer klar definierten Struktur für Produkte und Kampagnen. Nutzen Sie einen flexiblen Nachfassprozess, um das Engagement zu steigern und Verkaufschancen zu erhöhen."
         },
         "3": {
-          "title": "Analyse der Vertriebsperformance",
-          "description": "Durch detaillierte Analysen können Sie die Leistung Ihres Vertriebs verfolgen und bewerten. Auf dieser Grundlage können Sie gezielt Ihre Strategien optimieren, Ihre Ergebnisse maximieren und fundierte Entscheidungen treffen, um die Gesamteffizienz Ihres Vertriebs zu steigern."
+          "title": "Detaillierte Analysen",
+          "description": "helfen Ihnen, die Verkaufsleistung und Trends zu verfolgen und zu verstehen, sodass Sie Strategien verfeinern, Ergebnisse verbessern und fundierte Entscheidungen treffen können, die die gesamte Verkaufseffektivität steigern."
         }
       }
     },
@@ -263,16 +330,16 @@
       "description": "Beginnen Sie mit dem Aufbau Ihrer individuellen Anwendungsdatenstruktur und verwalten Sie diese",
       "introduction": {
         "1": {
-          "title": "Maßgeschneidertes Datenmanagement mit ByteBuilder",
-          "description": "Importieren oder erstellen Sie Ihre Datenbank als neues Schema im ByteBuilder und passen Sie die Datenplatzierung genau an Ihre Bedürfnisse an."
+          "title": "Importieren oder erstellen Sie Ihre Datenbank",
+          "description": "als neues Schema in den ByteBuilder und optimieren Sie die Datenplatzierung ganz nach Ihren Bedürfnissen."
         },
         "2": {
-          "title": "Verwaltung von Datenstrukturen",
-          "description": "Verwalten Sie Ihre bestehenden Datenstrukturen, indem Sie jederzeit Datenpunkte hinzufügen, entfernen oder bearbeiten können."
+          "title": "Verwalten Sie Ihre bestehenden Schemas",
+          "description": "indem Sie Datenpunkte jederzeit hinzufügen, entfernen oder bearbeiten."
         },
         "3": {
-          "title": "Datenintegration",
-          "description": "Integrieren Sie Daten nahtlos in Ihren Workflow als dedizierte Datenressource für spezifische Benutzer innerhalb des Workflows."
+          "title": "Verbinden Sie Daten mit Ihrem Workflow",
+          "description": "als Datenbankressource, die für bestimmte Workflow-Nutzer zugänglich ist."
         }
       }
     },
@@ -294,16 +361,58 @@
       }
     },
     "subsidies": {
-      "description": "Verwalten Sie Ihre Zuschüsse für F&E Projekte und stellen Sie eine einheitliche und saubere Dokumentation sicher"
+      "description": "Verwalten Sie Ihre Zuschüsse für F&E Projekte und stellen Sie eine einheitliche und saubere Dokumentation sicher",
+      "introduction": {
+        "1": {
+          "title": "Mühelose Fördermittelverwaltung",
+          "description": "Optimieren Sie Ihren F&E-Finanzierungsprozess mit einer intuitiven Plattform zur Verfolgung, Beantragung und Verwaltung von Fördermitteln."
+        },
+        "2": {
+          "title": "Compliance & Dokumentation",
+          "description": "Stellen Sie die Einhaltung gesetzlicher Vorschriften sicher mit automatisierter Nachverfolgung der erforderlichen Dokumente und Stundenzettel."
+        },
+        "3": {
+          "title": "Optimierung des Finanzierungspotenzials",
+          "description": "Erkennen Sie ungenutzte Finanzierungsmöglichkeiten und maximieren Sie Ihre Fördermittelausschöpfung durch aufschlussreiche Analysen."
+        }
+      }
     },
     "internalCustomers": {
       "description": "Betreuen Sie Bestandskunden, Kundenprojekte und Kundenaktivitäten"
     },
     "clusterPdf": {
-      "description": "Bearbeiten Sie und konvertieren Sie von und zu PDF"
+      "description": "Bearbeiten Sie und konvertieren Sie von und zu PDF",
+      "introduction": {
+        "1": {
+          "title": "PDFs konvertieren und bearbeiten",
+          "description": "Dokumente ganz einfach in und aus PDFs konvertieren, einschließlich Word, Excel, Bilder und mehr. PDFs nahtlos bearbeiten und modifizieren."
+        },
+        "2": {
+          "title": "Dateien verwalten und organisieren",
+          "description": "PDF-Dateien zusammenführen, teilen, drehen und schützen – mit integrierten Tools zur Verbesserung der Dokumentenverwaltung und -sicherheit."
+        },
+        "3": {
+          "title": "Dokumente signieren und sichern",
+          "description": "Formulare ausfüllen, unterschreiben und digitale Signaturen anfordern, um sichere und authentifizierte Dokumentenworkflows zu gewährleisten."
+        }
+      }
     },
     "externalForms": {
-      "description": "Erstellen Sie Formulare, mit denen Sie Daten von Externen erheben"
+      "description": "Erstellen Sie Formulare, mit denen Sie Daten von Externen erheben",
+      "introduction": {
+        "1": {
+          "title": "Erstellen und anpassen von Formularen",
+          "description": "Gestalten Sie professionelle Formulare mit anpassbaren Feldern, Farben und Layouts, die Ihren Bedürfnissen entsprechen."
+        },
+        "2": {
+          "title": "Teilen und Antworten sammeln",
+          "description": "Verteilen Sie Ihre Formulare über Links und sammeln Sie strukturierte Daten in Echtzeit von jedem Gerät."
+        },
+        "3": {
+          "title": "Einsendungen analysieren",
+          "description": "Verfolgen Sie Antworten, überprüfen Sie Analysen und gewinnen Sie Erkenntnisse, um die Datenerfassung und Entscheidungsfindung zu verbessern."
+        }
+      }
     },
     "bulkMailing": {
       "description": "Versenden Sie einmalige und wiederkehrende E-Mails wie Newsletter, interne E-Mails oder Erinnerungen",
@@ -326,16 +435,16 @@
       "description": "integration description",
       "introduction": {
         "1": {
-          "title": "integration introduction 1 title",
-          "description": "integration introduction 1 description"
+          "title": "Plattformübergreifende Konnektivität",
+          "description": "Synchronisieren Sie mühelos Daten zwischen mehreren Anwendungen und gewährleisten Sie reibungslose, automatisierte Workflows über verschiedene Tools hinweg."
         },
         "2": {
-          "title": "integration introduction 2 title",
-          "description": "Desigintegration introduction 2 description"
+          "title": "Intelligente Automatisierung & Datenfluss",
+          "description": "Optimieren Sie Abläufe, indem Sie repetitive Aufgaben automatisieren, Datensätze synchronisieren und manuelle Fehler reduzieren, um die Effizienz zu steigern."
         },
         "3": {
-          "title": "integration introduction 3 title",
-          "description": "Desigintegration introduction 3 description"
+          "title": "Anpassbare Integrationen",
+          "description": "Passen Sie Integrationen an geschäftliche Anforderungen an – mit flexibler API-Unterstützung und skalierbarer Infrastruktur zur Verbindung bestehender und zukünftiger Anwendungen."
         }
       },
       "tourDescription_personal": "integration tourDescription_personal",

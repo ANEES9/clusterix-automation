@@ -9,7 +9,8 @@
       "myOrganization": "My Organization",
       "settings": "Settings",
       "logout": "Logout",
-      "search": "Search"
+      "search": "Search",
+      "playTutorial": "Play Tutorial"
     },
     "searchInput": {
       "noSuggestions": "No suggestions available"
@@ -59,16 +60,16 @@
       "description": "Create your own workflows in our apps using our low-code platform.",
       "introduction": {
         "1": {
-          "title": "Customized workflows for optimized process control",
-          "description": "Create and manage workflows that are precisely tailored to your requirements. Define steps, set data parameters, establish rules and outline important criteria to optimize your processes and make them more efficient"
+          "title": "Create and manage",
+          "description": "workflows tailored to your specific needs. Define the steps, set data parameters, establish rules, and outline essential criteria to streamline and optimize your processes."
         },
         "2": {
-          "title": "Workflow-Management",
-          "description": "Customize workflows by seamlessly integrating them with the apps and campaigns you want to ensure they are optimally embedded in your workflows."
+          "title": "Determine where to use",
+          "description": "these workflows, linking them to the desired apps and campaigns for seamless integration."
         },
         "3": {
-          "title": "Access administration",
-          "description": "Specify whether content should be used privately or shared within the company to ensure controlled interactions and data security."
+          "title": "Define accesibility",
+          "description": "as either private for individual use or global for organization-wide access, ensuring controlled interaction and maintaining data security."
         }
       }
     },
@@ -76,16 +77,16 @@
       "description": "Recruit new employees and manage employee data",
       "introduction": {
         "1": {
-          "title": "Recruitment",
-          "description": "Create your own recruiting workflow and manage all important data on potential candidates across teams in the system. Define responsibilities and manage all internal communication."
+          "title": "Recruit and manage new hires",
+          "description": "by creating new job openings and assigning HR personnel to fill them using our internal applicant search tool. Convert successful applicants into employees."
         },
         "2": {
-          "title": "Employee management",
-          "description": "Manage each employee's personal information, including contact details, salary history and performance evaluation."
+          "title": "Manage your employees",
+          "description": "Manage your employees' personal information, track absence days, collect feedback, and handle all types of payments."
         },
         "3": {
-          "title": "Analytics for hiring metrics",
-          "description": "Track hiring metrics accurately with our integrated analytics tool, which provides valuable insights into recruitment performance and helps you optimize your strategies."
+          "title": "Keep track on hiring metrics",
+          "description": "with our built-in analytics tool, offering insights into recruitment performance to optimize your strategies."
         }
       },
       "tourDescription_organization": "Recruit and manage new hires, automatize and track absence days, keep track on hiring metrics with our built-in analytics tool",
@@ -95,16 +96,16 @@
       "description": "All documents with easy integration into HR and CRM",
       "introduction": {
         "1": {
-          "title": "File management for higher productivity",
-          "description": "Create, edit and format files individually according to your personal and professional needs to improve productivity and collaboration in your organization."
+          "title": "Create, edit and format files",
+          "description": "tailored to both personal and professional requirements, enhancing productivity and collaboration within your organization."
         },
         "2": {
-          "title": "Efficient document sharing for better communication",
-          "description": "Improve collaboration and communication between teams by sharing documents within your organization or with external users."
+          "title": "Share documents",
+          "description": "within your organization or with external users, enhancing collaboration and communication across various teams."
         },
         "3": {
-          "title": "Comprehensive file access across all apps",
-          "description": "Easily access files from all apps! This feature allows you to assign documents to specific apps to access them directly and vice versa. This ensures seamless integration and effortless access."
+          "title": "Access files from all apps",
+          "description": "as the Clusterix system automatically organizes documents into a structured format. This setup allows you to assign documents to specific apps for direct access and vice versa, ensuring seamless integration and effortless retrieval."
         }
       },
       "tourDescription_personal": "Create, edit and format files, share documents with external users, access files from all apps using auto structured format",
@@ -113,12 +114,43 @@
       "tags_organization": ["Organization", "Connection", "File Storage"]
     },
     "accounting": {
-      "description": "Account overview, invoicing, dunning, contract management for expenses and revenues, cash management."
+      "description": "Account overview, invoicing, dunning, contract management for expenses and revenues, cash management.",
+      "introduction": {
+        "1": {
+          "title": "Financial Management",
+          "description": "Easily track income, expenses, and transactions with a centralized dashboard. Automate invoice creation, payment tracking, and reconciliation to maintain accurate financial records effortlessly."
+        },
+        "2": {
+          "title": "Smart Insights & Reporting",
+          "description": "Gain real-time insights into your business finances with AI-driven analytics, customizable reports, and profit & loss statements. Stay informed with clear financial trends and predictive analysis for better decision-making."
+        },
+        "3": {
+          "title": "Integration & Compliance",
+          "description": "Connect with banking systems, tax authorities, and compliance regulations effortlessly. Ensure smooth financial operations with built-in automation for billing, tax calculations, and document management."
+        }
+      }
     },
     "clusterCells": {
       "description": "Manage spreadsheets with Cluster Cells",
       "guestViewOptions": {
         "invitationText": "You have been invited to collaborate on this file in Clusterix Clustercells!"
+      }
+    },
+    "clusterCloud": {
+      "description": "Cluster Cloud is a set of software components that provide common services for cloud infrastructure.",
+      "introduction": {
+        "1": {
+          "title": "Seamless Cloud Management",
+          "description": "Easily manage storage, virtual machines, and databases with a centralized interface."
+        },
+        "2": {
+          "title": "Optimized Cost Tracking",
+          "description": "Monitor and control cloud expenses with detailed cost breakdowns and analytics."
+        },
+        "3": {
+          "title": "Scalable & Secure Infrastructure",
+          "description": "Customize and scale your cloud environment while ensuring high security and reliability."
+        }
       }
     },
     "clusterDoc": {
@@ -141,22 +173,57 @@
       "tags_personal": ["Create & Edit", "Cloud-based save", "Connection"]
     },
     "clusterOffice": {
-      "description": "Create, edit, and manage all types of office documents"
+      "description": "Create, edit, and manage all types of office documents",
+      "introduction": {
+        "1": {
+          "title": "Powerful tools for every need",
+          "description": "Includes Documents for text editing, Cells for spreadsheets, Presentation for slides, and Flow for diagrams and workflow planning."
+        },
+        "2": {
+          "title": "Seamless collaboration",
+          "description": "Edit, share, and collaborate in real-time, ensuring efficient teamwork and document management."
+        },
+        "3": {
+          "title": "Store all documents securely",
+          "description": "in our cloud-based documents management app, ensuring easy access anytime, anywhere."
+        }
+      }
+    },
+    "clusterFiles": {
+      "description": "All documents with easy integration into HR and CRM",
+      "introduction": {
+        "1": {
+          "title": "Create, edit and format files",
+          "description": "tailored to both personal and professional requirements, enhancing productivity and collaboration within your organization."
+        },
+        "2": {
+          "title": "Share documents",
+          "description": "within your organization or with external users, enhancing collaboration and communication across various teams."
+        },
+        "3": {
+          "title": "Access files from all apps",
+          "description": "as the Clusterix system automatically organizes documents into a structured format. This setup allows you to assign documents to specific apps for direct access and vice versa, ensuring seamless integration and effortless retrieval."
+        }
+      },
+      "tourDescription_personal": "Create, edit and format files, share documents with external users, access files from all apps using auto structured format",
+      "tourDescription_organization": "Create, edit and format files, share documents within your organization or external users, access files from all apps",
+      "tags_personal": ["Organization", "Connection", "File Storage"],
+      "tags_organization": ["Organization", "Connection", "File Storage"]
     },
     "companySearch": {
       "description": "Find the perfect suppliers, customers & partners",
       "introduction": {
         "1": {
-          "title": "AI-supported lead search",
-          "description": "Using AI and NLP, we analyze company data and extract crucial criteria to help you find the ideal customers."
+          "title": "Smart Search",
+          "description": "We use AI and NLP to analyze company activities, distill key insights, and match your products with ideal customers efficiently."
         },
         "2": {
-          "title": "Efficient data management",
-          "description": "Connect created campaigns in the sales app with the search function to directly access sales-related data and thus optimize your workflow and internal communication."
+          "title": "Connect with campaigns",
+          "description": "in the sales app and directly access sales-related data through the search app, streamlining your workflow and data retrieval."
         },
         "3": {
-          "title": "Activity and communication management",
-          "description": "Stay organized and informed with our integrated activity area. It brings together all the activities and communication data of each company and makes them available in one central location."
+          "title": "Stay organized & informed",
+          "description": "with our built-in activity section that aggregates all activity and communication for each company, conveniently accessible in one place."
         }
       }
     },
@@ -164,16 +231,16 @@
       "description": "A powerful time tracking system. Assign times to tasks and gain an overview of how time is spent on various activities.",
       "introduction": {
         "1": {
-          "title": "Time tracking with detailed activity documentation",
-          "description": "Track your working time individually: pause and start manually or divide into sections. Document your activities or events in detail with notes and descriptions."
+          "title": "Track your time",
+          "description": "and easily check your progress. Stop and restart or slip your time to enter detailed information on your events."
         },
         "2": {
-          "title": "Targeted time allocation to work activities",
-          "description": "Allocate your work hours specifically to individual events, meetings, or tasks."
+          "title": "Allocate your working hours",
+          "description": "to specific events, meetings, or tasks using our time tracking tool"
         },
         "3": {
-          "title": "Performance Monitoring and Analysis Tools",
-          "description": "Use the analysis tool to get an overview of all activities and statistical data. This helps you to evaluate productivity and increase efficiency."
+          "title": "Monitor all activities and statistics",
+          "description": "using our analytics tool to gain insights into productivity levels and enhance overall efficiency."
         }
       },
       "tourDescription_personal": "Track your time and easily check your progress, allocate tasks, events or meeting to your timer, see your statistics",
@@ -206,16 +273,16 @@
       "description": "Create and configure tasks freely. Stay organized with pinned boards and your specific tasks",
       "introduction": {
         "1": {
-          "title": "Easy task management",
-          "description": "Create your own pinboards and manage them with a simple drag-and-drop function."
+          "title": "Manage all your tasks",
+          "description": "as notes on the task managements pinboards and easily drag and drop them to organize them into categories"
         },
         "2": {
-          "title": "Customization of Tasks",
-          "description": "Design your tasks according to your individual needs by integrating elements such as assigning responsibilities, creating checklists, adding subtasks and much more."
+          "title": "Customize your tasks",
+          "description": "and add the things you need to them, wether that is responsibles checklists, subtasks or something else"
         },
         "3": {
-          "title": "Optimized project overview and transparent team communication",
-          "description": "Maintain an overview of all relevant project information and increase the efficiency of collaboration through transparent communication within the team."
+          "title": "Keep track and connected",
+          "description": "with our built in activity section that collects all activity and communication inside your task for your convenience"
         }
       },
       "tourDescription_personal": "Create and manage all your tasks, easily drag and drop to organize them into categories, customize tasks to your needs",
@@ -238,16 +305,16 @@
       "description": "Optimize all interactions with your customers",
       "introduction": {
         "1": {
-          "title": "Lead generation and communication",
-          "description": "Find potential customers and communicate directly with them through our integrated search system and communication features."
+          "title": "Find & connect",
+          "description": "with potential leads using our integrated search system and communication features."
         },
         "2": {
-          "title": "Lead-Management",
-          "description": "Optimize the organization and management of your leads by clearly structuring products and campaigns. Rely on a flexible follow-up process to encourage engagement and maximize sales opportunities."
+          "title": "Organize & manage leads",
+          "description": "effectively with a well-defined structure for products and campaigns. Take advantage of a flexible follow-up process to boost engagement and increase sales opportunities."
         },
         "3": {
-          "title": "Sales performance analysis",
-          "description": "Detailed analyses allow you to track and evaluate the performance of your sales organization. This allows you to optimize your strategies, maximize your results and make informed decisions to increase the overall efficiency of your sales force."
+          "title": "Detailed analytics",
+          "description": "helps you to track and understand sales performance and trends, enabling you to refine strategies, enhance outcomes, and make data-driven decisions that boost overall sales effectiveness."
         }
       }
     },
@@ -255,16 +322,16 @@
       "description": "Start building and managing your custom application data structure",
       "introduction": {
         "1": {
-          "title": "Customized data management ",
-          "description": "Import or create your database as a new schema in ByteBuilder and customize the data placement exactly to your needs"
+          "title": "Import or create your database",
+          "description": "as a new schema to the ByteBuilder, and easily fine-tune the data placement to align with your needs."
         },
         "2": {
-          "title": "Managing data structures",
-          "description": "Manage your existing data structures by adding, removing or editing data points at any time."
+          "title": "Manage your existing schemas",
+          "description": "by adding, removing, or editing data points at any time."
         },
         "3": {
-          "title": "Integration of dataClick to apply",
-          "description": "Seamlessly integrate data into your workflow as a dedicated data resource for specific users within the workflow."
+          "title": "Connect data into your wokflow",
+          "description": "as a database resource accessible to specific workflow users."
         }
       }
     },
@@ -286,16 +353,58 @@
       }
     },
     "subsidies": {
-      "description": "Manage your grants for R&D projects and ensure uniform and clean documentation."
+      "description": "Manage your grants for R&D projects and ensure uniform and clean documentation.",
+      "introduction": {
+        "1": {
+          "title": "Effortless Grant Management",
+          "description": "Streamline your R&D funding process with an intuitive platform to track, apply for, and manage grants."
+        },
+        "2": {
+          "title": "Compliance & Documentation",
+          "description": "Ensure regulatory compliance with automated tracking of required documents and timesheets."
+        },
+        "3": {
+          "title": "Funding Potential Optimization",
+          "description": "Identify untapped funding opportunities and maximize your grant utilization through insightful analytics."
+        }
+      }
     },
     "internalCustomers": {
       "description": "Support existing customers, customer projects, and customer activities."
     },
     "clusterPdf": {
-      "description": "Edit and convert from and to PDF"
+      "description": "Edit and convert from and to PDF",
+      "introduction": {
+        "1": {
+          "title": "Convert and edit PDFs",
+          "description": "Easily convert documents to and from PDF, including Word, Excel, images, and more. Edit and modify PDFs seamlessly."
+        },
+        "2": {
+          "title": "Manage and organize files",
+          "description": "Merge, split, rotate, and protect PDF files with built-in tools to enhance document handling and security."
+        },
+        "3": {
+          "title": "Sign and secure documents",
+          "description": "Fill, sign, and request digital signatures, ensuring secure and authenticated document workflows."
+        }
+      }
     },
     "externalForms": {
-      "description": "Create forms to collect data from external sources"
+      "description": "Create forms to collect data from external sources",
+      "introduction": {
+        "1": {
+          "title": "Create and customize forms",
+          "description": "Design professional forms with customizable fields, colors, and layouts to fit your needs."
+        },
+        "2": {
+          "title": "Share and collect responses",
+          "description": "Distribute your forms via links and collect structured data in real-time from any device."
+        },
+        "3": {
+          "title": "Analyze submissions",
+          "description": "Track responses, review analytics, and gain insights to improve data collection and decision-making."
+        }
+      }
     },
     "bulkMailing": {
       "description": "Send one-time and recurring emails such as newsletters, internal emails, or reminders",
@@ -318,16 +427,16 @@
       "description": "Sync time tracking, people and tasks and create projects & workplans based on your Structure.",
       "introduction": {
         "1": {
-          "title": "integration introduction 1 title",
-          "description": "integration introduction 1 description"
+          "title": "Cross-Platform Connectivity",
+          "description": "Effortlessly sync data between multiple applications, ensuring smooth and automated workflows across different tools."
         },
         "2": {
-          "title": "integration introduction 2 title",
-          "description": "Desigintegration introduction 2 description"
+          "title": "Smart Automation & Data Flow",
+          "description": "Streamline operations by automating repetitive tasks, synchronizing records, and reducing manual errors for increased efficiency."
         },
         "3": {
-          "title": "integration introduction 3 title",
-          "description": "Desigintegration introduction 3 description"
+          "title": "Customizable Integrations",
+          "description": "Tailor integrations based on business needs, with flexible API support and scalable infrastructure to connect existing and future applications."
         }
       },
       "tourDescription_personal": "integration tourDescription_personal",

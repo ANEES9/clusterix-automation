@@ -5,12 +5,14 @@ import { NotificationsPanelPage } from 'pages/notifications/notifications-panel-
 import { APP_NAMES } from 'constants/app-names'
 import { setupTestContext } from 'utils/test-context'
 import { BrowserContext } from 'playwright'
+import { CompanyPage } from 'pages/company-searcher/company-page'
 
 let browser: Browser
 let context: BrowserContext
 let page: Page
 let homePage: HomePage
 let notificationsPanelPage: NotificationsPanelPage
+let companyPage: CompanyPage
 let locale: string
 
 test.describe.parallel('Home Page Tests', () => {
@@ -27,6 +29,7 @@ test.describe.parallel('Home Page Tests', () => {
     locale = testContext.locale
     homePage = new HomePage(page, locale)
     notificationsPanelPage = new NotificationsPanelPage(page, locale)
+    companyPage = new CompanyPage(page, locale)
     await homePage.goto(baseURL)
     await page.waitForLoadState('domcontentloaded')
   })
@@ -76,15 +79,6 @@ test.describe.parallel('Home Page Tests', () => {
   })
 
   //Sidebar Navigation Tests
-  test('Validate Home Page Navigation from Sidebar', async () => {
-    Allure.addFeature('SIDEBAR')
-    await Allure.step('Navigate to Home Page', async () => {
-      await homePage.navigateToHomeFromSideBar()
-    })
-    await Allure.step('Check Current App', async () => {
-      await homePage.validateNoAppSelected()
-    })
-  })
   test('Validate Files Navigation from Sidebar', async () => {
     Allure.addFeature('SIDEBAR')
     await Allure.step('Navigate to Home Page', async () => {
@@ -112,9 +106,27 @@ test.describe.parallel('Home Page Tests', () => {
       await homePage.validateCurrentApp(APP_NAMES.pdf)
     })
   })
-  test('Validate Project Management Navigation from Sidebar', async () => {
+  test('Validate Human Resources Navigation from Sidebar', async () => {
     Allure.addFeature('SIDEBAR')
     await Allure.step('Navigate to HR Page', async () => {
+      await homePage.navigateToHrFromSideBar()
+    })
+    await Allure.step('Check Current App', async () => {
+      await homePage.validateCurrentApp(APP_NAMES.hr)
+    })
+  })
+  test('Validate Inventory Navigation from Sidebar', async () => {
+    Allure.addFeature('SIDEBAR')
+    await Allure.step('Navigate to Inventory Page', async () => {
+      await homePage.navigateToInventoryFromSideBar()
+    })
+    await Allure.step('Check Current App', async () => {
+      await homePage.validateCurrentApp(APP_NAMES.inventory)
+    })
+  })
+  test('Validate Project Management Navigation from Sidebar', async () => {
+    Allure.addFeature('SIDEBAR')
+    await Allure.step('Navigate to Project Management Page', async () => {
       await homePage.navigateToProjectManagementFromSideBar()
     })
     await Allure.step('Check Current App', async () => {
@@ -174,6 +186,9 @@ test.describe.parallel('Home Page Tests', () => {
     await Allure.step('Check Current App', async () => {
       await homePage.validateCurrentApp(APP_NAMES.companySearcher)
     })
+    await Allure.step('Check Current App', async () => {
+      await companyPage.skipCurrentlyActiveModal()
+    })
   })
   test('Validate Customers Navigation from Sidebar', async () => {
     Allure.addFeature('SIDEBAR')
@@ -227,6 +242,32 @@ test.describe.parallel('Home Page Tests', () => {
     })
     await Allure.step('Check Current App', async () => {
       await homePage.validateCurrentApp(APP_NAMES.templateManager)
+    })
+  })
+  test('Validate Home Page Navigation from Sidebar', async () => {
+    Allure.addFeature('SIDEBAR')
+    await Allure.step('Navigate to Home Page', async () => {
+      await homePage.navigateToHomeFromSideBar()
+    })
+    await Allure.step('Check Current App', async () => {
+      await homePage.validateNoAppSelected()
+    })
+  })
+
+  //Dashboard Item Tests
+  test('Validate Files Content in Dashboard', async () => {
+    await Allure.step('Hover File and Check', async () => {
+      await homePage.validateFilesSection()
+    })
+  })
+  test('Validate PDF Content in Dashboard', async () => {
+    await Allure.step('Hover PDF and Check', async () => {
+      await homePage.validatePdfSection()
+    })
+  })
+  test('Validate Office Content in Dashboard', async () => {
+    await Allure.step('Hover Office and Check', async () => {
+      await homePage.validateOfficeSection()
     })
   })
 })
