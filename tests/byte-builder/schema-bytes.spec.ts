@@ -21,8 +21,6 @@ test.describe.parallel('Byte Builder > Schema bytes Tests', () => {
     context = await browser.newContext()
     page = await context.newPage()
 
-    test.setTimeout(60000) // Temporary: Increase timeout for beforeAll hook (sometimes fails within 30s)
-
     Allure.addAppOwner('Byte Builder')
     Allure.addSeverity('normal')
     Allure.addTag('smoke')
