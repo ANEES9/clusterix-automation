@@ -576,5 +576,8 @@
   "value_max_limit": "Der Wert darf {{max}} nicht überschreiten.",
   "add_related_file_optional": "Verknüpfte Datei hinzufügen (optional)",
   "document_reduction_cost_input_required": "Sie haben ein Dokument zur Reduzierung ausgewählt. Bitte geben Sie den Betrag der Kostenreduzierung ein.",
-  "invoice_date": "Rechnungsdatum"
+  "invoice_date": "Rechnungsdatum",
+  "imprint": "Impressum",
+  "dataProtection": "Datenschutz",
+  "tc":"AGB"
 }

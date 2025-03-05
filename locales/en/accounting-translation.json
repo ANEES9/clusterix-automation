@@ -578,5 +578,8 @@
   "value_max_limit": "The value must not exceed {{max}}.",
   "add_related_file_optional": "Add related file (optional)",
   "document_reduction_cost_input_required": "You've selected a document for reduction. Please enter the cost reduction amount.",
-  "invoice_date": "Invoice date"
+  "invoice_date": "Invoice date",
+  "imprint": "Imprint",
+  "dataProtection": "Data Protection",
+  "tc": "T&C"
 }

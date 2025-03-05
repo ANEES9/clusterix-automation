@@ -23,6 +23,8 @@ export const APP_URLS = {
   register: '/register',
   resetPassword: '/reset-password',
   sso: '/sso',
+  dataProtection: '/privacy-policy',
+  termsAndConditions: '/terms-and-conditions',
   landing: {
     freddyAppointly: '/frederik-erber-termin-mit-frederik-erber',
     hrApp: `https://hr-${BASE_DOMAIN}/`,
@@ -83,6 +85,10 @@ export const APP_URLS = {
     },
     categories: '/accounting/categories',
     reports: '/accounting/financial-reports',
+    settings: {
+      base: '/accounting/settings',
+      installment: '/accounting/settings/installment',
+    },
   },
   byteBuilder: {
     base: '/byte-builder',

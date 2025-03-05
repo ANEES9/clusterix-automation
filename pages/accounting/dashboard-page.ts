@@ -9,6 +9,7 @@ import { InvoicesPage } from 'pages/accounting/invoices-page'
 import { ProductsPage } from 'pages/accounting/products-page'
 import { ReportsPage } from 'pages/accounting/reports-page'
 import { Allure } from 'common/allure-helper'
+import { tr } from '@faker-js/faker'
 
 export class DashboardPage {
   private page: Page
@@ -33,6 +34,10 @@ export class DashboardPage {
   private invoicesButton: Locator
   private productsButton: Locator
   private reportsButton: Locator
+  private collapseButton: Locator
+  private footerCompanyName: Locator
+  private footerYear: Locator
+  private footerImprint: Locator
 
   //Dashboard Page Items
   private dashboardPageTitle: Locator
@@ -50,36 +55,44 @@ export class DashboardPage {
     this.reportsPage = new ReportsPage(page, locale)
 
     //Sidebar Locators
-    this.dashboardButton = this.page.getByRole('button', {
+    this.dashboardButton = page.getByRole('button', {
       name: this.translations.dashboard,
     })
-    this.paymentsButton = this.page.getByRole('button', {
+    this.paymentsButton = page.getByRole('button', {
       name: this.translations.payments,
     })
-    this.bankAccountsButton = this.page.getByRole('button', {
+    this.bankAccountsButton = page.getByRole('button', {
       name: this.translations.bank_accounts.title,
     })
-    this.paymentTransactionsButton = this.page.getByRole('button', {
+    this.paymentTransactionsButton = page.getByRole('button', {
       name: this.translations.payment_transactions,
     })
-    this.chartOfAccountsButton = this.page.getByRole('button', {
+    this.chartOfAccountsButton = page.getByRole('button', {
       name: this.translations.chart_of_accounts,
     })
-    this.incomeButton = this.page.getByRole('button', {
+    this.incomeButton = page.getByRole('button', {
       name: this.translations.income,
     })
-    this.customersButton = this.page.getByRole('button', {
+    this.customersButton = page.getByRole('button', {
       name: this.translations.customers,
     })
-    this.invoicesButton = this.page.getByRole('button', {
+    this.invoicesButton = page.getByRole('button', {
       name: this.translations.invoices,
     })
-    this.productsButton = this.page.getByRole('button', {
+    this.productsButton = page.getByRole('button', {
       name: this.translations.products,
     })
-    this.reportsButton = this.page.getByRole('button', {
+    this.reportsButton = page.getByRole('button', {
       name: this.translations.reports,
     })
+    this.collapseButton = this.page.locator(
+      '//button[contains(@class, "collapseButton_")]'
+    )
+    this.footerCompanyName = page.locator('strong:text("innoscripta AG")')
+    this.footerYear = page.locator('div[class*="_companyName_16zcl_657"]')
+    this.footerImprint = page.locator(
+      '//div[contains(@class, "disclaimerLinks")]//text()[contains(., "Imprint")]'
+    )
 
     //Dashboard Page Locators
     this.dashboardPageTitle = this.page.getByRole('heading', {
@@ -239,5 +252,13 @@ export class DashboardPage {
     await Allure.step('Validate that URL is correct', async () => {
       await expect(this.page).toHaveURL(APP_URLS.accounting.reports)
     })
+  }
+  async validateNavigationToSettings(): Promise<void> {
+    await Allure.step(
+      'Click on the collapse button for opening sidebar',
+      async () => {
+        await this.collapseButton.click({ force: true })
+      }
+    )
   }
 }
