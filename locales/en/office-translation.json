@@ -1,0 +1,8 @@
+{
+  "untitled": "Untitled",
+  "exploreApps": "Explore the following applications",
+  "documentUnavailable": {
+    "title": "Unable to access the source file",
+    "description": "Unfortunately, the source document is not available, it may have been deleted in {{filesAppName}}"
+  }
+}

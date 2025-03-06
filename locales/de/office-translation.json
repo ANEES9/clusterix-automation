@@ -1,0 +1,8 @@
+{
+  "untitled": "Unbenanntes",
+  "exploreApps": "Erkunden Sie folgende Anwendungen",
+  "documentUnavailable": {
+    "title": "Kein Zugriff auf die Quelldatei möglich",
+    "description": "Leider ist das Quelldokument nicht verfügbar, möglicherweise wurde es im {{filesAppName}} gelöscht"
+  }
+}
