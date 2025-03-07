@@ -214,4 +214,8 @@ export const APP_URLS = {
     base: 'profile',
     vacationAndAbsenceDays: '/profile/vacation-and-absence-days',
   },
+  hr: {
+    base: '/hr',
+    EmployeeManagement: '/hr/employees',
+  },
 }
