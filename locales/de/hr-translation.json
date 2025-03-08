@@ -1,4 +1,13 @@
 {
+  "additional": {
+    "headingText": "Mitarbeiterverwaltung",
+    "selected": "Ausgewählt",
+    "selectedAll": "Alle auswählen",
+    "exportAll": "Alles exportieren",
+    "clearAllFilter": "Alle Filter löschen",
+    "employeeDeleted": "Der Mitarbeiter wird gelöscht",
+    "employeeTerminated": "ui.employees.toasts."
+  },
   "generalData": {
     "firstName": "Vorname",
     "lastName": "Nachname",

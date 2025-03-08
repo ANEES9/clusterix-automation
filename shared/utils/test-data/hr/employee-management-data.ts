@@ -11,9 +11,10 @@ export const employeeTable = {
     gender:'male',
     office:'AP North2214',
     contractType:'Clusterix testing',
-    recruiter:'Wahyuuuuy Febrianto testt',
+    recruiter:'Wahyu Febrianto test',
     role:'IT',
-    department:'Testing'
+    department:'Testing',
+    contractStatus: 'All'
   }
  
  

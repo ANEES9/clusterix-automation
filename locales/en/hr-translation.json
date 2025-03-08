@@ -1,4 +1,13 @@
 {
+    "additional": {
+      "headingText": "Employee management",
+      "selected": "Selected",
+      "selectAll": "Select all",
+      "exportAll": "Export all",
+      "clearAllFilters": "Clear all filters",
+      "employeeDeleted": "The employee is deleted",
+      "employeeTerminated": "The employee has been"
+    },
   "generalData": {
     "firstName": "First name",
     "lastName": "Last name",
