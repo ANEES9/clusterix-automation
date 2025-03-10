@@ -15,27 +15,23 @@ let locale: string
 let createdEmployee: { firstName: string; lastName: string } | null = null
 
 
-test.describe('Regression Test Suite', () => {
-  test.setTimeout(12000)
+test.describe('HR > Employee Management Test', () => {
   test.beforeAll(async ({ browser: testBrowser, baseURL }, testInfo) => {
     browser = testBrowser
     context = await browser.newContext()
-    test.setTimeout(12000)
     page = await context.newPage()
     const testContext = await setupTestContext(page, testInfo)
     locale = testContext.locale
     employeeManagementPage = new EmployeeManagementPage(page, locale)
-    //await employeeManagementPage.goto(baseURL!)
+    await employeeManagementPage.goto(baseURL!)
     await page.waitForLoadState('networkidle')
   })
-
 
   test('Verify Employee Management heading and total number of employees', async ({ }) => {
     Allure.addDescription(
       'Verify Employee Management heading and total number of employees.'
     )
     Allure.addSeverity('normal')
-
 
     await Allure.step(
       'Step 1: Navigate to Employee Management & Verify the Heading',
@@ -51,13 +47,11 @@ test.describe('Regression Test Suite', () => {
     )
   })
 
-
   test('Verify Searching for an employee by full name and verify results', async ({ }) => {
     Allure.addDescription(
       'Verify Searching for an employee by full name and verify results.'
     )
     Allure.addSeverity('critical')
-
 
     await Allure.step(
       'Step 1: Search an Employee with Full Name & Verify the Result',
@@ -69,13 +63,11 @@ test.describe('Regression Test Suite', () => {
     )
   })
 
-
   test('Verify Searching for an employee by First name and verify results', async ({ }) => {
     Allure.addDescription(
       'Verify Searching for an employee by First name and verify results.'
     )
     Allure.addSeverity('critical')
-
 
     await Allure.step(
       'Step 1: Search an Employee with First Name & Verify the Result',
@@ -86,7 +78,6 @@ test.describe('Regression Test Suite', () => {
       }
     )
   })
-
 
   test('Verify Searching for an employee by Last name and verify results', async ({ }) => {
     Allure.addDescription(
@@ -105,7 +96,6 @@ test.describe('Regression Test Suite', () => {
     )
   })
 
-
   test('Verify Searching for an employee by Non-exhisting name and verify results', async ({ }) => {
     Allure.addDescription(
       'Verify Searching for an employee by Non-exhisting name and verify results.'
@@ -123,7 +113,6 @@ test.describe('Regression Test Suite', () => {
     )
   })
 
-
   //------------------------ selecte All ----------------------
   test('Verify select all employees functionality', async ({ }) => {
     Allure.addDescription('Verify select all employees functionality.')
@@ -138,10 +127,9 @@ test.describe('Regression Test Suite', () => {
     )
   })
 
-
   //------------------------ Export All ----------------------
   test('Verify Export All  functionality', async ({ }) => {
-    Allure.addDescription('Verify Export selected functionality')
+    Allure.addDescription('Verify Export All  functionality')
     Allure.addSeverity('normal')
 
 
@@ -153,10 +141,9 @@ test.describe('Regression Test Suite', () => {
     )
   })
 
-
   //------------------------ Export Selected All----------------------
   test('Verify Export Selected All  functionality', async ({ }) => {
-    Allure.addDescription('Verify Export selected functionality')
+    Allure.addDescription('Verify Export Selected All  functionality')
     Allure.addSeverity('normal')
 
 
@@ -168,10 +155,9 @@ test.describe('Regression Test Suite', () => {
     )
   })
 
-
   //------------------------ Delete Selected ----------------------
   test('Verify Delete Selected All  functionality', async ({ }) => {
-    Allure.addDescription('Verify Export selected functionality')
+    Allure.addDescription('Verify Delete Selected All  functionality')
     Allure.addSeverity('normal')
 
 
@@ -182,7 +168,6 @@ test.describe('Regression Test Suite', () => {
       }
     )
   })
-
 
   //------------------------ Filter ----------------------
   test(
@@ -201,7 +186,6 @@ test.describe('Regression Test Suite', () => {
         }
       )
 
-
       await Allure.step('Step 2: Step 2: Verify applied filter', async () => {
         await employeeManagementPage.verifyAppliedFilter(
           'gender',
@@ -211,7 +195,6 @@ test.describe('Regression Test Suite', () => {
     }
   )
 
-
   test(
     'Apply a single filter(Location) and verify results update correctly',
     async ({ }) => {
@@ -219,7 +202,6 @@ test.describe('Regression Test Suite', () => {
         'Apply a Location filter and verify results update correctly..'
       )
       Allure.addSeverity('normal') // Set severity level for the test
-
 
       await Allure.step(
         'Step 1: Verify Location filter and verify functionality',
@@ -239,20 +221,17 @@ test.describe('Regression Test Suite', () => {
     }
   )
 
-
   test('Verify Clear All filters', async ({ }) => {
     Allure.addDescription('Verify Clear All filters')
     Allure.addSeverity('normal') // Set severity level for the test
     await employeeManagementPage.verifyClearAllFilters()
   })
 
-
   test('Apply a multiple filter (location and gender) filter and verify results update correctly', async ({ }) => {
     Allure.addDescription(
       'Apply a multiple filter (location and gender) filter and verify results update correctly.'
     )
     Allure.addSeverity('normal') // Set severity level for the test
-
 
     await employeeManagementPage.applyFilter({
       gender: employeeTable.gender,
@@ -271,20 +250,17 @@ test.describe('Regression Test Suite', () => {
     await employeeManagementPage.verifyFilterPersisted()
   })
 
-
   test('Verify Filter Behavior with No Matching Data', async ({ }) => {
     Allure.addDescription('Verify Filter Behavior with No Matching Data.')
     Allure.addSeverity('normal') // Set severity level for the test
     await employeeManagementPage.verifyFilterWhenNoMatcheFound()
   })
 
-
   test('Verify Unselecting a Filter Option', async ({ }) => {
     Allure.addDescription('Verify Unselecting a Filter Option.')
     Allure.addSeverity('normal') // Set severity level for the test
     await employeeManagementPage.verifyUnselectingAFilter()
   })
-
 
   test('Verify applying contract type filter', async ({ }) => {
     Allure.addDescription('Verify applying contract type filter.')
@@ -301,7 +277,6 @@ test.describe('Regression Test Suite', () => {
       )
     })
   })
-
 
   test('Verify applying Recruiter filter', async ({ }) => {
     Allure.addDescription('Verify applying Recruiter  filter.')
@@ -334,7 +309,6 @@ test.describe('Regression Test Suite', () => {
     })
   })
 
-
   test('Verify applying Department filter', async ({ }) => {
     Allure.addDescription('Verify applying Department filter.')
     Allure.addSeverity('normal') // Set severity level for the test
@@ -353,14 +327,13 @@ test.describe('Regression Test Suite', () => {
 
 
   test('Verify applying Contract status filter', async ({ }) => {
-    Allure.addDescription('Verify applying Department filter.')
+    Allure.addDescription('Verify applying Contract status filter.')
     Allure.addSeverity('normal') // Set severity level for the test
     await Allure.step(
       'Step 1: Apply the Contract status as "ALL" filter',
       async () => {
         await employeeManagementPage.applyContractStatusFilter()
       })
-
   })
 
   //creat an employee
@@ -388,7 +361,6 @@ test.describe('Regression Test Suite', () => {
     Allure.addDescription('Delete an employee')
     Allure.addSeverity('critical') // Set severity level for the test
 
-
     await Allure.step('Step 1: Open Create employee modal', async () => {
       await employeeManagementPage.openCreateEmployeeModal()
       createdEmployee = await employeeManagementPage.fillDetailsAndSave()
@@ -405,9 +377,8 @@ test.describe('Regression Test Suite', () => {
 
   //Deleting an employee in Employee Profile
   test('Delete Employee from Employee Profile model', async ({ }) => {
-    Allure.addDescription('Create an employee.')
+    Allure.addDescription('Delete Employee from Employee Profile model')
     Allure.addSeverity('critical') // Set severity level for the test
-
 
     await Allure.step('Step 1: Open Create employee modal', async () => {
       await employeeManagementPage.openCreateEmployeeModal()
@@ -427,9 +398,8 @@ test.describe('Regression Test Suite', () => {
 
   //Terminating an employee in Employee Profile
   test('Terminate Employee from Employee Profile model', async ({ }) => {
-    Allure.addDescription('Create an employee.')
+    Allure.addDescription('Terminate Employee from Employee Profile model.')
     Allure.addSeverity('critical') // Set severity level for the test
-
 
     await Allure.step('Step 1: Open Create employee modal', async () => {
       await employeeManagementPage.openCreateEmployeeModal()

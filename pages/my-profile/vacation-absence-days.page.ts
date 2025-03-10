@@ -356,12 +356,12 @@ export class VacationAbsenceDaysPage {
   async verifyVacationDialogCloseButton() {
     await Allure.step('Vacation Confirmation Dialog is closed', async () => {
       await expect(this.vacationDialogCloseButtonLocator).toBeVisible()
-      await this.vacationDialogCloseButtonLocator.click() // Close the confirmation dialog.
+      await this.vacationDialogCloseButtonLocator.click() 
     })
   }
 
   async verifyCancellingOfAbsenceModal() {
-    await this.clickCreateButton() // Added await for async function
-    await this.cancellAbsenceModalLocator.click() // Added await for locator interaction
+    await this.clickCreateButton() 
+    await this.cancellAbsenceModalLocator.click() 
   }
 }

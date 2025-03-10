@@ -17,7 +17,6 @@ test.describe('Regression Test Suite', () => {
     browser = testBrowser
     context = await browser.newContext()
     page = await context.newPage()
-
     Allure.addSeverity('normal')
     Allure.addTag('smoke')
     const testContext = await setupTestContext(page, testInfo)
@@ -29,7 +28,7 @@ test.describe('Regression Test Suite', () => {
   })
 
   test('Verify selecting available filter', async () => {
-    Allure.addDescription('Verify remaining number of Leaves')
+    Allure.addDescription('Verify selecting available filter')
     Allure.addTag('regression')
     Allure.addSeverity('normal')
 
@@ -72,7 +71,7 @@ test.describe('Regression Test Suite', () => {
   })
 
   test('Verify remaining number of Leaves in Sick Days section', async () => {
-    Allure.addDescription('Verify remaining number of Leaves')
+    Allure.addDescription('Verify remaining number of Leaves in Sick Days section')
     Allure.addTag('regression')
     Allure.addSeverity('normal')
 
@@ -94,7 +93,7 @@ test.describe('Regression Test Suite', () => {
   })
 
   test('Verify cancelling of absence modal', async ({}) => {
-    Allure.addDescription('Verify remaining number of Leaves')
+    Allure.addDescription('Verify cancelling of absence modal')
     Allure.addTag('regression')
     Allure.addSeverity('normal')
 
