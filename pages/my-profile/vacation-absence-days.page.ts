@@ -192,7 +192,7 @@ export class VacationAbsenceDaysPage {
   async goto(baseURL: string | undefined) {
     await Allure.step('should navigate to my profile', async () => {
       await this.page.goto(
-        `${baseURL}${APP_URLS.myProfile.vacationAndAbsenceDays}`
+        `${baseURL}${APP_URLS.settings.myProfile.vacationAndAbsenceDays}`
       )
     })
   }

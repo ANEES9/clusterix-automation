@@ -172,17 +172,12 @@ export class EmployeeManagementPage {
       name: 'male',
       exact: true,
     })
-
-    //Contract Type Filters Locators
     this.contractTypeFilterCategoryLocator = this.page.locator(
       '(//*[@class="_button__name_l7kvi_19"])[5]'
     )
-    //Recruiter Filters Locators
     this.recruiterFilterCategoryLocator = this.page.locator(
       '(//*[@class="_button__name_l7kvi_19"])[6]'
     )
-
-    //Role Filters Locators
     this.roleFilterCategoryLocator = this.page.locator(
       '(//*[@class="_button__name_l7kvi_19"])[7]'
     )
@@ -190,12 +185,9 @@ export class EmployeeManagementPage {
       '(//*[@class="_dropdown_1ew5s_1"])[5]'
     )
 
-    //Department Filters Locators
     this.departmentFilterCategoryLocator = this.page.locator(
       '(//*[@class="_button__name_l7kvi_19"])[11]'
     )
-
-    //ContractStatus Filter Locators
     this.contractStatusFilterCategoryLocator = page.locator('(//*[@class="_button__name_l7kvi_19"])[14]')
     this.contractStatusIn2MonthsOptionLocator = page.locator(
       '(//*[@class="_listItem__name_cx3fq_23"])[3]'
@@ -203,7 +195,6 @@ export class EmployeeManagementPage {
     this.contractStatusAllOptionLocator = page.locator(
       '(//*[@class="_listItem__name_cx3fq_23"])[1]'
     )
-
     this.filterCount = this.page.getByText('2', { exact: true }).first()
     this.initialFilterCountLocator = this.page
       .getByText('1', { exact: true })
@@ -268,7 +259,7 @@ export class EmployeeManagementPage {
 
   //Other methods
   async verifyHeading() {
-    await this.fullTableLocator.waitFor({ state: 'visible', timeout: 500000 })
+    await this.fullTableLocator.waitFor({ state: 'visible', timeout: 3000 })
     await expect(this.headingTextLocator).toBeVisible()
   }
 
@@ -286,12 +277,10 @@ export class EmployeeManagementPage {
     await this.page.waitForTimeout(2000)
 
     if (await this.fullTableLocator.isVisible()) {
-      // Validate that the employee is present in the table (case-insensitive)
       await expect(this.searchResultNameLocator).toHaveText(
         new RegExp(searchValue, 'i')
       )
     } else {
-      // Wait for "No items found" message and validate
       await this.noMatchingFoundTextLoacor.waitFor({
         state: 'visible',
         timeout: 5000,
@@ -302,7 +291,7 @@ export class EmployeeManagementPage {
     }
 
 
-    await this.searchBoxLocator.fill('') // Reset search box
+    await this.searchBoxLocator.fill('') //
   }
 
   async verifySelectAllEmployee() {
@@ -345,8 +334,6 @@ export class EmployeeManagementPage {
       this.exportAllLocator.click(),
     ])
 
-
-    // Verify that a download was triggered
     expect(download).toBeDefined()
     await this.SelectAllCheckBoxForEmployeeTableLocator.click()
     await this.hideBradWrapperLocator.click()
@@ -367,7 +354,6 @@ export class EmployeeManagementPage {
       this.exportSelectedAllLocator.click(),
     ])
 
-    // Verify that a download was triggered
     expect(download).toBeDefined()
 
     await this.SelectAllCheckBoxForEmployeeTableLocator.click()
@@ -428,7 +414,7 @@ export class EmployeeManagementPage {
   }
 
   async applyFilter(filters: { [key: string]: string }) {
-    await this.fullTableLocator.waitFor({ state: 'visible', timeout: 2000 }) // Ensure table is loaded
+    await this.fullTableLocator.waitFor({ state: 'visible', timeout: 2000 })
 
     let appliedFilterCountText =
       await this.initialFilterCountLocator.textContent()
@@ -550,7 +536,7 @@ export class EmployeeManagementPage {
           console.warn(`Unknown filter type: ${filterType}`)
       }
 
-      await this.page.waitForTimeout(1000) //to load all filter options - mandatory
+      await this.page.waitForTimeout(1000)
       filterOptionLocator = this.getFilterOptionLocator(filterValue)
       await filterOptionLocator.click()
       await this.collapseButtonLocator.waitFor({
@@ -561,10 +547,10 @@ export class EmployeeManagementPage {
       await this.filterToggleButtonLocator.click()
       appliedFilterCount++
     }
-    await this.page.waitForLoadState('networkidle') // Ensure filters are applied
+    await this.page.waitForLoadState('networkidle')
 
     if (appliedFilterCount > 1) {
-      await this.fullTableLocator.waitFor({ state: 'visible', timeout: 70000 }) // Ensure filtered results appear
+      await this.fullTableLocator.waitFor({ state: 'visible', timeout: 3000 })
     } else {
       await this.noMatchingFoundTextLoacor.waitFor({
         state: 'attached',
@@ -654,14 +640,14 @@ export class EmployeeManagementPage {
     await this.page.waitForLoadState('networkidle')
     await this.fullTableLocator.waitFor({ state: 'visible', timeout: 2000 })
 
-    await this.page.waitForSelector('text="2"') // Wait until the filter count reappears
+    await this.page.waitForSelector('text="2"')
     const persistedFilterCountText = await this.filterCount.textContent()
     expect(persistedFilterCountText).toBe('2')
     await this.ClearAllFilters()
   }
 
   async verifyFilterWhenNoMatcheFound() {
-    await this.fullTableLocator.waitFor({ state: 'visible', timeout: 200000 })
+    await this.fullTableLocator.waitFor({ state: 'visible', timeout: 3000 })
     await this.filterToggleButtonLocator.click()
     await this.locationFilterCategoryLocator.click()
     await this.dropdownLocator.waitFor({ state: 'visible' })
@@ -681,7 +667,7 @@ export class EmployeeManagementPage {
   }
 
   async verifyUnselectingAFilter() {
-    await this.fullTableLocator.waitFor({ state: 'visible', timeout: 2000000 })
+    await this.fullTableLocator.waitFor({ state: 'visible', timeout: 3000 })
     const countBeforeApplyingFilter =
       await this.initialFilterCountLocator.textContent()
     await this.selectLocationFilter()
@@ -716,9 +702,8 @@ export class EmployeeManagementPage {
   }
 
   async openCreateEmployeeModal() {
-    await this.fullTableLocator.waitFor({ state: 'visible', timeout: 70000 })
+    await this.fullTableLocator.waitFor({ state: 'visible', timeout: 3000 })
     await this.createEmployeeButton.click()
-    // Wait for the modal to appear (adjust text if needed)
     await this.firstNameInput.waitFor({ state: 'visible' })
   }
 
@@ -775,7 +760,7 @@ export class EmployeeManagementPage {
     await this.searchResultNameLocator.waitFor({
       state: 'visible',
       timeout: 5000,
-    }) // Allow time for results to load
+    })
     await expect(this.searchResultNameLocator).toHaveText(
       new RegExp(employeeName, 'i')
     )
@@ -794,8 +779,8 @@ export class EmployeeManagementPage {
     await this.searchBoxLocator.fill(employeeName)
     await this.searchResultNameLocator.waitFor({
       state: 'visible',
-      timeout: 5000, //required 5sec to load result
-    }) // Allow time for results to load
+      timeout: 5000, 
+    })
     await expect(this.searchResultNameLocator).toContainText(
       new RegExp(employeeName, 'i')
     )
@@ -806,7 +791,7 @@ export class EmployeeManagementPage {
     await this.removeSidebar()
     await this.employeeProfileOptionLocator.waitFor({
       state: 'visible',
-      timeout: 2000, //this requires some time
+      timeout: 2000,
     })
     await this.employeeProfileOptionLocator.click({ force: true })
     await this.deleteEmployeeOptionLocator.click()
@@ -823,7 +808,7 @@ export class EmployeeManagementPage {
     await this.searchResultNameLocator.waitFor({
       state: 'visible',
       timeout: 5000,
-    }) // Allow time for results to load
+    })
     await expect(this.searchResultNameLocator).toContainText(
       new RegExp(employeeName, 'i')
     )
@@ -860,7 +845,7 @@ export class EmployeeManagementPage {
   async refreshFilter() {
     await this.employeeRecruitment.click()
     await this.employeeManagement.click()
-    await this.fullTableLocator.waitFor({ state: 'visible', timeout: 900000 })
+    await this.fullTableLocator.waitFor({ state: 'visible', timeout: 3000 })
   }
 }
 

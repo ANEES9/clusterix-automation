@@ -43,6 +43,7 @@ export const APP_URLS = {
         basicData: '/settings/users-and-permissions/my-profile/basic-data',
         securityAndPrivacy:
           '/settings/users-and-permissions/my-profile/security-and-privacy',
+          vacationAndAbsenceDays: '/profile/vacation-and-absence-days',
       },
       accounts: '/settings/users-and-permissions/accounts',
       rolesAndPermissions:
@@ -137,7 +138,8 @@ export const APP_URLS = {
     details: (taskId: string) => `/task-management/details/${taskId}`,
   },
   hr: {
-    base: '/hr/container-app',
+    base: '/hr',
+    EmployeeManagement: '/hr/employees',
   },
   files: {
     base: '/cluster-space',
@@ -209,13 +211,5 @@ export const APP_URLS = {
       campaign: (campaignId: string) => `/bulk-mailing/campaigns/${campaignId}`,
     },
     audience: '/bulk-mailing/audiences',
-  },
-  myProfile: {
-    base: 'profile',
-    vacationAndAbsenceDays: '/profile/vacation-and-absence-days',
-  },
-  hr: {
-    base: '/hr',
-    EmployeeManagement: '/hr/employees',
   },
 }
