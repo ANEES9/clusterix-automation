@@ -518,12 +518,13 @@
     },
     "Account has been successfully added": "Ihr Account wurde erfolgreich hinzugefügt.",
     "folders": {
-      "inbox": "Posteingang",
-      "sent": "Gesendet",
-      "spam": "Spam",
-      "archive": "Archiv",
-      "deleted": "Papierkorb",
-      "drafts": "Entwürfe"
+      "inbox": "INBOX",
+      "sent_items": "Sent Items",
+      "junk_email": "Junk Email",
+      "archive": "Archive",
+      "deleted_items": "Deleted Items",
+      "drafts": "Drafts",
+      "scheduled": "Scheduled"
     },
     "createFolder": "Ordner erstellen",
     "newFolder": "Neuer Ordner",
