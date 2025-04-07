@@ -139,7 +139,8 @@ export const APP_URLS = {
   },
   hr: {
     base: '/hr',
-    EmployeeManagement: '/hr/employees',
+    employeeManagement: '/hr/employees',
+    openPosition: '/hr/candidates/open-positions',
   },
   files: {
     base: '/cluster-space',

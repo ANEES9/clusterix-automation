@@ -16,8 +16,7 @@ export const employeeTable = {
     department:'Testing',
     contractStatus: 'All'
   }
- 
- 
+
   export const confirmationDialogTitles = {
     vacation: 'Your vacation request is sent!',
     sick: 'Your sick days are added!',

@@ -84,9 +84,10 @@ export class EmployeeManagementPage {
     this.employeeManagement = page.locator(
       '(//div[@class="_wrapper_qiky4_1"])[6]'
     )
-    this.employeeRecruitment = page.locator(
-      '(//div[@class="_wrapper_qiky4_1"])[7]'
-    )
+    this.employeeRecruitment = page.getByRole('button', {
+      name: /Employee recruitment|Mitarbeitergewinnung/
+    })
+
     this.searchBoxLocator = page.getByRole('textbox', { name: 'Search' })
     this.magnifierButtonLocator = page.locator(
       '(//*[@class="_wrapper_1p4sk_1"])[14]'
@@ -253,7 +254,7 @@ export class EmployeeManagementPage {
   //GoTo Method
   async goto(baseURL: string | undefined) {
     await Allure.step('should navigate to my profile', async () => {
-      await this.page.goto(`${baseURL}${APP_URLS.hr.EmployeeManagement}`)
+      await this.page.goto(`${baseURL}${APP_URLS.hr.employeeManagement}`)
     })
   }
 
@@ -313,6 +314,9 @@ export class EmployeeManagementPage {
     expect(selectedCount).toBeGreaterThan(0)
     await this.SelectAllCheckBoxForEmployeeTableLocator.click()
     await this.hideBradWrapperLocator.click()
+  }
+  async verfyEmployeeRecruitment() {
+    await this.employeeRecruitment.click()
   }
 
 
@@ -779,7 +783,7 @@ export class EmployeeManagementPage {
     await this.searchBoxLocator.fill(employeeName)
     await this.searchResultNameLocator.waitFor({
       state: 'visible',
-      timeout: 5000, 
+      timeout: 5000,
     })
     await expect(this.searchResultNameLocator).toContainText(
       new RegExp(employeeName, 'i')

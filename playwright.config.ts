@@ -1,8 +1,8 @@
 import { defineConfig, devices } from '@playwright/test'
 import * as dotenv from 'dotenv'
 import path from 'node:path'
-import { LANGUAGES } from 'config/language-config'
-import { APP_NAMES } from 'constants/app-names'
+import { LANGUAGES } from '../clusterix-automation/config/language-config'
+import { APP_NAMES } from '../clusterix-automation/shared/constants/app-names'
 
 dotenv.config({ path: `.env.${process.env.NODE_ENV || 'testing'}` })
 
@@ -22,7 +22,7 @@ export default defineConfig({
     video: 'retain-on-failure',
     screenshot: 'only-on-failure',
   },
-  //globalSetup: require.resolve('./global-setup'),
+  globalSetup: require.resolve('./global-setup'),
   //globalTeardown: require.resolve('./global-teardown'),
   workers: 1,
   projects: [
@@ -35,7 +35,7 @@ export default defineConfig({
 function generateProjects() {
   const browsers = [
     { name: 'Chromium', device: devices['Desktop Chrome'] },
-    //{ name: 'Firefox', device: devices['Desktop Firefox'] },
+    { name: 'Firefox', device: devices['Desktop Firefox'] },
     //{ name: 'WebKit', device: devices['Desktop Safari'] },
   ]
 
