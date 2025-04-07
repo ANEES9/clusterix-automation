@@ -51,7 +51,15 @@
       "November",
       "Dezember"
     ],
-    "days": ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"],
+    "days": [
+      "Mo",
+      "Di",
+      "Mi",
+      "Do",
+      "Fr",
+      "Sa",
+      "So"
+    ],
     "fullDays": {
       "monday": "Montag",
       "tuesday": "Dienstag",
@@ -274,7 +282,15 @@
       "next_week": "Nächste Woche",
       "set_a_date": "Ein Datum festlegen",
       "remind_me": "Erinnere mich"
-    }
+    },
+    "companies": "Unternehmen",
+    "copy": "Kopie",
+    "clips": "Ausschnitte",
+    "copied_successfully": "Erfolgreich kopiert",
+    "rule": "Regel",
+    "added_by": "Hinzugefügt von",
+    "date_added": "Hinzugefügt am",
+    "type": "Typ"
   },
   "composer": {
     "If you leave before saving, your changes will be lost": "Wenn Sie vor dem Speichern abbrechen, gehen Ihre Änderungen verloren.",
@@ -463,7 +479,17 @@
     "connect": "Verbinden",
     "remove_link": "Link entfernen",
     "remove_all_links": "Alle Links entfernen",
-    "open_company_details": "Unternehmensdaten öffnen"
+    "open_company_details": "Unternehmensdaten öffnen",
+    "filter_emails_by_this_company": "E-Mails dieser Firma filtern",
+    "save_as_a_clip": "Als Clip speichern",
+    "discard_clip": "Clip verwerfen",
+    "clip_saved": "Clip gespeichert",
+    "clip_deleted": "Clip gelöscht",
+    "text_can_not_be_clipped": "Der ausgewählte Text kann nicht ausgeschnitten werden. Bitte treffen Sie eine andere Auswahl.",
+    "selection_includes_clip": "Ihre aktuelle Auswahl enthält bereits einen Clip. Bitte verwerfen Sie ihn zuerst und versuchen Sie es erneut.",
+    "clip_too_small": "Der ausgewählte Text ist zu klein und kommt mehrfach vor. Bitte erweitern Sie die Auswahl.",
+    "selection_will_be_omitted": "Einige ausgewählte Texte werden aufgrund falscher Formatierung oder ungültiger Zeichen weggelassen.",
+    "discard_all_clips": "Alle Clips verwerfen"
   },
   "main": {
     "title": "Clusterix: Deutschlands führende B2B Plattform",

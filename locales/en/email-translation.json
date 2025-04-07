@@ -47,7 +47,15 @@
       "November",
       "December"
     ],
-    "days": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+    "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun"
+    ],
     "fullDays": {
       "monday": "Monday",
       "tuesday": "Tuesday",
@@ -271,7 +279,15 @@
       "tomorrow": "Tomorrow",
       "next_week": "Next week",
       "set_a_date": "Set a date"
-    }
+    },
+    "companies": "Companies",
+    "copy": "Copy",
+    "clips": "Clips",
+    "copied_successfully": "Copied successfully",
+    "rule": "Rule",
+    "added_by": "Added by",
+    "date_added": "Date added",
+    "type": "Type"
   },
   "composer": {
     "If you leave before saving, your changes will be lost": "If you leave before saving, your changes will be lost.",
@@ -460,7 +476,17 @@
     "connect": "Connect",
     "remove_link": "Remove link",
     "remove_all_links": "Remove all links",
-    "open_company_details": "Open company details"
+    "open_company_details": "Open company details",
+    "filter_emails_by_this_company": "Filter emails by this company",
+    "save_as_a_clip": "Save as a clip",
+    "discard_clip": "Discard clip",
+    "clip_saved": "Clip saved",
+    "clip_deleted": "Clip deleted",
+    "text_can_not_be_clipped": "The selected text can not be clipped, please use another selection",
+    "selection_includes_clip": "Your current selection includes an existing clip. Please discard it first and try again.",
+    "clip_too_small": "The selected text is too small and has multiple occurrences. Please expand selection",
+    "selection_will_be_omitted": "Some selected text will be omitted due to incorrect formatting or invalid characters.",
+    "discard_all_clips": "Discard all clips"
   },
   "main": {
     "title": "",
@@ -488,13 +514,12 @@
       }
     },
     "folders": {
-      "inbox": "INBOX",
-      "sent_items": "Sent Items",
-      "junk_email": "Junk Email",
+      "inbox": "Inbox",
+      "sent": "Sent",
+      "spam": "Spam",
       "archive": "Archive",
-      "deleted_items": "Deleted Items",
-      "drafts": "Drafts",
-      "scheduled": "Scheduled"
+      "deleted": "Deleted",
+      "drafts": "Drafts"
     },
     "newFolder": "Add New folder",
     "createFolder": "Create folder",
