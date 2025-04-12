@@ -260,7 +260,7 @@ export class EmployeeManagementPage {
 
   //Other methods
   async verifyHeading() {
-    await this.fullTableLocator.waitFor({ state: 'visible', timeout: 3000 })
+    await this.fullTableLocator.waitFor({ state: 'visible' })
     await expect(this.headingTextLocator).toBeVisible()
   }
 
@@ -275,7 +275,7 @@ export class EmployeeManagementPage {
     // Clear and enter the search value
     await this.searchBoxLocator.fill('')
     await this.searchBoxLocator.fill(searchValue)
-    await this.page.waitForTimeout(2000)
+    await this.page.waitForLoadState('networkidle')
 
     if (await this.fullTableLocator.isVisible()) {
       await expect(this.searchResultNameLocator).toHaveText(
@@ -284,7 +284,6 @@ export class EmployeeManagementPage {
     } else {
       await this.noMatchingFoundTextLoacor.waitFor({
         state: 'visible',
-        timeout: 5000,
       })
       await expect(this.noMatchingFoundTextLoacor).toHaveText(
         new RegExp(employeeTable.NoItemFoundText.join('|'), 'i')
@@ -299,7 +298,6 @@ export class EmployeeManagementPage {
     await this.fullTableLocator.waitFor({ state: 'visible' })
     await this.expandBardWrapperLocator.waitFor({
       state: 'visible',
-      timeout: 2000,
     })
     await this.expandBardWrapperLocator.click()
     const initialCountElement = this.countBeforeSelectingAllEmployeesLocator
@@ -324,12 +322,10 @@ export class EmployeeManagementPage {
     await this.fullTableLocator.waitFor({ state: 'visible' })
     await this.expandBardWrapperLocator.waitFor({
       state: 'visible',
-      timeout: 1000,
     })
     await this.expandBardWrapperLocator.click()
     await this.SelectAllCheckBoxForEmployeeTableLocator.waitFor({
       state: 'visible',
-      timeout: 1000,
     })
     await this.SelectAllCheckBoxForEmployeeTableLocator.click()
 
@@ -345,7 +341,7 @@ export class EmployeeManagementPage {
 
 
   async verifyExportSelected() {
-    await this.fullTableLocator.waitFor({ state: 'visible', timeout: 2000 })
+    await this.fullTableLocator.waitFor({ state: 'visible' })
     this.page.locator('//*[@class="_wrapper_9tzoo_1"][2]').click()
 
     await this.SelectAllCheckBoxForEmployeeTableLocator.waitFor({
@@ -365,7 +361,7 @@ export class EmployeeManagementPage {
   }
 
   async verifyDeleteSeleceted() {
-    await this.fullTableLocator.waitFor({ state: 'visible', timeout: 2000 })
+    await this.fullTableLocator.waitFor({ state: 'visible' })
     await this.expandBardWrapperLocator.waitFor({ state: 'visible' })
     await this.expandBardWrapperLocator.click()
     await this.SelectAllCheckBoxForEmployeeTableLocator.waitFor({
@@ -381,17 +377,14 @@ export class EmployeeManagementPage {
   async slecetGenderFilter() {
     await this.filterToggleButtonLocator.waitFor({
       state: 'visible',
-      timeout: 2000,
     })
     await this.filterToggleButtonLocator.click()
     await this.genderFilterCategoryLocator.waitFor({
       state: 'visible',
-      timeout: 2000,
     })
     await this.genderFilterCategoryLocator.click()
     await this.dropdownLocator.waitFor({
       state: 'visible',
-      timeout: 2000,
     })
     await this.dropdownLocator.click()
     await this.maleGenderOptionLocator.click()
@@ -407,10 +400,9 @@ export class EmployeeManagementPage {
     await this.filterToggleButtonLocator.click()
     await this.locationFilterCategoryLocator.waitFor({
       state: 'visible',
-      timeout: 2000,
     })
     await this.locationFilterCategoryLocator.click()
-    await this.dropdownLocator.waitFor({ state: 'visible', timeout: 2000 })
+    await this.dropdownLocator.waitFor({ state: 'visible' })
     await this.dropdownLocator.click()
     await this.apNorthLocationOptionLocator.click()
     await this.collapseButtonLocator.click()
@@ -418,7 +410,7 @@ export class EmployeeManagementPage {
   }
 
   async applyFilter(filters: { [key: string]: string }) {
-    await this.fullTableLocator.waitFor({ state: 'visible', timeout: 2000 })
+    await this.fullTableLocator.waitFor({ state: 'visible' })
 
     let appliedFilterCountText =
       await this.initialFilterCountLocator.textContent()
@@ -432,12 +424,10 @@ export class EmployeeManagementPage {
         case 'gender':
           await this.genderFilterCategoryLocator.waitFor({
             state: 'visible',
-            timeout: 2000,
           })
           await this.genderFilterCategoryLocator.click()
           await this.dropdownLocator.waitFor({
             state: 'visible',
-            timeout: 2000,
           })
           await this.dropdownLocator.click()
           break
@@ -445,12 +435,10 @@ export class EmployeeManagementPage {
         case 'office':
           await this.locationFilterCategoryLocator.waitFor({
             state: 'visible',
-            timeout: 2000,
           })
           await this.locationFilterCategoryLocator.click()
           await this.dropdownLocator.waitFor({
             state: 'visible',
-            timeout: 2000,
           })
           await this.dropdownLocator.click()
           break
@@ -458,12 +446,10 @@ export class EmployeeManagementPage {
         case 'contractType':
           await this.contractTypeFilterCategoryLocator.waitFor({
             state: 'visible',
-            timeout: 2000,
           })
           await this.contractTypeFilterCategoryLocator.click()
           await this.dropdownLocator.waitFor({
             state: 'visible',
-            timeout: 2000,
           })
           await this.dropdownLocator.click()
           break
@@ -471,12 +457,10 @@ export class EmployeeManagementPage {
         case 'recruiter':
           await this.recruiterFilterCategoryLocator.waitFor({
             state: 'visible',
-            timeout: 2000,
           })
           await this.recruiterFilterCategoryLocator.click()
           await this.dropdownLocator.waitFor({
             state: 'visible',
-            timeout: 2000,
           })
           await this.dropdownLocator.click()
           filterOptionLocator = this.getFilterOptionLocator(filterValue)
@@ -488,12 +472,10 @@ export class EmployeeManagementPage {
         case 'role':
           await this.roleFilterCategoryLocator.waitFor({
             state: 'visible',
-            timeout: 2000,
           })
           await this.roleFilterCategoryLocator.click()
           await this.dropdownLocator.waitFor({
             state: 'visible',
-            timeout: 2000,
           })
           await this.dropdownLocator.click()
           filterOptionLocator = this.getFilterOptionLocator(filterValue)
@@ -506,12 +488,10 @@ export class EmployeeManagementPage {
         case 'department':
           await this.departmentFilterCategoryLocator.waitFor({
             state: 'visible',
-            timeout: 2000,
           })
           await this.departmentFilterCategoryLocator.click()
           await this.dropdownLocator.waitFor({
             state: 'visible',
-            timeout: 2000,
           })
           await this.dropdownLocator.click()
           filterOptionLocator = this.getFilterOptionLocator(filterValue)
@@ -524,12 +504,10 @@ export class EmployeeManagementPage {
         case 'contractStatus':
           await this.contractStatusFilterCategoryLocator.waitFor({
             state: 'visible',
-            timeout: 2000,
           })
           await this.contractStatusFilterCategoryLocator.click()
           await this.dropdownLocator.waitFor({
             state: 'visible',
-            timeout: 2000,
           })
           await this.dropdownLocator.click()
           await this.filterToggleButtonLocator.click()
@@ -540,12 +518,11 @@ export class EmployeeManagementPage {
           console.warn(`Unknown filter type: ${filterType}`)
       }
 
-      await this.page.waitForTimeout(1000)
+      await this.page.waitForLoadState('networkidle')
       filterOptionLocator = this.getFilterOptionLocator(filterValue)
       await filterOptionLocator.click()
       await this.collapseButtonLocator.waitFor({
         state: 'visible',
-        timeout: 1000,
       })
       await this.collapseButtonLocator.click({ force: true })
       await this.filterToggleButtonLocator.click()
@@ -554,18 +531,17 @@ export class EmployeeManagementPage {
     await this.page.waitForLoadState('networkidle')
 
     if (appliedFilterCount > 1) {
-      await this.fullTableLocator.waitFor({ state: 'visible', timeout: 3000 })
+      await this.fullTableLocator.waitFor({ state: 'visible' })
     } else {
       await this.noMatchingFoundTextLoacor.waitFor({
         state: 'attached',
-        timeout: 5000,
       })
       await expect(this.noMatchingFoundTextLoacor).toBeVisible()
     }
   }
 
   async verifyAppliedFilter(filterType: string, expectedValue: string) {
-    await this.fullTableLocator.waitFor({ state: 'visible', timeout: 3000 })
+    await this.fullTableLocator.waitFor({ state: 'visible' })
     const isTableVisible = await this.fullTableLocator.isVisible()
 
     if (!isTableVisible) {
@@ -601,7 +577,7 @@ export class EmployeeManagementPage {
 
   async verifyChipText(expectedValue: string) {
     await this.filterToggleButtonLocator.click()
-    await this.appliedChipLocator.waitFor({ state: 'visible', timeout: 1000 })
+    await this.appliedChipLocator.waitFor({ state: 'visible' })
     const appliedChipText = await this.appliedChipLocator.innerText()
     expect(appliedChipText).toContain(expectedValue)
     await this.resetAllFilters.click()
@@ -617,7 +593,7 @@ export class EmployeeManagementPage {
   }
 
   async verifyClearAllFilters() {
-    await this.fullTableLocator.waitFor({ state: 'visible', timeout: 2000 })
+    await this.fullTableLocator.waitFor({ state: 'visible' })
     const initialFilterCount =
       await this.initialFilterCountLocator.textContent()
     expect(initialFilterCount).toBe('1')
@@ -629,7 +605,7 @@ export class EmployeeManagementPage {
   }
 
   async verifyFilterPersisted() {
-    await this.fullTableLocator.waitFor({ state: 'visible', timeout: 2000 })
+    await this.fullTableLocator.waitFor({ state: 'visible' })
     await this.ClearAllFilters()
     const initialFilterCount =
       await this.initialFilterCountLocator.textContent()
@@ -642,7 +618,7 @@ export class EmployeeManagementPage {
 
     await this.refreshFilter()
     await this.page.waitForLoadState('networkidle')
-    await this.fullTableLocator.waitFor({ state: 'visible', timeout: 2000 })
+    await this.fullTableLocator.waitFor({ state: 'visible' })
 
     await this.page.waitForSelector('text="2"')
     const persistedFilterCountText = await this.filterCount.textContent()
@@ -651,7 +627,7 @@ export class EmployeeManagementPage {
   }
 
   async verifyFilterWhenNoMatcheFound() {
-    await this.fullTableLocator.waitFor({ state: 'visible', timeout: 3000 })
+    await this.fullTableLocator.waitFor({ state: 'visible' })
     await this.filterToggleButtonLocator.click()
     await this.locationFilterCategoryLocator.click()
     await this.dropdownLocator.waitFor({ state: 'visible' })
@@ -660,8 +636,6 @@ export class EmployeeManagementPage {
     await this.filterToggleButtonLocator.click()
     await this.noMatchingFoundTextLoacor.waitFor({
       state: 'attached',
-      timeout: 5000,
-
     })
     await expect(this.noMatchingFoundTextLoacor).toBeVisible()
     await this.filterToggleButtonLocator.click()
@@ -671,7 +645,7 @@ export class EmployeeManagementPage {
   }
 
   async verifyUnselectingAFilter() {
-    await this.fullTableLocator.waitFor({ state: 'visible', timeout: 3000 })
+    await this.fullTableLocator.waitFor({ state: 'visible' })
     const countBeforeApplyingFilter =
       await this.initialFilterCountLocator.textContent()
     await this.selectLocationFilter()
@@ -690,7 +664,7 @@ export class EmployeeManagementPage {
   }
 
   async applyContractStatusFilter() {
-    await this.fullTableLocator.waitFor({ state: 'visible', timeout: 3000 })
+    await this.fullTableLocator.waitFor({ state: 'visible' })
     await this.filterToggleButtonLocator.click()
     await this.contractStatusFilterCategoryLocator.waitFor({
       state: 'visible'
@@ -706,7 +680,7 @@ export class EmployeeManagementPage {
   }
 
   async openCreateEmployeeModal() {
-    await this.fullTableLocator.waitFor({ state: 'visible', timeout: 3000 })
+    await this.fullTableLocator.waitFor({ state: 'visible' })
     await this.createEmployeeButton.click()
     await this.firstNameInput.waitFor({ state: 'visible' })
   }
@@ -726,29 +700,28 @@ export class EmployeeManagementPage {
     const firstName = this.generateRandomString()
     const lastName = this.generateRandomString()
 
-    await this.firstNameInput.waitFor({ state: 'visible', timeout: 2000 })
+    await this.firstNameInput.waitFor({ state: 'visible' })
     await this.firstNameInput.fill(firstName)
-    await this.lastNameInput.waitFor({ state: 'visible', timeout: 2000 })
+    await this.firstNameInput.waitFor({ state: 'visible' })
     await this.lastNameInput.fill(lastName)
-    await this.datePickerInput.waitFor({ state: 'visible', timeout: 2000 })
+    await this.firstNameInput.waitFor({ state: 'visible' })
     await this.datePickerInput.click()
     await this.selectToday.click()
     await this.saveButton.click()
-    await this.editEmployeeLocator.waitFor({ state: 'visible', timeout: 3000 })
+    await this.firstNameInput.waitFor({ state: 'visible' })
     await expect(this.editEmployeeLocator).toBeVisible()
-    await this.page.waitForTimeout(2000)
+    await this.page.waitForLoadState('networkidle')
     await this.closeEmployeeModel.click()
     return { firstName, lastName }
   }
 
   async verifyEmployeeInTable(employeeName: string) {
-    await this.fullTableLocator.waitFor({ state: 'visible', timeout: 5000 })
+    await this.fullTableLocator.waitFor({ state: 'visible' })
     await this.applyContractStatusFilter()
     await this.searchBoxLocator.fill('')
     await this.searchBoxLocator.fill(employeeName)
     await this.searchResultNameLocator.waitFor({
       state: 'visible',
-      timeout: 5000,
     })
     await expect(this.searchResultNameLocator).toHaveText(
       new RegExp(employeeName, 'i')
@@ -758,12 +731,11 @@ export class EmployeeManagementPage {
 
   async deleteAnEmployee(employeeName: string) {
     await this.applyContractStatusFilter()
-    await this.fullTableLocator.waitFor({ state: 'visible', timeout: 5000 })
+    await this.fullTableLocator.waitFor({ state: 'visible' })
     await this.searchBoxLocator.fill('')
     await this.searchBoxLocator.fill(employeeName)
     await this.searchResultNameLocator.waitFor({
       state: 'visible',
-      timeout: 5000,
     })
     await expect(this.searchResultNameLocator).toHaveText(
       new RegExp(employeeName, 'i')
@@ -778,12 +750,11 @@ export class EmployeeManagementPage {
 
   async deleteAnEmployeeFromEmployeeModel(employeeName: string) {
     await this.applyContractStatusFilter()
-    await this.fullTableLocator.waitFor({ state: 'visible', timeout: 5000 })
+    await this.fullTableLocator.waitFor({ state: 'visible' })
     await this.searchBoxLocator.fill('')
     await this.searchBoxLocator.fill(employeeName)
     await this.searchResultNameLocator.waitFor({
       state: 'visible',
-      timeout: 5000,
     })
     await expect(this.searchResultNameLocator).toContainText(
       new RegExp(employeeName, 'i')
@@ -795,7 +766,6 @@ export class EmployeeManagementPage {
     await this.removeSidebar()
     await this.employeeProfileOptionLocator.waitFor({
       state: 'visible',
-      timeout: 2000,
     })
     await this.employeeProfileOptionLocator.click({ force: true })
     await this.deleteEmployeeOptionLocator.click()
@@ -806,12 +776,11 @@ export class EmployeeManagementPage {
 
   async terminateAnEmployee(employeeName: string) {
     await this.applyContractStatusFilter()
-    await this.fullTableLocator.waitFor({ state: 'visible', timeout: 3000 })
+    await this.fullTableLocator.waitFor({ state: 'visible' })
     await this.searchBoxLocator.fill('')
     await this.searchBoxLocator.fill(employeeName)
     await this.searchResultNameLocator.waitFor({
       state: 'visible',
-      timeout: 5000,
     })
     await expect(this.searchResultNameLocator).toContainText(
       new RegExp(employeeName, 'i')
@@ -823,7 +792,6 @@ export class EmployeeManagementPage {
     await this.removeSidebar()
     await this.employeeProfileOptionLocator.waitFor({
       state: 'visible',
-      timeout: 2000,
     })
     await this.employeeProfileOptionLocator.click({ force: true })
     await this.employeeProfileOptionLocator.scrollIntoViewIfNeeded()
@@ -849,7 +817,7 @@ export class EmployeeManagementPage {
   async refreshFilter() {
     await this.employeeRecruitment.click()
     await this.employeeManagement.click()
-    await this.fullTableLocator.waitFor({ state: 'visible', timeout: 3000 })
+    await this.fullTableLocator.waitFor({ state: 'visible' })
   }
 }
 

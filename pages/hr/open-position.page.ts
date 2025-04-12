@@ -153,7 +153,8 @@ export class OpenPositionsPage {
     this.getOpenPositionLocator = this.page.locator('(//*[@class="_listItem__name_cx3fq_23"])[9]')
     this.addCandidatesLocator = this.page.getByRole('button', { name: 'Add Candidate' }).nth(1)
     this.addCandidateLocator = this.page.getByRole('button', {
-      name: /Add Candidate|Kandidat hinzufügen/}) 
+      name: /Add Candidate|Kandidat hinzufügen/
+    })
     this.stopSearchLocator = this.page.locator('(//*[contains(@class, "_button__name_")])[2]')
 
     this.startDatecolumnHeader = page.locator('(//*[starts-with(@class, "_tableHeaderCell__content_scsew_11")])[3]')
@@ -180,8 +181,6 @@ export class OpenPositionsPage {
     this.listActivitySortButton = page.locator("(//*[starts-with(@class, '_texts_isl')])[7]")
     this.listActivityColumnValues = page.locator('(//*[starts-with(@class, "_texts_isl9j_61")])[7]')
 
-
-
     // Inside LinkedIn Profile page
     this.addCandidateButtonLocator = this.page.locator("//button[contains(text(), 'Add to candidates') or contains(text(), 'Zu Kandidaten hinzufügen')]")
     this.nameLocator = this.page.locator('//*[@class="_mainLeft_1ojzh_52"]//h2')
@@ -196,10 +195,11 @@ export class OpenPositionsPage {
     this.createdOnTextLocator = page.getByText('Created On')
     this.positionTitleLocator = page.locator('(//*[@class="w-4/5"])//h2')
     this.skillsHeadingLocator = page.getByRole('heading', {
-      name: /Skills|Fähigkeiten/})
+      name: /Skills|Fähigkeiten/
+    })
     this.addSkillButtonLocator = page.getByRole('button', {
-        name: /Add skill|Skill hinzufügen/
-    })  
+      name: /Add skill|Skill hinzufügen/
+    })
     this.openPositionsLinkLocator = page.locator('(//*[@class="flex"])//a')
     this.editPositionButtonLocator = page.getByRole('button', { name: /Edit Position|Stelle bearbeiten/i })
     this.openPositionTextLocator = page.getByRole('strong').first()
@@ -222,14 +222,14 @@ export class OpenPositionsPage {
     await this.searchBoxLocator.fill(searchValue)
     this.setSearchResultLocator(searchValue)
     await this.page.waitForLoadState('networkidle')
-    await this.openPositiontableLocator.waitFor({ state: 'visible'})
+    await this.openPositiontableLocator.waitFor({ state: 'visible' })
 
     if (await this.openPositiontableLocator.isVisible()) {
-      await expect(this.searchResultNameLocator).toBeVisible() // Ensure button appears
+      await expect(this.searchResultNameLocator).toBeVisible()
     } else {
-      await this.noMatchingFoundTextLoacor.waitFor({ state: 'visible'})
+      await this.noMatchingFoundTextLoacor.waitFor({ state: 'visible' })
     }
-    await this.searchBoxLocator.fill('') 
+    await this.searchBoxLocator.fill('')
   }
 
   async verifyArchivingOpenPosition() {
@@ -277,12 +277,12 @@ export class OpenPositionsPage {
 
   async verifyUnarchivingOpenPosition() {
     await this.openPositiontableLocator.waitFor({ state: 'visible' })
-    await this.restoreButtonLocator.waitFor({ state: 'visible' });
-    await this.page.waitForTimeout(100)
+    await this.restoreButtonLocator.waitFor({ state: 'visible' })
+    await this.page.waitForLoadState('networkidle')
     await this.restoreButtonLocator.scrollIntoViewIfNeeded()
     await this.restoreButtonLocator.click()
     await this.confirmRestoreButtonLocator.click()
-    await this.restoredToastMessageLocator.isVisible()
+    await expect(this.restoredToastMessageLocator).toBeVisible()
   }
 
   async openLinkedInSearch() {
@@ -446,10 +446,11 @@ export class OpenPositionsPage {
     await this.openPositiontableLocator.waitFor({ state: 'visible' });
     await this.applyArchivefilter()
     await this.candidatePage.click()
-    await this.dailyPoolCardLocator.waitFor({ state: 'visible', timeout: 3000 })
+    await this.page.waitForLoadState('networkidle')
+    await this.dailyPoolCardLocator.waitFor({ state: 'visible' })
     await this.employeeRecruitment.waitFor({ state: 'visible' })
     await this.employeeRecruitment.click()
-    await this.page.waitForTimeout(3000); // slight buffer
+    await this.page.waitForLoadState('networkidle')
     await this.restoreButtonLocator.scrollIntoViewIfNeeded()
     await this.restoreButtonLocator.isVisible()
     await this.applyArchivefilter()
