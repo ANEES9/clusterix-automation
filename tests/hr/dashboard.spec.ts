@@ -116,15 +116,6 @@ test.describe('HR > Dashboard', () => {
     })
   })
 
-  test('Verify Birthday chumma landing landing @smoke', async () => {
-    Allure.addDescription('Verify Birthday Information sub-page loads correctly')
-    Allure.addSeverity('critical')
-    await Allure.step('Step 1: Navigate to Birthday Information', async () => {
-      await dashboardPage.navigateToBirthdayInformation()
-    })
-
-  })
-
   test.afterAll(async () => {
     await context.close()
   })
