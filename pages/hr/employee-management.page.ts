@@ -29,6 +29,14 @@ export class EmployeeManagementPage {
   private deleteSelectedAll: Locator
   private hideBradWrapperLocator: Locator
 
+  // Sub-pages locators
+  private employeesSubLink: Locator
+  private requestManagementSubLink: Locator
+  private activityTypeSubLink: Locator
+  private bonusAgreementSubLink: Locator
+  private reassignmentsOverviewSubLink: Locator
+  private vacationReportSubLink: Locator
+
   // Filter Locators
   private collapseButtonLocator: Locator
   private filterToggleButtonLocator: Locator
@@ -249,13 +257,108 @@ export class EmployeeManagementPage {
     this.terminateToastMessage = page.getByText(
       this.translations.additional.employeeTerminated
     )
+
+    // Initialize sub-pages locators
+    this.employeesSubLink = page.getByRole('button').filter({ hasText: /^(Employees|Mitarbeiter)$/i })
+    this.requestManagementSubLink = page.getByRole('button').filter({ hasText: /^(Request Management|Antragsverwaltung)$/i })
+    this.activityTypeSubLink = page.getByRole('button').filter({ hasText: /^(Activity Type|Aktivitätsart|Tätigkeitsart)$/i })
+    this.bonusAgreementSubLink = page.getByRole('button').filter({ hasText: /^(Bonus Agreement|Bonusvereinbarung)$/i })
+    this.reassignmentsOverviewSubLink = page.getByRole('button').filter({ hasText: /^(Reassignments Overview|Umverteilungsübersicht)$/i })
+    this.vacationReportSubLink = page.getByRole('button').filter({ hasText: /^(Vacation Report|Urlaubsbericht)$/i })
   }
 
   //GoTo Method
   async goto(baseURL: string | undefined) {
+    const cleanBaseURL = (baseURL || '').replace(/\/$/, '')
+    const cleanPath = APP_URLS.hr.employeeManagement.replace(/^\//, '')
     await Allure.step('should navigate to my profile', async () => {
-      await this.page.goto(`${baseURL}${APP_URLS.hr.employeeManagement}`)
+      await this.page.goto(`${cleanBaseURL}/${cleanPath}`)
     })
+  }
+
+  async expandEmployeeManagementMenu() {
+    const isVisible = await this.employeesSubLink.isVisible()
+    if (!isVisible) {
+      const menuButton = this.page.getByRole('button').filter({ hasText: /^(Employee Management|Mitarbeiterverwaltung)$/i }).first()
+      await menuButton.click()
+      await this.page.waitForTimeout(500)
+    }
+  }
+
+  async navigateToEmployees() {
+    await this.expandEmployeeManagementMenu()
+    await this.employeesSubLink.click()
+    await this.page.waitForLoadState('networkidle')
+  }
+
+  async navigateToRequestManagement() {
+    await this.expandEmployeeManagementMenu()
+    await this.requestManagementSubLink.click()
+    await this.page.waitForLoadState('networkidle')
+  }
+
+  async navigateToActivityType() {
+    await this.expandEmployeeManagementMenu()
+    await this.activityTypeSubLink.click()
+    await this.page.waitForLoadState('networkidle')
+  }
+
+  async navigateToBonusAgreement() {
+    await this.expandEmployeeManagementMenu()
+    await this.bonusAgreementSubLink.click()
+    await this.page.waitForLoadState('networkidle')
+  }
+
+  async navigateToReassignmentsOverview() {
+    await this.expandEmployeeManagementMenu()
+    await this.reassignmentsOverviewSubLink.click()
+    await this.page.waitForLoadState('networkidle')
+  }
+
+  async navigateToVacationReport() {
+    await this.expandEmployeeManagementMenu()
+    await this.vacationReportSubLink.click()
+    await this.page.waitForLoadState('networkidle')
+  }
+
+  async verifyEmployeesPageLoads() {
+    await this.headingTextLocator.waitFor({ state: 'visible', timeout: 180000 })
+    await expect(this.page).toHaveURL(/.*\/employees(?!\/)/)
+  }
+
+  async verifyRequestManagementPageLoads() {
+    await expect(this.page).toHaveURL(/.*request-management/)
+    const heading = this.page.locator('strong, h1, h2, h3, div').filter({ hasText: /Request Management|Antragsverwaltung/i }).first()
+    await heading.waitFor({ state: 'visible' })
+    await expect(heading).toBeVisible()
+  }
+
+  async verifyActivityTypePageLoads() {
+    await expect(this.page).toHaveURL(/.*activity-type/)
+    const heading = this.page.locator('strong, h1, h2, h3, div').filter({ hasText: /Activity Type|Aktivitätsart|Tätigkeitsart/i }).first()
+    await heading.waitFor({ state: 'visible' })
+    await expect(heading).toBeVisible()
+  }
+
+  async verifyBonusAgreementPageLoads() {
+    await expect(this.page).toHaveURL(/.*bonus-agreement/)
+    const heading = this.page.locator('strong, h1, h2, h3, div').filter({ hasText: /Bonus Agreement|Bonusvereinbarung/i }).first()
+    await heading.waitFor({ state: 'visible' })
+    await expect(heading).toBeVisible()
+  }
+
+  async verifyReassignmentsOverviewPageLoads() {
+    await expect(this.page).toHaveURL(/.*reassignments-overview/)
+    const heading = this.page.locator('strong, h1, h2, h3, div').filter({ hasText: /Reassignments Overview|Umverteilungsübersicht/i }).first()
+    await heading.waitFor({ state: 'visible' })
+    await expect(heading).toBeVisible()
+  }
+
+  async verifyVacationReportPageLoads() {
+    await expect(this.page).toHaveURL(/.*vacation-report/)
+    const heading = this.page.locator('strong, h1, h2, h3, div').filter({ hasText: /Vacation Report|Urlaubsbericht/i }).first()
+    await heading.waitFor({ state: 'visible' })
+    await expect(heading).toBeVisible()
   }
 
   //Other methods

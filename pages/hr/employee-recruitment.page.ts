@@ -4,7 +4,7 @@ import { Allure } from '../../helpers/common/allure-helper'
 import { APP_URLS } from '../../shared/constants/app-urls'
 import { EmployeeManagementPage } from '../../pages/hr/employee-management.page'
 
-export class OpenPositionsPage {
+export class EmployeeRecruitmentPage {
   readonly page: Page
   private translations: Record<string, any>
 
@@ -97,7 +97,14 @@ export class OpenPositionsPage {
   private editPositionButtonLocator: Locator
   private openPositionTextLocator: Locator
   private saveButtonLocator: Locator
+  private openPositionHeadingText: Locator
+  private candidateListHeadingText: Locator
 
+  // Sub-pages locators
+  private openPositionsSubLink: Locator
+  private linkedInSearchSubLink: Locator
+  private lushaSearchSubLink: Locator
+  private candidateListSubLink: Locator
 
   //constructor
   constructor(page: Page, locale: string) {
@@ -204,6 +211,14 @@ export class OpenPositionsPage {
     this.editPositionButtonLocator = page.getByRole('button', { name: /Edit Position|Stelle bearbeiten/i })
     this.openPositionTextLocator = page.getByRole('strong').first()
     this.saveButtonLocator = page.getByText(/Save|Speichern/i)
+    this.openPositionHeadingText = page.locator("//h1[contains(text(),'Open Positions')]")
+    this.candidateListHeadingText = page.locator("//span[contains(text(),'Candidates')]")
+
+    // Initialize sub-pages locators
+    this.openPositionsSubLink = page.locator('button[class*="sidebarSubMenu"]').filter({ hasText: /^(Open Positions|Offene Stellen)$/i })
+    this.linkedInSearchSubLink = page.locator('button[class*="sidebarSubMenu"]').filter({ hasText: /^(LinkedIn Search|LinkedIn Suche)$/i })
+    this.lushaSearchSubLink = page.locator('button[class*="sidebarSubMenu"]').filter({ hasText: /^(Lusha Search|Lusha Suche)$/i })
+    this.candidateListSubLink = page.locator('button[class*="sidebarSubMenu"]').filter({ hasText: /^(Candidate List|Kandidatenliste)$/i })
   }
   private setSearchResultLocator(searchValue: string) {
     this.searchResultNameLocator = this.page.getByRole('button', { name: new RegExp(searchValue, 'i') })
@@ -214,6 +229,68 @@ export class OpenPositionsPage {
     await Allure.step('should navigate to my profile', async () => {
       await this.page.goto(`${baseURL}${APP_URLS.hr.openPosition}`)
     })
+  }
+
+  async expandEmployeeRecruitmentMenu() {
+    const isVisible = await this.openPositionsSubLink.isVisible()
+    if (!isVisible) {
+      const menuButton = this.page.getByRole('button').filter({ hasText: /^(Employee recruitment|Mitarbeitergewinnung)$/i }).first()
+      await menuButton.click()
+      await this.page.waitForTimeout(500)
+    }
+  }
+
+  async navigateToOpenPositions() {
+    await this.expandEmployeeRecruitmentMenu()
+    await this.openPositionsSubLink.click()
+    await this.page.waitForLoadState('networkidle')
+  }
+
+  async navigateToLinkedInSearch() {
+    await this.expandEmployeeRecruitmentMenu()
+    await this.linkedInSearchSubLink.click()
+    await this.page.waitForLoadState('networkidle')
+  }
+
+  async navigateToLushaSearch() {
+    await this.expandEmployeeRecruitmentMenu()
+    await this.lushaSearchSubLink.click()
+    await this.page.waitForLoadState('networkidle')
+  }
+
+  async navigateToCandidateList() {
+    await this.expandEmployeeRecruitmentMenu()
+    await this.candidateListSubLink.click()
+    await this.page.waitForLoadState('networkidle')
+  }
+
+  async verifyOpenPositionsPageLoads() {
+    await expect(this.page).toHaveURL(/.*\/open-positions(?!\/search)/)
+    // Debug logs
+    console.log("URL:", this.page.url());
+    console.log("H1 Count:", await this.page.locator("h1").count());
+    console.log("H1 Texts:", await this.page.locator("h1").allTextContents());
+    console.log("Heading Count:", await this.openPositionHeadingText.count());
+    await expect(this.openPositionHeadingText).toBeVisible()
+  }
+
+  async verifyLinkedInSearchPageLoads() {
+    await expect(this.page).toHaveURL(/.*\/open-positions\/search/)
+    const heading = this.page.locator('h1, h2, h3, strong').filter({ hasText: /LinkedIn Search|LinkedIn Suche/i }).first()
+    await heading.waitFor({ state: 'visible' })
+    await expect(heading).toBeVisible()
+  }
+
+  async verifyLushaSearchPageLoads() {
+    await expect(this.page).toHaveURL(/.*\/lusha\/search/)
+    const heading = this.page.locator('h1, h2, h3, strong').filter({ hasText: /Lusha Search|Lusha Suche/i }).first()
+    await heading.waitFor({ state: 'visible' })
+    await expect(heading).toBeVisible()
+  }
+
+  async verifyCandidateListPageLoads() {
+    await expect(this.page).toHaveURL(/.*\/candidate-list/)
+    await expect(this.candidateListHeadingText).toBeVisible()
   }
 
   async searchAndVerifyOpenPosition(searchValue: string) {
@@ -455,7 +532,4 @@ export class OpenPositionsPage {
     await this.restoreButtonLocator.isVisible()
     await this.applyArchivefilter()
   }
-
-
-
 }

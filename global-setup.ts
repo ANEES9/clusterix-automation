@@ -1,8 +1,8 @@
 import { chromium } from '@playwright/test'
 import * as fs from 'fs'
 import dotenv from 'dotenv'
-import { LoginPage } from 'pages/login-register/login-page'
-import { LANGUAGES, getSessionFilePath } from 'config/language-config'
+import { LoginPage } from './pages/login-register/login-page'
+import { LANGUAGES, getSessionFilePath } from './config/language-config'
 
 dotenv.config({ path: `.env.${process.env.NODE_ENV || 'testing'}` })
 
@@ -24,10 +24,17 @@ async function createSessionForLocale(locale: string, sessionFilePath: string) {
     await loginPage.setLocale(locale)
 
     // Perform login with environment variables
-    await loginPage.login(
-      process.env.CLUSTERIX_EMAIL || '',
-      process.env.CLUSTERIX_PASSWORD || ''
-    )
+    console.log(`Attempting login for locale: ${locale} on page: ${page.url()}`)
+    try {
+      await loginPage.login(
+        process.env.CLUSTERIX_EMAIL || '',
+        process.env.CLUSTERIX_PASSWORD || ''
+      )
+    } catch (err) {
+      await page.screenshot({ path: `scratch/login-failed-${locale}.png` })
+      console.log(`Saved screenshot to scratch/login-failed-${locale}.png`)
+      throw err;
+    }
 
     // Save the storage state
     await context.storageState({ path: sessionFilePath })

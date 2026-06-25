@@ -6,7 +6,9 @@
     "exportAll": "Alles exportieren",
     "clearAllFilter": "Alle Filter löschen",
     "employeeDeleted": "Der Mitarbeiter wird gelöscht",
-    "employeeTerminated": "ui.employees.toasts."
+    "employeeTerminated": "ui.employees.toasts.",
+    "goStraightToWorkspace": "Direkt zu meinem Arbeitsbereich",
+    "ready": "Bereit ✓"
   },
   "generalData": {
     "firstName": "Vorname",
@@ -192,5 +194,23 @@
         }
       }
     }
+  },
+  "dashboard": {
+    "vacationDays": "Urlaubstage",
+    "sickLeave": "Krankheitsurlaub",
+    "employeeRequests": "Mitarbeiteranfragen",
+    "homeOffice": "Home Office",
+    "other": "Sonstiges",
+    "requestNow": "Jetzt beantragen",
+    "reportNow": "Jetzt melden",
+    "violations": "Verstöße",
+    "maxHoursViolation": "Verstoß gegen die Höchststundenzahl",
+    "minRestViolation": "Verstoß gegen die Mindestruhe",
+    "minBreakViolation": "Verstoß gegen die Mindestpause",
+    "myAbsenceDays": "Meine Abwesenheitstage",
+    "recruitmentStatistics": "Rekrutierungsstatistiken",
+    "employeeRetention": "Mitarbeiterbindung",
+    "companyGrowth": "Unternehmenswachstum",
+    "birthdateInformation": "Geburtstagsinformationen"
   }
 }

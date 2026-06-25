@@ -4,6 +4,7 @@ import { skipSurveyHelper } from 'common/skip-survey-helper'
 import { skipProductTourHelper } from 'common/skip-product-tour-helper'
 import { skipTutorialHelper } from 'common/skip-tutorial-helper'
 import { skipTimerHelper } from 'common/skip-timer-helper'
+import { skipWelcomeHelper } from 'common/skip-welcome-helper'
 import { testSetupConfig, TestSetupConfig } from 'config/setup-test-config'
 
 /**
@@ -46,7 +47,7 @@ export async function setupTestContext(
 
     const finalURL = targetPath ? `${baseURL}${targetPath}` : baseURL
 
-    await page.goto(finalURL, { waitUntil: 'networkidle' })
+    await page.goto(finalURL, { waitUntil: 'load' })
     await page.waitForLoadState('domcontentloaded')
 
     const setupActions: {
@@ -68,6 +69,10 @@ export async function setupTestContext(
       {
         key: 'skipTimer',
         action: (page, testInfo) => skipTimerHelper(page, testInfo),
+      },
+      {
+        key: 'skipWelcome',
+        action: (page, testInfo) => skipWelcomeHelper(page, testInfo),
       },
     ]
 

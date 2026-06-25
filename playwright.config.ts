@@ -16,7 +16,10 @@ export default defineConfig({
   ],
   use: {
     trace: 'retain-on-failure',
-    headless: false,
+
+    // Run headlessly by default to save resources in automation.
+    // Set environment variable HEADED=true to run in headed visual mode.
+    headless: process.env.HEADED === 'true' ? false : true,
     baseURL: process.env.CLUSTERIX_BASE_URL,
     viewport: { width: 1280, height: 720 },
     video: 'retain-on-failure',

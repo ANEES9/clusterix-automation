@@ -1,13 +1,15 @@
 {
-    "additional": {
-      "headingText": "Employee management",
-      "selected": "Selected",
-      "selectAll": "Select all",
-      "exportAll": "Export all",
-      "clearAllFilters": "Clear all filters",
-      "employeeDeleted": "The employee is deleted",
-      "employeeTerminated": "The employee has been"
-    },
+  "additional": {
+    "headingText": "Employee management",
+    "selected": "Selected",
+    "selectAll": "Select all",
+    "exportAll": "Export all",
+    "clearAllFilters": "Clear all filters",
+    "employeeDeleted": "The employee is deleted",
+    "employeeTerminated": "The employee has been",
+    "goStraightToWorkspace": "Go straight to my workspace",
+    "ready": "Ready ✓"
+  },
   "generalData": {
     "firstName": "First name",
     "lastName": "Last name",
@@ -192,5 +194,23 @@
         }
       }
     }
+  },
+  "dashboard": {
+    "vacationDays": "Vacation Days",
+    "sickLeave": "Sick leave",
+    "employeeRequests": "Employee requests",
+    "homeOffice": "Home Office",
+    "other": "Other",
+    "requestNow": "Request Now",
+    "reportNow": "Report Now",
+    "violations": "Violations",
+    "maxHoursViolation": "Max hours violations",
+    "minRestViolation": "Min rest violations",
+    "minBreakViolation": "Min break violations",
+    "myAbsenceDays": "My Absence Days",
+    "recruitmentStatistics": "Recruitment Statistics",
+    "employeeRetention": "Employee Retention",
+    "companyGrowth": "Company Growth",
+    "birthdateInformation": "Birthdate Information"
   }
 }

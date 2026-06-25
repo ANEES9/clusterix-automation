@@ -43,7 +43,7 @@ export const APP_URLS = {
         basicData: '/settings/users-and-permissions/my-profile/basic-data',
         securityAndPrivacy:
           '/settings/users-and-permissions/my-profile/security-and-privacy',
-          vacationAndAbsenceDays: '/profile/vacation-and-absence-days',
+        vacationAndAbsenceDays: '/profile/vacation-and-absence-days',
       },
       accounts: '/settings/users-and-permissions/accounts',
       rolesAndPermissions:
@@ -139,8 +139,9 @@ export const APP_URLS = {
   },
   hr: {
     base: '/hr',
-    employeeManagement: '/hr/employees',
-    openPosition: '/hr/candidates/open-positions',
+    dashboard: 'hr/dashboard',
+    employeeManagement: 'hr/employees',
+    openPosition: 'hr/candidates/open-positions',
   },
   files: {
     base: '/cluster-space',

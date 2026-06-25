@@ -4,6 +4,7 @@ export interface TestSetupConfig {
     skipTimer: boolean
     skipProductTour: boolean
     skipTutorial: boolean
+    skipWelcome: boolean
   }
   folders: Record<
     string,
@@ -12,6 +13,7 @@ export interface TestSetupConfig {
       skipTimer: boolean
       skipProductTour: boolean
       skipTutorial: boolean
+      skipWelcome: boolean
     }
   >
   files: Record<
@@ -21,6 +23,7 @@ export interface TestSetupConfig {
       skipTimer: boolean
       skipProductTour: boolean
       skipTutorial: boolean
+      skipWelcome: boolean
     }
   >
 }
@@ -31,6 +34,7 @@ export const testSetupConfig: TestSetupConfig = {
     skipTimer: true,
     skipProductTour: true,
     skipTutorial: true,
+    skipWelcome: true,
   },
   folders: {
     landing: {
@@ -38,12 +42,14 @@ export const testSetupConfig: TestSetupConfig = {
       skipTimer: false,
       skipProductTour: false,
       skipTutorial: false,
+      skipWelcome: false,
     },
     'login-register': {
       skipSurvey: false,
       skipTimer: false,
       skipProductTour: false,
       skipTutorial: false,
+      skipWelcome: false,
     },
   },
   files: {
@@ -52,6 +58,7 @@ export const testSetupConfig: TestSetupConfig = {
       skipTimer: false,
       skipProductTour: false,
       skipTutorial: false,
+      skipWelcome: false,
     },
   },
 }

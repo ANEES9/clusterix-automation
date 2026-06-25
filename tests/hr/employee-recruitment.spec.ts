@@ -5,28 +5,72 @@ import { openPositionTable } from 'shared/utils/test-data/hr/open-position-data'
 import { setupTestContext } from 'utils/test-context'
 import { BrowserContext } from 'playwright'
 import { EmployeeManagementPage } from 'pages/hr/employee-management.page'
-import { OpenPositionsPage } from '../../pages/hr/open-position.page'
+import { EmployeeRecruitmentPage } from '../../pages/hr/employee-recruitment.page'
 
 
 let browser: Browser
 let context: BrowserContext
 let page: Page
 let employeeManagementPage: EmployeeManagementPage
-let openPositionPage: OpenPositionsPage
+let employeeRecruitmentPage: EmployeeRecruitmentPage
 let locale: string
 let createdEmployee: { firstName: string; lastName: string } | null = null
 
 
-test.describe('HR > Open Position Test', () => {
+test.describe('HR > Employee Recruitment Test', () => {
   test.beforeAll(async ({ browser: testBrowser, baseURL }, testInfo) => {
+    test.setTimeout(180000)
     browser = testBrowser
-    context = await browser.newContext()
+    context = await browser.newContext({
+      storageState: testInfo.project.use.storageState
+    })
     page = await context.newPage()
     const testContext = await setupTestContext(page, testInfo)
     locale = testContext.locale
-    openPositionPage = new OpenPositionsPage(page, locale)
-    await openPositionPage.goto(baseURL!)
+    employeeRecruitmentPage = new EmployeeRecruitmentPage(page, locale)
+    await employeeRecruitmentPage.goto(baseURL!)
     await page.waitForLoadState('networkidle')
+  })
+
+  test('Verify Open Positions landing @smoke', async () => {
+    Allure.addDescription('Verify Open Positions sub-page loads correctly')
+    Allure.addSeverity('critical')
+    await Allure.step('Step 2: Verify page loads', async () => {
+      await employeeRecruitmentPage.verifyOpenPositionsPageLoads()
+    })
+  })
+
+  test('Verify LinkedIn Search landing @smoke', async () => {
+    Allure.addDescription('Verify LinkedIn Search sub-page loads correctly')
+    Allure.addSeverity('critical')
+    await Allure.step('Step 1: Navigate to LinkedIn Search', async () => {
+      await employeeRecruitmentPage.navigateToLinkedInSearch()
+    })
+    await Allure.step('Step 2: Verify page loads', async () => {
+      await employeeRecruitmentPage.verifyLinkedInSearchPageLoads()
+    })
+  })
+
+  test('Verify Lusha Search landing @smoke', async () => {
+    Allure.addDescription('Verify Lusha Search sub-page loads correctly')
+    Allure.addSeverity('critical')
+    await Allure.step('Step 1: Navigate to Lusha Search', async () => {
+      await employeeRecruitmentPage.navigateToLushaSearch()
+    })
+    await Allure.step('Step 2: Verify page loads', async () => {
+      await employeeRecruitmentPage.verifyLushaSearchPageLoads()
+    })
+  })
+
+  test('Verify Candidate List landing @smoke', async () => {
+    Allure.addDescription('Verify Candidate List sub-page loads correctly')
+    Allure.addSeverity('critical')
+    await Allure.step('Step 1: Navigate to Candidate List', async () => {
+      await employeeRecruitmentPage.navigateToCandidateList()
+    })
+    await Allure.step('Step 2: Verify page loads', async () => {
+      await employeeRecruitmentPage.verifyCandidateListPageLoads()
+    })
   })
 
   test('Navigate to Employee Recruitment & Search for an Any Open Position', async ({ }) => {
@@ -38,7 +82,7 @@ test.describe('HR > Open Position Test', () => {
     await Allure.step(
       'Step 1: Navigate to Employee Recruitment & Search for an Any Open Position',
       async () => {
-        await openPositionPage.searchAndVerifyOpenPosition(
+        await employeeRecruitmentPage.searchAndVerifyOpenPosition(
           openPositionTable.openPosition
         )
       }
@@ -54,7 +98,7 @@ test.describe('HR > Open Position Test', () => {
     await Allure.step(
       'Step 1: Archive Open Position',
       async () => {
-        await openPositionPage.verifyArchivingOpenPosition()
+        await employeeRecruitmentPage.verifyArchivingOpenPosition()
       }
     )
   })
@@ -68,14 +112,14 @@ test.describe('HR > Open Position Test', () => {
     await Allure.step(
       'Step 1: Apply unarchive Filter',
       async () => {
-        await openPositionPage.applyArchivefilter()
+        await employeeRecruitmentPage.applyArchivefilter()
       }
     )
 
     await Allure.step(
       'Step 2: Verify archived items',
       async () => {
-        await openPositionPage.verifyOpenPositionTable()
+        await employeeRecruitmentPage.verifyOpenPositionTable()
       }
     )
   })
@@ -89,15 +133,15 @@ test.describe('HR > Open Position Test', () => {
     await Allure.step(
       'Step 1: Apply unarchive Filter',
       async () => {
-        //await openPositionPage.applyArchivefilter()
-        await openPositionPage.applyUnArchivefilter()
+        //await employeeRecruitmentPage.applyArchivefilter()
+        await employeeRecruitmentPage.applyUnArchivefilter()
       }
     )
 
     await Allure.step(
       'Step 2: Verify archived items',
       async () => {
-        await openPositionPage.verifyOpenPositionTable()
+        await employeeRecruitmentPage.verifyOpenPositionTable()
       }
     )
   })
@@ -111,22 +155,22 @@ test.describe('HR > Open Position Test', () => {
     await Allure.step(
       'Step 1: Archive an Open Position',
       async () => {
-        await openPositionPage.verifyArchivingOpenPosition()
+        await employeeRecruitmentPage.verifyArchivingOpenPosition()
       }
     )
 
     await Allure.step(
       'Step 2: apply Archive filter',
       async () => {
-        await openPositionPage.applyArchivefilter()
+        await employeeRecruitmentPage.applyArchivefilter()
       }
     )
 
     await Allure.step(
       'Step 3: Unarchive an open position',
       async () => {
-        await openPositionPage.verifyUnarchivingOpenPosition()
-        await openPositionPage.resetAllFilters()
+        await employeeRecruitmentPage.verifyUnarchivingOpenPosition()
+        await employeeRecruitmentPage.resetAllFilters()
       }
     )
   })
@@ -140,7 +184,7 @@ test.describe('HR > Open Position Test', () => {
     await Allure.step(
       'Step 1: Verify openPositionDetailsPage',
       async () => {
-        await openPositionPage.openPositionDetailsPage()
+        await employeeRecruitmentPage.openPositionDetailsPage()
       }
     )
   })
@@ -154,7 +198,7 @@ test.describe('HR > Open Position Test', () => {
     await Allure.step(
       'Step 1: editing of open position',
       async () => {
-        await openPositionPage.verifyEditOpenPosition()
+        await employeeRecruitmentPage.verifyEditOpenPosition()
       }
     )
   })
@@ -168,7 +212,7 @@ test.describe('HR > Open Position Test', () => {
     await Allure.step(
       'Step 1: Verify Sorting of Start date Column',
       async () => {
-        await openPositionPage.verifySorting("startDate")
+        await employeeRecruitmentPage.verifySorting("startDate")
       }
     )
   })
@@ -182,7 +226,7 @@ test.describe('HR > Open Position Test', () => {
     await Allure.step(
       'Step 1: Verify Sorting of Contract Column',
       async () => {
-        await openPositionPage.verifySorting("contract")
+        await employeeRecruitmentPage.verifySorting("contract")
       }
     )
   })
@@ -196,7 +240,7 @@ test.describe('HR > Open Position Test', () => {
     await Allure.step(
       'Step 1: Verify Sorting of Location Column',
       async () => {
-        await openPositionPage.verifySorting("location")
+        await employeeRecruitmentPage.verifySorting("location")
       }
     )
   })
@@ -210,7 +254,7 @@ test.describe('HR > Open Position Test', () => {
     await Allure.step(
       'Step 1: Verify Sorting of Vacancy Column',
       async () => {
-        await openPositionPage.verifySorting("vacancy")
+        await employeeRecruitmentPage.verifySorting("vacancy")
       }
     )
   })
@@ -224,7 +268,7 @@ test.describe('HR > Open Position Test', () => {
     await Allure.step(
       'Step 1: Verify Sorting of candidate Column',
       async () => {
-        await openPositionPage.verifySorting("candidate")
+        await employeeRecruitmentPage.verifySorting("candidate")
       }
     )
   })
@@ -238,7 +282,7 @@ test.describe('HR > Open Position Test', () => {
     await Allure.step(
       'Step 1: Verify Sorting of listactivity Column',
       async () => {
-        await openPositionPage.verifySorting("listactivity")
+        await employeeRecruitmentPage.verifySorting("listactivity")
       }
     )
   })
@@ -253,7 +297,7 @@ test.describe('HR > Open Position Test', () => {
     await Allure.step(
       'Step 1: Verify Table Items',
       async () => {
-        await openPositionPage.verifyTableItems()
+        await employeeRecruitmentPage.verifyTableItems()
       }
     )
   })
@@ -267,7 +311,7 @@ test.describe('HR > Open Position Test', () => {
     await Allure.step(
       'Step 1: Verify Job Title',
       async () => {
-        await openPositionPage.verifyJobTitle()
+        await employeeRecruitmentPage.verifyJobTitle()
       }
     )
   })
@@ -281,7 +325,7 @@ test.describe('HR > Open Position Test', () => {
     await Allure.step(
       'Step 1:Verify Open osition filter persistence',
       async () => {
-        await openPositionPage.verifyfilterPersistence()
+        await employeeRecruitmentPage.verifyfilterPersistence()
       }
     )
   })
@@ -295,19 +339,19 @@ test.describe('HR > Open Position Test', () => {
     await Allure.step(
       'Step 1: click on LinkedIn search button',
       async () => {
-        await openPositionPage.openLinkedInSearch()
+        await employeeRecruitmentPage.openLinkedInSearch()
       }
     )
     await Allure.step(
       'Step 2: provide all details & search for any role',
       async () => {
-        await openPositionPage.searchForAnyRole()
+        await employeeRecruitmentPage.searchForAnyRole()
       }
     )
     await Allure.step(
       'Step 3:add candidate from the search',
       async () => {
-        await openPositionPage.addCandidateFromLinkedInSearch()
+        await employeeRecruitmentPage.addCandidateFromLinkedInSearch()
       }
     )
   })
@@ -321,15 +365,15 @@ test.describe('HR > Open Position Test', () => {
     await Allure.step(
       'Step 1: goto linkedIn search and click on any cadidate profile',
       async () => {
-        await openPositionPage.openLinkedInSearch()
-        await openPositionPage.searchForAnyRole()
+        await employeeRecruitmentPage.openLinkedInSearch()
+        await employeeRecruitmentPage.searchForAnyRole()
       }
     )
 
     await Allure.step(
       'Step 1: Add candidates',
       async () => {
-        await openPositionPage.addCandidateFromLinkedInSearchProfile()
+        await employeeRecruitmentPage.addCandidateFromLinkedInSearchProfile()
       }
     )
   })
@@ -344,7 +388,7 @@ test.describe('HR > Open Position Test', () => {
       'Step 1: goto linkedIn Candidate Profile page',
       async () => {
 
-        await openPositionPage.verifyLinkedCandidateProfile()
+        await employeeRecruitmentPage.verifyLinkedCandidateProfile()
       }
     )
   })
@@ -358,11 +402,9 @@ test.describe('HR > Open Position Test', () => {
     await Allure.step(
       'Step 1: stop linked serach',
       async () => {
-        await openPositionPage.stopLinkedInSearch()
+        await employeeRecruitmentPage.stopLinkedInSearch()
       }
     )
   })
 
 })
-
-

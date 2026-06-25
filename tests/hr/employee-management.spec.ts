@@ -5,26 +5,97 @@ import { employeeTable } from 'shared/utils/test-data/hr/employee-management-dat
 import { setupTestContext } from 'utils/test-context'
 import { BrowserContext } from 'playwright'
 import { EmployeeManagementPage } from 'pages/hr/employee-management.page'
+import { DashboardPage } from 'pages/hr/dashboard.page'
 
 
 let browser: Browser
 let context: BrowserContext
 let page: Page
 let employeeManagementPage: EmployeeManagementPage
+let dashboardPage: DashboardPage
 let locale: string
 let createdEmployee: { firstName: string; lastName: string } | null = null
 
-
 test.describe('HR > Employee Management Test', () => {
   test.beforeAll(async ({ browser: testBrowser, baseURL }, testInfo) => {
+    test.setTimeout(180000)
     browser = testBrowser
-    context = await browser.newContext()
+    context = await browser.newContext({
+      storageState: testInfo.project.use.storageState
+    })
     page = await context.newPage()
     const testContext = await setupTestContext(page, testInfo)
     locale = testContext.locale
     employeeManagementPage = new EmployeeManagementPage(page, locale)
+    dashboardPage = new DashboardPage(page, locale)
     await employeeManagementPage.goto(baseURL!)
-    await page.waitForLoadState('networkidle')
+  })
+
+  test('Verify Employees sub-page landing @smoke', async () => {
+    test.setTimeout(180000)
+    Allure.addDescription('Verify Employees sub-page loads correctly')
+    Allure.addSeverity('critical')
+    /*await Allure.step('Step 1: Navigate to Employees sub-page', async () => {
+      await employeeManagementPage.navigateToEmployees()
+    })*/
+    await Allure.step('Step 2: Verify page loads', async () => {
+      await employeeManagementPage.verifyEmployeesPageLoads()
+    })
+  })
+
+  test('Verify Request Management landing @smoke', async () => {
+    Allure.addDescription('Verify Request Management sub-page loads correctly')
+    Allure.addSeverity('critical')
+    await Allure.step('Step 1: Navigate to Request Management', async () => {
+      await employeeManagementPage.navigateToRequestManagement()
+    })
+    await Allure.step('Step 2: Verify page loads', async () => {
+      await employeeManagementPage.verifyRequestManagementPageLoads()
+    })
+  })
+
+  test('Verify Activity Type landing @smoke', async () => {
+    Allure.addDescription('Verify Activity Type sub-page loads correctly')
+    Allure.addSeverity('critical')
+    await Allure.step('Step 1: Navigate to Activity Type', async () => {
+      await employeeManagementPage.navigateToActivityType()
+    })
+    await Allure.step('Step 2: Verify page loads', async () => {
+      await employeeManagementPage.verifyActivityTypePageLoads()
+    })
+  })
+
+  test('Verify Bonus Agreement landing @smoke', async () => {
+    Allure.addDescription('Verify Bonus Agreement sub-page loads correctly')
+    Allure.addSeverity('critical')
+    await Allure.step('Step 1: Navigate to Bonus Agreement', async () => {
+      await employeeManagementPage.navigateToBonusAgreement()
+    })
+    await Allure.step('Step 2: Verify page loads', async () => {
+      await employeeManagementPage.verifyBonusAgreementPageLoads()
+    })
+  })
+
+  test('Verify Reassignments Overview landing @smoke', async () => {
+    Allure.addDescription('Verify Reassignments Overview sub-page loads correctly')
+    Allure.addSeverity('critical')
+    await Allure.step('Step 1: Navigate to Reassignments Overview', async () => {
+      await employeeManagementPage.navigateToReassignmentsOverview()
+    })
+    await Allure.step('Step 2: Verify page loads', async () => {
+      await employeeManagementPage.verifyReassignmentsOverviewPageLoads()
+    })
+  })
+
+  test('Verify Vacation Report landing @smoke', async () => {
+    Allure.addDescription('Verify Vacation Report sub-page loads correctly')
+    Allure.addSeverity('critical')
+    await Allure.step('Step 1: Navigate to Vacation Report', async () => {
+      await employeeManagementPage.navigateToVacationReport()
+    })
+    await Allure.step('Step 2: Verify page loads', async () => {
+      await employeeManagementPage.verifyVacationReportPageLoads()
+    })
   })
 
   test('Verify Employee Management heading and total number of employees', async ({ }) => {
@@ -142,13 +213,13 @@ test.describe('HR > Employee Management Test', () => {
   })
 
   //------------------------ Export Selected All----------------------
-  test('Verify Export Selected All  functionality', async ({ }) => {
+  test('Verify Export functionality for Selected records', async ({ }) => {
     Allure.addDescription('Verify Export Selected All  functionality')
     Allure.addSeverity('normal')
 
 
     await Allure.step(
-      'Step 1: Verify select all employees functionality',
+      'Step 1:  employees functionality',
       async () => {
         await employeeManagementPage.verifyExportSelected()
       }
@@ -227,7 +298,7 @@ test.describe('HR > Employee Management Test', () => {
     await employeeManagementPage.verifyClearAllFilters()
   })
 
-  test('Apply a multiple filter (location and gender) filter and verify results update correctly', async ({ }) => {
+  test('Apply a multiple filter (location and gender) and verify results update correctly', async ({ }) => {
     Allure.addDescription(
       'Apply a multiple filter (location and gender) filter and verify results update correctly.'
     )
