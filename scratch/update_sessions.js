@@ -1,0 +1,46 @@
+const fs = require('fs');
+const path = require('path');
+
+const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vYXV0aC1hcGktdGVzdGluZy5pbm5vc2NyaXB0YS5jb20vbG9naW4iLCJpYXQiOjE3ODIzMDA4MjIsImV4cCI6MTc4MjkwNTYyMiwibmJmIjoxNzgyMzAwODIyLCJqdGkiOiJnTG5ld1kyYVA2WTZZZG02Iiwic3ViIjoxMTU4MjMsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEiLCJ1c2VyX2FnZW50IjoiTW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzE0OS4wLjAuMCBTYWZhcmkvNTM3LjM2IiwidXNlciI6eyJpZCI6MTE1ODIzLCJuYW1lIjoiTXVoYW1tZWQgQW5lZXMiLCJlbWFpbCI6ImFuZWVzQGlubm9zY3JpcHRhLmNvbSIsImlzX2FjdGl2ZSI6MSwiaXNfdHJpYWxfYWNjb3VudCI6ZmFsc2UsInRyaWFsX2V4cGlyeSI6bnVsbCwiaXNfYmxvY2tlZCI6ZmFsc2UsImhhc19ocl9pbnZpdGVkIjowLCJjcmVhdGVkX2F0IjoiMjAyNS0wMi0xNFQwMzowMjo1NS4wMDAwMDBaIiwidXBkYXRlZF9hdCI6IjIwMjYtMDYtMjRUMTE6MDM6MzkuMDAwMDAwWiIsIm9yZ2FuaXphdGlvbl9pZCI6MSwibG9jYXRpb24iOiJNXHUwMGZjbmNoZW4iLCJkZXBhcnRtZW50IjoiM3JkIGNoaWxkIiwiY29ubmVjdGVkX2hyX3Bvc2l0aW9uIjpbeyJpZCI6Mjg4NiwibmFtZSI6IlJlY3J1aXRlciIsImRlcGFydG1lbnRfaWQiOjMxMH1dLCJ1c2VybmFtZSI6ImFjN2U1MzY2LWQzNjItNDYxOC04ZjczLTIwNjQ2NDFiODAxMSIsImlzX3Rlcm1zX2FncmVlZCI6bnVsbCwicHJvZmVzc29yX2lkIjpudWxsLCJwcm9mX2VtcGxveWVlX2lkIjpudWxsLCJhY2NvdW50X2FjdGl2YXRpb25fZGF0ZSI6bnVsbCwidG5jX2FncmVlbWVudF9kYXRlIjpudWxsLCJlbWFpbF9zdWJzY3JpcHRpb25fYWdyZWVtZW50X2RhdGUiOm51bGwsImFjY291bnRfYWN0aXZhdGlvbl9pcF9hZGRyZXNzIjpudWxsLCJzb3VyY2UiOm51bGwsInVuc3Vic2NyaWJlZF9hdCI6bnVsbCwidW5zdWJzY3JpYmVkX3RpbGwiOm51bGwsImRlbGV0ZWRfYXQiOm51bGwsImF1dG9fZGVsZXRlZCI6MCwidG9rZW5fdmVyc2lvbiI6MjcsImxhc3RfbG9naW5fYXQiOiIyMDI2LTA2LTI0VDExOjAzOjM5LjAwMDAwMFoiLCJpc19hcmNoaXZlIjowLCJ0d29mYV9wZW5kaW5nX3NlY3JldF9jcmVhdGVkX2F0IjpudWxsLCJ0d29mYV9jaGVja2VkIjowLCJjbGFzc2ljIjowLCJwYXNzd29yZF91cGRhdGVkX2F0IjpudWxsLCJwYXNzd29yZF9leHBpcmVkX2luX2RheXMiOm51bGwsImlzX2Fub255bW91cyI6MCwiaHJfZW1wbG95ZWVfaWQiOjQ2MTYsImNvbnRhaW5lcl91c2VyX3RvdXJfY29tcGxldGVkIjp0cnVlLCJjb250YWluZXJfdXNlcl9zdXJ2ZXlfY29tcGxldGVkIjp0cnVlLCJzaG93X3dlbGNvbWVfc2NyZWVuIjpmYWxzZSwidGVhbXMiOlt7ImlkIjo0NTY5MCwibmFtZSI6InRlc3QgbG9jazMiLCJleHRlcm5hbF9pZCI6NDkwMTQsInBpdm90Ijp7ImlzX2xlYWRlciI6ZmFsc2V9fSx7ImlkIjo1MTQ0OSwibmFtZSI6IlRlYW0gR3JhbmRQYXJlbnRzKFJvb3QpIiwiZXh0ZXJuYWxfaWQiOjQ5NDA0LCJwaWZvdCI6eyJpc19sZWFkZXIiOnRydWV9fV0sInByb2ZpbGUiOnsidXNlcl9pZCI6MTE1ODIzLCJhdmF0YXIiOiJodHRwczovL2lubm9zLXRlc3RpbmcuczMuZXUtY2VudHJhbC0xLmFtYXpvbmF3cy5jb20vZW1wbG95ZWVzX2F2YXRhcnMvNDYxNi5qcGciLCJzZXgiOiJNYWxlIiwibW9iaWxlX3Bob25lIjoiKzkxNDI0MjMzNDIzMiIsIndvcmtpbmdfcGhvbmUiOiIrOTE5NzQxODE4MDQwIiwibGFuZ3VhZ2UiOiJlbiJ9LCJwYXJ0bmVyIjp7InBhcnRuZXJfdHlwZSI6InNmZiJ9fSwiZW1wbG95ZWUiOm51bGwsInBlcm1pc3Npb25zIjpbXSwicm9sZXMiOlsiY29wZXJuaWN1c19tYXN0ZXIiLCJjb3Blcm5pY3VzX3NsYXZlIiwiaW1zX21hc3RlciIsImNvcGVybmljdXNfdGVhbWxlYWRlciIsImludGVybmFsIiwiaW1zX21hc3Rlcl9saW1pdGVkIiwiNmE4NDY0M2UtYTcwZi00MmIzLWEyNjgtNGRlYWNkNTljOThmIiwiYTAyOTY5MGObOGUwOC00N2NlLWEzN2EtMDE3NGQ0ZGNmYjQ4IiwiNWYyNDZlYzQtMzlmOC00ZzIxLXQ5NmQtYWIxNmY4ZTAwNjY5IiwiYmJhOTMyODktYmM1Mi00MDBmLTgyN2QtZmEwOGRkMjNkYjNjIiwiYjgzMzhkZjMtMmU0MS00YTRmLThjZTItYWViNTBiMjI1Y2YwIiwiNWQ5ZTVhNmUtYTI0Ni00MjRiLTk1OGYtMzU1M2UxOTMwYzcyIiwiYWVkMGM3NzEtMTM3ZC00NmU3LWE2N2UtNWY2MzE3NmE5NGY3IiwiMDFlNGQ5MGUtNTRlYS00ZGFjLWFjZjItODY4YmQzYTYwODU2IiwiZWVmMWJhZjItYmM1OS00OWNiLWEyMTctMDM2ZjAwYjFiNjdlIiwiOWQ5MjYyZjYtNzllNy00NTlmLTllYjYtNTQ0YzVhOTIzZGQyIl0sInBhcnRuZXJfbm9kZXMiOnsiMSI6WzQ5NywxODc1LDE1NTldfSwidG9rZW5fdmVyc2lvbiI6Mjd9.PVTxN_CcvYOaWbHkYFsqmsV25y9GlY3H51hdFSNLnAI";
+
+const payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
+
+const userObj = {
+  ...payload.user,
+  access_token: token,
+  refresh_token: token,
+  isLoggedIn: true
+};
+
+const userString = JSON.stringify(userObj);;
+
+const makeState = (lang) => ({
+  cookies: [],
+  origins: [
+    {
+      origin: "https://app-testing.clusterix.io",
+      localStorage: [
+        {
+          name: "i18nextLng",
+          value: lang
+        },
+        {
+          name: "user",
+          value: userString
+        }
+      ]
+    }
+  ]
+});
+
+fs.writeFileSync(
+  path.join(__dirname, '../sessions/storageState.testing.en.json'),
+  JSON.stringify(makeState('en'), null, 2)
+);
+
+fs.writeFileSync(
+  path.join(__dirname, '../sessions/storageState.testing.de.json'),
+  JSON.stringify(makeState('de'), null, 2)
+);
+
+console.log("Session files updated successfully!");
