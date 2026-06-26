@@ -24,6 +24,9 @@ export default defineConfig({
     viewport: { width: 1280, height: 720 },
     video: 'retain-on-failure',
     screenshot: 'only-on-failure',
+    launchOptions: {
+      args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-gpu'],
+    },
   },
   globalSetup: require.resolve('./global-setup'),
   //globalTeardown: require.resolve('./global-teardown'),
