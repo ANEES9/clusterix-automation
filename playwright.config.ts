@@ -1,13 +1,13 @@
 import { defineConfig, devices } from '@playwright/test'
 import * as dotenv from 'dotenv'
 import path from 'node:path'
-import { LANGUAGES } from './config/language-config'
-import { APP_NAMES } from './shared/constants/app-names'
+import { LANGUAGES } from '../clusterix-automation/config/language-config'
+import { APP_NAMES } from '../clusterix-automation/shared/constants/app-names'
 
 dotenv.config({ path: `.env.${process.env.NODE_ENV || 'testing'}` })
 
 export default defineConfig({
-  testDir: './tests',
+  testDir: '../tests',
   retries: 0,
   reporter: [
     ['list'],
