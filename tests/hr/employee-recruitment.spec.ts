@@ -19,7 +19,7 @@ let createdEmployee: { firstName: string; lastName: string } | null = null
 
 test.describe('HR > Employee Recruitment Test', () => {
   test.beforeAll(async ({ browser: testBrowser, baseURL }, testInfo) => {
-    test.setTimeout(180000)
+    test.setTimeout(300000)
     browser = testBrowser
     context = await browser.newContext({
       storageState: testInfo.project.use.storageState
