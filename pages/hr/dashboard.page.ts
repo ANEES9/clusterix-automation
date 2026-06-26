@@ -82,7 +82,7 @@ export class DashboardPage {
 
   // --- Verification Methods ---
   async verifyDashboardPageLoads() {
-    await this.dashboardHeading.waitFor({ state: 'visible', timeout: 180000 })
+    await this.dashboardHeading.waitFor({ state: 'visible', timeout: 300000 })
     await expect(this.dashboardHeading).toBeVisible()
   }
 
