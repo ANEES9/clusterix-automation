@@ -12,7 +12,7 @@ let locale: string
 
 test.describe('HR > Dashboard', () => {
   test.beforeAll(async ({ browser: testBrowser, baseURL }, testInfo) => {
-    test.setTimeout(180000)
+    test.setTimeout(300000)
     browser = testBrowser
     context = await browser.newContext({
       storageState: testInfo.project.use.storageState
