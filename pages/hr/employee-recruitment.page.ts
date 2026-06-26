@@ -232,6 +232,7 @@ export class EmployeeRecruitmentPage {
   }
 
   async expandEmployeeRecruitmentMenu() {
+    await this.openPositionsSubLink.waitFor({ state: 'visible', timeout: 300000 })
     const isVisible = await this.openPositionsSubLink.isVisible()
     if (!isVisible) {
       const menuButton = this.page.getByRole('button').filter({ hasText: /^(Employee recruitment|Mitarbeitergewinnung)$/i }).first()
