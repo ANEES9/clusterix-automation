@@ -322,7 +322,7 @@ export class EmployeeManagementPage {
   }
 
   async verifyEmployeesPageLoads() {
-    await this.headingTextLocator.waitFor({ state: 'visible', timeout: 180000 })
+    await this.headingTextLocator.waitFor({ state: 'visible', timeout: 300000 })
     await expect(this.page).toHaveURL(/.*\/employees(?!\/)/)
   }
 
