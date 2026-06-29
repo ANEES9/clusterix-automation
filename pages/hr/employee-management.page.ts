@@ -36,6 +36,17 @@ export class EmployeeManagementPage {
   private bonusAgreementSubLink: Locator
   private reassignmentsOverviewSubLink: Locator
   private vacationReportSubLink: Locator
+  private changeBoardOwnerSubLink: Locator
+  private changeTicketTaskOwnerSubLink: Locator
+
+  // Sub-page headings
+  private requestManagementHeading: Locator
+  private activityTypeHeading: Locator
+  private bonusAgreementHeading: Locator
+  private reassignmentsOverviewHeading: Locator
+  private vacationReportHeading: Locator
+  private changeBoardOwnerHeading: Locator
+  private changeTicketTaskOwnerHeading: Locator
 
   // Filter Locators
   private collapseButtonLocator: Locator
@@ -93,7 +104,7 @@ export class EmployeeManagementPage {
       '(//div[@class="_wrapper_qiky4_1"])[6]'
     )
     this.employeeRecruitment = page.getByRole('button', {
-      name: /Employee recruitment|Mitarbeitergewinnung/
+      name: /Employee recruitment|Mitarbeitergewinnung/,
     })
 
     this.searchBoxLocator = page.getByRole('textbox', { name: 'Search' })
@@ -116,7 +127,9 @@ export class EmployeeManagementPage {
     this.expandBardWrapperLocator = page.locator(
       '(//*[@class="_wrapper_9tzoo_1"])[2]'
     )
-    this.hideBradWrapperLocator = this.page.locator('//*[@class="_wrapper_9tzoo_1 _active_9tzoo_31"]')
+    this.hideBradWrapperLocator = this.page.locator(
+      '//*[@class="_wrapper_9tzoo_1 _active_9tzoo_31"]'
+    )
 
     this.countBeforeSelectingAllEmployeesLocator = page.locator(
       '((//*[@class="_wrapper_e9gl4_1"])[2])//div/div'
@@ -143,7 +156,6 @@ export class EmployeeManagementPage {
       '(//*[@class="_wrapper_15srw_1"])[2]'
     )
 
-
     //General Filter Locators
     this.filterToggleButtonLocator = this.page.getByText('Filters', {
       exact: true,
@@ -157,7 +169,6 @@ export class EmployeeManagementPage {
       '//*[@class="_button__toggle_l7kvi_50"]'
     )
 
-
     //Location Filters Locators
     this.locationFilterCategoryLocator = this.page.locator(
       '(//*[@class="_button__name_l7kvi_19"])[1]'
@@ -168,7 +179,10 @@ export class EmployeeManagementPage {
     this.apNorthLocationOptionLocator = page.getByRole('button', {
       name: 'AP North2214',
     })
-    this.unselectLocationLocator = this.page.getByRole('button', { name: 'AP North2214', exact: true })
+    this.unselectLocationLocator = this.page.getByRole('button', {
+      name: 'AP North2214',
+      exact: true,
+    })
     this.moscowLocationOptionLocator = page.getByRole('button', {
       name: 'Moscow',
     })
@@ -197,7 +211,9 @@ export class EmployeeManagementPage {
     this.departmentFilterCategoryLocator = this.page.locator(
       '(//*[@class="_button__name_l7kvi_19"])[11]'
     )
-    this.contractStatusFilterCategoryLocator = page.locator('(//*[@class="_button__name_l7kvi_19"])[14]')
+    this.contractStatusFilterCategoryLocator = page.locator(
+      '(//*[@class="_button__name_l7kvi_19"])[14]'
+    )
     this.contractStatusIn2MonthsOptionLocator = page.locator(
       '(//*[@class="_listItem__name_cx3fq_23"])[3]'
     )
@@ -220,7 +236,6 @@ export class EmployeeManagementPage {
     )
     this.selectToday = page.locator('(//*[@class="_button__name_61s7l_25"])[6]')
     this.saveButton = this.page.getByText(this.translations.literals.save)
-
 
     //EMployee Profile Modal
     this.deleteButtonLocator = page.getByRole('button', {
@@ -259,12 +274,64 @@ export class EmployeeManagementPage {
     )
 
     // Initialize sub-pages locators
-    this.employeesSubLink = page.getByRole('button').filter({ hasText: /^(Employees|Mitarbeiter)$/i })
-    this.requestManagementSubLink = page.getByRole('button').filter({ hasText: /^(Request Management|Antragsverwaltung)$/i })
-    this.activityTypeSubLink = page.getByRole('button').filter({ hasText: /^(Activity Type|Aktivitätsart|Tätigkeitsart)$/i })
-    this.bonusAgreementSubLink = page.getByRole('button').filter({ hasText: /^(Bonus Agreement|Bonusvereinbarung)$/i })
-    this.reassignmentsOverviewSubLink = page.getByRole('button').filter({ hasText: /^(Reassignments Overview|Umverteilungsübersicht)$/i })
-    this.vacationReportSubLink = page.getByRole('button').filter({ hasText: /^(Vacation Report|Urlaubsbericht)$/i })
+    this.employeesSubLink = page
+      .getByRole('button')
+      .filter({ hasText: /^(Employees|Mitarbeiter)$/i })
+    this.requestManagementSubLink = page
+      .getByRole('button')
+      .filter({ hasText: /^(Request Management|Antragsverwaltung)$/i })
+    this.activityTypeSubLink = page
+      .getByRole('button')
+      .filter({ hasText: /^(Activity Type|Aktivitätsart|Tätigkeitsart)$/i })
+    this.bonusAgreementSubLink = page
+      .getByRole('button')
+      .filter({ hasText: /^(Bonus Agreement|Bonusvereinbarung)$/i })
+    this.reassignmentsOverviewSubLink = page
+      .getByRole('button')
+      .filter({ hasText: /^(Reassignments Overview|Umverteilungsübersicht)$/i })
+    this.vacationReportSubLink = page
+      .getByRole('button')
+      .filter({ hasText: /^(Vacation Report|Urlaubsbericht)$/i })
+
+    this.changeBoardOwnerSubLink = page
+      .getByRole('button')
+      .filter({ hasText: /^(Change Board Owner|Board-Inhaber ändern)$/i })
+    this.changeTicketTaskOwnerSubLink = page
+      .getByRole('button')
+      .filter({
+        hasText:
+          /^(Change ticket\/task owner|Ticket-\/Aufgabeninhaber ändern)$/i,
+      })
+
+    // Initialize sub-page headings
+    this.requestManagementHeading = page
+      .locator('strong, h1, h2, h3, div')
+      .filter({ hasText: this.translations.modules.requestManagement })
+      .first()
+    this.activityTypeHeading = page
+      .locator('strong, h1, h2, h3, div')
+      .filter({ hasText: this.translations.modules.activityType })
+      .first()
+    this.bonusAgreementHeading = page
+      .locator('strong, h1, h2, h3, div')
+      .filter({ hasText: this.translations.modules.bonusAgreement })
+      .first()
+    this.reassignmentsOverviewHeading = page
+      .locator('strong, h1, h2, h3, div')
+      .filter({ hasText: this.translations.modules.reassignmentsOverview })
+      .first()
+    this.vacationReportHeading = page
+      .locator('strong, h1, h2, h3, div')
+      .filter({ hasText: this.translations.modules.vacationReport })
+      .first()
+    this.changeBoardOwnerHeading = page
+      .locator('strong, h1, h2, h3, div')
+      .filter({ hasText: this.translations.modules.changeBoardOwner })
+      .first()
+    this.changeTicketTaskOwnerHeading = page
+      .locator('strong, h1, h2, h3, div')
+      .filter({ hasText: this.translations.modules.changeTicketTaskOwner })
+      .first()
   }
 
   //GoTo Method
@@ -279,7 +346,10 @@ export class EmployeeManagementPage {
   async expandEmployeeManagementMenu() {
     const isVisible = await this.employeesSubLink.isVisible()
     if (!isVisible) {
-      const menuButton = this.page.getByRole('button').filter({ hasText: /^(Employee Management|Mitarbeiterverwaltung)$/i }).first()
+      const menuButton = this.page
+        .getByRole('button')
+        .filter({ hasText: /^(Employee Management|Mitarbeiterverwaltung)$/i })
+        .first()
       await menuButton.click()
       await this.page.waitForTimeout(500)
     }
@@ -321,6 +391,18 @@ export class EmployeeManagementPage {
     await this.page.waitForLoadState('networkidle')
   }
 
+  async navigateToChangeBoardOwner() {
+    await this.expandEmployeeManagementMenu()
+    await this.changeBoardOwnerSubLink.click()
+    await this.page.waitForLoadState('networkidle')
+  }
+
+  async navigateToChangeTicketTaskOwner() {
+    await this.expandEmployeeManagementMenu()
+    await this.changeTicketTaskOwnerSubLink.click()
+    await this.page.waitForLoadState('networkidle')
+  }
+
   async verifyEmployeesPageLoads() {
     await this.headingTextLocator.waitFor({ state: 'visible', timeout: 300000 })
     await expect(this.page).toHaveURL(/.*\/employees(?!\/)/)
@@ -328,39 +410,47 @@ export class EmployeeManagementPage {
 
   async verifyRequestManagementPageLoads() {
     await expect(this.page).toHaveURL(/.*request-management/)
-    const heading = this.page.locator('strong, h1, h2, h3, div').filter({ hasText: /Request Management|Antragsverwaltung/i }).first()
-    await heading.waitFor({ state: 'visible' })
-    await expect(heading).toBeVisible()
+    await this.requestManagementHeading.waitFor({ state: 'visible' })
+    await expect(this.requestManagementHeading).toBeVisible()
   }
 
   async verifyActivityTypePageLoads() {
     await expect(this.page).toHaveURL(/.*activity-type/)
-    const heading = this.page.locator('strong, h1, h2, h3, div').filter({ hasText: /Activity Type|Aktivitätsart|Tätigkeitsart/i }).first()
-    await heading.waitFor({ state: 'visible' })
-    await expect(heading).toBeVisible()
+    await this.activityTypeHeading.waitFor({ state: 'visible' })
+    await expect(this.activityTypeHeading).toBeVisible()
   }
 
   async verifyBonusAgreementPageLoads() {
     await expect(this.page).toHaveURL(/.*bonus-agreement/)
-    const heading = this.page.locator('strong, h1, h2, h3, div').filter({ hasText: /Bonus Agreement|Bonusvereinbarung/i }).first()
-    await heading.waitFor({ state: 'visible' })
-    await expect(heading).toBeVisible()
+    await this.bonusAgreementHeading.waitFor({ state: 'visible' })
+    await expect(this.bonusAgreementHeading).toBeVisible()
   }
 
   async verifyReassignmentsOverviewPageLoads() {
     await expect(this.page).toHaveURL(/.*reassignments-overview/)
-    const heading = this.page.locator('strong, h1, h2, h3, div').filter({ hasText: /Reassignments Overview|Umverteilungsübersicht/i }).first()
-    await heading.waitFor({ state: 'visible' })
-    await expect(heading).toBeVisible()
+    await this.reassignmentsOverviewHeading.waitFor({ state: 'visible' })
+    await expect(this.reassignmentsOverviewHeading).toBeVisible()
   }
 
   async verifyVacationReportPageLoads() {
     await expect(this.page).toHaveURL(/.*vacation-report/)
-    const heading = this.page.locator('strong, h1, h2, h3, div').filter({ hasText: /Vacation Report|Urlaubsbericht/i }).first()
-    await heading.waitFor({ state: 'visible' })
-    await expect(heading).toBeVisible()
+    await this.vacationReportHeading.waitFor({ state: 'visible' })
+    await expect(this.vacationReportHeading).toBeVisible()
   }
 
+  async verifyChangeBoardOwnerPageLoads() {
+    await expect(this.page).toHaveURL(/.*changing-board-owner/)
+    await this.changeBoardOwnerHeading.waitFor({ state: 'visible' })
+    await expect(this.changeBoardOwnerHeading).toBeVisible()
+  }
+
+  async verifyChangeTicketTaskOwnerPageLoads() {
+    await expect(this.page).toHaveURL(/.*changing-ticket-task-owner/)
+    await this.changeTicketTaskOwnerHeading.waitFor({ state: 'visible' })
+    await expect(this.changeTicketTaskOwnerHeading).toBeVisible()
+  }
+
+  /*
   //Other methods
   async verifyHeading() {
     await this.fullTableLocator.waitFor({ state: 'visible' })
@@ -921,8 +1011,5 @@ export class EmployeeManagementPage {
     await this.employeeRecruitment.click()
     await this.employeeManagement.click()
     await this.fullTableLocator.waitFor({ state: 'visible' })
-  }
+  }*/
 }
-
-
-

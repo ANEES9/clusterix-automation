@@ -37,39 +37,103 @@ export class DashboardPage {
   private companyGrowthLink: Locator
   private birthdayInformationLink: Locator
 
+  // Subpage Headings
+  private myAbsenceDaysHeading: Locator
+  private recruitmentStatisticsHeading: Locator
+  private employeeRetentionHeading: Locator
+  private companyGrowthHeading: Locator
+  private birthdayInformationHeading: Locator
+
   constructor(page: Page, locale: string) {
     this.page = page
     this.translations = getTranslations('hr', locale)
 
-
     // Heading
-    this.dashboardHeading = page.locator("//strong[contains(text(),'Dashboard')]")
+    this.dashboardHeading = page.locator(
+      "//strong[contains(text(),'Dashboard')]"
+    )
 
     // Cards — locate by card title text
-    this.vacationDaysCard = page.getByText(this.translations.dashboard.vacationDays).first()
-    this.sickLeaveCard = page.getByText(this.translations.dashboard.sickLeave).first()
-    this.employeeRequestsCard = page.getByText(this.translations.dashboard.employeeRequests).first()
-    this.homeOfficeCard = page.getByText(this.translations.dashboard.homeOffice).first()
+    this.vacationDaysCard = page
+      .getByText(this.translations.dashboard.vacationDays)
+      .first()
+    this.sickLeaveCard = page
+      .getByText(this.translations.dashboard.sickLeave)
+      .first()
+    this.employeeRequestsCard = page
+      .getByText(this.translations.dashboard.employeeRequests)
+      .first()
+    this.homeOfficeCard = page
+      .getByText(this.translations.dashboard.homeOffice)
+      .first()
     this.otherCard = page.getByText(this.translations.dashboard.other).first()
 
     // Buttons
-    this.vacationRequestNowButton = page.getByRole('button', { name: this.translations.dashboard.requestNow }).first()
-    this.sickLeaveReportNowButton = page.getByRole('button', { name: this.translations.dashboard.reportNow })
-    this.homeOfficeRequestNowButton = page.getByRole('button', { name: this.translations.dashboard.requestNow }).nth(1)
-    this.otherRequestNowButton = page.getByRole('button', { name: this.translations.dashboard.requestNow }).nth(2)
+    this.vacationRequestNowButton = page
+      .getByRole('button', { name: this.translations.dashboard.requestNow })
+      .first()
+    this.sickLeaveReportNowButton = page.getByRole('button', {
+      name: this.translations.dashboard.reportNow,
+    })
+    this.homeOfficeRequestNowButton = page
+      .getByRole('button', { name: this.translations.dashboard.requestNow })
+      .nth(1)
+    this.otherRequestNowButton = page
+      .getByRole('button', { name: this.translations.dashboard.requestNow })
+      .nth(2)
 
     // Violations
-    this.violationsSection = page.getByText(this.translations.dashboard.violations).first()
-    this.maxHoursViolation = page.getByText(this.translations.dashboard.maxHoursViolation)
-    this.minRestViolation = page.getByText(this.translations.dashboard.minRestViolation)
-    this.minBreakViolation = page.getByText(this.translations.dashboard.minBreakViolation)
+    this.violationsSection = page
+      .getByText(this.translations.dashboard.violations)
+      .first()
+    this.maxHoursViolation = page.getByText(
+      this.translations.dashboard.maxHoursViolation
+    )
+    this.minRestViolation = page.getByText(
+      this.translations.dashboard.minRestViolation
+    )
+    this.minBreakViolation = page.getByText(
+      this.translations.dashboard.minBreakViolation
+    )
 
     // Sidebar links
-    this.myAbsenceDaysLink = page.getByRole('button').filter({ hasText: this.translations.dashboard.myAbsenceDays })
-    this.recruitmentStatisticsLink = page.getByRole('button').filter({ hasText: this.translations.dashboard.recruitmentStatistics })
-    this.employeeRetentionLink = page.getByRole('button').filter({ hasText: this.translations.dashboard.employeeRetention })
-    this.companyGrowthLink = page.getByRole('button').filter({ hasText: this.translations.dashboard.companyGrowth })
-    this.birthdayInformationLink = page.getByRole('button').filter({ hasText: this.translations.dashboard.birthdateInformation })
+    this.myAbsenceDaysLink = page
+      .getByRole('button')
+      .filter({ hasText: this.translations.dashboard.myAbsenceDays })
+    this.recruitmentStatisticsLink = page
+      .getByRole('button')
+      .filter({ hasText: this.translations.dashboard.recruitmentStatistics })
+    this.employeeRetentionLink = page
+      .getByRole('button')
+      .filter({ hasText: this.translations.dashboard.employeeRetention })
+    this.companyGrowthLink = page
+      .getByRole('button')
+      .filter({ hasText: this.translations.dashboard.companyGrowth })
+    this.birthdayInformationLink = page
+      .getByRole('button')
+      .filter({ hasText: this.translations.dashboard.birthdateInformation })
+
+    // Subpage Headings
+    this.myAbsenceDaysHeading = page
+      .locator('strong, h1, h2, h3, div')
+      .filter({ hasText: this.translations.dashboard.myAbsenceDays })
+      .first()
+    this.recruitmentStatisticsHeading = page
+      .locator('strong, h1, h2, h3, div')
+      .filter({ hasText: this.translations.dashboard.recruitmentStatistics })
+      .first()
+    this.employeeRetentionHeading = page
+      .locator('strong, h1, h2, h3, div')
+      .filter({ hasText: this.translations.dashboard.employeeRetention })
+      .first()
+    this.companyGrowthHeading = page
+      .locator('strong, h1, h2, h3, div')
+      .filter({ hasText: this.translations.dashboard.companyGrowth })
+      .first()
+    this.birthdayInformationHeading = page
+      .locator('strong, h1, h2, h3, div')
+      .filter({ hasText: this.translations.dashboard.birthdateInformation })
+      .first()
   }
 
   // --- Navigation ---
@@ -109,42 +173,47 @@ export class DashboardPage {
 
   async verifyMyAbsenceDaysPageLoads() {
     await expect(this.page).toHaveURL(/.*dashboard/)
-    const headingText = this.translations.dashboard.myAbsenceDays
-    const heading = this.page.locator('strong, h1, h2, h3, div').filter({ hasText: headingText }).first()
-    await heading.waitFor({ state: 'visible', timeout: 30000 })
-    await expect(heading).toBeVisible()
+    await this.myAbsenceDaysHeading.waitFor({
+      state: 'visible',
+      timeout: 30000,
+    })
+    await expect(this.myAbsenceDaysHeading).toBeVisible()
   }
 
   async verifyRecruitmentStatisticsPageLoads() {
     await expect(this.page).toHaveURL(/.*recruitment-statistics/)
-    const headingText = this.translations.dashboard.recruitmentStatistics
-    const heading = this.page.locator('strong, h1, h2, h3, div').filter({ hasText: headingText }).first()
-    await heading.waitFor({ state: 'visible', timeout: 30000 })
-    await expect(heading).toBeVisible()
+    await this.recruitmentStatisticsHeading.waitFor({
+      state: 'visible',
+      timeout: 30000,
+    })
+    await expect(this.recruitmentStatisticsHeading).toBeVisible()
   }
 
   async verifyEmployeeRetentionPageLoads() {
     await expect(this.page).toHaveURL(/.*employee-retention/)
-    const headingText = this.translations.dashboard.employeeRetention
-    const heading = this.page.locator('strong, h1, h2, h3, div').filter({ hasText: headingText }).first()
-    await heading.waitFor({ state: 'visible', timeout: 30000 })
-    await expect(heading).toBeVisible()
+    await this.employeeRetentionHeading.waitFor({
+      state: 'visible',
+      timeout: 30000,
+    })
+    await expect(this.employeeRetentionHeading).toBeVisible()
   }
 
   async verifyCompanyGrowthPageLoads() {
     await expect(this.page).toHaveURL(/.*company-growth/)
-    const headingText = this.translations.dashboard.companyGrowth
-    const heading = this.page.locator('strong, h1, h2, h3, div').filter({ hasText: headingText }).first()
-    await heading.waitFor({ state: 'visible', timeout: 30000 })
-    await expect(heading).toBeVisible()
+    await this.companyGrowthHeading.waitFor({
+      state: 'visible',
+      timeout: 30000,
+    })
+    await expect(this.companyGrowthHeading).toBeVisible()
   }
 
   async verifyBirthdayInformationPageLoads() {
     await expect(this.page).toHaveURL(/.*birthdate-information/)
-    const headingText = this.translations.dashboard.birthdateInformation
-    const heading = this.page.locator('strong, h1, h2, h3, div').filter({ hasText: headingText }).first()
-    await heading.waitFor({ state: 'visible', timeout: 30000 })
-    await expect(heading).toBeVisible()
+    await this.birthdayInformationHeading.waitFor({
+      state: 'visible',
+      timeout: 30000,
+    })
+    await expect(this.birthdayInformationHeading).toBeVisible()
   }
 
   // --- Sidebar Navigation ---
