@@ -12,27 +12,31 @@ let locale: string
 
 test.describe('HR > Dashboard', () => {
   test.beforeAll(async ({ browser: testBrowser, baseURL }, testInfo) => {
-    test.setTimeout(300000)
+    //test.setTimeout(300000)
     browser = testBrowser
     context = await browser.newContext({
-      storageState: testInfo.project.use.storageState
+      storageState: testInfo.project.use.storageState,
     })
     page = await context.newPage()
     const testContext = await setupTestContext(page, testInfo)
     locale = testContext.locale
     dashboardPage = new DashboardPage(page, locale)
     await dashboardPage.goto(baseURL!)
-
   })
 
   test('Verify Dashboard page loads @smoke', async () => {
-    test.setTimeout(180000)
-    Allure.addDescription('Verify the Dashboard page loads with heading visible')
+    //test.setTimeout(180000)
+    Allure.addDescription(
+      'Verify the Dashboard page loads with heading visible'
+    )
     Allure.addSeverity('critical')
 
-    await Allure.step('Step 1: Verify Dashboard heading is visible', async () => {
-      await dashboardPage.verifyDashboardPageLoads()
-    })
+    await Allure.step(
+      'Step 1: Verify Dashboard heading is visible',
+      async () => {
+        await dashboardPage.verifyDashboardPageLoads()
+      }
+    )
   })
 
   test('Verify all dashboard cards are visible @regression', async () => {
@@ -54,7 +58,9 @@ test.describe('HR > Dashboard', () => {
   })
 
   test('Verify Violations section @regression', async () => {
-    Allure.addDescription('Verify Violations section with all 3 violation types')
+    Allure.addDescription(
+      'Verify Violations section with all 3 violation types'
+    )
     Allure.addSeverity('normal')
 
     await Allure.step('Step 1: Verify violations section', async () => {
@@ -73,11 +79,16 @@ test.describe('HR > Dashboard', () => {
   })
 
   test('Verify Recruitment Statistics landing @smoke', async () => {
-    Allure.addDescription('Verify Recruitment Statistics sub-page loads correctly')
+    Allure.addDescription(
+      'Verify Recruitment Statistics sub-page loads correctly'
+    )
     Allure.addSeverity('critical')
-    await Allure.step('Step 1: Navigate to Recruitment Statistics', async () => {
-      await dashboardPage.navigateToRecruitmentStatistics()
-    })
+    await Allure.step(
+      'Step 1: Navigate to Recruitment Statistics',
+      async () => {
+        await dashboardPage.navigateToRecruitmentStatistics()
+      }
+    )
     await Allure.step('Step 2: Verify page loads', async () => {
       await dashboardPage.verifyRecruitmentStatisticsPageLoads()
     })
@@ -106,7 +117,9 @@ test.describe('HR > Dashboard', () => {
   })
 
   test('Verify Birthday Information landing @smoke', async () => {
-    Allure.addDescription('Verify Birthday Information sub-page loads correctly')
+    Allure.addDescription(
+      'Verify Birthday Information sub-page loads correctly'
+    )
     Allure.addSeverity('critical')
     await Allure.step('Step 1: Navigate to Birthday Information', async () => {
       await dashboardPage.navigateToBirthdayInformation()

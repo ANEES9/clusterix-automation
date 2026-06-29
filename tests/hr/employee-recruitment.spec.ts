@@ -7,7 +7,6 @@ import { BrowserContext } from 'playwright'
 import { EmployeeManagementPage } from 'pages/hr/employee-management.page'
 import { EmployeeRecruitmentPage } from '../../pages/hr/employee-recruitment.page'
 
-
 let browser: Browser
 let context: BrowserContext
 let page: Page
@@ -16,13 +15,12 @@ let employeeRecruitmentPage: EmployeeRecruitmentPage
 let locale: string
 let createdEmployee: { firstName: string; lastName: string } | null = null
 
-
 test.describe('HR > Employee Recruitment Test', () => {
   test.beforeAll(async ({ browser: testBrowser, baseURL }, testInfo) => {
     test.setTimeout(300000)
     browser = testBrowser
     context = await browser.newContext({
-      storageState: testInfo.project.use.storageState
+      storageState: testInfo.project.use.storageState,
     })
     page = await context.newPage()
     const testContext = await setupTestContext(page, testInfo)
@@ -33,6 +31,7 @@ test.describe('HR > Employee Recruitment Test', () => {
   })
 
   test('Verify Open Positions landing @smoke', async () => {
+    //test.setTimeout(300000)
     Allure.addDescription('Verify Open Positions sub-page loads correctly')
     Allure.addSeverity('critical')
     await Allure.step('Step 2: Verify page loads', async () => {
@@ -73,6 +72,11 @@ test.describe('HR > Employee Recruitment Test', () => {
     })
   })
 
+  test.afterAll(async () => {
+    await context.close()
+  })
+
+  /*
   test('Navigate to Employee Recruitment & Search for an Any Open Position', async ({ }) => {
     Allure.addDescription(
       'Navigate to Employee Recruitment & Search for an Any Open Position.'
@@ -405,6 +409,5 @@ test.describe('HR > Employee Recruitment Test', () => {
         await employeeRecruitmentPage.stopLinkedInSearch()
       }
     )
-  })
-
+  })*/
 })

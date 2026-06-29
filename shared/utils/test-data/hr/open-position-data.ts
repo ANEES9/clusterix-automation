@@ -1,4 +1,3 @@
-export const openPositionTable={
-    openPosition: 'IT-gfgfg',
-  }
- 
+export const openPositionTable = {
+  openPosition: 'IT-gfgfg',
+}
