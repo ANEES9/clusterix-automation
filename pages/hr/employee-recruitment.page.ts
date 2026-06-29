@@ -106,6 +106,11 @@ export class EmployeeRecruitmentPage {
   private lushaSearchSubLink: Locator
   private candidateListSubLink: Locator
 
+  // Sub-page headings & menus
+  private recruitmentMenuButton: Locator
+  private linkedInSearchHeading: Locator
+  private lushaSearchHeading: Locator
+
   //constructor
   constructor(page: Page, locale: string) {
     this.page = page
@@ -114,87 +119,201 @@ export class EmployeeRecruitmentPage {
 
     //Empoyee Management Home Page
     this.employeeManagement = page.locator(
-      '(//div[@class="_wrapper_qiky4_1"])[8]')
+      '(//div[@class="_wrapper_qiky4_1"])[8]'
+    )
     this.employeeRecruitment = page.locator(
       '(//div[@class="_wrapper_qiky4_1"])[9]'
     )
 
-    this.openPositiontableItems = page.locator('//*[@class="Bar-module_group__GLzMA"][2]//div')
-    this.openPositionNames = page.locator('(//*[starts-with(@class, "_texts_is")]//span)[1]')
-    this.candidatePage = page.locator('//*[starts-with(@class, "_sidebarSubMenu")]//button[2]')
-    this.dailyPoolCardLocator = page.locator('//*[starts-with(@class, "_actualWrapper_")][1]')
-    this.searchBoxLocator = page.locator('(//*[starts-with(@class, "_field__input_")])[1]')
-    this.openPositiontableLocator = page.locator('//*[@class="open_positions_table"]')
+    this.openPositiontableItems = page.locator(
+      '//*[@class="Bar-module_group__GLzMA"][2]//div'
+    )
+    this.openPositionNames = page.locator(
+      '(//*[starts-with(@class, "_texts_is")]//span)[1]'
+    )
+    this.candidatePage = page.locator(
+      '//*[starts-with(@class, "_sidebarSubMenu")]//button[2]'
+    )
+    this.dailyPoolCardLocator = page.locator(
+      '//*[starts-with(@class, "_actualWrapper_")][1]'
+    )
+    this.searchBoxLocator = page.locator(
+      '(//*[starts-with(@class, "_field__input_")])[1]'
+    )
+    this.openPositiontableLocator = page.locator(
+      '//*[@class="open_positions_table"]'
+    )
     this.noMatchingFoundTextLoacor = page.locator(
       '.EmptyState-module_title__-piqa'
     )
-    this.openPositionMagnifierLocator = page.locator('(//*[@class="_wrapper_1fq5u_1"])[1]')
-    this.openPositionArchiveLocator = page.locator('(//*[@class="_wrapper_1fq5u_1"])[2]')
-    this.archiveConfirmationDescriptionLocator = page.locator('(//*[@class="ConfirmationModal-module_description__LmVcR"])')
-    this.moveToArchiveConfirmButtonLocator = page.locator('//*[@class="ConfirmationModal-module_footer__kUjDB"]/div[2]')
+    this.openPositionMagnifierLocator = page.locator(
+      '(//*[@class="_wrapper_1fq5u_1"])[1]'
+    )
+    this.openPositionArchiveLocator = page.locator(
+      '(//*[@class="_wrapper_1fq5u_1"])[2]'
+    )
+    this.archiveConfirmationDescriptionLocator = page.locator(
+      '(//*[@class="ConfirmationModal-module_description__LmVcR"])'
+    )
+    this.moveToArchiveConfirmButtonLocator = page.locator(
+      '//*[@class="ConfirmationModal-module_footer__kUjDB"]/div[2]'
+    )
 
     //General Filter Locators
-    this.filterToggleButtonLocator = this.page.locator('//*[@class="PartWrapper-module_partWrapper__I8EIP"][2]')
-    this.resetAllFilter = this.page.locator('//*[@class="FiltersDropdown-module_clearFiltersWrapper__pHxJf"]')
-    this.archivedFilterCategoryLocator = this.page.locator('((//*[@class="styles-module_filtersGroupItem__3vDjs"])/div/div)[1]')
-    this.showArchivedLocator = this.page.locator('(//*[@class="styles-module_content__ZLDHe"])//label')
-    this.collapseIconLocator = this.page.locator('((//*[@class="styles-module_statusAndArrow__Ynops"])//div)[8]')
+    this.filterToggleButtonLocator = this.page.locator(
+      '//*[@class="PartWrapper-module_partWrapper__I8EIP"][2]'
+    )
+    this.resetAllFilter = this.page.locator(
+      '//*[@class="FiltersDropdown-module_clearFiltersWrapper__pHxJf"]'
+    )
+    this.archivedFilterCategoryLocator = this.page.locator(
+      '((//*[@class="styles-module_filtersGroupItem__3vDjs"])/div/div)[1]'
+    )
+    this.showArchivedLocator = this.page.locator(
+      '(//*[@class="styles-module_content__ZLDHe"])//label'
+    )
+    this.collapseIconLocator = this.page.locator(
+      '((//*[@class="styles-module_statusAndArrow__Ynops"])//div)[8]'
+    )
 
     this.restoreButtonLocator = this.page.locator('._wrapper_1fq5u_1').first()
-    this.confirmRestoreButtonLocator = this.page.locator('div').filter({ hasText: /^(Restore|Wiederherstellen)$/ }).first()
-    this.successfullyArchivedToastMeassgeLocator = this.page.getByText(/The position has been archived|Die Position wurde archiviert/i)
-    this.restoredToastMessageLocator = this.page.locator('//*[@class="_text_1tnwx_24"]')
+    this.confirmRestoreButtonLocator = this.page
+      .locator('div')
+      .filter({ hasText: /^(Restore|Wiederherstellen)$/ })
+      .first()
+    this.successfullyArchivedToastMeassgeLocator = this.page.getByText(
+      /The position has been archived|Die Position wurde archiviert/i
+    )
+    this.restoredToastMessageLocator = this.page.locator(
+      '//*[@class="_text_1tnwx_24"]'
+    )
 
-    this.linkedInButtonLocator = this.page.locator('(//*[starts-with(@class, "_button__name_")])[2]')
-    this.roleSearchBoxLocator = this.page.locator('(//*[starts-with(@class, "_field__input_")])[1]')
-    this.graduationYearFromLocator = this.page.locator('(//*[starts-with(@class, "_field__input_")])[2]')
-    this.graduationYearToLocator = this.page.locator('(//*[starts-with(@class, "_field__input_")])[3]')
-    this.minYearsOfExperienceLocator = this.page.locator('(//*[starts-with(@class, "_field__input_")])[4]')
-    this.maxYearsOfExperienceLocator = this.page.locator('(//*[starts-with(@class, "_field__input_")])[5]')
-    this.applyButtonLocator = this.page.locator('//*[starts-with(@class,"_button__name_")')
-    this.linkedInSearchTableLocator = this.page.locator('//*[@class="_table_1savp_1"]')
-    this.firstRowInLinkedInTableLocator = page.locator('._wrapper_12gcv_1').first()
-    this.addButtonLocator = this.page.locator('(//*[contains(@class, "_wrapper_")])[93]')
-    this.searchButtonlocator = this.page.locator('(//*[contains(@class, "_wrapper_")])[96]')
-    this.openPositionDropdownLocator = this.page.locator('(//*[@class="_field__input_dlunb_11"])[18]')
-    this.getOpenPositionLocator = this.page.locator('(//*[@class="_listItem__name_cx3fq_23"])[9]')
-    this.addCandidatesLocator = this.page.getByRole('button', { name: 'Add Candidate' }).nth(1)
+    this.linkedInButtonLocator = this.page.locator(
+      '(//*[starts-with(@class, "_button__name_")])[2]'
+    )
+    this.roleSearchBoxLocator = this.page.locator(
+      '(//*[starts-with(@class, "_field__input_")])[1]'
+    )
+    this.graduationYearFromLocator = this.page.locator(
+      '(//*[starts-with(@class, "_field__input_")])[2]'
+    )
+    this.graduationYearToLocator = this.page.locator(
+      '(//*[starts-with(@class, "_field__input_")])[3]'
+    )
+    this.minYearsOfExperienceLocator = this.page.locator(
+      '(//*[starts-with(@class, "_field__input_")])[4]'
+    )
+    this.maxYearsOfExperienceLocator = this.page.locator(
+      '(//*[starts-with(@class, "_field__input_")])[5]'
+    )
+    this.applyButtonLocator = this.page.locator(
+      '//*[starts-with(@class,"_button__name_")'
+    )
+    this.linkedInSearchTableLocator = this.page.locator(
+      '//*[@class="_table_1savp_1"]'
+    )
+    this.firstRowInLinkedInTableLocator = page
+      .locator('._wrapper_12gcv_1')
+      .first()
+    this.addButtonLocator = this.page.locator(
+      '(//*[contains(@class, "_wrapper_")])[93]'
+    )
+    this.searchButtonlocator = this.page.locator(
+      '(//*[contains(@class, "_wrapper_")])[96]'
+    )
+    this.openPositionDropdownLocator = this.page.locator(
+      '(//*[@class="_field__input_dlunb_11"])[18]'
+    )
+    this.getOpenPositionLocator = this.page.locator(
+      '(//*[@class="_listItem__name_cx3fq_23"])[9]'
+    )
+    this.addCandidatesLocator = this.page
+      .getByRole('button', { name: 'Add Candidate' })
+      .nth(1)
     this.addCandidateLocator = this.page.getByRole('button', {
-      name: /Add Candidate|Kandidat hinzufügen/
+      name: /Add Candidate|Kandidat hinzufügen/,
     })
-    this.stopSearchLocator = this.page.locator('(//*[contains(@class, "_button__name_")])[2]')
+    this.stopSearchLocator = this.page.locator(
+      '(//*[contains(@class, "_button__name_")])[2]'
+    )
 
-    this.startDatecolumnHeader = page.locator('(//*[starts-with(@class, "_tableHeaderCell__content_scsew_11")])[3]')
-    this.startDateSortButton = page.locator('(//*[starts-with(@class, "_wrapper_qiky4_1") and contains(@class, "_headerButtonIcon_51qq3_18")])[4]')
-    this.startDatecolumnValues = page.locator('(//td[contains(@class, "_tableBodyCell")][3]//span)[1]')
+    this.startDatecolumnHeader = page.locator(
+      '(//*[starts-with(@class, "_tableHeaderCell__content_scsew_11")])[3]'
+    )
+    this.startDateSortButton = page.locator(
+      '(//*[starts-with(@class, "_wrapper_qiky4_1") and contains(@class, "_headerButtonIcon_51qq3_18")])[4]'
+    )
+    this.startDatecolumnValues = page.locator(
+      '(//td[contains(@class, "_tableBodyCell")][3]//span)[1]'
+    )
 
-    this.contractColumnHeader = page.locator('(//*[starts-with(@class, "_tableHeaderCell__content_scsew_11")])[4]')
-    this.contractSortButton = page.locator('(//*[starts-with(@class, "_wrapper_qiky4_1") and contains(@class, "_headerButtonIcon_51qq3_18")])[6]')
-    this.contractColumnValues = page.locator('(//td[contains(@class, "_tableBodyCell")][4]//span)[1]')
+    this.contractColumnHeader = page.locator(
+      '(//*[starts-with(@class, "_tableHeaderCell__content_scsew_11")])[4]'
+    )
+    this.contractSortButton = page.locator(
+      '(//*[starts-with(@class, "_wrapper_qiky4_1") and contains(@class, "_headerButtonIcon_51qq3_18")])[6]'
+    )
+    this.contractColumnValues = page.locator(
+      '(//td[contains(@class, "_tableBodyCell")][4]//span)[1]'
+    )
 
-    this.locationColumnHeader = page.locator('(//*[starts-with(@class, "_tableHeaderCell__content_scsew_11")])[5]')
-    this.locationSortButton = page.locator('(//*[starts-with(@class, "_wrapper_qiky4_1") and contains(@class, "_headerButtonIcon_51qq3_18")])[8]')
-    this.locationColumnValues = page.locator('(//td[contains(@class, "_tableBodyCell")][5]//span)[2]')
+    this.locationColumnHeader = page.locator(
+      '(//*[starts-with(@class, "_tableHeaderCell__content_scsew_11")])[5]'
+    )
+    this.locationSortButton = page.locator(
+      '(//*[starts-with(@class, "_wrapper_qiky4_1") and contains(@class, "_headerButtonIcon_51qq3_18")])[8]'
+    )
+    this.locationColumnValues = page.locator(
+      '(//td[contains(@class, "_tableBodyCell")][5]//span)[2]'
+    )
 
-    this.vacancyColumnHeader = page.locator('(//*[starts-with(@class, "_tableHeaderCell__content_scsew_11")])[6]')
-    this.vacancySortButton = page.locator('(//*[starts-with(@class, "_wrapper_qiky4_1") and contains(@class, "_headerButtonIcon_51qq3_18")])[10]')
-    this.vacancyColumnValues = page.locator('(//td[contains(@class, "_tableBodyCell")][6])[1]')
+    this.vacancyColumnHeader = page.locator(
+      '(//*[starts-with(@class, "_tableHeaderCell__content_scsew_11")])[6]'
+    )
+    this.vacancySortButton = page.locator(
+      '(//*[starts-with(@class, "_wrapper_qiky4_1") and contains(@class, "_headerButtonIcon_51qq3_18")])[10]'
+    )
+    this.vacancyColumnValues = page.locator(
+      '(//td[contains(@class, "_tableBodyCell")][6])[1]'
+    )
 
-    this.candidatesColumnHeader = page.locator('(//*[starts-with(@class, "_tableHeaderCell__content_scsew_11")])[7]')
-    this.candidatesSortButton = page.locator("(//*[starts-with(@class, '_texts_isl')])[6]")
-    this.candidatesColumnValues = page.locator('(//td[contains(@class, "_tableBodyCell")][7])[1]//span')
+    this.candidatesColumnHeader = page.locator(
+      '(//*[starts-with(@class, "_tableHeaderCell__content_scsew_11")])[7]'
+    )
+    this.candidatesSortButton = page.locator(
+      "(//*[starts-with(@class, '_texts_isl')])[6]"
+    )
+    this.candidatesColumnValues = page.locator(
+      '(//td[contains(@class, "_tableBodyCell")][7])[1]//span'
+    )
 
-    this.listActivityColumnHeader = page.locator('(//*[starts-with(@class, "_tableHeaderCell__content_scsew_11")])[9]')
-    this.listActivitySortButton = page.locator("(//*[starts-with(@class, '_texts_isl')])[7]")
-    this.listActivityColumnValues = page.locator('(//*[starts-with(@class, "_texts_isl9j_61")])[7]')
+    this.listActivityColumnHeader = page.locator(
+      '(//*[starts-with(@class, "_tableHeaderCell__content_scsew_11")])[9]'
+    )
+    this.listActivitySortButton = page.locator(
+      "(//*[starts-with(@class, '_texts_isl')])[7]"
+    )
+    this.listActivityColumnValues = page.locator(
+      '(//*[starts-with(@class, "_texts_isl9j_61")])[7]'
+    )
 
     // Inside LinkedIn Profile page
-    this.addCandidateButtonLocator = this.page.locator("//button[contains(text(), 'Add to candidates') or contains(text(), 'Zu Kandidaten hinzufügen')]")
+    this.addCandidateButtonLocator = this.page.locator(
+      "//button[contains(text(), 'Add to candidates') or contains(text(), 'Zu Kandidaten hinzufügen')]"
+    )
     this.nameLocator = this.page.locator('//*[@class="_mainLeft_1ojzh_52"]//h2')
-    this.expierenceLocator = this.page.locator("//h3[contains(text(), 'Experience') or contains(text(), 'Erfahrung')]")
-    this.educationLocator = this.page.locator("//h3[contains(text(), 'Education') or contains(text(), 'Bildung')]")
-    this.languagesLocator = this.languagesLocator = this.page.locator("//h3[contains(text(), 'Languages') or contains(text(), 'Sprachen')]")
-    this.closeProfileModalLocator = this.page.locator(`(//*[contains(@class, "_wrapper_qiky4_")])[23]`)
+    this.expierenceLocator = this.page.locator(
+      "//h3[contains(text(), 'Experience') or contains(text(), 'Erfahrung')]"
+    )
+    this.educationLocator = this.page.locator(
+      "//h3[contains(text(), 'Education') or contains(text(), 'Bildung')]"
+    )
+    this.languagesLocator = this.languagesLocator = this.page.locator(
+      "//h3[contains(text(), 'Languages') or contains(text(), 'Sprachen')]"
+    )
+    this.closeProfileModalLocator = this.page.locator(
+      `(//*[contains(@class, "_wrapper_qiky4_")])[23]`
+    )
 
     //open position details page
     this.totalCandidatesTextLocator = page.getByText('Total candidates')
@@ -202,41 +321,73 @@ export class EmployeeRecruitmentPage {
     this.createdOnTextLocator = page.getByText('Created On')
     this.positionTitleLocator = page.locator('(//*[@class="w-4/5"])//h2')
     this.skillsHeadingLocator = page.getByRole('heading', {
-      name: /Skills|Fähigkeiten/
+      name: /Skills|Fähigkeiten/,
     })
     this.addSkillButtonLocator = page.getByRole('button', {
-      name: /Add skill|Skill hinzufügen/
+      name: /Add skill|Skill hinzufügen/,
     })
     this.openPositionsLinkLocator = page.locator('(//*[@class="flex"])//a')
-    this.editPositionButtonLocator = page.getByRole('button', { name: /Edit Position|Stelle bearbeiten/i })
+    this.editPositionButtonLocator = page.getByRole('button', {
+      name: /Edit Position|Stelle bearbeiten/i,
+    })
     this.openPositionTextLocator = page.getByRole('strong').first()
     this.saveButtonLocator = page.getByText(/Save|Speichern/i)
-    this.openPositionHeadingText = page.locator("//h1[contains(text(),'Open Positions')]")
-    this.candidateListHeadingText = page.locator("//span[contains(text(),'Candidates')]")
+    this.openPositionHeadingText = page.locator(
+      "//h1[contains(text(),'Open Positions')]"
+    )
+    this.candidateListHeadingText = page.locator(
+      "//span[contains(text(),'Candidates')]"
+    )
 
     // Initialize sub-pages locators
-    this.openPositionsSubLink = page.locator('button[class*="sidebarSubMenu"]').filter({ hasText: /^(Open Positions|Offene Stellen)$/i })
-    this.linkedInSearchSubLink = page.locator('button[class*="sidebarSubMenu"]').filter({ hasText: /^(LinkedIn Search|LinkedIn Suche)$/i })
-    this.lushaSearchSubLink = page.locator('button[class*="sidebarSubMenu"]').filter({ hasText: /^(Lusha Search|Lusha Suche)$/i })
-    this.candidateListSubLink = page.locator('button[class*="sidebarSubMenu"]').filter({ hasText: /^(Candidate List|Kandidatenliste)$/i })
+    this.openPositionsSubLink = page
+      .locator('button[class*="sidebarSubMenu"]')
+      .filter({ hasText: /^(Open Positions|Offene Stellen)$/i })
+    this.linkedInSearchSubLink = page
+      .locator('button[class*="sidebarSubMenu"]')
+      .filter({ hasText: /^(LinkedIn Search|LinkedIn Suche)$/i })
+    this.lushaSearchSubLink = page
+      .locator('button[class*="sidebarSubMenu"]')
+      .filter({ hasText: /^(Lusha Search|Lusha Suche)$/i })
+    this.candidateListSubLink = page
+      .locator('button[class*="sidebarSubMenu"]')
+      .filter({ hasText: /^(Candidate List|Kandidatenliste)$/i })
+
+    // Initialize subpage headings & menus
+    this.recruitmentMenuButton = page
+      .getByRole('button')
+      .filter({ hasText: /^(Employee recruitment|Mitarbeitergewinnung)$/i })
+      .first()
+    this.linkedInSearchHeading = page
+      .locator('h1, h2, h3, strong')
+      .filter({ hasText: this.translations.modules.linkedInSearch })
+      .first()
+    this.lushaSearchHeading = page
+      .locator('h1, h2, h3, strong')
+      .filter({ hasText: this.translations.modules.lushaSearch })
+      .first()
   }
   private setSearchResultLocator(searchValue: string) {
-    this.searchResultNameLocator = this.page.getByRole('button', { name: new RegExp(searchValue, 'i') })
+    this.searchResultNameLocator = this.page.getByRole('button', {
+      name: new RegExp(searchValue, 'i'),
+    })
   }
 
   //GoTo Method
   async goto(baseURL: string | undefined) {
-    await Allure.step('should navigate to my profile', async () => {
+    await Allure.step('should navigate to open positions', async () => {
       await this.page.goto(`${baseURL}${APP_URLS.hr.openPosition}`)
     })
   }
 
   async expandEmployeeRecruitmentMenu() {
-    await this.openPositionsSubLink.waitFor({ state: 'visible', timeout: 300000 })
+    await this.openPositionsSubLink.waitFor({
+      state: 'visible',
+      timeout: 300000,
+    })
     const isVisible = await this.openPositionsSubLink.isVisible()
     if (!isVisible) {
-      const menuButton = this.page.getByRole('button').filter({ hasText: /^(Employee recruitment|Mitarbeitergewinnung)$/i }).first()
-      await menuButton.click()
+      await this.recruitmentMenuButton.click()
       await this.page.waitForTimeout(500)
     }
   }
@@ -267,26 +418,23 @@ export class EmployeeRecruitmentPage {
 
   async verifyOpenPositionsPageLoads() {
     await expect(this.page).toHaveURL(/.*\/open-positions(?!\/search)/)
-    // Debug logs
-    console.log("URL:", this.page.url());
-    console.log("H1 Count:", await this.page.locator("h1").count());
-    console.log("H1 Texts:", await this.page.locator("h1").allTextContents());
-    console.log("Heading Count:", await this.openPositionHeadingText.count());
+    await this.openPositionHeadingText.waitFor({
+      state: 'visible',
+      timeout: 300000,
+    })
     await expect(this.openPositionHeadingText).toBeVisible()
   }
 
   async verifyLinkedInSearchPageLoads() {
     await expect(this.page).toHaveURL(/.*\/open-positions\/search/)
-    const heading = this.page.locator('h1, h2, h3, strong').filter({ hasText: /LinkedIn Search|LinkedIn Suche/i }).first()
-    await heading.waitFor({ state: 'visible' })
-    await expect(heading).toBeVisible()
+    await this.linkedInSearchHeading.waitFor({ state: 'visible' })
+    await expect(this.linkedInSearchHeading).toBeVisible()
   }
 
   async verifyLushaSearchPageLoads() {
     await expect(this.page).toHaveURL(/.*\/lusha\/search/)
-    const heading = this.page.locator('h1, h2, h3, strong').filter({ hasText: /Lusha Search|Lusha Suche/i }).first()
-    await heading.waitFor({ state: 'visible' })
-    await expect(heading).toBeVisible()
+    await this.lushaSearchHeading.waitFor({ state: 'visible' })
+    await expect(this.lushaSearchHeading).toBeVisible()
   }
 
   async verifyCandidateListPageLoads() {
@@ -294,6 +442,7 @@ export class EmployeeRecruitmentPage {
     await expect(this.candidateListHeadingText).toBeVisible()
   }
 
+  /*
   async searchAndVerifyOpenPosition(searchValue: string) {
     await this.openPositiontableLocator.waitFor({ state: 'visible' })
     await this.searchBoxLocator.fill('')
@@ -532,5 +681,5 @@ export class EmployeeRecruitmentPage {
     await this.restoreButtonLocator.scrollIntoViewIfNeeded()
     await this.restoreButtonLocator.isVisible()
     await this.applyArchivefilter()
-  }
+  }*/
 }

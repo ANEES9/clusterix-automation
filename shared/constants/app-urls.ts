@@ -142,6 +142,9 @@ export const APP_URLS = {
     dashboard: 'hr/dashboard',
     employeeManagement: 'hr/employees',
     openPosition: 'hr/candidates/open-positions',
+    organizationStructure: 'hr/organizational-structure',
+    locationAndTeams: 'hr/locations',
+    teams: 'hr/teams',
   },
   files: {
     base: '/cluster-space',

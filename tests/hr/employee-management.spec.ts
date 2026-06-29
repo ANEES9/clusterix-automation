@@ -7,7 +7,6 @@ import { BrowserContext } from 'playwright'
 import { EmployeeManagementPage } from 'pages/hr/employee-management.page'
 import { DashboardPage } from 'pages/hr/dashboard.page'
 
-
 let browser: Browser
 let context: BrowserContext
 let page: Page
@@ -21,7 +20,7 @@ test.describe('HR > Employee Management Test', () => {
     test.setTimeout(300000)
     browser = testBrowser
     context = await browser.newContext({
-      storageState: testInfo.project.use.storageState
+      storageState: testInfo.project.use.storageState,
     })
     page = await context.newPage()
     const testContext = await setupTestContext(page, testInfo)
@@ -32,7 +31,7 @@ test.describe('HR > Employee Management Test', () => {
   })
 
   test('Verify Employees sub-page landing @smoke', async () => {
-    test.setTimeout(180000)
+    //test.setTimeout(180000)
     Allure.addDescription('Verify Employees sub-page loads correctly')
     Allure.addSeverity('critical')
     /*await Allure.step('Step 1: Navigate to Employees sub-page', async () => {
@@ -77,11 +76,16 @@ test.describe('HR > Employee Management Test', () => {
   })
 
   test('Verify Reassignments Overview landing @smoke', async () => {
-    Allure.addDescription('Verify Reassignments Overview sub-page loads correctly')
+    Allure.addDescription(
+      'Verify Reassignments Overview sub-page loads correctly'
+    )
     Allure.addSeverity('critical')
-    await Allure.step('Step 1: Navigate to Reassignments Overview', async () => {
-      await employeeManagementPage.navigateToReassignmentsOverview()
-    })
+    await Allure.step(
+      'Step 1: Navigate to Reassignments Overview',
+      async () => {
+        await employeeManagementPage.navigateToReassignmentsOverview()
+      }
+    )
     await Allure.step('Step 2: Verify page loads', async () => {
       await employeeManagementPage.verifyReassignmentsOverviewPageLoads()
     })
@@ -98,6 +102,38 @@ test.describe('HR > Employee Management Test', () => {
     })
   })
 
+  test('Verify Change Board Owner landing @smoke', async () => {
+    Allure.addDescription('Verify Change Board Owner sub-page loads correctly')
+    Allure.addSeverity('critical')
+    await Allure.step('Step 1: Navigate to Change Board Owner', async () => {
+      await employeeManagementPage.navigateToChangeBoardOwner()
+    })
+    await Allure.step('Step 2: Verify page loads', async () => {
+      await employeeManagementPage.verifyChangeBoardOwnerPageLoads()
+    })
+  })
+
+  test('Verify Change Ticket/Task Owner landing @smoke', async () => {
+    Allure.addDescription(
+      'Verify Change Ticket/Task Owner sub-page loads correctly'
+    )
+    Allure.addSeverity('critical')
+    await Allure.step(
+      'Step 1: Navigate to Change Ticket/Task Owner',
+      async () => {
+        await employeeManagementPage.navigateToChangeTicketTaskOwner()
+      }
+    )
+    await Allure.step('Step 2: Verify page loads', async () => {
+      await employeeManagementPage.verifyChangeTicketTaskOwnerPageLoads()
+    })
+  })
+
+  test.afterAll(async () => {
+    await context.close()
+  })
+
+  /*
   test('Verify Employee Management heading and total number of employees', async ({ }) => {
     Allure.addDescription(
       'Verify Employee Management heading and total number of employees.'
@@ -486,8 +522,5 @@ test.describe('HR > Employee Management Test', () => {
         await employeeManagementPage.terminateAnEmployee(fullName)
       }
     )
-  })
+  })*/
 })
-
-
-

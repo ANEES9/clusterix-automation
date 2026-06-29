@@ -33,7 +33,7 @@ async function createSessionForLocale(locale: string, sessionFilePath: string) {
     } catch (err) {
       await page.screenshot({ path: `scratch/login-failed-${locale}.png` })
       console.log(`Saved screenshot to scratch/login-failed-${locale}.png`)
-      throw err;
+      throw err
     }
 
     // Save the storage state

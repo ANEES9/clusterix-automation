@@ -61,7 +61,22 @@
     "applicants": "Bewerber",
     "locationTeams": "Standort und Teams",
     "inventory": "Inventar",
-    "hrCalendar": "HR Kalender"
+    "hrCalendar": "HR Kalender",
+    "requestManagement": "Antragsverwaltung",
+    "activityType": "Tätigkeitsart",
+    "bonusAgreement": "Bonusvereinbarung",
+    "reassignmentsOverview": "Umverteilungsübersicht",
+    "vacationReport": "Urlaubsbericht",
+    "changeBoardOwner": "Board-Inhaber ändern",
+    "changeTicketTaskOwner": "Ticket-/Aufgabeninhaber ändern",
+    "linkedInSearch": "LinkedIn Suche",
+    "lushaSearch": "Lusha Suche"
+  },
+  "organizationStructure": {
+    "heading": "Organisationsstruktur"
+  },
+  "locationsPage": {
+    "heading": "Standorte"
   },
   "validation": {
     "isRequired": "ist erforderlich",

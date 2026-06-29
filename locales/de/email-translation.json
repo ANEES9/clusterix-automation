@@ -51,15 +51,7 @@
       "November",
       "Dezember"
     ],
-    "days": [
-      "Mo",
-      "Di",
-      "Mi",
-      "Do",
-      "Fr",
-      "Sa",
-      "So"
-    ],
+    "days": ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"],
     "fullDays": {
       "monday": "Montag",
       "tuesday": "Dienstag",

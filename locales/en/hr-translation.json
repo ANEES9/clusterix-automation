@@ -61,7 +61,22 @@
     "applicants": "Applicants",
     "locationTeams": "Location and Teams",
     "inventory": "Inventory",
-    "hrCalendar": "HR Calendar"
+    "hrCalendar": "HR Calendar",
+    "requestManagement": "Request Management",
+    "activityType": "Activity Type",
+    "bonusAgreement": "Bonus Agreement",
+    "reassignmentsOverview": "Reassignments Overview",
+    "vacationReport": "Vacation Report",
+    "changeBoardOwner": "Change Board Owner",
+    "changeTicketTaskOwner": "Change ticket/task owner",
+    "linkedInSearch": "LinkedIn Search",
+    "lushaSearch": "Lusha Search"
+  },
+  "organizationStructure": {
+    "heading": "Organization Structure"
+  },
+  "locationsPage": {
+    "heading": "Locations"
   },
   "validation": {
     "isRequired": "is required",

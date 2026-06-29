@@ -71,7 +71,9 @@ test.describe('Regression Test Suite', () => {
   })
 
   test('Verify remaining number of Leaves in Sick Days section', async () => {
-    Allure.addDescription('Verify remaining number of Leaves in Sick Days section')
+    Allure.addDescription(
+      'Verify remaining number of Leaves in Sick Days section'
+    )
     Allure.addTag('regression')
     Allure.addSeverity('normal')
 
