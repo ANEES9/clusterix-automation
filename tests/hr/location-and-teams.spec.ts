@@ -35,6 +35,19 @@ test.describe('HR > Location and Teams Test', () => {
     })
   })
 
+  test('Verify Teams landing @smoke', async () => {
+    Allure.addDescription('Verify Teams sub-page loads correctly')
+    Allure.addSeverity('critical')
+
+    await Allure.step('Step 1: Navigate to Teams', async () => {
+      await locationAndTeamsPage.navigateToTeams()
+    })
+
+    await Allure.step('Step 2: Verify page loads', async () => {
+      await locationAndTeamsPage.verifyTeamsPageLoads()
+    })
+  })
+
   test.afterAll(async () => {
     await context.close()
   })
