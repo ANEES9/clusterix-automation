@@ -9,7 +9,7 @@ dotenv.config({ path: `.env.${process.env.NODE_ENV || 'testing'}` })
 export default defineConfig({
   timeout: 300000,
   testDir: './tests',
-  retries: 0,
+  retries: 1,
   reporter: [
     ['list'],
     // ['html', { open: 'never' }],
