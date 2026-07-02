@@ -10,6 +10,7 @@ export const APP_NAMES = {
   projectManagement: 'Project Management',
   taskManagement: 'Task Management',
   hr: 'HR',
+  myProfile: 'My Profile',
   files: 'Files',
   office: 'Office',
   pdf: 'PDF',
