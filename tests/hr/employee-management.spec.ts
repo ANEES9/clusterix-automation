@@ -1,6 +1,5 @@
 import { Browser, Page, test } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
-import { VacationAbsenceDaysPage } from 'pages/my-profile/vacation-absence-days.page'
 import { employeeTable } from 'shared/utils/test-data/hr/employee-management-data'
 import { setupTestContext } from 'utils/test-context'
 import { BrowserContext } from 'playwright'
