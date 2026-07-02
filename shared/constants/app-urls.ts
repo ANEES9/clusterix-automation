@@ -25,6 +25,17 @@ export const APP_URLS = {
   sso: '/sso',
   dataProtection: '/privacy-policy',
   termsAndConditions: '/terms-and-conditions',
+  myProfile: {
+    dashboard: '/profile/dashboard',
+    personalInfo: '/profile/personal_info',
+    payrollBonusesAndExtra: '/profile/payroll',
+    absenceDashboard: '/profile/absence/dashboard',
+    absenceDays: '/profile/absence/list',
+    freelancerPayment: '/profile/freelancer-payments',
+    reimbursements: '/profile/reimbursements',
+    securityAndPrivacy: '/profile/security-and-privacy',
+    userRequests: '/profile/user-request',
+  },
   landing: {
     freddyAppointly: '/frederik-erber-termin-mit-frederik-erber',
     hrApp: `https://hr-${BASE_DOMAIN}/`,
