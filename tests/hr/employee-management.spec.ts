@@ -4,13 +4,13 @@ import { employeeTable } from 'shared/utils/test-data/hr/employee-management-dat
 import { setupTestContext } from 'utils/test-context'
 import { BrowserContext } from 'playwright'
 import { EmployeeManagementPage } from 'pages/hr/employee-management.page'
-import { DashboardPage } from 'pages/hr/dashboard.page'
+import { HrDashboardPage } from 'pages/hr/hr-dashboard.page'
 
 let browser: Browser
 let context: BrowserContext
 let page: Page
 let employeeManagementPage: EmployeeManagementPage
-let dashboardPage: DashboardPage
+let hrDashboardPage: HrDashboardPage
 let locale: string
 let createdEmployee: { firstName: string; lastName: string } | null = null
 
@@ -25,7 +25,7 @@ test.describe('HR > Employee Management Test', () => {
     const testContext = await setupTestContext(page, testInfo)
     locale = testContext.locale
     employeeManagementPage = new EmployeeManagementPage(page, locale)
-    dashboardPage = new DashboardPage(page, locale)
+    hrDashboardPage = new HrDashboardPage(page, locale)
     await employeeManagementPage.goto(baseURL!)
   })
 
