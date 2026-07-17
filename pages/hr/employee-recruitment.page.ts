@@ -373,10 +373,24 @@ export class EmployeeRecruitmentPage {
     })
   }
 
+  private async waitForPageReady(locator: Locator, timeout = 15000) {
+    try {
+      await locator.waitFor({ state: 'visible', timeout })
+    } catch {
+      await this.page.reload({ waitUntil: 'domcontentloaded' })
+      await locator.waitFor({ state: 'visible', timeout: 60000 })
+    }
+  }
+
   //GoTo Method
   async goto(baseURL: string | undefined) {
+    const cleanBaseURL = (baseURL || '').replace(/\/$/, '')
+    const cleanPath = APP_URLS.hr.openPosition.replace(/^\//, '')
     await Allure.step('should navigate to open positions', async () => {
-      await this.page.goto(`${baseURL}${APP_URLS.hr.openPosition}`)
+      await this.page.goto(`${cleanBaseURL}/${cleanPath}`, {
+        waitUntil: 'domcontentloaded',
+      })
+      await this.waitForPageReady(this.openPositionHeadingText)
     })
   }
 

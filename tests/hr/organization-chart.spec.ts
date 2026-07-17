@@ -19,7 +19,6 @@ test.describe('HR > Organization Chart Test', () => {
     await setupTestContext(page, testInfo)
     organizationChartPage = new OrganizationChartPage(page)
     await organizationChartPage.goto(baseURL)
-    await page.waitForLoadState('networkidle')
   })
 
   test.afterAll(async () => {

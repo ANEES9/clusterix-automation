@@ -1,5 +1,4 @@
-import { allure } from 'allure-playwright'
-import { Page } from '@playwright/test'
+import { Page, test } from '@playwright/test'
 import { APP_OWNERS, DEFAULT_OWNER, DEFAULT_TEAM } from 'constants/app-owners'
 import { ALLURE_TAGS } from 'constants/allure-tags'
 import { ALLURE_FEATURES } from 'constants/allure-features'
@@ -9,12 +8,24 @@ import {
 } from 'constants/allure-severity-levels'
 
 export class Allure {
+  private static addAnnotation(type: string, description: string) {
+    try {
+      test.info().annotations.push({ type, description })
+    } catch {
+      // Allure metadata is best-effort in shared setup code and hooks.
+    }
+  }
+
+  private static addAllureLabel(name: string, value: string) {
+    this.addAnnotation(`allure.label.${name}`, value)
+  }
+
   /**
    * Adds a description to the test.
    * @param description - Test description.
    */
   static addDescription(description: string) {
-    allure.description(description)
+    this.addAnnotation('description', description)
   }
 
   /**
@@ -24,10 +35,10 @@ export class Allure {
   static addTag(tagKey: keyof typeof ALLURE_TAGS) {
     const tag = ALLURE_TAGS[tagKey]
     if (tag) {
-      allure.tag(tag)
+      this.addAllureLabel('tag', tag)
     } else {
       throw new Error(
-        `Invalid tag key: "${tagKey}". Please use a valid key from ALLURE_TAGS.`
+        `Invalid tag key: "${String(tagKey)}". Please use a valid key from ALLURE_TAGS.`
       )
     }
   }
@@ -50,10 +61,10 @@ export class Allure {
   static addFeature(featureKey: keyof typeof ALLURE_FEATURES) {
     const feature = ALLURE_FEATURES[featureKey]
     if (feature) {
-      allure.feature(feature)
+      this.addAllureLabel('feature', feature)
     } else {
       throw new Error(
-        `Invalid feature key: "${featureKey}". Please use a valid key from ALLURE_FEATURES.`
+        `Invalid feature key: "${String(featureKey)}". Please use a valid key from ALLURE_FEATURES.`
       )
     }
   }
@@ -63,7 +74,7 @@ export class Allure {
    * @param epic - Epic name.
    */
   static addEpic(epic: string) {
-    allure.epic(epic)
+    this.addAllureLabel('epic', epic)
   }
 
   /**
@@ -76,7 +87,7 @@ export class Allure {
         `Invalid severity level: "${level}". Please use a valid level from SEVERITY_LEVELS.`
       )
     }
-    allure.severity(SEVERITY_LEVELS[level])
+    this.addAllureLabel('severity', SEVERITY_LEVELS[level])
   }
 
   /**
@@ -85,15 +96,15 @@ export class Allure {
    * @param value - Label value.
    */
   static addLabel(name: string, value: string) {
-    allure.label(name, value)
+    this.addAllureLabel(name, value)
   }
 
   /**
    * Adds default labels for team and owner.
    */
   static addDefaultLabels() {
-    allure.label('team', DEFAULT_TEAM)
-    allure.label('owner', DEFAULT_OWNER)
+    this.addAllureLabel('team', DEFAULT_TEAM)
+    this.addAllureLabel('owner', DEFAULT_OWNER)
   }
 
   /**
@@ -103,7 +114,7 @@ export class Allure {
   static addAppOwner(appName: keyof typeof APP_OWNERS) {
     const appOwner = APP_OWNERS[appName]
     const ownerName = appOwner?.name || 'Unknown Owner'
-    allure.label('owner', ownerName)
+    this.addAllureLabel('owner', ownerName)
   }
 
   /**
@@ -112,7 +123,7 @@ export class Allure {
    * @param stepFunc - Async function for the step.
    */
   static async step(name: string, stepFunc: () => Promise<void>) {
-    await allure.step(name, stepFunc)
+    await test.step(name, stepFunc)
   }
 
   /**
@@ -121,12 +132,15 @@ export class Allure {
    * @param content - Content as Buffer or string.
    * @param type - MIME type (default: 'text/plain').
    */
-  static addAttachment(
+  static async addAttachment(
     name: string,
     content: Buffer | string,
     type: string = 'text/plain'
   ) {
-    allure.attachment(name, content, type)
+    await test.info().attach(name, {
+      body: content,
+      contentType: type,
+    })
   }
 
   /**
@@ -134,7 +148,7 @@ export class Allure {
    * @param issueId - Issue ID or link.
    */
   static addIssue(issueId: string) {
-    allure.issue('Issue', issueId)
+    this.addAnnotation('issue', issueId)
   }
 
   /**
@@ -142,7 +156,7 @@ export class Allure {
    * @param caseId - Test case ID.
    */
   static addTestCase(caseId: string) {
-    allure.testCaseId(caseId)
+    this.addAnnotation('allure.id', caseId)
   }
 
   /**
@@ -151,7 +165,7 @@ export class Allure {
    * @param value - Environment value.
    */
   static addEnvironment(name: string, value: string) {
-    allure.label(`env:${name}`, value)
+    this.addAllureLabel(`env:${name}`, value)
   }
 
   /**
@@ -160,9 +174,13 @@ export class Allure {
    * @param stepName - Step name.
    */
   static async logStepWithScreenshot(page: Page, stepName: string) {
-    await allure.step(stepName, async () => {
+    await test.step(stepName, async () => {
       const screenshot = await page.screenshot()
-      allure.attachment(`${stepName} - Screenshot`, screenshot, 'image/png')
+      await this.addAttachment(
+        `${stepName} - Screenshot`,
+        screenshot,
+        'image/png'
+      )
     })
   }
 
@@ -188,7 +206,10 @@ export class Allure {
     }
 
     const htmlMessage = `<p style="color: ${color};">${message}</p>`
-    allure.attachment('Log', htmlMessage, 'text/html')
+    test.info().attach('Log', {
+      body: htmlMessage,
+      contentType: 'text/html',
+    })
   }
 
   /**
@@ -197,7 +218,7 @@ export class Allure {
    * @param value - Parameter value.
    */
   static addParameter(name: string, value: string) {
-    allure.parameter(name, value)
+    this.addAnnotation(`parameter:${name}`, value)
   }
 
   /**
@@ -206,7 +227,7 @@ export class Allure {
    * @param url - Link URL.
    */
   static addLink(name: string, url: string) {
-    allure.link(name, url)
+    this.addAnnotation(`link:${name}`, url)
   }
 
   /**
@@ -215,7 +236,7 @@ export class Allure {
    * @param url - TMS URL.
    */
   static addTmsLink(tmsId: string, url: string) {
-    allure.link('TMS', url, tmsId)
+    this.addAnnotation('tms', url || tmsId)
   }
 
   /**
@@ -224,7 +245,7 @@ export class Allure {
    * @param url - Bug Tracker URL.
    */
   static addBugLink(bugId: string, url: string) {
-    allure.link('Bug', url, bugId)
+    this.addAnnotation(`bug:${bugId}`, url)
   }
 
   /**
@@ -232,14 +253,14 @@ export class Allure {
    * @param category - Category name.
    */
   static addCategory(category: string) {
-    allure.label('category', category)
+    this.addAllureLabel('category', category)
   }
 
   /**
    * Marks a test as a retry.
    */
   static markTestAsRetry() {
-    allure.label('retry', 'true')
+    this.addAllureLabel('retry', 'true')
   }
 
   /**
@@ -247,6 +268,6 @@ export class Allure {
    * @param parentTestName - Parent test name.
    */
   static setParentTest(parentTestName: string) {
-    allure.label('parentTest', parentTestName)
+    this.addAllureLabel('parentTest', parentTestName)
   }
 }

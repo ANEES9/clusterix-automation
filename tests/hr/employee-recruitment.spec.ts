@@ -26,7 +26,6 @@ test.describe('HR > Employee Recruitment Test', () => {
     locale = testContext.locale
     employeeRecruitmentPage = new EmployeeRecruitmentPage(page, locale)
     await employeeRecruitmentPage.goto(baseURL!)
-    await page.waitForLoadState('networkidle')
   })
 
   test('Verify Open Positions landing @smoke', async () => {

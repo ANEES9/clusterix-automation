@@ -105,14 +105,16 @@ test.describe('HR > Dashboard', () => {
     })
   })
 
-  test('Verify Company Growth landing @smoke', async () => {
-    Allure.addDescription('Verify Company Growth sub-page loads correctly')
+  test('Verify Headcount Development landing @smoke', async () => {
+    Allure.addDescription(
+      'Verify Headcount Development sub-page loads correctly'
+    )
     Allure.addSeverity('critical')
-    await Allure.step('Step 1: Navigate to Company Growth', async () => {
-      await hrDashboardPage.navigateToCompanyGrowth()
+    await Allure.step('Step 1: Navigate to Headcount Development', async () => {
+      await hrDashboardPage.navigateToHeadcountDevelopment()
     })
     await Allure.step('Step 2: Verify page loads', async () => {
-      await hrDashboardPage.verifyCompanyGrowthPageLoads()
+      await hrDashboardPage.verifyHeadcountDevelopmentPageLoads()
     })
   })
 

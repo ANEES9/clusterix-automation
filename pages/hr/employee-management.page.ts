@@ -296,12 +296,9 @@ export class EmployeeManagementPage {
     this.changeBoardOwnerSubLink = page
       .getByRole('button')
       .filter({ hasText: /^(Change Board Owner|Board-Inhaber ändern)$/i })
-    this.changeTicketTaskOwnerSubLink = page
-      .getByRole('button')
-      .filter({
-        hasText:
-          /^(Change ticket\/task owner|Ticket-\/Aufgabeninhaber ändern)$/i,
-      })
+    this.changeTicketTaskOwnerSubLink = page.getByRole('button').filter({
+      hasText: /^(Change ticket\/task owner|Ticket-\/Aufgabeninhaber ändern)$/i,
+    })
 
     // Initialize sub-page headings
     this.requestManagementHeading = page
@@ -335,11 +332,23 @@ export class EmployeeManagementPage {
   }
 
   //GoTo Method
+  private async waitForPageReady(locator: Locator, timeout = 15000) {
+    try {
+      await locator.waitFor({ state: 'visible', timeout })
+    } catch {
+      await this.page.reload({ waitUntil: 'domcontentloaded' })
+      await locator.waitFor({ state: 'visible', timeout: 60000 })
+    }
+  }
+
   async goto(baseURL: string | undefined) {
     const cleanBaseURL = (baseURL || '').replace(/\/$/, '')
     const cleanPath = APP_URLS.hr.employeeManagement.replace(/^\//, '')
     await Allure.step('should navigate to my profile', async () => {
-      await this.page.goto(`${cleanBaseURL}/${cleanPath}`)
+      await this.page.goto(`${cleanBaseURL}/${cleanPath}`, {
+        waitUntil: 'domcontentloaded',
+      })
+      await this.waitForPageReady(this.headingTextLocator)
     })
   }
 
