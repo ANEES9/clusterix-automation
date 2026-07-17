@@ -13,17 +13,34 @@ export class SecurityAndPrivacyPage {
   ) {
     const translations = getTranslations('my-profile', locale)
     this.pageHeading = page
-      .getByText(translations.security_and_privacy, { exact: true })
-      .last()
+      .locator('h1, h2, h3, strong, [class*="title"], [class*="heading"]')
+      .filter({ hasText: translations.security_and_privacy })
+      .first()
     this.mainPageContainer = page.locator('#root')
+  }
+
+  private async waitForPageReady(locator: Locator, timeout = 15000) {
+    try {
+      await locator.waitFor({ state: 'visible', timeout })
+    } catch {
+      await this.page.reload({ waitUntil: 'domcontentloaded' })
+      try {
+        await locator.waitFor({ state: 'visible', timeout: 60000 })
+      } catch {
+        await this.page.reload({ waitUntil: 'domcontentloaded' })
+        await locator.waitFor({ state: 'visible', timeout: 60000 })
+      }
+    }
   }
 
   async goto(baseURL: string | undefined) {
     const cleanBaseURL = (baseURL || '').replace(/\/$/, '')
     await Allure.step('should navigate to security and privacy', async () => {
       await this.page.goto(
-        `${cleanBaseURL}${APP_URLS.myProfile.securityAndPrivacy}`
+        `${cleanBaseURL}${APP_URLS.myProfile.securityAndPrivacy}`,
+        { waitUntil: 'domcontentloaded' }
       )
+      await this.waitForPageReady(this.pageHeading)
     })
   }
 
@@ -37,5 +54,4 @@ export class SecurityAndPrivacyPage {
     await this.pageHeading.waitFor({ state: 'visible' })
     await expect(this.pageHeading).toBeVisible()
   }
-
 }

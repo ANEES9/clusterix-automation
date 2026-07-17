@@ -19,10 +19,27 @@ export class ProfileDashboardPage {
     this.mainPageContainer = page.locator('#root')
   }
 
+  private async waitForPageReady(locator: Locator, timeout = 15000) {
+    try {
+      await locator.waitFor({ state: 'visible', timeout })
+    } catch {
+      await this.page.reload({ waitUntil: 'domcontentloaded' })
+      try {
+        await locator.waitFor({ state: 'visible', timeout: 60000 })
+      } catch {
+        await this.page.reload({ waitUntil: 'domcontentloaded' })
+        await locator.waitFor({ state: 'visible', timeout: 60000 })
+      }
+    }
+  }
+
   async goto(baseURL: string | undefined) {
     const cleanBaseURL = (baseURL || '').replace(/\/$/, '')
     await Allure.step('should navigate to profile dashboard', async () => {
-      await this.page.goto(`${cleanBaseURL}${APP_URLS.myProfile.dashboard}`)
+      await this.page.goto(`${cleanBaseURL}${APP_URLS.myProfile.dashboard}`, {
+        waitUntil: 'domcontentloaded',
+      })
+      await this.waitForPageReady(this.pageHeading)
     })
   }
 

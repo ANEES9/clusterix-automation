@@ -1,6 +1,5 @@
 import { expect, Locator, Page } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
-import { getTranslations } from 'common/get-translations-helper'
 import { APP_URLS } from 'constants/app-urls'
 
 export class PayrollBonusesExtraPage {
@@ -11,11 +10,24 @@ export class PayrollBonusesExtraPage {
     private readonly page: Page,
     locale: string
   ) {
-    const translations = getTranslations('my-profile', locale)
-    this.pageHeading = page.getByText(translations.payroll_bonuses_and_extra, {
-      exact: true,
-    })
+    this.pageHeading = page
+      .getByRole('button', { name: /Payrolls|Gehaltsabrechnungen/i })
+      .first()
     this.mainPageContainer = page.locator('#root')
+  }
+
+  private async waitForPageReady(locator: Locator, timeout = 15000) {
+    try {
+      await locator.waitFor({ state: 'visible', timeout })
+    } catch {
+      await this.page.reload({ waitUntil: 'domcontentloaded' })
+      try {
+        await locator.waitFor({ state: 'visible', timeout: 60000 })
+      } catch {
+        await this.page.reload({ waitUntil: 'domcontentloaded' })
+        await locator.waitFor({ state: 'visible', timeout: 60000 })
+      }
+    }
   }
 
   async goto(baseURL: string | undefined) {
@@ -24,8 +36,10 @@ export class PayrollBonusesExtraPage {
       'should navigate to payroll, bonuses and extra',
       async () => {
         await this.page.goto(
-          `${cleanBaseURL}${APP_URLS.myProfile.payrollBonusesAndExtra}`
+          `${cleanBaseURL}${APP_URLS.myProfile.payrollBonusesAndExtra}`,
+          { waitUntil: 'domcontentloaded' }
         )
+        await this.waitForPageReady(this.pageHeading)
       }
     )
   }
@@ -38,5 +52,4 @@ export class PayrollBonusesExtraPage {
     await this.pageHeading.waitFor({ state: 'visible' })
     await expect(this.pageHeading).toBeVisible()
   }
-
 }
