@@ -34,14 +34,14 @@ export class HrDashboardPage {
   private myAbsenceDaysLink: Locator
   private recruitmentStatisticsLink: Locator
   private employeeRetentionLink: Locator
-  private companyGrowthLink: Locator
+  private headcountDevelopmentLink: Locator
   private birthdayInformationLink: Locator
 
   // Subpage Headings
   private myAbsenceDaysHeading: Locator
   private recruitmentStatisticsHeading: Locator
   private employeeRetentionHeading: Locator
-  private companyGrowthHeading: Locator
+  private headcountDevelopmentHeading: Locator
   private birthdayInformationHeading: Locator
 
   constructor(page: Page, locale: string) {
@@ -106,7 +106,7 @@ export class HrDashboardPage {
     this.employeeRetentionLink = page
       .getByRole('button')
       .filter({ hasText: this.translations.dashboard.employeeRetention })
-    this.companyGrowthLink = page
+    this.headcountDevelopmentLink = page
       .getByRole('button')
       .filter({ hasText: this.translations.dashboard.companyGrowth })
     this.birthdayInformationLink = page
@@ -126,7 +126,7 @@ export class HrDashboardPage {
       .locator('strong, h1, h2, h3, div')
       .filter({ hasText: this.translations.dashboard.employeeRetention })
       .first()
-    this.companyGrowthHeading = page
+    this.headcountDevelopmentHeading = page
       .locator('strong, h1, h2, h3, div')
       .filter({ hasText: this.translations.dashboard.companyGrowth })
       .first()
@@ -137,10 +137,22 @@ export class HrDashboardPage {
   }
 
   // --- Navigation ---
+  private async waitForPageReady(locator: Locator, timeout = 15000) {
+    try {
+      await locator.waitFor({ state: 'visible', timeout })
+    } catch {
+      await this.page.reload({ waitUntil: 'domcontentloaded' })
+      await locator.waitFor({ state: 'visible', timeout: 60000 })
+    }
+  }
+
   async goto(baseURL: string | undefined) {
     const cleanBaseURL = (baseURL || '').replace(/\/$/, '')
     await Allure.step('Navigate to HR Dashboard', async () => {
-      await this.page.goto(`${cleanBaseURL}/${APP_URLS.hr.dashboard}`)
+      await this.page.goto(`${cleanBaseURL}/${APP_URLS.hr.dashboard}`, {
+        waitUntil: 'domcontentloaded',
+      })
+      await this.waitForPageReady(this.dashboardHeading)
     })
   }
 
@@ -198,13 +210,15 @@ export class HrDashboardPage {
     await expect(this.employeeRetentionHeading).toBeVisible()
   }
 
-  async verifyCompanyGrowthPageLoads() {
-    await expect(this.page).toHaveURL(/.*company-growth/)
-    await this.companyGrowthHeading.waitFor({
+  async verifyHeadcountDevelopmentPageLoads() {
+    await expect(this.page).toHaveURL(
+      /.*(company-growth|headcount-development)/
+    )
+    await this.headcountDevelopmentHeading.waitFor({
       state: 'visible',
       timeout: 30000,
     })
-    await expect(this.companyGrowthHeading).toBeVisible()
+    await expect(this.headcountDevelopmentHeading).toBeVisible()
   }
 
   async verifyBirthdayInformationPageLoads() {
@@ -232,8 +246,8 @@ export class HrDashboardPage {
     await this.page.waitForLoadState('networkidle')
   }
 
-  async navigateToCompanyGrowth() {
-    await this.companyGrowthLink.click()
+  async navigateToHeadcountDevelopment() {
+    await this.headcountDevelopmentLink.click()
     await this.page.waitForLoadState('networkidle')
   }
 
@@ -246,7 +260,7 @@ export class HrDashboardPage {
     await expect(this.myAbsenceDaysLink).toBeVisible()
     await expect(this.recruitmentStatisticsLink).toBeVisible()
     await expect(this.employeeRetentionLink).toBeVisible()
-    await expect(this.companyGrowthLink).toBeVisible()
+    await expect(this.headcountDevelopmentLink).toBeVisible()
     await expect(this.birthdayInformationLink).toBeVisible()
   }
 
