@@ -7,6 +7,7 @@
     "clearAllFilters": "Clear all filters",
     "employeeDeleted": "The employee is deleted",
     "employeeTerminated": "The employee has been",
+    "editEmployee": "Edit Employee",
     "goStraightToWorkspace": "Go straight to my workspace",
     "ready": "Ready ✓"
   },
@@ -60,16 +61,26 @@
     "employees": "Employees",
     "applicants": "Applicants",
     "locationTeams": "Location and Teams",
+    "teams": "Teams",
     "inventory": "Inventory",
     "hrCalendar": "HR Calendar",
+    "employeeRecruitment": "Employee recruitment",
+    "openPositions": "Open Positions",
+    "candidates": "Candidates",
+    "candidateList": "Candidate List",
     "requestManagement": "Request Management",
     "activityType": "Activity Type",
     "bonusAgreement": "Bonus Agreement",
     "reassignmentsOverview": "Reassignments Overview",
     "vacationReport": "Vacation Report",
+    "changeOwner": "Change Owner",
+    "ticketOwner": "Ticket Owner",
+    "taskOwner": "Task Owner",
+    "boardOwner": "Board Owner",
     "changeBoardOwner": "Change Board Owner",
     "changeTicketTaskOwner": "Change ticket/task owner",
     "linkedInSearch": "LinkedIn Search",
+    "apolloSearch": "Apollo Search",
     "lushaSearch": "Lusha Search"
   },
   "organizationStructure": {
@@ -211,6 +222,7 @@
     }
   },
   "dashboard": {
+    "heading": "Dashboard",
     "vacationDays": "Vacation Days",
     "sickLeave": "Sick leave",
     "employeeRequests": "Employee requests",

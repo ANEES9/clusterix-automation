@@ -30,7 +30,7 @@ export const APP_URLS = {
     personalInfo: '/profile/personal_info',
     payrollBonusesAndExtra: '/profile/payroll',
     absenceDashboard: '/profile/absence/dashboard',
-    absenceDays: '/profile/absence/list',
+    absenceDays: '/profile/absence/team',
     freelancerPayment: '/profile/freelancer-payments',
     reimbursements: '/profile/reimbursements',
     securityAndPrivacy: '/profile/security-and-privacy',

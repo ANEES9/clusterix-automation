@@ -7,6 +7,7 @@
     "clearAllFilter": "Alle Filter löschen",
     "employeeDeleted": "Der Mitarbeiter wird gelöscht",
     "employeeTerminated": "ui.employees.toasts.",
+    "editEmployee": "Mitarbeiter bearbeiten",
     "goStraightToWorkspace": "Direkt zu meinem Arbeitsbereich",
     "ready": "Bereit ✓"
   },
@@ -60,16 +61,26 @@
     "employees": "Mitarbeiter",
     "applicants": "Bewerber",
     "locationTeams": "Standort und Teams",
+    "teams": "Teams",
     "inventory": "Inventar",
     "hrCalendar": "HR Kalender",
+    "employeeRecruitment": "Mitarbeitergewinnung",
+    "openPositions": "Offene Stellen",
+    "candidates": "Kandidaten",
+    "candidateList": "Kandidatenliste",
     "requestManagement": "Antragsverwaltung",
     "activityType": "Tätigkeitsart",
     "bonusAgreement": "Bonusvereinbarung",
     "reassignmentsOverview": "Umverteilungsübersicht",
     "vacationReport": "Urlaubsbericht",
+    "changeOwner": "Inhaber ändern",
+    "ticketOwner": "Ticket-Inhaber",
+    "taskOwner": "Aufgabeninhaber",
+    "boardOwner": "Board-Inhaber",
     "changeBoardOwner": "Board-Inhaber ändern",
     "changeTicketTaskOwner": "Ticket-/Aufgabeninhaber ändern",
     "linkedInSearch": "LinkedIn Suche",
+    "apolloSearch": "Apollo Suche",
     "lushaSearch": "Lusha Suche"
   },
   "organizationStructure": {
@@ -211,6 +222,7 @@
     }
   },
   "dashboard": {
+    "heading": "Dashboard",
     "vacationDays": "Urlaubstage",
     "sickLeave": "Krankheitsurlaub",
     "employeeRequests": "Mitarbeiteranfragen",

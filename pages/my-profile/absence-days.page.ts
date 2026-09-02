@@ -1,37 +1,31 @@
 import { expect, Locator, Page } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
 import { getTranslations } from 'common/get-translations-helper'
+import { waitForPageReady } from 'common/page-ready-helper'
 import { APP_URLS } from 'constants/app-urls'
 
 export class AbsenceDaysPage {
+  readonly page: Page
+  private translations: Record<string, any>
+
+  // ========================
+  // Locator declarations
+  // ========================
   private readonly pageHeading: Locator
   private readonly mainPageContainer: Locator
 
-  constructor(
-    private readonly page: Page,
-    locale: string
-  ) {
-    const translations = getTranslations('my-profile', locale)
-    this.pageHeading = page
-      .locator('h1, h2, h3, strong, [class*="title"], [class*="heading"]')
-      .filter({ hasText: translations.absence_days })
-      .first()
+  // ========================
+  // Constructor
+  // ========================
+  constructor(page: Page, locale: string) {
+    this.page = page
+    this.translations = getTranslations('my-profile', locale)
 
+    this.pageHeading = page.getByRole('button', {
+      name: this.translations.absence_days,
+      exact: true,
+    })
     this.mainPageContainer = page.locator('#root')
-  }
-
-  private async waitForPageReady(locator: Locator, timeout = 15000) {
-    try {
-      await locator.waitFor({ state: 'visible', timeout })
-    } catch {
-      await this.page.reload({ waitUntil: 'domcontentloaded' })
-      try {
-        await locator.waitFor({ state: 'visible', timeout: 60000 })
-      } catch {
-        await this.page.reload({ waitUntil: 'domcontentloaded' })
-        await locator.waitFor({ state: 'visible', timeout: 60000 })
-      }
-    }
   }
 
   async goto(baseURL: string | undefined) {
@@ -40,16 +34,22 @@ export class AbsenceDaysPage {
       await this.page.goto(`${cleanBaseURL}${APP_URLS.myProfile.absenceDays}`, {
         waitUntil: 'domcontentloaded',
       })
-      await this.waitForPageReady(this.pageHeading)
+      await waitForPageReady(this.page, this.pageHeading, 'Absence Days')
     })
   }
 
   async verifyPageUrl() {
-    await expect(this.page).toHaveURL(/\/profile\/absence\/list(?:[/?#]|$)/)
+    await expect(this.page).toHaveURL(/\/profile\/absence\/team(?:[/?#]|$)/)
   }
 
   async verifyPageHeading() {
     await this.pageHeading.waitFor({ state: 'visible' })
     await expect(this.pageHeading).toBeVisible()
+  }
+
+  async verifyPageLoads() {
+    await this.verifyPageUrl()
+    await this.verifyPageHeading()
+    await expect(this.mainPageContainer).toBeVisible()
   }
 }
