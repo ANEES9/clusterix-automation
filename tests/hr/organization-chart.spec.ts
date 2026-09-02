@@ -16,8 +16,8 @@ test.describe('HR > Organization Chart Test', () => {
       storageState: testInfo.project.use.storageState,
     })
     page = await context.newPage()
-    await setupTestContext(page, testInfo)
-    organizationChartPage = new OrganizationChartPage(page)
+    const { locale } = await setupTestContext(page, testInfo)
+    organizationChartPage = new OrganizationChartPage(page, locale)
     await organizationChartPage.goto(baseURL)
   })
 

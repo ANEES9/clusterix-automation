@@ -1,36 +1,31 @@
 import { expect, Locator, Page } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
 import { getTranslations } from 'common/get-translations-helper'
+import { waitForPageReady } from 'common/page-ready-helper'
 import { APP_URLS } from 'constants/app-urls'
 
 export class SecurityAndPrivacyPage {
+  readonly page: Page
+  private translations: Record<string, any>
+
+  // ========================
+  // Locator declarations
+  // ========================
   private readonly pageHeading: Locator
   private readonly mainPageContainer: Locator
 
-  constructor(
-    private readonly page: Page,
-    locale: string
-  ) {
-    const translations = getTranslations('my-profile', locale)
+  // ========================
+  // Constructor
+  // ========================
+  constructor(page: Page, locale: string) {
+    this.page = page
+    this.translations = getTranslations('my-profile', locale)
+
     this.pageHeading = page
       .locator('h1, h2, h3, strong, [class*="title"], [class*="heading"]')
-      .filter({ hasText: translations.security_and_privacy })
+      .filter({ hasText: this.translations.security_and_privacy })
       .first()
     this.mainPageContainer = page.locator('#root')
-  }
-
-  private async waitForPageReady(locator: Locator, timeout = 15000) {
-    try {
-      await locator.waitFor({ state: 'visible', timeout })
-    } catch {
-      await this.page.reload({ waitUntil: 'domcontentloaded' })
-      try {
-        await locator.waitFor({ state: 'visible', timeout: 60000 })
-      } catch {
-        await this.page.reload({ waitUntil: 'domcontentloaded' })
-        await locator.waitFor({ state: 'visible', timeout: 60000 })
-      }
-    }
   }
 
   async goto(baseURL: string | undefined) {
@@ -40,7 +35,7 @@ export class SecurityAndPrivacyPage {
         `${cleanBaseURL}${APP_URLS.myProfile.securityAndPrivacy}`,
         { waitUntil: 'domcontentloaded' }
       )
-      await this.waitForPageReady(this.pageHeading)
+      await waitForPageReady(this.page, this.pageHeading, 'Security & Privacy')
     })
   }
 

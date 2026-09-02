@@ -135,3 +135,48 @@ test.describe('HR > Dashboard', () => {
     await context.close()
   })
 })
+
+
+
+test.describe('HR > other', () => {
+  test.beforeAll(async ({ browser: testBrowser, baseURL }, testInfo) => {
+    //test.setTimeout(300000)
+    browser = testBrowser
+    context = await browser.newContext({
+      storageState: testInfo.project.use.storageState,
+    })
+    page = await context.newPage()
+    const testContext = await setupTestContext(page, testInfo)
+    locale = testContext.locale
+    hrDashboardPage = new HrDashboardPage(page, locale)
+    await hrDashboardPage.goto(baseURL!)
+  })
+
+
+  test('Verify multiple window handleing ', async () => {
+    Allure.addDescription(
+      'Verify Birthday Information sub-page loads correctly'
+    )
+    Allure.addSeverity('critical')
+    await Allure.step('Step 1: Navigate to Birthday Information', async () => {
+      await hrDashboardPage.navigateToBirthdayInformation()
+    })
+    await Allure.step('Step 2: Verify page loads', async () => {
+      const page1Promise = page.waitForEvent('popup');
+      await page.locator('._button_1lgb3_1._button_24_1lgb3_3424._button_lightRed_1lgb3_1779').click();
+      const page1 = await page1Promise;
+      await page.getByRole('button').filter({ hasText: 'Recruitment Statistics' }).click();
+      await page1.getByRole('button', { name: 'Statistics' }).click();
+    });
+  })
+
+
+  })
+
+
+
+test.afterAll(async () => {
+  await context.close()
+})
+
+

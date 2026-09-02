@@ -1,5 +1,6 @@
 import { Page, Locator, expect } from '@playwright/test'
 import { getTranslations } from '../../helpers/common/get-translations-helper'
+import { waitForPageReady } from '../../helpers/common/page-ready-helper'
 import { Allure } from '../../helpers/common/allure-helper'
 import { APP_URLS } from '../../shared/constants/app-urls'
 import { APP_NAMES } from '../../shared/constants/app-names'
@@ -8,6 +9,7 @@ export class HrDashboardPage {
   readonly page: Page
   private translations: Record<string, any>
 
+  // Locator declarations
   // Heading
   private dashboardHeading: Locator
 
@@ -22,7 +24,6 @@ export class HrDashboardPage {
   private vacationRequestNowButton: Locator
   private sickLeaveReportNowButton: Locator
   private homeOfficeRequestNowButton: Locator
-  private otherRequestNowButton: Locator
 
   // Violations
   private violationsSection: Locator
@@ -30,28 +31,30 @@ export class HrDashboardPage {
   private minRestViolation: Locator
   private minBreakViolation: Locator
 
-  // Sidebar navigation
+  // Sidebar links
   private myAbsenceDaysLink: Locator
   private recruitmentStatisticsLink: Locator
   private employeeRetentionLink: Locator
   private headcountDevelopmentLink: Locator
   private birthdayInformationLink: Locator
 
-  // Subpage Headings
+  // Sub-page headings
   private myAbsenceDaysHeading: Locator
   private recruitmentStatisticsHeading: Locator
   private employeeRetentionHeading: Locator
   private headcountDevelopmentHeading: Locator
   private birthdayInformationHeading: Locator
 
+  // Constructor
   constructor(page: Page, locale: string) {
     this.page = page
     this.translations = getTranslations('hr', locale)
 
     // Heading
-    this.dashboardHeading = page.locator(
-      "//strong[contains(text(),'Dashboard')]"
-    )
+    this.dashboardHeading = page
+      .locator('strong, h1, h2, h3')
+      .filter({ hasText: this.translations.dashboard.heading })
+      .first()
 
     // Cards — locate by card title text
     this.vacationDaysCard = page
@@ -78,9 +81,6 @@ export class HrDashboardPage {
     this.homeOfficeRequestNowButton = page
       .getByRole('button', { name: this.translations.dashboard.requestNow })
       .nth(1)
-    this.otherRequestNowButton = page
-      .getByRole('button', { name: this.translations.dashboard.requestNow })
-      .nth(2)
 
     // Violations
     this.violationsSection = page
@@ -136,27 +136,18 @@ export class HrDashboardPage {
       .first()
   }
 
-  // --- Navigation ---
-  private async waitForPageReady(locator: Locator, timeout = 15000) {
-    try {
-      await locator.waitFor({ state: 'visible', timeout })
-    } catch {
-      await this.page.reload({ waitUntil: 'domcontentloaded' })
-      await locator.waitFor({ state: 'visible', timeout: 60000 })
-    }
-  }
-
+  // Navigation methods
   async goto(baseURL: string | undefined) {
     const cleanBaseURL = (baseURL || '').replace(/\/$/, '')
     await Allure.step('Navigate to HR Dashboard', async () => {
       await this.page.goto(`${cleanBaseURL}/${APP_URLS.hr.dashboard}`, {
         waitUntil: 'domcontentloaded',
       })
-      await this.waitForPageReady(this.dashboardHeading)
+      await waitForPageReady(this.page, this.dashboardHeading, 'HR Dashboard')
     })
   }
 
-  // --- Verification Methods ---
+  // Verification methods
   async verifyHrDashboardPageLoads() {
     await this.dashboardHeading.waitFor({ state: 'visible', timeout: 300000 })
     await expect(this.dashboardHeading).toBeVisible()
@@ -183,6 +174,7 @@ export class HrDashboardPage {
     await expect(this.homeOfficeRequestNowButton).toBeVisible()
   }
 
+  // Subpage verification methods
   async verifyMyAbsenceDaysPageLoads() {
     await expect(this.page).toHaveURL(/.*dashboard/)
     await this.myAbsenceDaysHeading.waitFor({
@@ -230,7 +222,7 @@ export class HrDashboardPage {
     await expect(this.birthdayInformationHeading).toBeVisible()
   }
 
-  // --- Sidebar Navigation ---
+  // Sidebar navigation methods
   async navigateToMyAbsenceDays() {
     await this.myAbsenceDaysLink.click()
     await this.page.waitForLoadState('networkidle')
@@ -264,7 +256,7 @@ export class HrDashboardPage {
     await expect(this.birthdayInformationLink).toBeVisible()
   }
 
-  // --- Actions ---
+  // Action methods
   async clickVacationRequestNow() {
     await this.vacationRequestNowButton.click()
     await this.page.waitForLoadState('networkidle')

@@ -34,8 +34,11 @@ test.describe('My Profile > Payroll, Bonuses & Extra', () => {
         await payrollBonusesExtraPage.verifyPageUrl()
       }
     )
-    /*await Allure.step('Step 2: Verify Payroll, Bonuses & Extra page heading', async () => {
-      await payrollBonusesExtraPage.verifyPageHeading()
-    })*/
+    await Allure.step(
+      'Step 2: Verify Payroll, Bonuses & Extra page heading',
+      async () => {
+        await payrollBonusesExtraPage.verifyPageHeading()
+      }
+    )
   })
 })

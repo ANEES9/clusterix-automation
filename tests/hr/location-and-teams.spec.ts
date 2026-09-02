@@ -16,8 +16,8 @@ test.describe('HR > Location and Teams Test', () => {
       storageState: testInfo.project.use.storageState,
     })
     page = await context.newPage()
-    await setupTestContext(page, testInfo)
-    locationAndTeamsPage = new LocationAndTeamsPage(page)
+    const { locale } = await setupTestContext(page, testInfo)
+    locationAndTeamsPage = new LocationAndTeamsPage(page, locale)
     await locationAndTeamsPage.goto(baseURL)
   })
 
