@@ -1,40 +1,31 @@
 import { expect, Locator, Page } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
 import { getTranslations } from 'common/get-translations-helper'
+import { waitForPageReady } from 'common/page-ready-helper'
 import { APP_URLS } from 'constants/app-urls'
 
 export class FreelancerPaymentPage {
+  readonly page: Page
+  private translations: Record<string, any>
+
+  // ========================
+  // Locator declarations
+  // ========================
   private readonly pageHeading: Locator
   private readonly mainPageContainer: Locator
 
-  constructor(
-    private readonly page: Page,
-    locale: string
-  ) {
-    const translations = getTranslations('my-profile', locale)
-    this.pageHeading = page
-      .locator('h1, h2, h3, strong, [class*="title"], [class*="heading"]')
-      .filter({
-        hasText: new RegExp(
-          `^(${translations.freelancer_payment}|Freelancer Payment)$`
-        ),
-      })
-      .first()
-    this.mainPageContainer = page.locator('#root')
-  }
+  // ========================
+  // Constructor
+  // ========================
+  constructor(page: Page, locale: string) {
+    this.page = page
+    this.translations = getTranslations('my-profile', locale)
 
-  private async waitForPageReady(locator: Locator, timeout = 15000) {
-    try {
-      await locator.waitFor({ state: 'visible', timeout })
-    } catch {
-      await this.page.reload({ waitUntil: 'domcontentloaded' })
-      try {
-        await locator.waitFor({ state: 'visible', timeout: 60000 })
-      } catch {
-        await this.page.reload({ waitUntil: 'domcontentloaded' })
-        await locator.waitFor({ state: 'visible', timeout: 60000 })
-      }
-    }
+    this.pageHeading = page.getByRole('button', {
+      name: this.translations.freelancer_payment,
+      exact: true,
+    })
+    this.mainPageContainer = page.locator('#root')
   }
 
   async goto(baseURL: string | undefined) {
@@ -44,7 +35,7 @@ export class FreelancerPaymentPage {
         `${cleanBaseURL}${APP_URLS.myProfile.freelancerPayment}`,
         { waitUntil: 'domcontentloaded' }
       )
-      await this.waitForPageReady(this.pageHeading)
+      await waitForPageReady(this.page, this.pageHeading, 'Freelancer Payment')
     })
   }
 

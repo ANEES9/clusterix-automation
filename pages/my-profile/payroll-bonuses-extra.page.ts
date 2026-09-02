@@ -1,33 +1,31 @@
 import { expect, Locator, Page } from '@playwright/test'
 import { Allure } from 'common/allure-helper'
+import { getTranslations } from 'common/get-translations-helper'
+import { waitForPageReady } from 'common/page-ready-helper'
 import { APP_URLS } from 'constants/app-urls'
 
 export class PayrollBonusesExtraPage {
+  readonly page: Page
+  private translations: Record<string, any>
+
+  // ========================
+  // Locator declarations
+  // ========================
   private readonly pageHeading: Locator
   private readonly mainPageContainer: Locator
 
-  constructor(
-    private readonly page: Page,
-    locale: string
-  ) {
-    this.pageHeading = page
-      .getByRole('button', { name: /Payrolls|Gehaltsabrechnungen/i })
-      .first()
-    this.mainPageContainer = page.locator('#root')
-  }
+  // ========================
+  // Constructor
+  // ========================
+  constructor(page: Page, locale: string) {
+    this.page = page
+    this.translations = getTranslations('my-profile', locale)
 
-  private async waitForPageReady(locator: Locator, timeout = 15000) {
-    try {
-      await locator.waitFor({ state: 'visible', timeout })
-    } catch {
-      await this.page.reload({ waitUntil: 'domcontentloaded' })
-      try {
-        await locator.waitFor({ state: 'visible', timeout: 60000 })
-      } catch {
-        await this.page.reload({ waitUntil: 'domcontentloaded' })
-        await locator.waitFor({ state: 'visible', timeout: 60000 })
-      }
-    }
+    this.pageHeading = page.getByRole('button', {
+      name: this.translations.payroll_bonuses_and_extra,
+      exact: true,
+    })
+    this.mainPageContainer = page.locator('#root')
   }
 
   async goto(baseURL: string | undefined) {
@@ -39,7 +37,11 @@ export class PayrollBonusesExtraPage {
           `${cleanBaseURL}${APP_URLS.myProfile.payrollBonusesAndExtra}`,
           { waitUntil: 'domcontentloaded' }
         )
-        await this.waitForPageReady(this.pageHeading)
+        await waitForPageReady(
+          this.page,
+          this.pageHeading,
+          'Payroll, Bonuses & Extra'
+        )
       }
     )
   }
